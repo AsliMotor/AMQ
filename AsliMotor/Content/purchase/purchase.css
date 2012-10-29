@@ -1,0 +1,23 @@
+﻿.detail-purchase-billing.header, .detail-purchase-subheader.header
+{
+    border:1px solid #f8f8f8;
+    padding:7px;
+    background-color:#fefefe;
+    min-height:55px;
+}
+.detail-purchase-billing{width:300px;float:left;}
+.detail-purchase-billing .title{font-size:14px;font-weight:bold;}
+.detail-purchase-billing .description{padding-left:10px;font-size:11px;text-transform:capitalize;}
+.detail-purchase-subheader{width:350px;float:right;margin-right:10px;}
+.detail-purchase-subheader > div{margin: 7px 0px;}
+.detail-purchase-subheader div:first-child{margin: 0px;}
+.detail-purchase-subheader div > div{float:left;}
+.detail-purchase-subheader div > div:first-child{min-width:110px;}
+.detail-purchase-body{padding: 15px 0px 0px 100px;clear:both;}
+.detail-purchase-body div{margin:2px 0px;}
+.detail-purchase-body div > div, .detail-purchase-footer div > div{float:left;}
+.detail-purchase-body div > div.a{width: 120px;}
+.detail-purchase-body div > div.b, .detail-purchase-footer div > div.b{width: 30px;}
+.detail-purchase-footer{padding-top:20px;clear:both;}
+.detail-purchase-footer div > div.a{width:90px;}
+.detail-purchase-footer div > div.note{width:400px;}

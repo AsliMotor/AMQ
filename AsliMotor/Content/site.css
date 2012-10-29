@@ -1,0 +1,64 @@
+﻿body 
+{
+    padding-top:60px;
+    font-family: 'lucida grande',tahoma,verdana,arial,sans-serif;
+    overflow-x:hidden;
+    background-color:#fefefe;
+}
+a.brand
+{
+    -webkit-transition: all .2s linear;
+    -moz-transition: all .2s linear;
+    transition: all .2s linear;
+}
+a.brand:hover{color:white;}
+div.container
+{
+    max-width: 940px;
+    min-width: 550px;
+    width: auto;
+}
+div#main-container
+{
+    -webkit-transition: all .2s ease-in-out;
+	-moz-transition: all .2s ease-in-out;
+	-o-transition: all .2s ease-in-out;
+	transition: all .2s ease-in-out;
+	min-width:984px;
+}
+.transaction-no
+{
+    color:#5aa141;
+    font-weight:bolder;
+}
+span.currency
+{
+    font-weight:bolder;
+}
+div.ajax-loading-container
+{
+    z-index: 1030;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    text-align:center;
+}
+div.ajax-loading-container .loading-element
+{
+    position: relative;
+    display: inline-block;
+}
+div.ajax-loading-container .loading-element .message
+{
+    border-color: #F0C36D;
+    background-color: #F9EDBE;
+    padding: 0 10px;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -moz-box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}

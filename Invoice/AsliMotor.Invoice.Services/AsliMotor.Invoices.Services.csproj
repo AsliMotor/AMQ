@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D3F294F9-A4E6-46BC-A826-DB8424B73B5F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AsliMotor.Invoices.Services</RootNamespace>
+    <AssemblyName>AsliMotor.Invoices.Services</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BonaStoco.Inf.Data">
+      <HintPath>..\..\packages\am-bin\BonaStoco.Inf.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="BonaStoco.Inf.Data.ViewModel">
+      <HintPath>..\..\packages\am-bin\BonaStoco.Inf.Data.ViewModel.dll</HintPath>
+    </Reference>
+    <Reference Include="BonaStoco.Inf.DataMapper">
+      <HintPath>..\..\packages\am-bin\BonaStoco.Inf.DataMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="BonaStoco.Inf.DataMapper.Impl">
+      <HintPath>..\..\packages\am-bin\BonaStoco.Inf.DataMapper.Impl.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus, Version=3.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\NServiceBus.3.0.3\lib\net40\NServiceBus.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.Core, Version=3.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\NServiceBus.3.0.3\lib\net40\NServiceBus.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IInvoiceService.cs" />
+    <Compile Include="InvoiceService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\AsliMotor.Customers\AsliMotor.Customers.csproj">
+      <Project>{16F8407F-6EB0-4161-8EDA-23BDB946E04A}</Project>
+      <Name>AsliMotor.Customers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Product\AsliMotor.Product.Models\AsliMotor.Products.Models.csproj">
+      <Project>{C373B792-0B15-4784-9A18-0C59957BF260}</Project>
+      <Name>AsliMotor.Products.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Product\AsliMotor.Product\AsliMotor.Products.csproj">
+      <Project>{30FC3ABA-ADE1-42F3-AF27-618978F7A555}</Project>
+      <Name>AsliMotor.Products</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Receive\AsliMotor.Receives.Commands\AsliMotor.Receives.Commands.csproj">
+      <Project>{B3DB55B0-5466-4EAA-861A-08583B1E8A04}</Project>
+      <Name>AsliMotor.Receives.Commands</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Receive\AsliMotor.Receives.Models\AsliMotor.Receives.Models.csproj">
+      <Project>{FF305145-FD73-4A71-967A-B8B6FF52125A}</Project>
+      <Name>AsliMotor.Receives.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Receive\AsliMotor.Receives.Repository\AsliMotor.Receives.Repository.csproj">
+      <Project>{65E17230-8EFA-453D-A980-D1D6F4096839}</Project>
+      <Name>AsliMotor.Receives.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Receive\AsliMotor.Receives.Services\AsliMotor.Receives.Services.csproj">
+      <Project>{1A9017C2-C6A6-48AC-AF0A-59DB5DAFD61E}</Project>
+      <Name>AsliMotor.Receives.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SuratPerjanjian\AsliMotor.Perjanjian.Services\AsliMotor.Perjanjian.Services.csproj">
+      <Project>{0F34CCD5-7CEC-4FA2-AB3E-CEE4D7C17942}</Project>
+      <Name>AsliMotor.Perjanjian.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AsliMotor.Invoice.Command\AsliMotor.Invoices.Command.csproj">
+      <Project>{06ADC49F-5972-4388-9146-0EC3F0F6D499}</Project>
+      <Name>AsliMotor.Invoices.Command</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AsliMotor.Invoice.Domain\AsliMotor.Invoices.Domain.csproj">
+      <Project>{0FE06027-1D6A-402B-B23B-7AA32A509F3C}</Project>
+      <Name>AsliMotor.Invoices.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AsliMotor.Invoice.Models\AsliMotor.Invoices.Snapshots.csproj">
+      <Project>{D3A51AE0-959D-4192-9A57-260AF1BEBC4E}</Project>
+      <Name>AsliMotor.Invoices.Snapshots</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AsliMotor.Invoices.Repository\AsliMotor.Invoices.Repository.csproj">
+      <Project>{5072D364-CE20-4C9F-8DFF-10DE6471C11E}</Project>
+      <Name>AsliMotor.Invoices.Repository</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

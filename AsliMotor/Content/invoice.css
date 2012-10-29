@@ -1,0 +1,37 @@
+﻿.edit-customer-container
+{
+    background-color:#d0ffd0;   
+    border:1px solid #a9f6a9;
+    border-radius:7px;
+}
+.edit-customer-container:hover
+{background-color:#a9f6a9;   
+    border:1px solid #7df17d;
+}
+.edit-product-container
+{
+    background-color:#cfe6ff;   
+    border:1px solid #a4ccf7;
+    border-radius:7px;
+}
+.edit-product-container:hover
+{
+    background-color:#a4ccf7;   
+    border:1px solid #7ab6f6;
+}
+.payment-form-panel
+{
+    background-color:#dfd6e2;   
+    border:1px solid #e392fd;
+    border-radius:7px;
+}
+.payment-form-panel:hover
+{
+    background-color:#dac6e1;   
+    border:1px solid #d568f9;
+}
+#paymenttype > div > div
+{
+    float:left;
+    min-width:110px;
+}

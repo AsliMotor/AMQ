@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>AsliMotor:::Login</title>
+    <link href="@Url.Content("~/Content/bootstrap/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/site.css")" rel="stylesheet" type="text/css" />
+</head>
+<body data-spy="scroll" data-target=".subnav" data-offset="50" data-twttr-rendered="true">
+    <div class='navbar navbar-fixed-top'>
+        <div class='navbar-inner'>
+            <div class='container'>
+                <a class='btn btn-navbar' data-target='.nav-collapse' data-toggle='collapse'>
+                    <span class='icon-bar'></span>
+                    <span class='icon-bar'></span>
+                    <span class='icon-bar'></span>
+                </a>
+                <a class="brand" href="#">Home Soft</a>
+                <div class='nav-collapse'>
+                    <ul class='nav'>
+                        <li class='divider-vertical'></li>
+                    </ul>
+                    <ul class="nav pull-right">
+                      <li class="divider-vertical"></li>
+                      <li>@Html.ActionLink("Login", "LogOn", "Account")</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class='container'>
+        @RenderBody()
+    </div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1A9017C2-C6A6-48AC-AF0A-59DB5DAFD61E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AsliMotor.Receives.Services</RootNamespace>
+    <AssemblyName>AsliMotor.Receives.Services</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BonaStoco.Inf.Data.ViewModel">
+      <HintPath>..\..\packages\am-bin\BonaStoco.Inf.Data.ViewModel.dll</HintPath>
+    </Reference>
+    <Reference Include="BonaStoco.Inf.Reporting">
+      <HintPath>..\..\packages\am-bin\BonaStoco.Inf.Reporting.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IReceiveService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReceiveService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AsliMotor.Receive.AutoNumberGenerator\AsliMotor.Receives.AutoNumberGenerator.csproj">
+      <Project>{4F0A2D4E-2D73-4B0A-A8A3-3BA729EA5885}</Project>
+      <Name>AsliMotor.Receives.AutoNumberGenerator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AsliMotor.Receives.Commands\AsliMotor.Receives.Commands.csproj">
+      <Project>{B3DB55B0-5466-4EAA-861A-08583B1E8A04}</Project>
+      <Name>AsliMotor.Receives.Commands</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AsliMotor.Receives.Models\AsliMotor.Receives.Models.csproj">
+      <Project>{FF305145-FD73-4A71-967A-B8B6FF52125A}</Project>
+      <Name>AsliMotor.Receives.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AsliMotor.Receives.Repository\AsliMotor.Receives.Repository.csproj">
+      <Project>{65E17230-8EFA-453D-A980-D1D6F4096839}</Project>
+      <Name>AsliMotor.Receives.Repository</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

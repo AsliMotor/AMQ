@@ -1,0 +1,369 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F8DF2D5B-7D6B-4DEB-A3CF-96B078DE8D71}</ProjectGuid>
+    <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AsliMotor</RootNamespace>
+    <AssemblyName>AsliMotor</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemGroup>
+    <Reference Include="antlr.runtime, Version=2.7.6.2, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\antlr.runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="BonaStoco.Inf.Data">
+      <HintPath>..\packages\am-bin\BonaStoco.Inf.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="BonaStoco.Inf.Data.ViewModel, Version=1.1.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\am-bin\BonaStoco.Inf.Data.ViewModel.dll</HintPath>
+    </Reference>
+    <Reference Include="BonaStoco.Inf.DataMapper">
+      <HintPath>..\packages\am-bin\BonaStoco.Inf.DataMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="BonaStoco.Inf.DataMapper.Impl">
+      <HintPath>..\packages\am-bin\BonaStoco.Inf.DataMapper.Impl.dll</HintPath>
+    </Reference>
+    <Reference Include="BonaStoco.Inf.Reporting">
+      <HintPath>..\packages\am-bin\BonaStoco.Inf.Reporting.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EO.Pdf">
+      <HintPath>..\packages\EO.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.1.2.10\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Mono.Security, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\am-bin\Mono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql, Version=2.0.4.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus, Version=2.6.0.1504, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NServiceBus.3.0.3\lib\net40\NServiceBus.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.Core, Version=2.6.0.1504, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NServiceBus.3.0.3\lib\net40\NServiceBus.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Aop, Version=1.2.0.20313, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Spring.Aop.1.3.2\lib\net40\Spring.Aop.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Core, Version=1.2.0.20313, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Spring.Core.1.3.2\lib\net40\Spring.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data, Version=1.2.0.20313, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Spring.Data.1.3.2\lib\net40\Spring.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrganizationController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\PurchaseController.cs" />
+    <Compile Include="Controllers\InvoiceController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\CompanyProfile.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Content\img\loader.gif" />
+    <Content Include="Content\img\page-bg.png" />
+    <Content Include="Content\invoice.css" />
+    <Content Include="Content\product.css" />
+    <Content Include="ErrorPages\Oops.html" />
+    <Content Include="Scripts\app\invoice\controller\CreateController.js" />
+    <Content Include="Scripts\app\invoice\controller\ListController.js" />
+    <Content Include="Scripts\app\invoice\model\InvoiceListReport.js" />
+    <Content Include="Scripts\app\invoice\model\InvoiceListReports.js" />
+    <Content Include="Scripts\app\invoice\model\Invoice.js" />
+    <Content Include="Scripts\app\invoice\model\TotalInvoiceList.js" />
+    <Content Include="Scripts\app\invoice\router\InvoiceRouter.js" />
+    <Content Include="Scripts\app\invoice\view\CreateInvoice.js" />
+    <Content Include="Scripts\app\product\controller\DetailController.js" />
+    <Content Include="Scripts\app\product\controller\EditController.js" />
+    <Content Include="Scripts\app\product\controller\ListController.js" />
+    <Content Include="Scripts\app\product\main.js" />
+    <Content Include="Scripts\app\product\model\ProductListReport.js" />
+    <Content Include="Scripts\app\product\model\ProductListReports.js" />
+    <Content Include="Scripts\app\product\model\Product.js" />
+    <Content Include="Scripts\app\product\model\TotalProductList.js" />
+    <Content Include="Scripts\app\product\router\ProductRouter.js" />
+    <Content Include="Scripts\app\product\view\DetailProduct.js" />
+    <Content Include="Scripts\app\product\view\EditProduct.js" />
+    <Content Include="Scripts\app\purchase\controller\CreateController.js" />
+    <Content Include="Scripts\app\purchase\controller\EditController.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap\bootstrap.css" />
+    <Content Include="Content\bootstrap\bootstrap.min.css" />
+    <Content Include="Content\img\glyphicons-halflings-white.png" />
+    <Content Include="Content\img\glyphicons-halflings.png" />
+    <Content Include="Content\purchase\purchase.css" />
+    <Content Include="Content\site.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\app\eventAggregator.js" />
+    <Content Include="Scripts\app\namespace.js" />
+    <Content Include="Scripts\app\purchase\controller\DetailController.js" />
+    <Content Include="Scripts\app\purchase\controller\ListController.js" />
+    <Content Include="Scripts\app\purchase\main.js" />
+    <Content Include="Scripts\app\purchase\model\Purchase.js" />
+    <Content Include="Scripts\app\purchase\model\PurchaseListReport.js" />
+    <Content Include="Scripts\app\purchase\model\PurchaseListReports.js" />
+    <Content Include="Scripts\app\purchase\model\TotalPurchaseList.js" />
+    <Content Include="Scripts\app\purchase\router\PurchaseRouter.js" />
+    <Content Include="Scripts\app\purchase\view\DetailPurchase.js" />
+    <Content Include="Scripts\app\purchase\view\EditPurchase.js" />
+    <Content Include="Scripts\app\invoice\main.js" />
+    <Content Include="Scripts\libs\AjaxLoading.js" />
+    <Content Include="Scripts\libs\backbone\backbone.js" />
+    <Content Include="Scripts\libs\backbone\backbone.marionette.js" />
+    <Content Include="Scripts\libs\backbone\backbone.min.js" />
+    <Content Include="Scripts\libs\backbone\utils.js" />
+    <Content Include="Scripts\libs\bootstrap\bootstrap-datepicker.js" />
+    <Content Include="Scripts\libs\bootstrap\bootstrap.js" />
+    <Content Include="Scripts\libs\bootstrap\bootstrap.min.js" />
+    <Content Include="Content\homejs\homejs.css" />
+    <Content Include="Scripts\libs\Currency.js" />
+    <Content Include="Scripts\libs\Date.js" />
+    <Content Include="Scripts\libs\homejs\Button.js" />
+    <Content Include="Scripts\libs\homejs\ButtonType.js" />
+    <Content Include="Scripts\libs\homejs\DataTable.js" />
+    <Content Include="Scripts\libs\homejs\FormLayout.js" />
+    <Content Include="Scripts\libs\homejs\FormPanel.js" />
+    <Content Include="Scripts\libs\homejs\inputfield\DateField.js" />
+    <Content Include="Scripts\libs\homejs\DetailPanel.js" />
+    <Content Include="Scripts\libs\homejs\HomeJS.js" />
+    <Content Include="Scripts\libs\homejs\inputfield\SearchField.js" />
+    <Content Include="Scripts\libs\homejs\inputfield\TextArea.js" />
+    <Content Include="Scripts\libs\homejs\inputfield\TextField.js" />
+    <Content Include="Scripts\libs\homejs\Label.js" />
+    <Content Include="Scripts\libs\homejs\List.js" />
+    <Content Include="Scripts\libs\homejs\RadioButton.js" />
+    <Content Include="Scripts\libs\jquery\jquery-1.7.2.js" />
+    <Content Include="Scripts\libs\jquery\jquery-1.7.2.min.js" />
+    <Content Include="Scripts\libs\jquery\jquery.cookie.js" />
+    <Content Include="Scripts\libs\require\domReady.js" />
+    <Content Include="Scripts\libs\require\require.js" />
+    <Content Include="Scripts\libs\require\require.min.js" />
+    <Content Include="Scripts\libs\require\text.js" />
+    <Content Include="Scripts\libs\resizable-tables.js" />
+    <Content Include="Scripts\libs\Animation.js" />
+    <Content Include="Scripts\libs\underscore\underscore.js" />
+    <Content Include="Scripts\libs\underscore\underscore.min.js" />
+    <Content Include="Scripts\libs\underscore\underscore.string.js" />
+    <Content Include="Scripts\test\component\FormPanel.js" />
+    <Content Include="Scripts\test\component\radiobutton.js" />
+    <Content Include="Scripts\test\component\SearchField.js" />
+    <Content Include="Scripts\test\component\TextArea.js" />
+    <Content Include="Scripts\test\component\datefield.js" />
+    <Content Include="Scripts\test\component\TextField.js" />
+    <Content Include="Scripts\test\purchase\DetailPurchase.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Account\LogOn.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_LogOnPartial.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AsliMotor.Customers\AsliMotor.Customers.csproj">
+      <Project>{16F8407F-6EB0-4161-8EDA-23BDB946E04A}</Project>
+      <Name>AsliMotor.Customers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AsliMotor.Organization\AsliMotor.Organizations.csproj">
+      <Project>{D86FA059-1DDB-40E6-BCFA-C1C54235A040}</Project>
+      <Name>AsliMotor.Organizations</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AsliMotor.PrintDocument\AsliMotor.PrintDocuments.csproj">
+      <Project>{8AB23D46-1714-4995-B483-5503B77685A5}</Project>
+      <Name>AsliMotor.PrintDocuments</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AsliMotor.Security\AsliMotor.Security.csproj">
+      <Project>{3BAA56DC-9289-4B77-A727-5FC551095F1B}</Project>
+      <Name>AsliMotor.Security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Invoice\AsliMotor.Invoice.Command\AsliMotor.Invoices.Command.csproj">
+      <Project>{06ADC49F-5972-4388-9146-0EC3F0F6D499}</Project>
+      <Name>AsliMotor.Invoices.Command</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Invoice\AsliMotor.Invoice.Services\AsliMotor.Invoices.Services.csproj">
+      <Project>{D3F294F9-A4E6-46BC-A826-DB8424B73B5F}</Project>
+      <Name>AsliMotor.Invoices.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Invoice\AsliMotor.Invoices.ReportRepository\AsliMotor.Invoices.ReportRepository.csproj">
+      <Project>{0059972F-360C-463C-94D3-CDBD61A37DBC}</Project>
+      <Name>AsliMotor.Invoices.ReportRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Product\AsliMotor.Product.Models\AsliMotor.Products.Models.csproj">
+      <Project>{C373B792-0B15-4784-9A18-0C59957BF260}</Project>
+      <Name>AsliMotor.Products.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Product\AsliMotor.Product\AsliMotor.Products.csproj">
+      <Project>{30FC3ABA-ADE1-42F3-AF27-618978F7A555}</Project>
+      <Name>AsliMotor.Products</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SI\AsliMotor.SI.Repository\AsliMotor.SI.Repository.csproj">
+      <Project>{CEDAFE71-569A-4E19-A1AA-376BD88199FC}</Project>
+      <Name>AsliMotor.SI.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SI\AsliMotor.SI.Services\AsliMotor.SI.Services.csproj">
+      <Project>{E9E273CE-3850-42DB-BEC6-ECE410A55638}</Project>
+      <Name>AsliMotor.SI.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_LayoutBranch.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_LayoutOwner.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Purchase\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Test\PrintSI.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Organization\Change.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Test\DateField.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Test\DetailPurchase.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Test\TextField.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Test\TextArea.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Test\FormPanel.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Product\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Invoice\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Test\PrintSuratPernyataanKredit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Test\SearchField.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Test\RadioButton.cshtml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>49299</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

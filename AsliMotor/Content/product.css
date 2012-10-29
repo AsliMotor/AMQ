@@ -1,0 +1,19 @@
+﻿.detail-product
+{
+    margin-left:70px;
+}
+.detail-product div
+{
+    margin:5px 0px;
+}
+.detail-product div > div
+{
+    float:left;
+}
+.detail-product div > div.a{width: 120px;}
+.detail-product div > div.b, .detail-purchase-footer div > div.b{width: 30px;}
+
+.edit-product
+{
+    margin-left:40px;
+}

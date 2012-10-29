@@ -1,0 +1,128 @@
+CREATE TABLE account
+(
+  id bigint NOT NULL DEFAULT nextval('tbl_user_id_seq'::regclass),
+  username character varying,
+  "role" integer,
+  email character varying,
+  datecreated date,
+  lastactivitydate date,
+  lastlogindate date,
+  lastpasswordchangeddate date,
+  ownerid character varying,
+  branchid character varying,
+  "password" character varying,
+  CONSTRAINT tbl_user_pkey PRIMARY KEY (id)
+)
+WITH (OIDS=FALSE);
+ALTER TABLE account OWNER TO aslimotor;
+
+
+CREATE TABLE logoorganization
+(
+  id character varying NOT NULL,
+  image bytea,
+  CONSTRAINT logocompanyprofile_pkey PRIMARY KEY (id)
+)
+WITH (OIDS=FALSE);
+ALTER TABLE logoorganization OWNER TO aslimotor;
+
+CREATE TABLE organization
+(
+  branchid character varying NOT NULL,
+  organizationname character varying,
+  organizationaddress character varying,
+  city character varying,
+  country character varying,
+  telp character varying,
+  CONSTRAINT companyprofile_pkey PRIMARY KEY (branchid)
+)
+WITH (OIDS=FALSE);
+ALTER TABLE organization OWNER TO aslimotor;
+
+CREATE TABLE productsnapshot
+(
+  id uuid NOT NULL,
+  merk character varying,
+  "type" character varying,
+  tahun character varying,
+  warna character varying,
+  norangka character varying,
+  nomesin character varying,
+  nobpkb character varying,
+  hargabeli numeric,
+  status character varying,
+  nopolisi character varying,
+  branchid character varying,
+  CONSTRAINT product_pkey PRIMARY KEY (id)
+)
+WITH (OIDS=FALSE);
+ALTER TABLE productsnapshot OWNER TO aslimotor;
+
+CREATE TABLE siautonumberconfig
+(
+  id character varying NOT NULL,
+  "mode" integer,
+  prefix character varying,
+  branchid character varying,
+  CONSTRAINT siautonumberconfig_pkey PRIMARY KEY (id)
+)
+WITH (OIDS=FALSE);
+ALTER TABLE siautonumberconfig OWNER TO aslimotor;
+
+CREATE TABLE siautonumbermonthly
+(
+  id character varying NOT NULL,
+  branchid character varying,
+  "year" integer,
+  "month" integer,
+  "value" integer,
+  CONSTRAINT siautonumbermonthly_pkey PRIMARY KEY (id)
+)
+WITH (OIDS=FALSE);
+ALTER TABLE siautonumbermonthly OWNER TO aslimotor;
+
+CREATE TABLE siautonumberyearly
+(
+  id character varying NOT NULL,
+  branchid character varying,
+  "year" integer,
+  "value" integer,
+  CONSTRAINT siautonumberyearly_pkey PRIMARY KEY (id)
+)
+WITH (OIDS=FALSE);
+ALTER TABLE siautonumberyearly OWNER TO aslimotor;
+
+CREATE TABLE supplierinvoice
+(
+  id uuid NOT NULL,
+  branchid character varying,
+  transactiondate timestamp with time zone,
+  supplierinvoicedate date,
+  supplierinvoiceno character varying,
+  suppliername character varying,
+  supplierbillingaddress character varying,
+  merk character varying,
+  "type" character varying,
+  tahun character varying,
+  warna character varying,
+  norangka character varying,
+  nomesin character varying,
+  nobpkb character varying,
+  nopolisi character varying,
+  hargabeli numeric,
+  note character varying,
+  notelp character varying,
+  CONSTRAINT supplierinvoice_pkey PRIMARY KEY (id)
+)
+WITH (OIDS=FALSE);
+ALTER TABLE supplierinvoice OWNER TO aslimotor;
+
+CREATE TABLE "type"
+(
+  id uuid NOT NULL,
+  "name" character varying,
+  branchid character varying,
+  CONSTRAINT type_pkey PRIMARY KEY (id)
+)
+WITH (OIDS=FALSE);
+ALTER TABLE "type" OWNER TO aslimotor;
