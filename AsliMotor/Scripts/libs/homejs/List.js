@@ -5,7 +5,7 @@
         '../../libs/homejs/Button',
         '../../libs/homejs/ButtonType',
         '../../libs/homejs/DataTable',
-        '../../libs/homejs/SearchField',
+        '../../libs/homejs/inputfield/InputSearchField',
         '../../libs/resizable-tables'],
     function ($, _, Backbone, ns) {
         ns.define("HomeJS.components");

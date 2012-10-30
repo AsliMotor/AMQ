@@ -97,8 +97,13 @@
             'blur input': 'hideResultContainer'
         },
         onTab: function (ev) {
-            if (ev.keyCode == 9)
+            if (ev.keyCode == 9) {
                 this.setModel(ev);
+            }
+            if (ev.keyCode == 13) {
+                ev.preventDefault();
+                this.focusNextInputField();
+            }
         },
         actions: function (ev) {
             if (ev.keyCode == 27)
@@ -188,6 +193,8 @@
                 $('textarea', this.$el.next()).focus();
             else if ($('input', this.$el.next())[0])
                 $('input', this.$el.next()).focus();
+            else
+                $('input#idsearched', this.$el).blur();
         }
     });
 

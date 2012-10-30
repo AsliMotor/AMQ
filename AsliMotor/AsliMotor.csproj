@@ -203,6 +203,7 @@
     <Content Include="Scripts\libs\homejs\Label.js" />
     <Content Include="Scripts\libs\homejs\List.js" />
     <Content Include="Scripts\libs\homejs\RadioButton.js" />
+    <Content Include="Scripts\libs\homejs\inputfield\InputSearchField.js" />
     <Content Include="Scripts\libs\jquery\jquery-1.7.2.js" />
     <Content Include="Scripts\libs\jquery\jquery-1.7.2.min.js" />
     <Content Include="Scripts\libs\jquery\jquery.cookie.js" />

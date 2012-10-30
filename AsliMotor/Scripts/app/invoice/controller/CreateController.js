@@ -134,7 +134,8 @@
                 detailPanel = new HomeJS.components.DetailPanel({
                     leftSection: {
                         caption: {
-                            title: 'Buat Tranksasi Penjualan'
+                            title: 'Buat Tranksasi Penjualan',
+                            action: function () { am.eventAggregator.trigger("showList"); }
                         },
                         item: createInvoice
                     },
