@@ -44,19 +44,33 @@ namespace AsliMotor.Controllers
         [HttpPut]
         public JsonResult Purchase(SupplierInvoice si)
         {
-            CompanyProfile cp = new CompanyProfile(this.HttpContext);
-            SupplierInvoiceService.Update(si, cp.UserName);
-            return Json(si, JsonRequestBehavior.AllowGet);
+            try
+            {
+                CompanyProfile cp = new CompanyProfile(this.HttpContext);
+                SupplierInvoiceService.Update(si, cp.UserName);
+                return Json(new { error = false, data = si }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { error = true, message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         [HttpPost]
         public JsonResult CreatePurchase(SupplierInvoice si)
         {
-            CompanyProfile cp = new CompanyProfile(this.HttpContext);
-            si.BranchId = cp.BranchId;
-            si.id = Guid.NewGuid();
-            SupplierInvoiceService.Create(si, cp.UserName);
-            return Json(si, JsonRequestBehavior.AllowGet);
+            try
+            {
+                CompanyProfile cp = new CompanyProfile(this.HttpContext);
+                si.BranchId = cp.BranchId;
+                si.id = Guid.NewGuid();
+                SupplierInvoiceService.Create(si, cp.UserName);
+                return Json(new { error = false, data = si }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { error = true, message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         [HttpGet]

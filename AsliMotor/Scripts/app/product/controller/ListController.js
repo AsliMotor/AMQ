@@ -33,10 +33,15 @@
                     resizable: true,
                     collection: productsModel,
                     headers: [{
-                        name: "Tipe",
+                        name: "Merk",
+                        dataIndex: "Merk",
+                        width: "80px",
+                        title: "Klik untuk mengurutkan berdasarkan Merk kendaraan"
+                    },{
+                        name: "Type",
                         dataIndex: "Type",
                         width: "150px",
-                        title: "Klik untuk mengurutkan berdasarkan Tipe kendaraan"
+                        title: "Klik untuk mengurutkan berdasarkan Type kendaraan"
                     }, {
                         name: "No Polisi",
                         dataIndex: "NoPolisi",
@@ -65,6 +70,8 @@
                         title: "Klik untuk mengurutkan berdasarkan Status"
                     }],
                     items: [{
+                        dataIndex: "Merk"
+                    },{
                         dataIndex: "Type"
                     }, {
                         dataIndex: "NoPolisi"

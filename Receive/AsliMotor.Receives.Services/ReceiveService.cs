@@ -56,10 +56,17 @@ namespace AsliMotor.Receives.Services
                 ReceiveNo = ReceiveAutoNumberGenerator.GenerateReceiveNumber(DateTime.Now, cmd.BranchId),
                 ReceiveType = (int)ReceiveTypes.UANGMUKA,
                 Total = cmd.Total,
-                Charge = cmd.Charge,
                 BranchId = cmd.BranchId
             };
             ReceiveRepository.Save(rcv);
+        }
+
+        public void ChangeUangMuka(Guid invoiceId, decimal uangMuka)
+        {
+            Receive rcv = ReceiveRepository.GetByInvoiceIdAndPaymentType(invoiceId, (int)ReceiveTypes.UANGMUKA);
+            rcv.ReceiveDate = DateTime.Now;
+            rcv.Total = uangMuka;
+            ReceiveRepository.Update(rcv);
         }
 
         public void CreateAngsuran(CreateAngsuranReceive cmd)
@@ -68,7 +75,7 @@ namespace AsliMotor.Receives.Services
             {
                 id = Guid.NewGuid(),
                 InvoiceId = cmd.InvoiceId,
-                ReceiveDate = DateTime.Now,
+                ReceiveDate = cmd.PaymentDate,
                 ReceiveNo = ReceiveAutoNumberGenerator.GenerateReceiveNumber(DateTime.Now, cmd.BranchId),
                 ReceiveType = (int)ReceiveTypes.ANGSURAN,
                 Total = cmd.Total,

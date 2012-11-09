@@ -131,7 +131,7 @@
             var iconCls = (spec.iconClass === undefined) ? this.defaultIconCls : spec.iconClass;
             var tooltip = (spec.tooltip == undefined) ? "" : spec.tooltip;
             if (spec.renderer) {
-                if (!spec.renderer(this.model)) {
+                if (spec.renderer(this.model)) {
                     $("ul", this.$el).append("<li id='" + spec.id + "' title='" + tooltip + "'><a><i class='" + iconCls + "'></i>" + spec.title + "</a></li>");
                 }
             } else {

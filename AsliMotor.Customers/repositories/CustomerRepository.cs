@@ -33,5 +33,17 @@ namespace AsliMotor.Customers
             Customer cust = QueryObjectMapper.Map<Customer>("findByKTPNo", new string[] { "ktpno", "branchid" }, new object[] { ktpno, branchid }).FirstOrDefault();
             return cust;
         }
+
+        public IList<CustomerReport> GetListView(string branchid, int offset)
+        {
+            IList<CustomerReport> results = QueryObjectMapper.Map<CustomerReport>("findAllByOffset", new string[] { "branchid", "offset" }, new object[] { branchid, (offset * 10) });
+            return results;
+        }
+
+        public TotalCustomer GetTotalList(string branchid)
+        {
+            TotalCustomer result = QueryObjectMapper.Map<TotalCustomer>("count", new string[] { "branchid" }, new object[] { branchid }).FirstOrDefault();
+            return result;
+        }
     }
 }

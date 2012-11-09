@@ -7,6 +7,7 @@ using BonaStoco.Inf.Data.ViewModel;
 namespace AsliMotor.Invoices.Snapshots
 {
     [NamedSqlQuery("findById", @"SELECT * FROM invoicesnapshot where id = @id")]
+    [Serializable]
     public class InvoiceSnapshot : IViewModel
     {
         public Guid id { get; set; }
@@ -17,7 +18,6 @@ namespace AsliMotor.Invoices.Snapshots
         public DateTime TransactionDate { get; set; }
         public int Status { get; set; }
         public decimal Price { get; set; }
-        public decimal Charge { get; set; }
         public decimal TotalKredit { get; set; }
         public int LamaAngsuran { get; set; }
         public decimal SukuBunga { get; set; }

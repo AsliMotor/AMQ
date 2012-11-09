@@ -7,6 +7,7 @@ using BonaStoco.Inf.Data.ViewModel;
 namespace AsliMotor.Products.Models
 {
     [NamedSqlQuery("findAllByOffset", @"select id,
+                                        merk,
 	                                    type,
 	                                    nopolisi,
 	                                    nomesin,
@@ -19,6 +20,7 @@ namespace AsliMotor.Products.Models
     public class ProductReport : IViewModel
     {
         public Guid id { get; set; }
+        public string Merk { get; set; }
         public string Type { get; set; }
         public string NoPolisi { get; set; }
         public string NoMesin { get; set; }

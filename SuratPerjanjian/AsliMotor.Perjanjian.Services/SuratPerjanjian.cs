@@ -10,5 +10,6 @@ namespace AsliMotor.Perjanjian.Services
     {
         public Guid InvoiceId { get; set; }
         public string SuratPerjanjianNo { get; set; }
+        public DateTime SuratPerjanjianDate { get; set; }
     }
 }

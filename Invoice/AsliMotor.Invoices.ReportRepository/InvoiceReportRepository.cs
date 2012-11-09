@@ -9,9 +9,9 @@ namespace AsliMotor.Invoices.ReportRepository
     public class InvoiceReportRepository:IInvoiceReportRepository
     {
         public IQueryObjectMapper QueryObjectMapper { get; set; }
-        public InvoiceReport Get(Guid invoiceId, string branchId)
+        public InvoiceHeaderReport GetHeader(Guid invoiceId, string branchId)
         {
-            InvoiceReport inv = QueryObjectMapper.Map<InvoiceReport>("findById", new string[] { "id", "branchid" }, new object[] { invoiceId, branchId }).FirstOrDefault();
+            InvoiceHeaderReport inv = QueryObjectMapper.Map<InvoiceHeaderReport>("findById", new string[] { "id", "branchid" }, new object[] { invoiceId, branchId }).FirstOrDefault();
             return inv;
         }
 
@@ -19,6 +19,42 @@ namespace AsliMotor.Invoices.ReportRepository
         {
             IList<InvoiceListViewReport> listView = QueryObjectMapper.Map<InvoiceListViewReport>("findListView", new string[] { "branchid", "offset" }, new object[] { branchid, (offset * 10) });
             return listView;
+        }
+
+        public InvoiceBookingReport GetInvoiceBookingReport(Guid invoiceId, string branchid)
+        {
+            InvoiceBookingReport inv = QueryObjectMapper.Map<InvoiceBookingReport>("findById", new string[] { "id", "branchid" }, new object[] { invoiceId, branchid }).FirstOrDefault();
+            return inv;
+        }
+
+        public InvoiceCashReport GetInvoiceCashReport(Guid invoiceId, string branchid)
+        {
+            InvoiceCashReport inv = QueryObjectMapper.Map<InvoiceCashReport>("findById", new string[] { "id", "branchid" }, new object[] { invoiceId, branchid }).FirstOrDefault();
+            return inv;
+        }
+
+        public ReceiveUangMukaReport GetReceiveUangMukaReport(Guid invoiceId, string branchid)
+        {
+            ReceiveUangMukaReport rcv = QueryObjectMapper.Map<ReceiveUangMukaReport>("findById", new string[] { "id", "branchid" }, new object[] { invoiceId, branchid }).FirstOrDefault();
+            return rcv;
+        }
+
+        public ReceiveAngsuranReport GetReceiveAngsuranReport(Guid rcvId)
+        {
+            ReceiveAngsuranReport rcv = QueryObjectMapper.Map<ReceiveAngsuranReport>("findById", new string[] { "rcvid" }, new object[] { rcvId }).FirstOrDefault();
+            return rcv;
+        }
+
+        public IList<InvoiceItemReport> GetItems(Guid invoiceId, string branchid)
+        {
+            IList<InvoiceItemReport> items = QueryObjectMapper.Map<InvoiceItemReport>("findById", new string[] { "id", "branchid" }, new object[] { invoiceId, branchid }).ToList();
+            return items;
+        }
+
+        public TotalInvoice GetTotalListView(string branchId)
+        {
+            TotalInvoice total = QueryObjectMapper.Map<TotalInvoice>("count", new string[] { "branchid" }, new object[] { branchId }).FirstOrDefault();
+            return total;
         }
     }
 }

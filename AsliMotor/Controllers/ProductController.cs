@@ -53,7 +53,7 @@ namespace AsliMotor.Controllers
             {
                 CompanyProfile cp = new CompanyProfile(this.HttpContext);
                 ProductService.Update(product, cp.UserName);
-                return Json(product, JsonRequestBehavior.AllowGet);
+                return Json(new { error = false, data = product }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

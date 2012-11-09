@@ -64,7 +64,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="models\CustomerReport.cs" />
     <Compile Include="models\CustomerSearch.cs" />
+    <Compile Include="models\TotalCustomer.cs" />
     <Compile Include="repositories\CustomerRepository.cs" />
     <Compile Include="repositories\ICustomerRepository.cs" />
     <Compile Include="models\Customer.cs" />

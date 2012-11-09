@@ -27,7 +27,6 @@ namespace AsliMotor.Invoices.Domain
                 Status = (int) p.Status,
                 LamaAngsuran = p.LamaAngsuran,
                 SukuBunga = p.SukuBunga,
-                Charge = BiayaAdministration(p.LamaAngsuran),
                 DueDate = p.DueDate,
                 AngsuranBulanan = CalculateAngsuranBulanan(p.Price, p.UangMuka, p.LamaAngsuran, p.SukuBunga, 0),
                 TotalKredit = CalculateTotalKredit(p.Price, p.UangMuka, p.LamaAngsuran, p.SukuBunga, p.Status, 0)
@@ -46,7 +45,6 @@ namespace AsliMotor.Invoices.Domain
             _snapshot.LamaAngsuran = p.LamaAngsuran;
             _snapshot.SukuBunga = p.SukuBunga;
             _snapshot.DueDate = p.DueDate.AddMonths(1);
-            _snapshot.Charge = BiayaAdministration(p.LamaAngsuran);
             _snapshot.AngsuranBulanan = CalculateAngsuranBulanan(_snapshot.Price, p.UangMuka, p.LamaAngsuran, p.SukuBunga, p.UangTandaJadi);
             _snapshot.TotalKredit = CalculateTotalKredit(_snapshot.Price, p.UangMuka, p.LamaAngsuran, p.SukuBunga, StatusInvoice.CREDIT, p.UangTandaJadi);
         }
@@ -54,6 +52,15 @@ namespace AsliMotor.Invoices.Domain
         public void BayarAngsuran()
         {
             _snapshot.DueDate = _snapshot.DueDate.AddMonths(1);
+        }
+
+        public void ChangeUangMuka(decimal uangmuka, decimal uangtandajadi)
+        {
+            if (_snapshot.Status == (int)StatusInvoice.CREDIT)
+            {
+                _snapshot.AngsuranBulanan = CalculateAngsuranBulanan(_snapshot.Price, uangmuka, _snapshot.LamaAngsuran, _snapshot.SukuBunga, uangtandajadi);
+                _snapshot.TotalKredit = CalculateTotalKredit(_snapshot.Price, uangmuka, _snapshot.LamaAngsuran, _snapshot.SukuBunga, StatusInvoice.CREDIT, uangtandajadi);
+            }
         }
 
         public void Cancel()
@@ -69,7 +76,7 @@ namespace AsliMotor.Invoices.Domain
 
         private decimal CalculateAngsuranBulanan(decimal price, decimal uangmuka, int lamaAngsuran, decimal sukuBunga, decimal uangtandajadi)
         {
-            decimal totalyangdikredit = (price - uangmuka - uangtandajadi);
+            decimal totalyangdikredit = (price - uangmuka - uangtandajadi + BiayaAdministration(lamaAngsuran));
             int totalTahunAngsuran = lamaAngsuran / 12;
             decimal totalbunga = (totalyangdikredit * (sukuBunga / 100)) * totalTahunAngsuran;
             decimal angsuran = (lamaAngsuran == 0) ? 0 : (totalyangdikredit + totalbunga) / lamaAngsuran;
@@ -78,11 +85,11 @@ namespace AsliMotor.Invoices.Domain
 
         private decimal CalculateTotalKredit(decimal price, decimal uangmuka, int lamaAngsuran, decimal sukuBunga, StatusInvoice status, decimal uangtandajadi)
         {
-            decimal totalyangdikredit = (price - uangmuka - uangtandajadi);
+            decimal totalyangdikredit = (price - uangmuka - uangtandajadi + BiayaAdministration(lamaAngsuran));
             int totalTahunAngsuran = lamaAngsuran / 12;
             decimal totalbunga = (totalyangdikredit * (sukuBunga / 100)) * totalTahunAngsuran;
-            decimal total = (status == StatusInvoice.CREDIT) ? (totalyangdikredit + totalbunga) : 0;
-            return Math.Round(total);
+            //decimal total = (status == StatusInvoice.CREDIT) ? (totalyangdikredit + totalbunga) : 0;
+            return Math.Round(totalbunga);
         }
 
         private decimal BiayaAdministration(int lamaAngsuran)

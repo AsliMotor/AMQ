@@ -53,17 +53,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IPrintDocument.cs" />
-    <Compile Include="PerjanjianStringTemplate.cs" />
+    <Compile Include="templates\KwitansiAngsuranTemplate.cs" />
+    <Compile Include="templates\KwitansiUangMukaTemplate.cs" />
+    <Compile Include="templates\KwitansiKontanTemplate.cs" />
+    <Compile Include="templates\KwitansiTandaJadiTemplate.cs" />
+    <Compile Include="templates\PerjanjianStringTemplate.cs" />
     <Compile Include="PrintDocument.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SayNumber.cs" />
-    <Compile Include="SIStringTemplate.cs" />
-    <Compile Include="SuratPernyataanKreditTemplate.cs" />
+    <Compile Include="templates\SIStringTemplate.cs" />
+    <Compile Include="templates\SuratPernyataanKreditTemplate.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AsliMotor.Organization\AsliMotor.Organizations.csproj">
       <Project>{D86FA059-1DDB-40E6-BCFA-C1C54235A040}</Project>
       <Name>AsliMotor.Organizations</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Invoice\AsliMotor.Invoices.ReportRepository\AsliMotor.Invoices.ReportRepository.csproj">
+      <Project>{0059972F-360C-463C-94D3-CDBD61A37DBC}</Project>
+      <Name>AsliMotor.Invoices.ReportRepository</Name>
     </ProjectReference>
     <ProjectReference Include="..\SI\AsliMotor.SI.Repository\AsliMotor.SI.Repository.csproj">
       <Project>{CEDAFE71-569A-4E19-A1AA-376BD88199FC}</Project>

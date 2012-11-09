@@ -5,7 +5,6 @@ requirejs.config({
         jquery: '../../libs/jquery/jquery-1.7.2.min',
         underscore: '../../libs/underscore/underscore.min',
         backbone: '../../libs/backbone/backbone.min',
-        marionette: '../../libs/backbone/backbone.marionette',
         namespace: '../namespace',
         eventAggregator: '../eventAggregator',
         bootstrap: '../../libs/bootstrap.min',
@@ -30,9 +29,19 @@ define([
   'underscore',
   'backbone',
   'eventAggregator',
-  'router/ProductRouter'
+  'router/ProductRouter',
+  '../../libs/ajaxloading'
 ], function ($, _, Backbone, am) {
     $(function () {
+        $.ajaxSetup({
+            beforeSend: function () {
+                am.tools.ShowAjaxLoading();
+            },
+            complete: function () {
+                am.tools.HideAjaxLoading();
+            }
+        });
+
         var router = new am.product.router.ProductRouter();
         Backbone.history.start({ pushState: true });
 

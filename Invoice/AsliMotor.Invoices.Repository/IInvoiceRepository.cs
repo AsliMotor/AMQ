@@ -12,5 +12,7 @@ namespace AsliMotor.Invoices.Repository
         void Save(Invoice inv);
         void Update(Invoice inv);
         Invoice Get(Guid id);
+        decimal GetUangTandaJadi(Guid id);
+        long CountAngsuranBulanan(Guid id);
     }
 }

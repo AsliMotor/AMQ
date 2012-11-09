@@ -6,6 +6,7 @@
         'model/Invoice',
         'view/CreateInvoice',
         '../../../libs/Animation',
+        '../../../libs/homejs/dialog/erroralert',
         '../../../libs/homejs/DetailPanel'],
     function ($, _, Backbone, ns, am) {
         ns.define('am.invoice.controller');
@@ -84,8 +85,12 @@
                     url: "/invoice/booking",
                     data: data,
                     dataType: "json",
-                    success: function (data) {
-                        console.log(data);
+                    success: function (resp) {
+                        if (resp.error) {
+                            HomeJS.components.ErrorAlert(resp.message);
+                        } else {
+                            am.eventAggregator.trigger("showDetail", resp.data.id);
+                        }
                     }
                 });
             };
@@ -106,8 +111,12 @@
                     url: "/invoice/credit",
                     data: data,
                     dataType: "json",
-                    success: function (data) {
-                        console.log(data);
+                    success: function (resp) {
+                        if (resp.error) {
+                            HomeJS.components.ErrorAlert(resp.message);
+                        } else {
+                            am.eventAggregator.trigger("showDetail", resp.data.id);
+                        }
                     }
                 });
             };
@@ -124,8 +133,12 @@
                     url: "/invoice/cash",
                     data: data,
                     dataType: "json",
-                    success: function (data) {
-                        console.log(data);
+                    success: function (resp) {
+                        if (resp.error) {
+                            HomeJS.components.ErrorAlert(resp.message);
+                        } else {
+                            am.eventAggregator.trigger("showDetail", resp.data.id);
+                        }
                     }
                 });
             };

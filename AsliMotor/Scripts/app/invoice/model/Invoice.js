@@ -14,7 +14,8 @@
             "Status": 2,
             "UangMuka": 0,
             "SukuBunga": 0,
-            "LamaAngsuran": 0
+            "LamaAngsuran": 0,
+            "DueDate": getCurrentDate()
         },
         initialize: function () {
             this.validators = {};
@@ -25,7 +26,7 @@
                 return (value == undefined || value == "") ? { isValid: false, message: "Kendaraan harus dipilih"} : { isValid: true };
             };
             this.validators.Price = function (value) {
-                return (value == undefined || value == 0) ? { isValid: false, message: "Kendaraan harus dipilih"} : { isValid: true };
+                return (value == undefined || value == 0) ? { isValid: false, message: "Harga jual harus diisi"} : { isValid: true };
             };
             this.validators.DebitNote = function (value, model) {
                 if (model.get("Status") == "0")

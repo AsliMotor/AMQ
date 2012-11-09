@@ -67,7 +67,7 @@
             var hargaJualView = new HomeJS.components.TextField({
                 model: this.model,
                 title: 'Harga Jual',
-                type: 'Number',
+                type: 'price',
                 placeholder: 'Ketik Jumlah Harga Jual',
                 dataIndex: "Price"
             });
@@ -91,7 +91,7 @@
                 var uangTandaJadiView = new HomeJS.components.TextField({
                     model: this.model,
                     title: 'Uang Tanda Jadi',
-                    type: 'number',
+                    type: 'price',
                     placeholder: 'Ketik Jumlah Uang Tanda Jadi',
                     dataIndex: "DebitNote"
                 });
@@ -107,7 +107,7 @@
                 var uangMukaView = new HomeJS.components.TextField({
                     model: this.model,
                     title: 'Uang Muka',
-                    type: 'number',
+                    type: 'price',
                     placeholder: 'Ketik Jumlah Uang Muka',
                     dataIndex: "UangMuka"
                 });
@@ -133,7 +133,6 @@
                 var dueDateView = new HomeJS.components.DateField({
                     model: this.model,
                     title: 'Tanggal Jatuh Tempo',
-                    date: getCurrentDate(),
                     dataIndex: "DueDate"
                 });
                 var paymentTypeDetailFormPanel = new HomeJS.components.FormPanel({
@@ -170,7 +169,7 @@
                     model.set('NoPolisi', value.NoPolisi);
                     model.set('NoRangka', value.NoRangka);
                     model.set('NoMesin', value.NoMesin);
-                    model.set('NoTahun', value.Tahun);
+                    model.set('Tahun', value.Tahun);
                     model.set('Warna', value.Warna);
                     var check = model.validateItem("ProductId");
                     if (check.isValid === false) {

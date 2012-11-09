@@ -5,7 +5,6 @@ requirejs.config({
         jquery: '../../libs/jquery/jquery-1.7.2.min',
         underscore: '../../libs/underscore/underscore.min',
         backbone: '../../libs/backbone/backbone.min',
-        marionette: '../../libs/backbone/backbone.marionette',
         namespace: '../namespace',
         eventAggregator: '../eventAggregator',
         bootstrap: '../../libs/bootstrap.min',
@@ -30,9 +29,19 @@ define([
   'underscore',
   'backbone',
   'eventAggregator',
-  'router/PurchaseRouter'
+  'router/PurchaseRouter',
+  '../../libs/ajaxloading'
 ], function ($, _, Backbone, am) {
     $(function () {
+        $.ajaxSetup({
+            beforeSend: function () {
+                am.tools.ShowAjaxLoading();
+            },
+            complete: function () {
+                am.tools.HideAjaxLoading();
+            }
+        });
+
         var router = new am.purchase.router.PurchaseRouter();
         Backbone.history.start({ pushState: true });
 

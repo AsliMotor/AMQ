@@ -36,7 +36,7 @@
                 return value.length > 0 ? { isValid: true} : { isValid: false, message: "Nomor Polisi harus diisi" };
             };
             this.validators.HargaBeli = function (value) {
-                return value.length > 0 ? { isValid: true} : { isValid: false, message: "Harga Beli harus diisi" };
+                return value > 0 ? { isValid: true} : { isValid: false, message: "Harga Beli harus diisi" };
             };
         },
         validateItem: function (key) {

@@ -40,7 +40,7 @@ window.utils = {
     },
 
     displayValidationErrors: function (errors) {
-        for (var i = 0; i < errors.length;  i++) {
+        for (var i = 0; i < errors.length; i++) {
             this.addValidationError(errors[i].field, errors[i].message);
         }
         //this.showAlert('Warning!', 'Fix validation errors and try again', 'alert-warning');

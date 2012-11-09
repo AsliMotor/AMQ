@@ -56,7 +56,7 @@ namespace AsliMotor.Customers
 
         private void FailIfExistEmail(Customer cust)
         {
-            if (CustomerRepository.GetByEmail(cust.Email, cust.BranchId) != null)
+            if (cust.Email != null && CustomerRepository.GetByEmail(cust.Email, cust.BranchId) != null)
                 throw new Exception(string.Format("Email {0} telah terdaftar di perusahaan anda", cust.Email));
         }
 

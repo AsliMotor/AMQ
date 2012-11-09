@@ -1,0 +1,37 @@
+﻿<html>
+    <head>
+        <link href="../../Content/homejs/homejs.css" rel="stylesheet" type="text/css" />
+        <script src="../../Scripts/libs/jquery/jquery-1.7.2.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var box = $('.modal-dialog');
+                $(box).fadeIn(200);
+                var popMargTop = ($(box).height() + 24) / 2;
+                var popMargLeft = ($(box).width() + 24) / 2;
+                $(box).css({
+                    'margin-top': -popMargTop,
+                    'margin-left': -popMargLeft
+                });
+                $('body').append('<div id="mask"></div>');
+                $('#mask').fadeIn(2000);
+                $('button.alert-error').focus();
+                $("#mask").click(function () {
+                    $('#mask , .popup').fadeOut(300, function () {
+                        $('#mask').remove();
+                    });
+                });
+            });
+            $(".popup.error").show();
+        </script>
+    </head>
+    <body>
+        <div class='modal-dialog'>
+            <div class='toolbar'><div class='logo'><img src='../../Content/img/error.png'/></div><title>Transaksi Selanjutnya</title></div>
+            <fieldset class='textbox'>
+                <section>
+                    asdasda
+                </section>
+            </fieldset>
+        <div>
+    </body>
+</html>

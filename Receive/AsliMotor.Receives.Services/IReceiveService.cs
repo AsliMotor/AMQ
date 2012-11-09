@@ -12,5 +12,6 @@ namespace AsliMotor.Receives.Services
         void CreateCash(CreateCashReceive cmd);
         void CreateUangMuka(CreateUangMukaReceive cmd);
         void CreateAngsuran(CreateAngsuranReceive cmd);
+        void ChangeUangMuka(Guid invoiceId, decimal uangMuka);
     }
 }

@@ -1,13 +1,15 @@
 ﻿define(['jquery',
         'underscore',
         'backbone',
-        'namespace', ],
+        'namespace',
+        '../../libs/resizable-tables'],
     function ($, _, Backbone, ns) {
         ns.define("HomeJS.components");
         HomeJS.components.DataTable = Backbone.View.extend({
             tagName: 'table',
-            className: "homejs-datatable table table-striped table-hover",
+            className: "homejs-datatable table table-striped table-hover  table-bordered",
             initialize: function () {
+                this.$el.attr('id', 'test');
                 if (!this.collection)
                     throw ("Must any collection");
                 this.collection.on("reset", this.addItems, this);

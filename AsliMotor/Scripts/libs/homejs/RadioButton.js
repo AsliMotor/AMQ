@@ -7,6 +7,9 @@
         HomeJS.components.RadioButton = Backbone.View.extend({
             tagName: 'div',
             className: 'control-group clearfix',
+            initialize: function () {
+                this.model.on('change', this.render, this);
+            },
             render: function () {
                 var html = "<label class='control-label' style='padding-top:0px'>" + this.options.title + "</label>\
                             <div class='controls'>\

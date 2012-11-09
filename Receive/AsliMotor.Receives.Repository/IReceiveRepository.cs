@@ -9,6 +9,7 @@ namespace AsliMotor.Receives.Repository
     public interface IReceiveRepository
     {
         void Save(Receive rcv);
+        void Update(Receive rcv);
         Receive GetByInvoiceIdAndPaymentType(Guid invoiceId, int receiveType);
         Receive GetBooking(Guid invoiceId);
     }

@@ -52,10 +52,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InvoiceListViewReport.cs" />
-    <Compile Include="InvoiceReport.cs" />
+    <Compile Include="models\ReceiveAngsuranReport.cs" />
+    <Compile Include="models\InvoiceCashReport.cs" />
+    <Compile Include="models\InvoiceItemReport.cs" />
+    <Compile Include="models\InvoiceListViewReport.cs" />
+    <Compile Include="models\InvoiceHeaderReport.cs" />
     <Compile Include="IInvoiceReportRepository.cs" />
     <Compile Include="InvoiceReportRepository.cs" />
+    <Compile Include="models\InvoiceBookingReport.cs" />
+    <Compile Include="models\InvoiceTotal.cs" />
+    <Compile Include="models\ReceiveUangMukaReport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

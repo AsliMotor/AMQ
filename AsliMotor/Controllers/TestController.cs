@@ -48,5 +48,29 @@ namespace AsliMotor.Controllers
         {
             return View();
         }
+        public ActionResult DetailInvoice()
+        {
+            return View();
+        }
+        public ActionResult PrintTandaJadi()
+        {
+            return View();
+        }
+        public ActionResult ErrorAlert()
+        {
+            return View();
+        }
+        public ActionResult ModalDialog()
+        {
+            return View();
+        }
+        public ActionResult PrintSuratPerjanjian()
+        {
+            return View();
+        }
+        public ActionResult PrintSuratPernyataan()
+        {
+            return View();
+        }
     }
 }

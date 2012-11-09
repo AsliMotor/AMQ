@@ -101,8 +101,7 @@
                 this.setModel(ev);
             }
             if (ev.keyCode == 13) {
-                ev.preventDefault();
-                this.focusNextInputField();
+                this.setModel(ev);
             }
         },
         actions: function (ev) {
@@ -112,8 +111,6 @@
                 this.searchFieldOptionContainer.keyup();
             else if (ev.keyCode == 40)
                 this.searchFieldOptionContainer.keydown();
-            else if (ev.keyCode == 13)
-                this.setModel(ev);
             else
                 this.getData();
         },
@@ -194,7 +191,7 @@
             else if ($('input', this.$el.next())[0])
                 $('input', this.$el.next()).focus();
             else
-                $('input#idsearched', this.$el).blur();
+                $('input.search-input-field', this.$el).blur();
         }
     });
 

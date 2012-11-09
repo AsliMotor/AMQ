@@ -25,7 +25,7 @@
                 toolbar: [{
                     type: HomeJS.components.Button,
                     title: "Tambah",
-                    typeButton: HomeJS.components.ButtonType.Info,
+                    typeButton: HomeJS.components.ButtonType.Success,
                     icon: "icon-file",
                     iconColor: HomeJS.components.ButtonColor.White,
                     events: {
@@ -44,25 +44,14 @@
                     resizable: true,
                     collection: invoicesModel,
                     headers: [{
-                        name: "No",
-                        dataIndex: "InvoiceNo",
-                        width: "20px",
-                        align:'center',
-                        title: "Klik untuk mengurutkan berdasarkan No Transaksi"
-                    }, {
                         name: "Tanggal",
                         dataIndex: "InvoiceDate",
                         width: "120px",
                         title: "Klik untuk mengurutkan berdasarkan Tanggal"
                     }, {
-                        name: "Status",
-                        dataIndex: "Status",
-                        width: "90px",
-                        title: "Klik untuk mengurutkan berdasarkan Status"
-                    }, {
                         name: "Pelanggan",
                         dataIndex: "CustomerName",
-                        minwidth: "150px",
+                        minwidth: "120px",
                         title: "Klik untuk mengurutkan berdasarkan Nama Pelanggan"
                     }, {
                         name: "No Polisi",
@@ -74,6 +63,11 @@
                         dataIndex: "Type",
                         width: "150px",
                         title: "Klik untuk mengurutkan berdasarkan Type"
+                    }, {
+                        name: "Status",
+                        dataIndex: "Status",
+                        width: "70px",
+                        title: "Klik untuk mengurutkan berdasarkan Status"
                     }, {
                         name: "Sisa Tagihan",
                         dataIndex: "Outstanding",
@@ -88,13 +82,16 @@
                         title: "Klik untuk mengurutkan berdasarkan Harga Jual"
                     }],
                     items: [{
-                        dataIndex: "InvoiceNo",
-                        align:'center'
-                    }, {
                         dataIndex: "InvoiceDate",
                         onrender: function (data) {
                             return data.toDate();
                         }
+                    }, {
+                        dataIndex: "CustomerName"
+                    }, {
+                        dataIndex: "NoPolisi"
+                    }, {
+                        dataIndex: "Type"
                     }, {
                         dataIndex: "Status",
                         onrender: function (data) {
@@ -107,12 +104,6 @@
                             else if (data == 3)
                                 return "Batal";
                         }
-                    }, {
-                        dataIndex: "CustomerName"
-                    }, {
-                        dataIndex: "NoPolisi"
-                    }, {
-                        dataIndex: "Type"
                     }, {
                         dataIndex: "Outstanding",
                         align: "right",

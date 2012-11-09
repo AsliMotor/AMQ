@@ -16,7 +16,8 @@ namespace AsliMotor.Perjanjian.Services
             ReportingRepository.Save<SuratPerjanjian>(new SuratPerjanjian
             {
                 InvoiceId = invId,
-                SuratPerjanjianNo = PerjanjianAutoNumberGenerator.GeneratePerjanjianNumber(DateTime.Now, branchId)
+                SuratPerjanjianNo = PerjanjianAutoNumberGenerator.GeneratePerjanjianNumber(DateTime.Now, branchId),
+                SuratPerjanjianDate = DateTime.Now
             });
         }
     }

@@ -25,7 +25,7 @@
                 toolbar: [{
                     type: HomeJS.components.Button,
                     title: "Tambah",
-                    typeButton: HomeJS.components.ButtonType.Info,
+                    typeButton: HomeJS.components.ButtonType.Success,
                     icon: "icon-file",
                     iconColor: HomeJS.components.ButtonColor.White,
                     events: {
@@ -34,7 +34,7 @@
                         }
                     }
                 }, {
-                    type: HomeJS.components.SearchField,
+                    type: HomeJS.components.InputSearchField,
                     placeholder: 'pencarian',
                     action: function (key) {
                         alert(key);

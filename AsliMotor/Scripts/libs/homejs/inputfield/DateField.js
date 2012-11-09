@@ -11,6 +11,7 @@
         tagName: 'div',
         className: 'control-group inline homejs-datefield',
         initialize: function () {
+            this.model.on('change', this.changeDate, this);
         },
         render: function () {
             var currentDate;
@@ -18,8 +19,13 @@
                 currentDate = this.options.date;
             }
             else {
-                currentDate = getCurrentDate();
-                this.model.set(this.options.dataIndex, currentDate);
+                if (this.options.dataIndex) {
+                    currentDate = this.model.get(this.options.dataIndex);
+                }
+                else {
+                    currentDate = getCurrentDate();
+                    this.model.set(this.options.dataIndex, currentDate);
+                }
             }
             var sizeForm = this.options.sizeForm || "input-medium";
             var html = "";
@@ -43,6 +49,9 @@
         },
         setValue: function () {
             this.model.set(this.options.dataIndex, jQuery('input', this.$el).val());
+        },
+        changeDate: function () {
+            jQuery('input', this.$el).val(this.model.get(this.options.dataIndex));
         }
     });
 });

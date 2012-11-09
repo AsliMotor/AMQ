@@ -1,0 +1,27 @@
+﻿body div.container
+{
+    width: 100%;
+    max-width:100%;
+    min-width:870px;
+}
+
+body div#main-container
+{
+    min-width:650px;
+}
+
+table.homejs-datatable th{
+    height: auto;
+    font-size: 11px;
+    padding: 5px 10px 2px;
+    border-bottom: 0;
+    color: #666;
+    background-color: #EFEFEF;
+    background-image: -webkit-gradient(linear, 0 0%, 0 100%, from(#FDFDFD), to(#EAEAEA));
+    background-image: -webkit-linear-gradient(top, #FDFDFD 0%, #EAEAEA 100%);
+    background-image: -moz-linear-gradient(top, #FDFDFD 0%, #EAEAEA 100%);
+    background-image: -ms-linear-gradient(top, #FDFDFD 0%, #EAEAEA 100%);
+    background-image: -o-linear-gradient(top, #FDFDFD 0%, #EAEAEA 100%);
+    background-image: -linear-gradient(top, #FDFDFD 0%, #EAEAEA 100%);
+    border-bottom: 1px solid #CDCDCD;
+}

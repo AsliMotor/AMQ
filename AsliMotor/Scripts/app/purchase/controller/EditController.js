@@ -6,6 +6,7 @@
         'model/Purchase',
         'view/EditPurchase',
         '../../../libs/Animation',
+        '../../../libs/homejs/dialog/erroralert',
         '../../../libs/homejs/DetailPanel'],
     function ($, _, Backbone, ns, am) {
         ns.define('am.purchase.controller');
@@ -60,11 +61,11 @@
                             }
                             else {
                                 purchaseModel.save({}, {
-                                    success: function (model, data) {
-                                        am.eventAggregator.trigger("showDetail", data.id);
-                                    },
-                                    error: function (a, b) {
-                                        console.log(b);
+                                    success: function (model, resp) {
+                                        if (resp.error)
+                                            HomeJS.components.ErrorAlert(resp.message);
+                                        else
+                                            am.eventAggregator.trigger("showDetail", resp.data.id);
                                     }
                                 });
                             }

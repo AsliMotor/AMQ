@@ -11,5 +11,7 @@ namespace AsliMotor.Customers
         Customer GetByKTPNo(string ktpno, string branchid);
         Customer GetById(Guid id);
         IList<CustomerSearch> Search(string key, string branchid);
+        IList<CustomerReport> GetListView(string branchid, int offset);
+        TotalCustomer GetTotalList(string branchid);
     }
 }

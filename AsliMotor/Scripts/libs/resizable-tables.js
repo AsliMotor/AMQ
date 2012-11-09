@@ -220,7 +220,9 @@ else if (window.attachEvent)
 	window.attachEvent("onload", ResizableColumns);
 */
 try {
-	window.addEventListener('load', ResizableColumns, false);
+    $(document).ready(function () {
+        window.setTimeout(ResizableColumns, 2000);
+    });
 } catch(e) {
 	window.onload = ResizableColumns;
 }

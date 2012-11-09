@@ -29,5 +29,10 @@ namespace AsliMotor.Receives.Repository
             Receive rcv = QueryObjectMapper.Map<Receive>("findByInvoiceAndBookingType", new string[] { "invoiceid" }, new object[] { invoiceId }).FirstOrDefault();
             return rcv;
         }
+
+        public void Update(Receive rcv)
+        {
+            ReportingRepository.Update<Receive>(rcv, new { id = rcv.id });
+        }
     }
 }

@@ -21,6 +21,7 @@
             this.id = this.options.dataIndex;
 
             var type = this.options.type || "text";
+            type = (type.toLowerCase() == 'price') ? 'text' : type;
             var size = this.options.size || "input-large";
             var html = "";
 
@@ -34,29 +35,43 @@
                 html = "<input type='" + type + "' id='" + this.options.dataIndex + "' name='" + this.options.dataIndex + "' class='" + size + "' placeholder='" + placeholder + "' value='" + value + "'  " + required + " " + readonly + "/><div class='help-inline'></div>";
             }
             this.$el.html(html);
+
+            var self = this;
+            if (this.options.type && this.options.type.toLowerCase() == "price") {
+                require([
+                    '../../libs/numbering/autonumeric'
+                ], function () {
+                    var opt = { aPad: false };
+                    self.$el.find('input').autoNumeric(opt).removeAttr('value').autoNumericSet(value);
+                })
+
+            }
             return this;
         },
         events: {
             'change input': 'setValue'
         },
         setValue: function () {
-            if (this.options.setValue)
+            if (this.options.setValue) {
                 this.options.setValue(this);
-            else
-                this.model.set(this.options.dataIndex, $('input', this.$el).val());
-
-            var check = this.model.validateItem(this.options.dataIndex);
-            if (check.isValid === false) {
-                utils.addValidationError(this.options.dataIndex, check.message);
-            } else {
-                utils.removeValidationError(this.options.dataIndex);
+            }
+            else {
+                var val;
+                if (this.options.type && this.options.type.toLowerCase() == "price")
+                    val = $('input', this.$el).autoNumericGet();
+                else
+                    val = $('input', this.$el).val();
+                this.model.set(this.options.dataIndex, val);
             }
 
-            if ($('textarea', this.$el.next())[0])
-                $('textarea', this.$el.next()).focus();
-            else if ($('input', this.$el.next())[0])
-                $('input', this.$el.next()).focus();
-
+            if (this.model.validateItem) {
+                var check = this.model.validateItem(this.options.dataIndex);
+                if (check.isValid === false) {
+                    utils.addValidationError(this.options.dataIndex, check.message);
+                } else {
+                    utils.removeValidationError(this.options.dataIndex);
+                }
+            }
         }
     });
 });

@@ -11,7 +11,8 @@
             routes: {
                 '': 'index',
                 'invoice': 'index',
-                'invoice/create': 'create'
+                'invoice/create': 'create',
+                'invoice/detail/:id': 'detail'
             },
             index: function () {
                 require([
@@ -25,7 +26,7 @@
                 require([
                     'controller/DetailController'
                 ], function () {
-                    this.detailController = new am.purchase.controller.DetailController(id);
+                    this.detailController = new am.invoice.controller.DetailController(id);
                     this.detailController.show();
                 });
             },
@@ -41,7 +42,7 @@
                 require([
                     'controller/EditController'
                 ], function () {
-                    this.editController = new am.purchase.controller.EditController(id);
+                    this.editController = new am.invoice.controller.EditController(id);
                     this.editController.show();
                 });
             }

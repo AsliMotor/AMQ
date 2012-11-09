@@ -7,7 +7,6 @@ using BonaStoco.Inf.Data.ViewModel;
 namespace AsliMotor.Invoices.ReportRepository
 {
     [NamedSqlQuery("findListView", @"select  inv.id,
-	inv.invoiceno,
 	inv.status,
 	inv.invoicedate,
 	inv.price,
@@ -19,12 +18,11 @@ namespace AsliMotor.Invoices.ReportRepository
 	inner join product p on inv.productid = p.id
 	inner join customer cust on inv.customerid = cust.id
 	where inv.branchid = @branchid
-	ORDER BY inv.invoiceno asc
+	ORDER BY inv.invoicedate desc
 	LIMIT 10 OFFSET @offset")]
     public class InvoiceListViewReport:IViewModel
     {
         public Guid id { get; set; }
-        public long InvoiceNo { get; set; }
         public int Status { get; set; }
         public DateTime InvoiceDate { get; set; }
         public string NoPolisi { get; set; }

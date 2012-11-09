@@ -28,5 +28,19 @@ namespace AsliMotor.Invoices.Repository
             InvoiceSnapshot inv = QueryObjectMapper.Map<InvoiceSnapshot>("findById", new string[] { "id" }, new object[] { id }).FirstOrDefault();
             return new Invoice(inv);
         }
+
+        public decimal GetUangTandaJadi(Guid id)
+        {
+            UangTandaJadi uangtandajadi = QueryObjectMapper.Map<UangTandaJadi>("findById", new string[] { "invid" }, new object[] { id }).FirstOrDefault();
+            if (uangtandajadi == null)
+                return 0;
+            return uangtandajadi.Total;
+        }
+
+        public long CountAngsuranBulanan(Guid id)
+        {
+            CountAngsuranBulanan count = QueryObjectMapper.Map<CountAngsuranBulanan>("count", new string[] { "invid" }, new object[] { id }).FirstOrDefault();
+            return count.Total;
+        }
     }
 }

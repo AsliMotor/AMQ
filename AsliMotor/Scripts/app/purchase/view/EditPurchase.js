@@ -90,7 +90,7 @@
                 title: 'Harga Beli',
                 dataIndex: "HargaBeli",
                 placeholder: 'Ketik Harga Beli',
-                type:'number',
+                type:'price',
                 required: true
             });
 

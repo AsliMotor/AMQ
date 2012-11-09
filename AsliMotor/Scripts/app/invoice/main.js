@@ -5,7 +5,6 @@ requirejs.config({
         jquery: '../../libs/jquery/jquery-1.7.2.min',
         underscore: '../../libs/underscore/underscore.min',
         backbone: '../../libs/backbone/backbone.min',
-        marionette: '../../libs/backbone/backbone.marionette',
         namespace: '../namespace',
         eventAggregator: '../eventAggregator',
         bootstrap: '../../libs/bootstrap.min',

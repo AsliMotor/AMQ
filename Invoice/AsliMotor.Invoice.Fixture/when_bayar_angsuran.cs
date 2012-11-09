@@ -23,7 +23,7 @@ namespace AsliMotor.Invoices.Fixture
         };
         Because of = () =>
         {
-            _service.BayarAngsuran(invoiceId, "dny");
+            _service.BayarAngsuran(invoiceId,DateTime.Now, "dny");
         };
         It should_be_invoice_created = () =>
         {

@@ -110,6 +110,10 @@
       <Project>{D3A51AE0-959D-4192-9A57-260AF1BEBC4E}</Project>
       <Name>AsliMotor.Invoices.Snapshots</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AsliMotor.Invoices.Events\AsliMotor.Invoices.Events.csproj">
+      <Project>{8F5B41DA-AD22-4A5C-B4A8-830113FC8AD9}</Project>
+      <Name>AsliMotor.Invoices.Events</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AsliMotor.Invoices.Repository\AsliMotor.Invoices.Repository.csproj">
       <Project>{5072D364-CE20-4C9F-8DFF-10DE6471C11E}</Project>
       <Name>AsliMotor.Invoices.Repository</Name>
