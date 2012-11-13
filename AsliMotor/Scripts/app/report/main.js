@@ -30,9 +30,13 @@ define([
   'backbone',
   'eventAggregator',
   'router/ReportRouter',
-  '../../libs/ajaxloading'
+  '../../libs/ajaxloading',
+  '../shared/template'
 ], function ($, _, Backbone, am) {
     $(function () {
+        am.Navigation('report');
+        $("#main-container").html("<div class='container-fluid'><div class='row-fluid'><div class='span2' id='menu-sidebar'></div>" +
+                                  "<div id='main-content' class='span10'></div></div></div>");
         $.ajaxSetup({
             beforeSend: function () {
                 am.tools.ShowAjaxLoading();

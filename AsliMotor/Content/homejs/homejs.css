@@ -1,5 +1,6 @@
 ﻿.floatleft{float:left;}
 .floatright{float:right;}
+.center,table.table th.center,table.table td.center{text-align:center;}
 .left,table.table th.left,table.table td.left{text-align:left;}
 .right,table.table th.right,table.table td.right{text-align:right;}
 .headercolor
@@ -154,6 +155,14 @@ table.homejs-datatable th{
     background-image: -o-linear-gradient(top, #FDFDFD 0%, #EAEAEA 100%);
     background-image: -linear-gradient(top, #FDFDFD 0%, #EAEAEA 100%);
     border-bottom: 1px solid #CDCDCD;
+}
+table.homejs-datatable span.currentSortedArrow.asc
+{
+    background-image:url('/Content/img/asc.gif');
+}
+table.homejs-datatable span.currentSortedArrow.desc
+{
+    background-image:url('/Content/img/desc.gif');
 }
 /*****************************************************FORM Panel*****************************************************************/
 .form-horizontal .control-label 

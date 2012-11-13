@@ -30,9 +30,11 @@ define([
   'backbone',
   'eventAggregator',
   'router/ProductRouter',
-  '../../libs/ajaxloading'
+  '../../libs/ajaxloading',
+  '../shared/template'
 ], function ($, _, Backbone, am) {
     $(function () {
+        am.Navigation('product');
         $.ajaxSetup({
             beforeSend: function () {
                 am.tools.ShowAjaxLoading();

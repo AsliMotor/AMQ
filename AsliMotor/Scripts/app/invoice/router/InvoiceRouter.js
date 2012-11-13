@@ -1,7 +1,8 @@
 ﻿define(['jquery',
 'underscore',
 'backbone',
-'namespace'],
+'namespace',
+'controller/ListController' ],
     function ($, _, Backbone, ns) {
         ns.define('am.invoice.router');
 
@@ -15,12 +16,8 @@
                 'invoice/detail/:id': 'detail'
             },
             index: function () {
-                require([
-                    'controller/ListController'
-                ], function () {
-                    this.listController = new am.invoice.controller.ListController();
-                    this.listController.show();
-                });
+                this.listController = new am.invoice.controller.ListController();
+                this.listController.show();
             },
             detail: function (id) {
                 require([

@@ -5,6 +5,16 @@
     min-width:870px;
 }
 
+div#main-container .span10 
+{
+    background: none repeat scroll 0 0 transparent;
+}
+
+div#main-container .container-fluid {
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
 body div#main-container
 {
     min-width:650px;
@@ -13,7 +23,7 @@ body div#main-container
 table.homejs-datatable th{
     height: auto;
     font-size: 11px;
-    padding: 5px 10px 2px;
+    padding: 5px 4px 2px;
     border-bottom: 0;
     color: #666;
     background-color: #EFEFEF;

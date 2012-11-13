@@ -82,9 +82,9 @@
             });
 
             var show = function () {
-                $("#main-container").html(breadcrumb.render().el);
-                $("#main-container").append(selectDateView.render().el);
-                $("#main-container").append(reportContainer.render().el);
+                $("#main-content").html(breadcrumb.render().el);
+                $("#main-content").append(selectDateView.render().el);
+                $("#main-content").append(reportContainer.render().el);
                 chart.render();
                 fetchData();
             };

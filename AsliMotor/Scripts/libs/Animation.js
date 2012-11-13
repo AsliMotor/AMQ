@@ -13,7 +13,7 @@
             };
             am.tools.BackAnimation = function (el, target) {
                 $(target).empty();
-                $(target).css('margin-left', '-1500px');
+                $(target).css('margin-left', '1500px');
                 window.setTimeout(function () {
                     $(target).html(el);
                     $(target).css("margin-left", "0px");

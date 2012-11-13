@@ -11,28 +11,28 @@
                 title: 'Laporan Penjualan',
                 items: [{
                     id: 'dailyReport',
-                    title: 'Laporan Harian',
+                    title: 'Harian',
                     class: 'icon-home',
                     action: function () {
                         am.eventAggregator.trigger("showDailyreport");
                     }
                 }, {
                     id: 'monthlyReport',
-                    title: 'Laporan Bulanan',
+                    title: 'Bulanan',
                     class: 'icon-calendar',
                     action: function () {
                         am.eventAggregator.trigger("showMonthlyreport");
                     }
                 }, {
                     id: 'yearlyReport',
-                    title: 'Laporan Tahunan',
+                    title: 'Tahunan',
                     class: 'icon-th',
                     action: function () {
                         am.eventAggregator.trigger("showYearlyreport");
                     }
                 }, {
                     id: 'customerReport',
-                    title: 'Laporan Per Pelanggan',
+                    title: 'Per Pelanggan',
                     class: 'icon-user',
                     action: function () {
                         alert('pelanggan');

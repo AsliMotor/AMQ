@@ -133,6 +133,12 @@
     <Compile Include="Models\CompanyProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Content\bootstrap\bootstrap-responsive.min.css" />
+    <Content Include="Content\dashboard.css" />
+    <Content Include="Content\img\asc.gif" />
+    <Content Include="Content\img\desc.gif" />
+    <Content Include="Content\img\error.png" />
+    <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\menu-active.png" />
     <Content Include="Content\report.css" />
     <Content Include="Content\customer.css" />
     <Content Include="Content\img\loader.gif" />
@@ -150,6 +156,11 @@
     <Content Include="Scripts\app\customer\model\TotalCustomerList.js" />
     <Content Include="Scripts\app\customer\router\CustomerRouter.js" />
     <Content Include="Scripts\app\customer\view\CreateCustomer.js" />
+    <Content Include="Scripts\app\dashboard\controller\DashboardController.js" />
+    <Content Include="Scripts\app\dashboard\main.js" />
+    <Content Include="Scripts\app\dashboard\model\TotalTransaction.js" />
+    <Content Include="Scripts\app\dashboard\router\DashboardRouter.js" />
+    <Content Include="Scripts\app\dashboard\view\TotalTransactionView.js" />
     <Content Include="Scripts\app\invoice\action\changePaymentType.js" />
     <Content Include="Scripts\app\invoice\action\changeUangMuka.js" />
     <Content Include="Scripts\app\invoice\action\BayarUangAngsuran.js" />
@@ -225,6 +236,7 @@
     <Content Include="Scripts\app\report\view\SelectMonthView.js" />
     <Content Include="Scripts\app\report\view\TableData.js" />
     <Content Include="Scripts\app\report\view\yearly\YearlyChart.js" />
+    <Content Include="Scripts\app\shared\Template.js" />
     <Content Include="Scripts\libs\AjaxLoading.js" />
     <Content Include="Scripts\libs\backbone\backbone.js" />
     <Content Include="Scripts\libs\backbone\backbone.marionette.js" />
@@ -422,6 +434,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Report\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\aslimotor.grey.css" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

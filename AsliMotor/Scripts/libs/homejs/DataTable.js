@@ -117,9 +117,9 @@
             setCurrentSortedField: function () {
                 $("span.currentSortedArrow", this.options.container.el).remove();
                 if (this.orderBy === "-")
-                    this.$el.children().append("<span class='currentSortedArrow'>^</span>");
+                    this.$el.children().append("<span class='currentSortedArrow'><img src='/Content/img/asc.gif'/></span>");
                 else
-                    this.$el.children().append("<span class='currentSortedArrow'>-</span>");
+                    this.$el.children().append("<span class='currentSortedArrow'><img src='/Content/img/desc.gif'/></span>");
             }
         });
 

@@ -1,0 +1,39 @@
+﻿.stat-boxes {
+    display: inline-block;
+    list-style: none outside none;
+    margin: 20px 0 10px;
+    text-align: center;
+}
+.stat-boxes li {
+    background-color: #F6F6F6;
+    background-image: -webkit-gradient(linear, 0 0%, 0 100%, from(#F9F9F9), to(#EDEDED));
+    background-image: -webkit-linear-gradient(top, #F9F9F9 0%, #EDEDED 100%);
+    background-image: -moz-linear-gradient(top, #F9F9F9 0%, #EDEDED 100%);
+    background-image: -ms-linear-gradient(top, #F9F9F9 0%, #EDEDED 100%);
+    background-image: -o-linear-gradient(top, #F9F9F9 0%, #EDEDED 100%);
+    background-image: linear-gradient(top, #F9F9F9 0%, #EDEDED 100%);
+    border: 1px solid #D5D5D5;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 1px 0 0 white inset, 0 1px 0 rgba(255, 255, 255, 0.4);
+    display: inline-block;
+    line-height: 18px;
+    margin: 0 10px 10px;
+    padding: 10px 0px 0px 0px;
+}
+.stat-boxes li div.value{
+    margin-bottom: 5px;
+}
+.stat-boxes li div.value strong
+{
+    text-shadow: 0 1px 0 white;
+    font-size: 26px;
+    margin-bottom: 3px;
+    margin-top: 6px;
+}
+.stat-boxes li div.title
+{
+    color: #fff;
+    padding:2px 5px;
+    border-top:1px solid #459D1C;
+    background-color:#459D1C;
+}

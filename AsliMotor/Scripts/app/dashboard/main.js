@@ -29,12 +29,12 @@ define([
   'underscore',
   'backbone',
   'eventAggregator',
-  'router/PurchaseRouter',
+  'router/DashboardRouter',
   '../../libs/ajaxloading',
   '../shared/template'
 ], function ($, _, Backbone, am) {
     $(function () {
-        am.Navigation('purchase');
+        am.Navigation('dashboard');
         $.ajaxSetup({
             beforeSend: function () {
                 am.tools.ShowAjaxLoading();
@@ -44,20 +44,11 @@ define([
             }
         });
 
-        var router = new am.purchase.router.PurchaseRouter();
+        var router = new am.dashboard.router.DashboardRouter();
         Backbone.history.start({ pushState: true });
 
-        am.eventAggregator.on('showList', function (data) {
-            router.navigate("/purchase", true);
-        });
-        am.eventAggregator.on('showDetail', function (id) {
-            router.navigate("/purchase/detail/" + id, true);
-        });
-        am.eventAggregator.on('editPurchase', function (id) {
-            router.navigate("/purchase/edit/" + id, true);
-        });
-        am.eventAggregator.on('createPurchase', function () {
-            router.navigate("/purchase/create", true);
+        am.eventAggregator.on('showDashboard', function (data) {
+            router.navigate("/dashboard", true);
         });
     });
 });

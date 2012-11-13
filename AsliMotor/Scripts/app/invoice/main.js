@@ -30,9 +30,11 @@ define([
   'backbone',
   'eventAggregator',
   'router/InvoiceRouter',
-  '../../libs/ajaxloading'
+  '../../libs/ajaxloading',
+  '../shared/template'
 ], function ($, _, Backbone, am) {
     $(function () {
+        am.Navigation('invoice');
         $.ajaxSetup({
             beforeSend: function () {
                 am.tools.ShowAjaxLoading();
@@ -41,7 +43,9 @@ define([
                 am.tools.HideAjaxLoading();
             }
         });
-
+        require.onLoad = function () {
+            alert("test");
+        };
         var router = new am.invoice.router.InvoiceRouter();
         Backbone.history.start({ pushState: true });
 

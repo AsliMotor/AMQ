@@ -3,10 +3,12 @@
 <head>
     <title>::AsliMotor::</title>
     <link href="@Url.Content("~/Content/bootstrap/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/bootstrap/bootstrap-responsive.min.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/site.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/aslimotor.grey.css")" rel="stylesheet" type="text/css" />
 </head>
 <body data-spy="scroll" data-target=".subnav" data-offset="50" data-twttr-rendered="true">
-    <div class='navbar navbar-fixed-top'>
+    @*<div class='navbar navbar-fixed-top'>
         <div class='navbar-inner'>
             <div class='container'>
                 <a class='btn btn-navbar' data-target='.nav-collapse' data-toggle='collapse'>
@@ -36,8 +38,51 @@
             </div>
         </div>
     </div>
-    <div class='container'>
-        @RenderBody()
+
+    <div id="header">
+		<h1><a href="#">Asli Motor</a></h1>		
+	</div>
+    <div id="user-nav" class="navbar navbar-inverse">
+        <ul class="nav btn-group">
+            <li class="btn btn-inverse"><a title="" href="#"><i class="icon icon-user"></i> <span class="text">Profile</span></a></li>
+            <li class="btn btn-inverse dropdown" id="menu-messages"><a href="#" data-toggle="dropdown" data-target="#menu-messages" class="dropdown-toggle"><i class="icon icon-envelope"></i> <span class="text">Messages</span> <span class="label label-important">5</span> <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a class="sAdd" title="" href="#">new message</a></li>
+                    <li><a class="sInbox" title="" href="#">inbox</a></li>
+                    <li><a class="sOutbox" title="" href="#">outbox</a></li>
+                    <li><a class="sTrash" title="" href="#">trash</a></li>
+                </ul>
+            </li>
+            <li class="btn btn-inverse"><a title="" href="#"><i class="icon icon-cog"></i> <span class="text">Settings</span></a></li>
+            <li class="btn btn-inverse"><a title="" href="/account/LogOff"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
+        </ul>
     </div>
+    <div id="sidebar">
+		<a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
+		<ul style="display: block;">
+			<li class="active"><a href="/"><i class="icon icon-home"></i> <span>Dashboard</span></a></li>
+			<li class="submenu">
+				<a href="/invoice"><i class="icon icon-th-list"></i> <span>Penjualan</span></a>
+			</li>
+			<li><a href="/purchase"><i class="icon icon-tint"></i> <span>Pembelian</span></a></li>
+			<li class="submenu">
+                <a href="#"><i class="icon icon-th"></i> <span>Laporan</span><span class="label">3</span></a>
+                <ul>
+					<li><a href="invoice.html">Invoice</a></li>
+					<li><a href="chat.html">Support chat</a></li>
+					<li><a href="calendar.html">Calendar</a></li>
+					<li><a href="gallery.html">Gallery</a></li>
+				</ul>
+            </li>
+			<li><a href="/customer"><i class="icon icon-th-list"></i> <span>Pelanggan</span></a></li>
+			<li><a href="/product"><i class="icon icon-file"></i> <span>Kendaraan</span> </a></li>
+		</ul>
+		
+	</div>
+    <div id='content'>
+        
+    </div>
+    *@
+    @RenderBody()
 </body>
 </html>
