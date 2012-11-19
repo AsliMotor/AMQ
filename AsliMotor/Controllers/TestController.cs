@@ -72,5 +72,9 @@ namespace AsliMotor.Controllers
         {
             return View();
         }
+        public ActionResult PrintSuratPeringatan()
+        {
+            return View();
+        }
     }
 }

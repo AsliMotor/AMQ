@@ -6,6 +6,7 @@ using Antlr3.ST;
 using AsliMotor.Organizations;
 using AsliMotor.SI.Repository;
 using AsliMotor.Invoices.ReportRepository;
+using AsliMotor.SuratPeringatan.AutoNumberGenerator;
 
 namespace AsliMotor.PrintDocuments
 {
@@ -13,11 +14,13 @@ namespace AsliMotor.PrintDocuments
     {
         IOrganizationRepository _orgRepo;
         ISupplierInvoiceRepository _siRepo;
+        ISuratPeringatanAutoNumberGenerator _spGen;
         public IInvoiceReportRepository InvoiceReportRepository { get; set; }
         public PrintDocument()
         {
             _orgRepo = new OrganizationRepository();
             _siRepo = new SupplierInvoiceRepository();
+            _spGen = new SuratPeringatanAutoNumberGenerator();
         }
 
         public string PrintSI(Guid siId, string branchId)
@@ -164,6 +167,48 @@ namespace AsliMotor.PrintDocuments
             template.SetAttribute("DendaTemplate", dendaTemplate);
             template.SetAttribute("BulanAngsuran", bulanAngsuran.ToString("MMMM yyyy"));
             template.SetAttribute("rcv", rcv);
+            return template.ToString();
+        }
+
+
+        public string PrintSuratPeringatan(Guid invId, string branchid)
+        {
+            SuratPeringatanReport spReport = InvoiceReportRepository.GetSuratPeringatanReport(invId, branchid);
+            Organization org = _orgRepo.GetOrganization(branchid);
+            LogoOrganization logoOrg = _orgRepo.GetLogoOrganization(branchid);
+            string spNo = _spGen.GenerateSuratPeringatanNumber(DateTime.Now, branchid);
+            StringTemplate template = new StringTemplate(SuratPeringatanTemplate.DEFAULT);
+            IList<SuratPeringatanItem> items = new List<SuratPeringatanItem>();
+            for (int i = 0; i < spReport.DiffrentMonth; i++)
+            {
+                DateTime currDate = DateTime.Now;
+                DateTime dueDate = spReport.DueDate.AddMonths(i);
+                TimeSpan ts = new TimeSpan();
+                ts = currDate.Subtract(dueDate);
+                decimal denda = (spReport.AngsuranBulanan * decimal.Parse(System.Configuration.ConfigurationManager.AppSettings["denda"])) * ts.Days;
+                
+                items.Add(new SuratPeringatanItem
+                {
+                    No = i +1,
+                    AngsuranKe = (i + 1)+spReport.AngsuranKe,
+                    DueDate = spReport.DueDate.AddMonths(i).ToString("dd MMMM yyyy"),
+                    StringAngsuran = (spReport.AngsuranBulanan + denda).ToString("###,###,###,##0.#0"),
+                    Angsuran = spReport.AngsuranBulanan + denda
+                });
+            }
+
+            template.SetAttribute("organization", org);
+            template.SetAttribute("logodata", Convert.ToBase64String(logoOrg.Image));
+            template.SetAttribute("SuratPeringatanNo", spNo);
+            template.SetAttribute("SuratPeringatanDate", DateTime.Now.ToString("dd MMMM yyyy"));
+            template.SetAttribute("data", spReport);
+            template.SetAttribute("currentDate", DateTime.Now.ToString("dd MMMM yyyy"));
+            template.SetAttribute("SuratPerjanjianDate", spReport.SuratPerjanjianDate.ToString("dd MMMM yyyy"));
+            template.SetAttribute("Items", items);
+            template.SetAttribute("Warna", spReport.Warna == string.Empty ? "-": spReport.Warna);
+            template.SetAttribute("NoRangka", spReport.NoRangka == string.Empty ? "-" : spReport.NoRangka);
+            template.SetAttribute("NoMesin", spReport.NoMesin == string.Empty ? "-" : spReport.NoMesin);
+            template.SetAttribute("NetTotal", items.Sum(i => i.Angsuran).ToString("###,###,###,##0.#0"));
             return template.ToString();
         }
     }

@@ -164,6 +164,10 @@ table.homejs-datatable span.currentSortedArrow.desc
 {
     background-image:url('/Content/img/desc.gif');
 }
+table.homejs-datatable tbody tr, table.homejs-datatable tbody tr td
+{
+    cursor:pointer;
+}
 /*****************************************************FORM Panel*****************************************************************/
 .form-horizontal .control-label 
 {

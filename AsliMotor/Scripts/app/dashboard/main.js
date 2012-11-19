@@ -7,8 +7,8 @@ requirejs.config({
         backbone: '../../libs/backbone/backbone.min',
         namespace: '../namespace',
         eventAggregator: '../eventAggregator',
-        bootstrap: '../../libs/bootstrap.min',
-        bootstrapdatepicker: '../../libs/bootstrap-datepicker'
+        bootstrap: '../../libs/bootstrap/bootstrap.min',
+        bootstrapdatepicker: '../../libs/bootstrap/bootstrap-datepicker'
     },
     shim: {
         underscore: {
@@ -31,6 +31,7 @@ define([
   'eventAggregator',
   'router/DashboardRouter',
   '../../libs/ajaxloading',
+  '../../libs/bootstrap/bootstrap-dropdown',
   '../shared/template'
 ], function ($, _, Backbone, am) {
     $(function () {
@@ -49,6 +50,9 @@ define([
 
         am.eventAggregator.on('showDashboard', function (data) {
             router.navigate("/dashboard", true);
+        });
+        am.eventAggregator.on('showDetailInvoice', function (id) {
+            window.open("/invoice/detail/" + id, '', null, null);
         });
     });
 });

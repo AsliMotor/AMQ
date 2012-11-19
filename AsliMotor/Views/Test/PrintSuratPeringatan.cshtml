@@ -1,0 +1,91 @@
+﻿<html>
+<head>
+    <style>
+        .rowheight{padding-top:10px;}
+        .indent{padding-left:70px;}
+        table#detail td{vertical-align:top;border:1px solid #000;}
+        table#detail th{vertical-align:top;border:1px solid #000;}
+    </style>
+</head>
+<body>
+    <div style='display:inline-block;width:100%;padding-top:0.5cm; font-family:Tahoma;'>
+        <div style='float:left'>
+	        <div width='100%' style='font-weight:bold; font-size:18px'>$organization.OrganizationName$</div>
+	        <div style='width:100%; font-size:14px'>$organization.OrganizationAddress$</div>
+            <div width='100%' style='font-size:14px'>$organization.City$ - $organization.Country$</div>
+	        <div width='100%' style='font-size:14px'>Telp. $organization.Telp$</div>
+        </div>
+        <div style='float:right'>
+	        <img style='float:right;height:60px;' src='data:image/png;base64,$logodata$' />
+        </div>
+    </div>
+    <hr/>
+    <div style='text-align:center;font-weight:bold;font-size:18px;'>SURAT PERINGATAN MOTOR</div>
+    <div style='text-align:center;'>
+        <table style='margin:0 auto;'>
+            <tr><td style='width:60px;text-align:left;'>Nomor</td><td style='width:30px;'>:</td><td style='text-align:left;'>$PerjanjianNo$</td></tr>
+            <tr><td style='width:60px;text-align:left;'>Tanggal</td><td>:</td><td style='text-align:left;'>$Tanggal$</td></tr>
+        </table>
+    </div>
+    <div style='padding-top:50px;'>Kepada Yth,</div>
+    <div>Sdr, <b>test</b></div>
+    <div>Di Dabo Singkep</div>
+    <div class='' style="padding-left:40px;">
+        <div>Di Dabo Singkep</div>
+        <div>Di Dabo Singkep</div>    
+    </div>
+    <div style='padding-top:30px;'>
+        Dengan hormat,
+    </div>
+    <div class='rowheight'>
+        Sehubungan dengan tunggakan angsuran Saudara, atas pembelian secara kredit 1 unit kendaraan, Yang terdiri dari :
+    </div>
+    <div class='rowheight'>
+        <table style='border:1px solid #000;' cellpadding='4px' id='detail'>
+            <thead>
+                <tr>
+                    <th style='width:40px;text-align:center;'>No</th>
+                    <th style='width:115px;text-align:left;'>Angsuran Ke</th>
+                    <th style='width:170px;text-align:left;'>Tanggal Jatuh Tempo</th>
+                    <th style='width:170px;text-align:right;'>Jumlah Angsuran</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style='text-align:center;'>No</td>
+                    <td>Angsuran Ke</td>
+                    <td style='text-align:left;'>Tanggal Jatuh Tempo</td>
+                    <td style='text-align:right;'>Jumlah Angsuran</td>
+                </tr>
+                <tr>
+                    <td style='text-align:center;'>No</td>
+                    <td>Angsuran Ke</td>
+                    <td style='text-align:left;'>Tanggal Jatuh Tempo</td>
+                    <td style='text-align:right;'>Jumlah Angsuran</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td style='text-align:left;'><b>Total</b></td>
+                    <td style='text-align:right;'><b>1231231329</b></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <div style='padding-top:15px;'>
+        Saudara tidak menyelesaikan angsuran kredit kendaraan bermotor merk <b>Yamaha</b> type <b>Mio Cw</b>
+        warna <b>Merah</b> nomor rangka <b>3459385395</b> nomor mesin <b>34895345873</b> nomor polisi <b>3453453234</b>,
+        maka dengan sangat terpaksa kendaraan Saudara kami <b>TARIK / AMBIL KEMBALI</b>.
+    </div>
+    <div style='padding-top:15px;'>
+        Untuk penyelesaian lebih lanjut, harap Saudara datang ke kantor kami Asli Motor Siq paling lambat 3 (tiga) hari setelah 
+        tanggal penarikan dikeluarkan. Jika pada tanggal tersebut Saudara tidak datang, maka semua hak Saudara akan kami hapuskan sesuai
+        dengan surat perjanjian No. <b>349583759375375</b> tanggal 26 Oktober 2012.
+    </div>
+    <div style='padding-top:100px;padding-right:50px;text-align:right;'>
+        $organization.City$, $currentDate$
+    </div>
+</body>
+</html>

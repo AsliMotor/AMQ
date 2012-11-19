@@ -16,29 +16,41 @@
                 this.$el.html(html);
                 var totalTodayTransaction = new am.dashboard.view.TotalTransactionView.Item({
                     model: this.model,
-                    dataIndex: 'TotalDailyTransaction',
+                    dataIndex: 'TotalSoldTransactionToday',
                     title:'Jumlah Penjualan Hari Ini'
                 });
-                var totalThisMonthTransaction = new am.dashboard.view.TotalTransactionView.Item({
+                var totalYesterdayTransaction = new am.dashboard.view.TotalTransactionView.Item({
                     model: this.model,
-                    dataIndex: 'TotalDailyTransaction',
+                    dataIndex: 'TotalSoldTransactionYesterday',
+                    title: 'Jumlah Penjualan Kemarin'
+                });
+                var totalSoldTransactionThisMonth = new am.dashboard.view.TotalTransactionView.Item({
+                    model: this.model,
+                    dataIndex: 'TotalSoldTransactionThisMonth',
                     title: 'Jumlah Penjualan Bulan Ini'
                 });
                 var totalProductSoldToday = new am.dashboard.view.TotalTransactionView.Item({
                     model: this.model,
-                    dataIndex: 'TotalDailyTransaction',
-                    title: 'Jumlah Motor Yang Terjual Hari Ini'
+                    dataIndex: 'TotalPurchaseTransactionToday',
+                    title: 'Jumlah Pembelian Hari Ini'
                 });
                 var totalProductSoldMonthly = new am.dashboard.view.TotalTransactionView.Item({
                     model: this.model,
-                    dataIndex: 'TotalDailyTransaction',
-                    title: 'Jumlah Motor Yang Terjual Bulan Ini'
+                    dataIndex: 'TotalPurchaseTransactionYesterday',
+                    title: 'Jumlah Pembelian Kemarin'
+                });
+                var totalPurchaseThisMonth = new am.dashboard.view.TotalTransactionView.Item({
+                    model: this.model,
+                    dataIndex: 'TotalPurchaseTransactionThisMonth',
+                    title: 'Jumlah Pembelian Bulan Ini'
                 });
 
                 $("ul.stat-boxes", this.$el).append(totalTodayTransaction.render().el);
-                $("ul.stat-boxes", this.$el).append(totalThisMonthTransaction.render().el);
+                $("ul.stat-boxes", this.$el).append(totalYesterdayTransaction.render().el);
+                $("ul.stat-boxes", this.$el).append(totalSoldTransactionThisMonth.render().el);
                 $("ul.stat-boxes", this.$el).append(totalProductSoldToday.render().el);
                 $("ul.stat-boxes", this.$el).append(totalProductSoldMonthly.render().el);
+                $("ul.stat-boxes", this.$el).append(totalPurchaseThisMonth.render().el);
                 
                 return this;
             }

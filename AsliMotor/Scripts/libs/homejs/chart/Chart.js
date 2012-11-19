@@ -3,8 +3,7 @@
     'underscore',
     'backbone',
     'namespace',
-    '../../highcharts/highcharts',
-    '../../highcharts/exporting'
+    '../../highcharts/highcharts'
 ], function ($, _, Backbone, ns) {
     ns.define("HomeJS.components");
     HomeJS.components.Chart = Backbone.View.extend({

@@ -44,6 +44,7 @@
       <HintPath>..\packages\am-bin\BonaStoco.Inf.Data.ViewModel.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -53,6 +54,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IPrintDocument.cs" />
+    <Compile Include="SuratPeringatanItem.cs" />
+    <Compile Include="templates\SuratPeringatanTemplate.cs" />
     <Compile Include="templates\KwitansiAngsuranTemplate.cs" />
     <Compile Include="templates\KwitansiUangMukaTemplate.cs" />
     <Compile Include="templates\KwitansiKontanTemplate.cs" />
@@ -68,6 +71,10 @@
     <ProjectReference Include="..\AsliMotor.Organization\AsliMotor.Organizations.csproj">
       <Project>{D86FA059-1DDB-40E6-BCFA-C1C54235A040}</Project>
       <Name>AsliMotor.Organizations</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AsliMotor.SuratPeringatan.AutoNumberGenerator\AsliMotor.SuratPeringatan.AutoNumberGenerator.csproj">
+      <Project>{0102257A-255E-496D-B037-4E153BA336AE}</Project>
+      <Name>AsliMotor.SuratPeringatan.AutoNumberGenerator</Name>
     </ProjectReference>
     <ProjectReference Include="..\Invoice\AsliMotor.Invoices.ReportRepository\AsliMotor.Invoices.ReportRepository.csproj">
       <Project>{0059972F-360C-463C-94D3-CDBD61A37DBC}</Project>

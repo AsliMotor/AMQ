@@ -14,6 +14,7 @@ namespace AsliMotor.Invoices.ReportRepository
         InvoiceCashReport GetInvoiceCashReport(Guid invoiceId, string branchid);
         ReceiveUangMukaReport GetReceiveUangMukaReport(Guid invoiceId, string branchid);
         ReceiveAngsuranReport GetReceiveAngsuranReport(Guid rcvId);
+        SuratPeringatanReport GetSuratPeringatanReport(Guid invId, string branchid);
         TotalInvoice GetTotalListView(string branchId);
     }
 }

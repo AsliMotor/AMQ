@@ -55,12 +55,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DashboardRepository.cs" />
+    <Compile Include="IDashboardRepository.cs" />
+    <Compile Include="models\PiutangTelahJatuhTempo.cs" />
+    <Compile Include="models\SalesReport.cs" />
     <Compile Include="models\YearlySalesReport.cs" />
     <Compile Include="models\MonthlySalesReport.cs" />
     <Compile Include="models\DailySalesReport.cs" />
     <Compile Include="ISalesReportRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SalesReportRepository.cs" />
+    <Compile Include="models\TotalTransactionReport.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

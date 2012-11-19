@@ -14,5 +14,6 @@ namespace AsliMotor.PrintDocuments
         string PrintKwitansiKontan(Guid invId, string branchId);
         string PrintKwitansiUangMuka(Guid invId, string branchid);
         string PrintKwitansiAngsuranBulanan(Guid rcvId, string branchid);
+        string PrintSuratPeringatan(Guid invId, string branchid);
     }
 }

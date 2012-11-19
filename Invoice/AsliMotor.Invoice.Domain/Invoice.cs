@@ -15,21 +15,23 @@ namespace AsliMotor.Invoices.Domain
         }
         public Invoice(CreateParameter p)
         {
+            decimal totalKredit = CalculateTotalKredit(p.Price, p.UangMuka, p.LamaAngsuran, p.SukuBunga, p.Status, 0);
             InvoiceSnapshot snapshot = new InvoiceSnapshot
             {
                 BranchId = p.BranchId,
                 CustomerId = p.CustomerId,
                 id = p.id,
                 InvoiceDate = p.InvoiceDate,
-                Price = p .Price,
+                Price = p.Price,
                 ProductId = p.ProductId,
                 TransactionDate = DateTime.Now,
-                Status = (int) p.Status,
+                Status = (int)p.Status,
                 LamaAngsuran = p.LamaAngsuran,
                 SukuBunga = p.SukuBunga,
                 DueDate = p.DueDate,
                 AngsuranBulanan = CalculateAngsuranBulanan(p.Price, p.UangMuka, p.LamaAngsuran, p.SukuBunga, 0),
-                TotalKredit = CalculateTotalKredit(p.Price, p.UangMuka, p.LamaAngsuran, p.SukuBunga, p.Status, 0)
+                TotalKredit = totalKredit,
+                Outstanding = (p.Price + totalKredit) - (p.UangMuka + p.UangTandaJadi)
             };
             _snapshot = snapshot;
         }
@@ -37,6 +39,7 @@ namespace AsliMotor.Invoices.Domain
         public void UpdateToCash()
         {
             _snapshot.Status = (int)StatusInvoice.PAID;
+            _snapshot.Outstanding = 0;
         }
 
         public void UpdateToCredit(UpdateToCreditParameter p)
@@ -47,11 +50,13 @@ namespace AsliMotor.Invoices.Domain
             _snapshot.DueDate = p.DueDate.AddMonths(1);
             _snapshot.AngsuranBulanan = CalculateAngsuranBulanan(_snapshot.Price, p.UangMuka, p.LamaAngsuran, p.SukuBunga, p.UangTandaJadi);
             _snapshot.TotalKredit = CalculateTotalKredit(_snapshot.Price, p.UangMuka, p.LamaAngsuran, p.SukuBunga, StatusInvoice.CREDIT, p.UangTandaJadi);
+            _snapshot.Outstanding = (_snapshot.Price + _snapshot.TotalKredit) - (p.UangMuka + p.UangTandaJadi);
         }
 
         public void BayarAngsuran()
         {
             _snapshot.DueDate = _snapshot.DueDate.AddMonths(1);
+            _snapshot.Outstanding -= _snapshot.AngsuranBulanan;
         }
 
         public void ChangeUangMuka(decimal uangmuka, decimal uangtandajadi)
@@ -60,13 +65,17 @@ namespace AsliMotor.Invoices.Domain
             {
                 _snapshot.AngsuranBulanan = CalculateAngsuranBulanan(_snapshot.Price, uangmuka, _snapshot.LamaAngsuran, _snapshot.SukuBunga, uangtandajadi);
                 _snapshot.TotalKredit = CalculateTotalKredit(_snapshot.Price, uangmuka, _snapshot.LamaAngsuran, _snapshot.SukuBunga, StatusInvoice.CREDIT, uangtandajadi);
+                _snapshot.Outstanding = (_snapshot.Price + _snapshot.TotalKredit) - (uangmuka + uangtandajadi);
             }
         }
 
         public void Cancel()
         {
             if (_snapshot.Status == (int)StatusInvoice.BOOKING)
+            {
                 _snapshot.Status = (int)StatusInvoice.CANCELED;
+                _snapshot.Outstanding = 0;
+            }
         }
 
         public InvoiceSnapshot CreateSnapshot()

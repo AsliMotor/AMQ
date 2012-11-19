@@ -22,7 +22,7 @@ namespace AsliMotor.SalesReports.ReportRepository
                 bool isSame = false;
                 foreach (DailySalesReport s in reports)
                 {
-                    if (s.SalesDate == currDate) { isSame = true; break; }
+                    if (s.SalesDate.Date == currDate.Date) { isSame = true; break; }
                 }
                 if (isSame == false)
                 {

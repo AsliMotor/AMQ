@@ -17,6 +17,7 @@ namespace AsliMotor.Invoices.Domain
         public decimal Price { get; set; }
         public int LamaAngsuran { get; set; }
         public decimal UangMuka { get; set; }
+        public decimal UangTandaJadi { get; set; }
         public decimal SukuBunga { get; set; }
         public DateTime DueDate { get; set; }
     }

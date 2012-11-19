@@ -30,6 +30,7 @@ define([
   'backbone',
   'eventAggregator',
   'router/CustomerRouter',
+  '../../libs/bootstrap/bootstrap-dropdown',
   '../../libs/ajaxloading',
   '../shared/template'
 ], function ($, _, Backbone, am) {

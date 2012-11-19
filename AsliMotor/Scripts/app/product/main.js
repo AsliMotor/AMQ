@@ -31,6 +31,7 @@ define([
   'eventAggregator',
   'router/ProductRouter',
   '../../libs/ajaxloading',
+  '../../libs/bootstrap/bootstrap-dropdown',
   '../shared/template'
 ], function ($, _, Backbone, am) {
     $(function () {

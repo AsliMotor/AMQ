@@ -11,6 +11,7 @@
         '../../../libs/Animation',
         '../../../libs/Date',
         '../../../libs/Currency',
+        '../../../libs/highcharts/exporting',
         '../../../libs/homejs/Breadcrumb'],
     function ($, _, Backbone, ns) {
         ns.define('am.report.controller');

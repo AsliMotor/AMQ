@@ -56,5 +56,11 @@ namespace AsliMotor.Invoices.ReportRepository
             TotalInvoice total = QueryObjectMapper.Map<TotalInvoice>("count", new string[] { "branchid" }, new object[] { branchId }).FirstOrDefault();
             return total;
         }
+
+        public SuratPeringatanReport GetSuratPeringatanReport(Guid invId, string branchid)
+        {
+            SuratPeringatanReport report = QueryObjectMapper.Map<SuratPeringatanReport>("findById", new string[] { "id", "branchid" }, new object[] { invId, branchid }).FirstOrDefault();
+            return report;
+        }
     }
 }

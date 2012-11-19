@@ -19,6 +19,16 @@
     line-height: 18px;
     margin: 0 10px 10px;
     padding: 10px 0px 0px 0px;
+    cursor:pointer;
+}
+.stat-boxes li:hover {
+    background-color: #c1c0c0;
+    background-image: -webkit-gradient(linear, 0 0%, 0 100%, from(#ece9e9), to(#d6d6d6));
+    background-image: -webkit-linear-gradient(top, #ece9e9 0%, #d6d6d6 100%);
+    background-image: -moz-linear-gradient(top, #ece9e9 0%, #d6d6d6 100%);
+    background-image: -ms-linear-gradient(top, #ece9e9 0%, #d6d6d6 100%);
+    background-image: -o-linear-gradient(top, #ece9e9 0%, #d6d6d6 100%);
+    background-image: linear-gradient(top, #ece9e9 0%, #d6d6d6 100%);
 }
 .stat-boxes li div.value{
     margin-bottom: 5px;
@@ -36,4 +46,135 @@
     padding:2px 5px;
     border-top:1px solid #459D1C;
     background-color:#459D1C;
+    font-size: 11px;
+}
+.stat-boxes li:hover div.title
+{
+    background-color:#de7018;
+    border-top:1px solid #bf6013;
+}
+
+/************************************************SALES*******************************************************/
+.sales-view {
+    background: none repeat scroll 0 0 #F9F9F9;
+    border-top: 1px solid #CDCDCD;
+    border-left: 1px solid #CDCDCD;
+    border-right: 1px solid #CDCDCD;
+    clear: both;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    position: relative;
+}
+.sales-view .title{
+    background-color: #EFEFEF;
+    background-image: -webkit-gradient(linear, 0 0%, 0 100%, from(#FDFDFD), to(#EAEAEA));
+    background-image: -webkit-linear-gradient(top, #FDFDFD 0%, #EAEAEA 100%);
+    background-image: -moz-linear-gradient(top, #FDFDFD 0%, #EAEAEA 100%);
+    background-image: -ms-linear-gradient(top, #FDFDFD 0%, #EAEAEA 100%);
+    background-image: -o-linear-gradient(top, #FDFDFD 0%, #EAEAEA 100%);
+    background-image: -linear-gradient(top, #FDFDFD 0%, #EAEAEA 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fdfdfd', endColorstr='#eaeaea',GradientType=0 );
+    border-bottom: 1px solid #CDCDCD;
+    height: 36px;
+}
+.sales-view .title span.icon {
+    border-right: 1px solid #CDCDCD;
+    padding: 9px 10px 7px 11px;
+    float: left;
+    opacity: .7;
+}
+.sales-view .title h5 {
+    color: #666;
+    text-shadow: 0 1px 0 white;
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px;
+    line-height: 12px;
+    margin: 0;
+    font-size: 11px;
+    font-weight: bold;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+}
+.sales-view .title .buttons {
+    float: right;
+    margin: 8px 10px 0 0;
+}
+.sales-view .content {
+    padding: 12px 15px;
+    border-bottom: 1px solid #CDCDCD;
+}
+.sales-view ul.detail-sales
+{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.sales-view ul.detail-sales li {
+    background-color: WhiteSmoke;
+    border: 1px solid #DDD;
+    cursor: pointer;
+    margin: 0 0 10px;
+    padding: 6px 20px 1px;
+    position: relative;
+    text-align:center;
+}
+.sales-view ul.detail-sales li:hover {
+    background-color: #EDEDED;
+    
+}
+.sales-view ul.detail-sales li strong {
+    font-weight: bold;
+    color:#333;
+    font-size: 18px;
+    margin-left: 5px;
+}
+.sales-view ul.detail-sales li small {
+    margin-left: 5px;
+    font-size: 12px;
+    color: #888;
+    font-style:italic;
+}
+.sales-view ul.detail-sales li:hover small,.sales-view ul.detail-sales li:hover strong
+{
+    color:#39781b;
+}
+body div.sales-view ul.detail-sales li a i {
+    line-height: 3px;
+    font-size: 28px;
+}
+.sales-view .label {
+    padding: 3px 5px 2px;
+    float: right;
+    margin: 9px 15px 0 0;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) inset, 0 1px 0 white;
+}
+
+table.homejs-datatable tbody tr.outstanding-greater-3 td
+{
+    background-color:#FA603D;
+    color:#fff;
+}
+table.homejs-datatable tbody tr.outstanding-greater-3:hover td
+{
+    background-color:#e25737;
+}
+table.homejs-datatable tbody tr.outstanding-greater-2 td
+{
+    background-color:#FABB3D;
+    color:#fff;
+}
+table.homejs-datatable tbody tr.outstanding-greater-2:hover td
+{
+    background-color:#e1a938;
+}
+table.homejs-datatable tbody tr.outstanding-greater-1 td
+{
+    background-color:#78CD51;
+    color:#fff;
+}
+table.homejs-datatable tbody tr.outstanding-greater-1:hover td
+{
+    background-color:#68b147;
 }

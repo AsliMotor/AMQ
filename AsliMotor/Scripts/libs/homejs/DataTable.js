@@ -45,6 +45,7 @@
                 this.$el.find("tbody").append(new HomeJS.components.DataTable.Row({
                     model: item,
                     cells: this.options.items,
+                    onrenderItem: this.options.onrenderItem,
                     eventclick: this.options.eventclick
                 }).el);
             }
@@ -126,6 +127,8 @@
         HomeJS.components.DataTable.Row = Backbone.View.extend({
             tagName: "tr",
             initialize: function () {
+                if (this.options.onrenderItem)
+                    this.$el.addClass(this.options.onrenderItem(this.model));
                 this.options.cells.forEach(this.addCell, this);
             },
             addCell: function (cell) {

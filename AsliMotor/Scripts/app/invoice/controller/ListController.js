@@ -64,6 +64,12 @@
                         width: "150px",
                         title: "Klik untuk mengurutkan berdasarkan Type"
                     }, {
+                        name: "Total",
+                        dataIndex: "NetTotal",
+                        width: "150px",
+                        align: "right",
+                        title: "Klik untuk mengurutkan berdasarkan Harga Jual"
+                    }, {
                         name: "Status",
                         dataIndex: "Status",
                         width: "70px",
@@ -71,15 +77,9 @@
                     }, {
                         name: "Sisa Tagihan",
                         dataIndex: "Outstanding",
-                        width: "100px",
-                        align: "right",
-                        title: "Klik untuk mengurutkan berdasarkan Sisa Tagihan"
-                    }, {
-                        name: "Harga Jual",
-                        dataIndex: "Price",
                         width: "150px",
                         align: "right",
-                        title: "Klik untuk mengurutkan berdasarkan Harga Jual"
+                        title: "Klik untuk mengurutkan berdasarkan Sisa Tagihan"
                     }],
                     items: [{
                         dataIndex: "InvoiceDate",
@@ -92,6 +92,12 @@
                         dataIndex: "NoPolisi"
                     }, {
                         dataIndex: "Type"
+                    }, {
+                        dataIndex: "NetTotal",
+                        align: "right",
+                        onrender: function (data) {
+                            return data.toCurrency();
+                        }
                     }, {
                         dataIndex: "Status",
                         onrender: function (data) {
@@ -106,12 +112,6 @@
                         }
                     }, {
                         dataIndex: "Outstanding",
-                        align: "right",
-                        onrender: function (data) {
-                            return data.toCurrency();
-                        }
-                    }, {
-                        dataIndex: "Price",
                         align: "right",
                         onrender: function (data) {
                             return data.toCurrency();

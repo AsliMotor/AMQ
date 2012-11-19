@@ -234,6 +234,19 @@ namespace AsliMotor.Controllers
             MemoryStream resultStream = new MemoryStream(memStream.GetBuffer());
             return new FileStreamResult(resultStream, "application/pdf");
         }
+        [HttpGet]
+        public FileStreamResult PrintSuratPeringatan(Guid id)
+        {
+            CompanyProfile cp = new CompanyProfile(this.HttpContext);
+            string template = PrintDocument.PrintSuratPeringatan(id, cp.BranchId);
+            EO.Pdf.Runtime.AddLicense(System.Configuration.ConfigurationManager.AppSettings["EOPdfLicense"]);
+            EO.Pdf.HtmlToPdf.Options.PageSize = EO.Pdf.PdfPageSizes.A4;
+            EO.Pdf.HtmlToPdf.Options.OutputArea = new System.Drawing.RectangleF(0.5f, 0.1f, 7.3f, 12.1f);
+            MemoryStream memStream = new MemoryStream();
+            HtmlToPdf.ConvertHtml(template, memStream);
+            MemoryStream resultStream = new MemoryStream(memStream.GetBuffer());
+            return new FileStreamResult(resultStream, "application/pdf");
+        }
         private IPrintDocument PrintDocument
         {
             get

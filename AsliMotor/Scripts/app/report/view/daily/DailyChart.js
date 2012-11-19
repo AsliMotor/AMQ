@@ -48,8 +48,13 @@
                         xAxis: {
                             type: 'datetime',
                             dateTimeLabelFormats: {
-                                month: '%e. %b',
-                                year: '%b'
+                                second: '%H:%M:%S',
+                                minute: '%H:%M',
+                                hour: '%H:%M',
+                                day: '%e%b',
+                                week: '%b',
+                                month: '%b \'%y',
+                                year: '%Y'
                             },
                             gridLineWidth: 1,
                             lineColor: '#000',

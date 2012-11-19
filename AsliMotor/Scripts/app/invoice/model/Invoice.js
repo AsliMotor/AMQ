@@ -35,10 +35,16 @@
                     return { isValid: true };
             };
             this.validators.UangMuka = function (value, model) {
-                if (model.get("Status") == "1")
-                    return (value > 0) ? { isValid: true} : { isValid: false, message: "Uang muka harus diisi" };
-                else
-                    return { isValid: true };
+                if (model.get("Status") == "1") {
+                    if (value > 0) {
+                        if (value < (parseInt(model.get("Price")) * 30) / 100) {
+                            return { isValid: false, message: "Uang minimal 30% dari harga jual kendaraan" };
+                        }
+                    } else {
+                        return { isValid: false, message: "Uang muka harus diisi" };
+                    }
+                }
+                return { isValid: true };
             };
             this.validators.SukuBunga = function (value, model) {
                 if (model.get("Status") == "1")

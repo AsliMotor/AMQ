@@ -137,6 +137,7 @@
     <Content Include="Content\img\asc.gif" />
     <Content Include="Content\img\desc.gif" />
     <Content Include="Content\img\error.png" />
+    <Content Include="Content\img\favicon.ico" />
     <Content Include="Content\img\logo.png" />
     <Content Include="Content\img\menu-active.png" />
     <Content Include="Content\report.css" />
@@ -158,8 +159,14 @@
     <Content Include="Scripts\app\customer\view\CreateCustomer.js" />
     <Content Include="Scripts\app\dashboard\controller\DashboardController.js" />
     <Content Include="Scripts\app\dashboard\main.js" />
+    <Content Include="Scripts\app\dashboard\model\PiutangTelahJatuhTempo.js" />
+    <Content Include="Scripts\app\dashboard\model\SalesReport.js" />
+    <Content Include="Scripts\app\dashboard\model\DailySalesReport.js" />
     <Content Include="Scripts\app\dashboard\model\TotalTransaction.js" />
     <Content Include="Scripts\app\dashboard\router\DashboardRouter.js" />
+    <Content Include="Scripts\app\dashboard\view\ChartSalesView.js" />
+    <Content Include="Scripts\app\dashboard\view\DetailSalesView.js" />
+    <Content Include="Scripts\app\dashboard\view\SalesView.js" />
     <Content Include="Scripts\app\dashboard\view\TotalTransactionView.js" />
     <Content Include="Scripts\app\invoice\action\changePaymentType.js" />
     <Content Include="Scripts\app\invoice\action\changeUangMuka.js" />
@@ -437,6 +444,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\aslimotor.grey.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\libs\bootstrap\bootstrap-dropdown.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Test\PrintSuratPeringatan.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

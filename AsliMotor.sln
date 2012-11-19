@@ -77,6 +77,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsliMotor.Invoices.Events",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsliMotor.SalesReports.ReportRepository", "AsliMotor.SalesReports.ReportRepository\AsliMotor.SalesReports.ReportRepository.csproj", "{8970BA2A-85D9-4E9A-9893-930C12CD64ED}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SuratPeringatan", "SuratPeringatan", "{7401401F-7B85-4F86-96AB-65059DD264E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsliMotor.SuratPeringatan.AutoNumberGenerator", "AsliMotor.SuratPeringatan.AutoNumberGenerator\AsliMotor.SuratPeringatan.AutoNumberGenerator.csproj", "{0102257A-255E-496D-B037-4E153BA336AE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -215,6 +219,10 @@ Global
 		{8970BA2A-85D9-4E9A-9893-930C12CD64ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8970BA2A-85D9-4E9A-9893-930C12CD64ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8970BA2A-85D9-4E9A-9893-930C12CD64ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0102257A-255E-496D-B037-4E153BA336AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0102257A-255E-496D-B037-4E153BA336AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0102257A-255E-496D-B037-4E153BA336AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0102257A-255E-496D-B037-4E153BA336AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -245,5 +253,6 @@ Global
 		{DD117B45-95F8-4C50-A1C5-8CBE3BDEF689} = {32B4906F-E9EC-45D6-828F-6FA3C046893D}
 		{0F34CCD5-7CEC-4FA2-AB3E-CEE4D7C17942} = {32B4906F-E9EC-45D6-828F-6FA3C046893D}
 		{63DA896D-9D4B-4B9F-88B3-9415BDD23249} = {32B4906F-E9EC-45D6-828F-6FA3C046893D}
+		{0102257A-255E-496D-B037-4E153BA336AE} = {7401401F-7B85-4F86-96AB-65059DD264E4}
 	EndGlobalSection
 EndGlobal

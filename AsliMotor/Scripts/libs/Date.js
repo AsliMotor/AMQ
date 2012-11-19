@@ -36,6 +36,12 @@ var getCurrentDate = function () {
     return date + "-" + month + "-" + year;
 };
 
+var getCurrentDateTime = function () {
+    var date = new Date();
+    var currentDate = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 0, 0, 0);
+    return currentDate;
+};
+
 var getCurrentYear = function () {
     var currentDate = new Date();
     var year = currentDate.getFullYear();
@@ -63,6 +69,11 @@ String.prototype.toDefaultFormatDate = function () {
     var month = ("0" + (dateFormated.getMonth() + 1)).slice(-2);
     var year = dateFormated.getFullYear();
     return day + "-" + month + "-" + year;
+}
+
+String.prototype.toDateTime = function () {
+    var dateFormated = new Date(parseInt(this.replace(/\/Date\((-?\d+)\)\//, '$1')));
+    return dateFormated;
 }
 
 String.prototype.toUTCDate = function () {

@@ -31,6 +31,7 @@ define([
   'eventAggregator',
   'router/ReportRouter',
   '../../libs/ajaxloading',
+  '../../libs/bootstrap/bootstrap-dropdown',
   '../shared/template'
 ], function ($, _, Backbone, am) {
     $(function () {

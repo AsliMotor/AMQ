@@ -13,6 +13,7 @@
         '../../../app/invoice/action/changepaymenttype',
         '../../../app/invoice/action/bayaruangangsuran',
         '../../../libs/Animation',
+        '../../../libs/Date',
         '../../../libs/homejs/dialog/modaldialog',
         '../../../libs/homejs/DetailPanel'],
     function ($, _, Backbone, ns, am) {
@@ -153,6 +154,19 @@
                         },
                         action: function () {
                             am.invoice.action.changePaymentType({ model: headerModel }).execute();
+                        }
+                    }, {
+                        title: "Surat Penarikan",
+                        tooltip: "Cetak Surat Penarikan",
+                        iconClass: 'icon-print',
+                        id: "printSuratPenarikan",
+                        renderer: function () {
+                            if (headerModel.get("Status") == 1 && headerModel.get("DueDate") && headerModel.get("DueDate").toDateTime() < getCurrentDateTime())
+                                return true;
+                            return false;
+                        },
+                        action: function () {
+                            window.open("/invoice/PrintSuratPeringatan/" + id, 'Surat Penarikan Kendaraan', null, null);
                         }
                     }]
                 });

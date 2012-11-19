@@ -51,6 +51,7 @@ namespace AsliMotor.Invoices.Services
                 InvoiceDate = cmd.InvoiceDate,
                 Price = cmd.Price,
                 ProductId = cmd.ProductId,
+                UangTandaJadi = cmd.DebitNote,
                 Status = StatusInvoice.BOOKING
             });
             Repository.Save(inv);

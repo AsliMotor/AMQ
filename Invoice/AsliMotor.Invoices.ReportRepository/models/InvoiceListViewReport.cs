@@ -9,7 +9,7 @@ namespace AsliMotor.Invoices.ReportRepository
     [NamedSqlQuery("findListView", @"select  inv.id,
 	inv.status,
 	inv.invoicedate,
-	inv.price,
+	(inv.price + inv.totalkredit) as NetTotal,
 	inv.outstanding,
 	p.nopolisi,
 	p.type,
@@ -18,7 +18,7 @@ namespace AsliMotor.Invoices.ReportRepository
 	inner join product p on inv.productid = p.id
 	inner join customer cust on inv.customerid = cust.id
 	where inv.branchid = @branchid
-	ORDER BY inv.invoicedate desc
+	ORDER BY inv.invoicedate desc, inv.invoiceno desc
 	LIMIT 10 OFFSET @offset")]
     public class InvoiceListViewReport:IViewModel
     {
@@ -27,7 +27,7 @@ namespace AsliMotor.Invoices.ReportRepository
         public DateTime InvoiceDate { get; set; }
         public string NoPolisi { get; set; }
         public string Type { get; set; }
-        public decimal Price { get; set; }
+        public decimal NetTotal { get; set; }
         public decimal Outstanding { get; set; }
         public string CustomerName { get; set; }
     }

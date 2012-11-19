@@ -9,6 +9,7 @@
         'view/yearly/YearlyChart',
         'view/tabledata',
         'view/Container',
+        '../../../libs/highcharts/exporting',
         '../../../libs/homejs/Breadcrumb'],
     function ($, _, Backbone, ns) {
         ns.define('am.report.controller');

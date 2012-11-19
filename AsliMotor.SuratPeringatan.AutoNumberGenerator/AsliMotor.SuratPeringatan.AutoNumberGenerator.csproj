@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0102257A-255E-496D-B037-4E153BA336AE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AsliMotor.SuratPeringatan.AutoNumberGenerator</RootNamespace>
+    <AssemblyName>AsliMotor.SuratPeringatan.AutoNumberGenerator</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BonaStoco.Inf.Data">
+      <HintPath>..\packages\am-bin\BonaStoco.Inf.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="BonaStoco.Inf.Data.ViewModel">
+      <HintPath>..\packages\am-bin\BonaStoco.Inf.Data.ViewModel.dll</HintPath>
+    </Reference>
+    <Reference Include="BonaStoco.Inf.DataMapper">
+      <HintPath>..\packages\am-bin\BonaStoco.Inf.DataMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="BonaStoco.Inf.DataMapper.Impl">
+      <HintPath>..\packages\am-bin\BonaStoco.Inf.DataMapper.Impl.dll</HintPath>
+    </Reference>
+    <Reference Include="BonaStoco.Inf.ExceptionUtils">
+      <HintPath>..\packages\am-bin\BonaStoco.Inf.ExceptionUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="BonaStoco.Inf.Reporting">
+      <HintPath>..\packages\am-bin\BonaStoco.Inf.Reporting.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging">
+      <HintPath>..\packages\Common.Logging.2.0.0\lib\2.0\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Security">
+      <HintPath>..\packages\am-bin\Mono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql">
+      <HintPath>..\packages\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Aop">
+      <HintPath>..\packages\Spring.Aop.1.3.2\lib\net40\Spring.Aop.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Core">
+      <HintPath>..\packages\Spring.Core.1.3.2\lib\net40\Spring.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data">
+      <HintPath>..\packages\Spring.Data.1.3.2\lib\net40\Spring.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ISuratPeringatanAutoNumberGenerator.cs" />
+    <Compile Include="models\AutoNumberIdResolver.cs" />
+    <Compile Include="models\AutoNumberMode.cs" />
+    <Compile Include="models\SIAutoNumberConfig.cs" />
+    <Compile Include="models\SIAutoNumberMonthly.cs" />
+    <Compile Include="models\SIAutoNumberYearly.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SuratPeringatanAutoNumberGenerator.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
