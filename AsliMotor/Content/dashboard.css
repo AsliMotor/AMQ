@@ -144,16 +144,38 @@ body div.sales-view ul.detail-sales li a i {
     line-height: 3px;
     font-size: 28px;
 }
-.sales-view .label {
-    padding: 3px 5px 2px;
-    float: right;
-    margin: 9px 15px 0 0;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) inset, 0 1px 0 white;
+.sales-view .legend {
+    float:right;
+    padding: 7px 15px;
+}
+.sales-view .legend div {
+    float:left;
+    margin-left:5px;
+    padding:1px 7px;
+    border-radius: 5px;
+}
+.sales-view .legend div.outstanding-greater-3
+{
+    background-color:#BD362F;
+    border: 1px solid #802420;
+    color:#fff;
+}
+.sales-view .legend div.outstanding-greater-2
+{
+    background-color:#F89406;
+    border: 1px solid #AD6704;
+    color:#fff;
+}
+.sales-view .legend div.outstanding-greater-1
+{
+    background-color:#51A351;
+    border: 1px solid #387038;
+    color:#fff;
 }
 
 table.homejs-datatable tbody tr.outstanding-greater-3 td
 {
-    background-color:#FA603D;
+    background-color:#BD362F;
     color:#fff;
 }
 table.homejs-datatable tbody tr.outstanding-greater-3:hover td
@@ -162,7 +184,7 @@ table.homejs-datatable tbody tr.outstanding-greater-3:hover td
 }
 table.homejs-datatable tbody tr.outstanding-greater-2 td
 {
-    background-color:#FABB3D;
+    background-color:#F89406;
     color:#fff;
 }
 table.homejs-datatable tbody tr.outstanding-greater-2:hover td
@@ -171,10 +193,10 @@ table.homejs-datatable tbody tr.outstanding-greater-2:hover td
 }
 table.homejs-datatable tbody tr.outstanding-greater-1 td
 {
-    background-color:#78CD51;
+    background-color:#51A351;
     color:#fff;
 }
 table.homejs-datatable tbody tr.outstanding-greater-1:hover td
 {
-    background-color:#68b147;
+    background-color:#6bc16b;
 }

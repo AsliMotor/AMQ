@@ -11,10 +11,11 @@ using AsliMotor.Invoices.ReportRepository;
 using Spring.Context.Support;
 using AsliMotor.Invoices.Services;
 using AsliMotor.Invoices.Command;
+using AsliMotor.Helper;
 
 namespace AsliMotor.Controllers
 {
-    [Authorize]
+    [MyAuthorize]
     public class InvoiceController : Controller
     {
         IPrintDocument _printDocument;
@@ -30,15 +31,24 @@ namespace AsliMotor.Controllers
             return View("index");
         }
         [HttpGet]
+        public ActionResult Edit(Guid id)
+        {
+            return View("index");
+        }
+        [HttpGet]
         public ActionResult Detail(Guid id)
         {
             return View("index");
         }
         [HttpGet]
-        public JsonResult Lists(int offset)
+        public JsonResult Lists(int offset, bool search, string key)
         {
             CompanyProfile cp = new CompanyProfile(this.HttpContext);
-            IList<InvoiceListViewReport> listView = InvoiceReportRepository.GetListViewReport(cp.BranchId, offset);
+            IList<InvoiceListViewReport> listView = new List<InvoiceListViewReport>();
+            if (search)
+                listView = InvoiceReportRepository.SearchListViewReport(cp.BranchId, offset, key);
+            else
+                listView = InvoiceReportRepository.GetListViewReport(cp.BranchId, offset);
             return Json(listView, JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
@@ -153,15 +163,74 @@ namespace AsliMotor.Controllers
             {
                 return Json(new { error = true, message = ex.Message }, JsonRequestBehavior.AllowGet);
             }
-
         }
         [HttpPost]
-        public JsonResult BayarAngsuran(Guid invoiceId, DateTime date)
+        public JsonResult ChangeUangAngsuran(Guid invoiceId, decimal angsuran)
         {
             try
             {
                 CompanyProfile cp = new CompanyProfile(this.HttpContext);
-                InvoiceService.BayarAngsuran(invoiceId, date, cp.UserName);
+                InvoiceService.UpdateUangAngsuran(invoiceId, angsuran, cp.UserName);
+                return Json(new { error = false, data = new { id = invoiceId } }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { error = true, message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpPost]
+        public JsonResult ChangeSukuBunga(Guid invoiceId, decimal sukuBunga)
+        {
+            try
+            {
+                CompanyProfile cp = new CompanyProfile(this.HttpContext);
+                InvoiceService.ChangeSukuBunga(invoiceId, sukuBunga, cp.UserName);
+                return Json(new { error = false, data = new { id = invoiceId } }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { error = true, message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpPost]
+        public JsonResult ChangeLamaAngsuran(Guid invoiceId, int lamaAngsuran)
+        {
+            try
+            {
+                CompanyProfile cp = new CompanyProfile(this.HttpContext);
+                InvoiceService.ChangeLamaAngsuran(invoiceId, lamaAngsuran, cp.UserName);
+                return Json(new { error = false, data = new { id = invoiceId } }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { error = true, message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpPost]
+        public JsonResult ChangeDueDate(Guid invoiceId, string dueDate)
+        {
+            try
+            {
+                string[] stringDate = dueDate.Split('-');
+                DateTime date = new DateTime(int.Parse(stringDate[2]), int.Parse(stringDate[1]), int.Parse(stringDate[0]));
+                CompanyProfile cp = new CompanyProfile(this.HttpContext);
+                InvoiceService.ChangeDueDate(invoiceId, date, cp.UserName);
+                return Json(new { error = false, data = new { id = invoiceId } }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { error = true, message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpPost]
+        public JsonResult BayarAngsuran(Guid invoiceId, string date)
+        {
+            try
+            {
+                string[] stringDate = date.Split('-');
+                DateTime paymentDate = new DateTime(int.Parse(stringDate[2]), int.Parse(stringDate[1]), int.Parse(stringDate[0]));
+                CompanyProfile cp = new CompanyProfile(this.HttpContext);
+                InvoiceService.BayarAngsuran(invoiceId, paymentDate, cp.UserName);
                 return Json(new { error = false, data = new { InvoiceId = invoiceId } }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)

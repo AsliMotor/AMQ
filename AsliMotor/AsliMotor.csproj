@@ -129,9 +129,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\MyAuthorize.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\CompanyProfile.cs" />
+    <Compile Include="Models\RoleName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Content\img\homesoft.png" />
+    <Content Include="Content\login.css" />
+    <Content Include="Scripts\app\report\controller\GrafikProductController.js" />
+    <Content Include="Scripts\app\report\controller\RateProductController.js" />
     <Content Include="Content\bootstrap\bootstrap-responsive.min.css" />
     <Content Include="Content\dashboard.css" />
     <Content Include="Content\img\asc.gif" />
@@ -171,9 +177,17 @@
     <Content Include="Scripts\app\invoice\action\changePaymentType.js" />
     <Content Include="Scripts\app\invoice\action\changeUangMuka.js" />
     <Content Include="Scripts\app\invoice\action\BayarUangAngsuran.js" />
+    <Content Include="Scripts\app\invoice\action\changeUangAngsuran.js" />
+    <Content Include="Scripts\app\invoice\action\changeSukuBunga.js" />
+    <Content Include="Scripts\app\invoice\action\changeLamaAngsuran.js" />
+    <Content Include="Scripts\app\invoice\action\changeDueDate.js" />
     <Content Include="Scripts\app\invoice\command\ChangeUangMuka.js" />
     <Content Include="Scripts\app\invoice\command\ChangePaymentType.js" />
     <Content Include="Scripts\app\invoice\command\BayarUangAngsuran.js" />
+    <Content Include="Scripts\app\invoice\command\ChangeUangAngsuran.js" />
+    <Content Include="Scripts\app\invoice\command\ChangeSukuBunga.js" />
+    <Content Include="Scripts\app\invoice\command\ChangeLamaAngsuran.js" />
+    <Content Include="Scripts\app\invoice\command\ChangeDueDate.js" />
     <Content Include="Scripts\app\invoice\controller\DetailController.js" />
     <Content Include="Scripts\app\invoice\controller\CreateController.js" />
     <Content Include="Scripts\app\invoice\controller\ListController.js" />
@@ -188,6 +202,10 @@
     <Content Include="Scripts\app\invoice\view\ChangeUangMuka.js" />
     <Content Include="Scripts\app\invoice\view\ChangePaymentType.js" />
     <Content Include="Scripts\app\invoice\view\BayarUangAngsuran.js" />
+    <Content Include="Scripts\app\invoice\view\ChangeUangAngsuran.js" />
+    <Content Include="Scripts\app\invoice\view\ChangeSukuBunga.js" />
+    <Content Include="Scripts\app\invoice\view\ChangeLamaAngsuran.js" />
+    <Content Include="Scripts\app\invoice\view\ChangeDueDate.js" />
     <Content Include="Scripts\app\invoice\view\CreateInvoice.js" />
     <Content Include="Scripts\app\invoice\view\DetailInvoice.js" />
     <Content Include="Scripts\app\invoice\view\ItemDetailInvoice.js" />
@@ -231,17 +249,22 @@
     <Content Include="Scripts\app\report\controller\DailyController.js" />
     <Content Include="Scripts\app\report\controller\SideBarController.js" />
     <Content Include="Scripts\app\report\main.js" />
+    <Content Include="Scripts\app\report\model\GrafikProductReports.js" />
+    <Content Include="Scripts\app\report\model\RateProductReports.js" />
     <Content Include="Scripts\app\report\model\YearlyReports.js" />
     <Content Include="Scripts\app\report\model\MonthlyReports.js" />
     <Content Include="Scripts\app\report\model\DailyReports.js" />
     <Content Include="Scripts\app\report\router\ReportRouter.js" />
     <Content Include="Scripts\app\report\view\Container.js" />
+    <Content Include="Scripts\app\report\view\ProductChart.js" />
+    <Content Include="Scripts\app\report\view\SelectDateViewForRateProduct.js" />
     <Content Include="Scripts\app\report\view\SelectYearView.js" />
     <Content Include="Scripts\app\report\view\daily\DailyChart.js" />
     <Content Include="Scripts\app\report\view\monthly\MonthlyChart.js" />
     <Content Include="Scripts\app\report\view\SelectDateView.js" />
     <Content Include="Scripts\app\report\view\SelectMonthView.js" />
     <Content Include="Scripts\app\report\view\TableData.js" />
+    <Content Include="Scripts\app\report\view\TotalSummaryGrafikProduk.js" />
     <Content Include="Scripts\app\report\view\yearly\YearlyChart.js" />
     <Content Include="Scripts\app\shared\Template.js" />
     <Content Include="Scripts\libs\AjaxLoading.js" />
@@ -451,6 +474,9 @@
   <ItemGroup>
     <Content Include="Views\Test\PrintSuratPeringatan.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\aslimotor.blue.css" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -468,7 +494,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>49299</DevelopmentServerPort>
+          <DevelopmentServerPort>49429</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

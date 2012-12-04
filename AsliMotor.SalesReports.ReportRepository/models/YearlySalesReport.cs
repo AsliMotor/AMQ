@@ -13,6 +13,7 @@ namespace AsliMotor.SalesReports.ReportRepository
                     FROM invoicesnapshot
                     where branchid = @branchid and 
 	                   (extract(year from invoicedate) between  @fromyear and @toyear)
+                        and status != 3
                     GROUP BY SalesDate
                 ")]
     public class YearlySalesReport : IViewModel

@@ -7,6 +7,7 @@ using System.Web.Routing;
 using System.Web.Security;
 using AsliMotor.Models;
 using AsliMotor.Security;
+using AsliMotor.Security.Models;
 
 namespace AsliMotor.Controllers
 {
@@ -25,32 +26,32 @@ namespace AsliMotor.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    IAuthService authService = new AuthService();
-                    IUserRepository userRepo = new UserRepository();
-                    string branchId = authService.ValidateUser(model.UserName, model.Password);
-                    if (branchId == null)
-                        throw new Exception("Username atau Password anda salah");
-                    Account acc = userRepo.GetUserByBranchId(branchId);
-                    CompanyProfile cp = new CompanyProfile(this.HttpContext);
-                    cp.Role = acc.Role;
-                    cp.OwnerId = acc.OwnerId;
-                    cp.BranchId = acc.BranchId;
-                    cp.UserName = acc.UserName;
-
-                    FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
-                    if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
-                        && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
+                    if (Membership.ValidateUser(model.UserName, model.Password))
                     {
-                        return Redirect(returnUrl);
+                        Users user = Membership.GetUser(model.UserName);
+                        CompanyProfile cp = new CompanyProfile(this.HttpContext);
+                        cp.Role = 5;
+                        cp.OwnerId = user.OwnerId;
+                        cp.BranchId = user.BranchId;
+                        cp.UserName = user.Name;
+
+                        this.HttpContext.Session["loginsession"] = model.UserName;
+                        FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
+                        if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
+                            && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
+                        {
+                            return Redirect(returnUrl);
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
+
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home");
+                        ModelState.AddModelError("", "User atau password anda salah.");
                     }
-                }
-                else
-                {
-                    ModelState.AddModelError("", "User atau password anda salah.");
                 }
             }
             catch (Exception ex)

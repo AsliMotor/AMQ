@@ -8,5 +8,6 @@ namespace AsliMotor.Security
     public interface IAuthService
     {
         string ValidateUser(string username, string password);
+        bool IsValidLogin(string username, string password);
     }
 }

@@ -55,7 +55,7 @@ namespace AsliMotor.Invoices.Services
                 Status = StatusInvoice.BOOKING
             });
             Repository.Save(inv);
-            ProductService.ChangeStatus(cmd.ProductId, cmd.BranchId, StatusProduct.TERJUAL);
+            ProductService.ChangeStatus(cmd.ProductId, cmd.BranchId, StatusProduct.TERJUAL, username);
             CreateBookingReceive(inv, cmd.DebitNote);
             PublishInvoiceCreated(inv, username);
         }
@@ -75,7 +75,7 @@ namespace AsliMotor.Invoices.Services
                 Status = StatusInvoice.PAID
             });
             Repository.Save(inv);
-            ProductService.ChangeStatus(cmd.ProductId, cmd.BranchId, StatusProduct.TERJUAL);
+            ProductService.ChangeStatus(cmd.ProductId, cmd.BranchId, StatusProduct.TERJUAL, username);
             CreateCashReceive(inv, inv.CreateSnapshot().Price);
             PublishInvoiceCreated(inv, username);
         }
@@ -92,6 +92,7 @@ namespace AsliMotor.Invoices.Services
                 Receive bookingRcv = ReceiveRepository.GetBooking(invSnap.id);
                 decimal outstanding = (invSnap.Price - bookingRcv.Total);
                 CreateCashReceive(inv, outstanding);
+                PublishPaymentTypeChanged(inv, username);
             }
         }
 
@@ -114,9 +115,9 @@ namespace AsliMotor.Invoices.Services
                 DueDate = cmd.DueDate
             });
             Repository.Save(inv);
-            ProductService.ChangeStatus(cmd.ProductId, cmd.BranchId, StatusProduct.TERJUAL);
+            ProductService.ChangeStatus(cmd.ProductId, cmd.BranchId, StatusProduct.TERJUAL, username);
             CreateUangMukaReceive(inv, cmd.UangMuka);
-            PerjanjianService.CreateSuratPerjanjian(inv.CreateSnapshot().id, inv.CreateSnapshot().BranchId);
+            PerjanjianService.CreateSuratPerjanjian(inv.CreateSnapshot().id, inv.CreateSnapshot().BranchId, inv.CreateSnapshot().InvoiceDate);
             PublishInvoiceCreated(inv, username);
         }
 
@@ -138,7 +139,8 @@ namespace AsliMotor.Invoices.Services
                 });
                 Repository.Update(inv);
                 CreateUangMukaReceive(inv, cmd.UangMuka);
-                PerjanjianService.CreateSuratPerjanjian(inv.CreateSnapshot().id, inv.CreateSnapshot().BranchId);
+                PerjanjianService.CreateSuratPerjanjian(inv.CreateSnapshot().id, inv.CreateSnapshot().BranchId, DateTime.Now);
+                PublishPaymentTypeChanged(inv, username);
             }
         }
 
@@ -161,19 +163,71 @@ namespace AsliMotor.Invoices.Services
                 inv.BayarAngsuran();
                 Repository.Update(inv);
                 CreateAngsuranReceive(inv,date, denda);
+                PublishAngsuranPaid(inv, username);
             }
         }
 
         public void ChangeUangMuka(Guid id, decimal uangmuka, string username)
         {
-            FailIfAnyAngsuranBulanan(id);
             Invoice inv = Repository.Get(id);
             InvoiceSnapshot invSnap = inv.CreateSnapshot();
             FailIfInvoiceNotFound(invSnap);
+            FailIfCantChange(invSnap);
             decimal debitnote = Repository.GetUangTandaJadi(id);
             inv.ChangeUangMuka(uangmuka, debitnote);
             Repository.Update(inv);
             UpdateUangMukaReceive(inv, uangmuka);
+            PublishUangMukaChanged(inv, username);
+        }
+
+        public void UpdateUangAngsuran(Guid id, decimal angsuran, string username)
+        {
+            Invoice inv = Repository.Get(id);
+            InvoiceSnapshot invSnap = inv.CreateSnapshot();
+            FailIfInvoiceNotFound(invSnap);
+            FailIfCantChange(invSnap);
+            decimal debitnote = Repository.GetUangTandaJadi(id);
+            Receive uangMukaRcv = ReceiveRepository.GetByInvoiceIdAndPaymentType(invSnap.id, 1);
+            inv.ChangeAngsuran(angsuran, (debitnote + uangMukaRcv.Total));
+            Repository.Update(inv);
+            PublishUangAngsuranChanged(inv, username);
+        }
+
+        public void ChangeSukuBunga(Guid id, decimal sukubunga, string username)
+        {
+            Invoice inv = Repository.Get(id);
+            InvoiceSnapshot invSnap = inv.CreateSnapshot();
+            FailIfInvoiceNotFound(invSnap);
+            FailIfCantChange(invSnap);
+            decimal debitnote = Repository.GetUangTandaJadi(id);
+            decimal uangmuka = ReceiveRepository.GetByInvoiceIdAndPaymentType(invSnap.id, 1).Total;
+            inv.ChangeSukuBunga(sukubunga, uangmuka, debitnote);
+            Repository.Update(inv);
+            PublishSukuBungaChanged(inv, username);
+        }
+
+        public void ChangeLamaAngsuran(Guid id, int lamaAngsuran, string username)
+        {
+            Invoice inv = Repository.Get(id);
+            InvoiceSnapshot invSnap = inv.CreateSnapshot();
+            FailIfInvoiceNotFound(invSnap);
+            FailIfCantChange(invSnap);
+            decimal debitnote = Repository.GetUangTandaJadi(id);
+            decimal uangmuka = ReceiveRepository.GetByInvoiceIdAndPaymentType(invSnap.id, 1).Total;
+            inv.ChangeLamaAngsuran(lamaAngsuran, uangmuka, debitnote);
+            Repository.Update(inv);
+            PublishLamaAngsuranChanged(inv, username);
+        }
+
+        public void ChangeDueDate(Guid id, DateTime dueDate, string username)
+        {
+            Invoice inv = Repository.Get(id);
+            InvoiceSnapshot invSnap = inv.CreateSnapshot();
+            FailIfInvoiceNotFound(invSnap);
+            FailIfCantChange(invSnap);
+            inv.ChangeDueDate(dueDate);
+            Repository.Update(inv);
+            PublishDueDateChanged(inv, username);
         }
 
         public void Cancel(Guid id, string username)
@@ -182,7 +236,7 @@ namespace AsliMotor.Invoices.Services
             inv.Cancel();
             Repository.Update(inv);
             InvoiceSnapshot invSnap = inv.CreateSnapshot();
-            ProductService.ChangeStatus(invSnap.ProductId, invSnap.BranchId, StatusProduct.AKTIF);
+            ProductService.ChangeStatus(invSnap.ProductId, invSnap.BranchId, StatusProduct.AKTIF, username);
         }
 
         #region create receive
@@ -247,10 +301,13 @@ namespace AsliMotor.Invoices.Services
 
         #region Exception
 
-        private void FailIfAnyAngsuranBulanan(Guid id)
+        private void FailIfCantChange(InvoiceSnapshot invSnap)
         {
-            if (Repository.CountAngsuranBulanan(id) > 0)
-                throw new ApplicationException("transaksi ini telah melakukan angsuran bulanan, sehingga tidak bisa merubah uang muka");
+            if (invSnap.Status == (int)StatusInvoice.CREDIT)
+            {
+                if (Repository.CountAngsuranBulanan(invSnap.id) > 0)
+                    throw new ApplicationException("Angsuran bulanan transaksi ini telah dibayar, sehingga tidak bisa mengubah data");
+            }
         }
 
         private void FailIfCustomerNotFound(Guid customerid)
@@ -274,16 +331,40 @@ namespace AsliMotor.Invoices.Services
                 throw new ApplicationException("Product sudah terjual");
         }
 
+        #endregion
+
+        #region BUS
         private void PublishInvoiceCreated(Invoice inv, string username)
         {
-            if (_bus != null)
-            {
-                _bus.Publish(new InvoiceCreated
-                {
-                    Payload = inv.CreateSnapshot(),
-                    Username = username
-                });
-            }
+            _bus.Publish(new InvoiceCreated { Payload = inv.CreateSnapshot(), Username = username });
+        }
+        private void PublishDueDateChanged(Invoice inv, string username)
+        {
+            _bus.Publish(new DueDateChanged { Payload = inv.CreateSnapshot(), Username = username });
+        }
+        private void PublishUangMukaChanged(Invoice inv, string username)
+        {
+            _bus.Publish(new UangMukaChanged { Payload = inv.CreateSnapshot(), Username = username });
+        }
+        private void PublishUangAngsuranChanged(Invoice inv, string username)
+        {
+            _bus.Publish(new UangAngsuranChanged { Payload = inv.CreateSnapshot(), Username = username });
+        }
+        private void PublishSukuBungaChanged(Invoice inv, string username)
+        {
+            _bus.Publish(new SukuBungaChanged { Payload = inv.CreateSnapshot(), Username = username });
+        }
+        private void PublishLamaAngsuranChanged(Invoice inv, string username)
+        {
+            _bus.Publish(new LamaAngsuranChanged { Payload = inv.CreateSnapshot(), Username = username });
+        }
+        private void PublishAngsuranPaid(Invoice inv, string username)
+        {
+            _bus.Publish(new AngsuranPaid { Payload = inv.CreateSnapshot(), Username = username });
+        }
+        private void PublishPaymentTypeChanged(Invoice inv, string username)
+        {
+            _bus.Publish(new PaymentTypeChanged { Payload = inv.CreateSnapshot(), Username = username });
         }
         #endregion
     }

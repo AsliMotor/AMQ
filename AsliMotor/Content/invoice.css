@@ -54,7 +54,7 @@
 .detail-invoice-subheader > div{margin: 5px 0px;}
 .detail-invoice-subheader div:first-child{margin: 0px;}
 .detail-invoice-subheader div > div{float:left;}
-.detail-invoice-subheader div > div:first-child{min-width:130px;}
+.detail-invoice-subheader div > div:first-child{min-width:164px;}
 
 .detail-invoice-product
 {

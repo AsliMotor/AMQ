@@ -52,13 +52,15 @@
                 this.$el.find("tbody").append("<tr><td colspan='" + cellLength + "' style='text-align:center;color:red;'>Tidak ada data</td></tr>");
             },
             createTotalView: function () {
-                var grandTotal = this.collection.SumTotal();
-                if (this.collection.length > 0 && grandTotal > 0) {
-                    var cellLength = this.options.items.length;
-                    this.$el.find("tbody").append("<tr><td colspan='" + cellLength + "' style='text-align:right;'><b>Total : " + grandTotal.toCurrency() + "</b></td></tr>");
-                }
-                else {
-                    this.showNoDataResult();
+                if (this.options.createTotalView && this.options.createTotalView == true) {
+                    var grandTotal = this.collection.SumTotal();
+                    if (this.collection.length > 0 && grandTotal > 0) {
+                        var cellLength = this.options.items.length;
+                        this.$el.find("tbody").append("<tr><td colspan='" + cellLength + "' style='text-align:right;'><b>Total : " + grandTotal.toCurrency() + "</b></td></tr>");
+                    }
+                    else {
+                        this.showNoDataResult();
+                    }
                 }
             }
         });

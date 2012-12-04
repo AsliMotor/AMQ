@@ -19,6 +19,12 @@
                 am.eventAggregator.on('showYearlyreport', function () {
                     self.showYearlyReport();
                 });
+                am.eventAggregator.on('showRateProductReport', function () {
+                    self.showRateProductReport();
+                });
+                am.eventAggregator.on('showGrafikProductReport', function () {
+                    self.showGrafikProductReport();
+                });
             },
             routes: {
                 '': 'index',
@@ -44,6 +50,18 @@
                 require(['controller/YearlyController'], function () {
                     this.yearlyController = new am.report.controller.YearlyController();
                     this.yearlyController.show();
+                });
+            },
+            showRateProductReport: function () {
+                require(['controller/RateProductController'], function () {
+                    this.rateProductController = new am.report.controller.RateProductController();
+                    this.rateProductController.show();
+                });
+            },
+            showGrafikProductReport: function () {
+                require(['controller/GrafikProductController'], function () {
+                    this.grafikProductController = new am.report.controller.GrafikProductController();
+                    this.grafikProductController.show();
                 });
             }
         });

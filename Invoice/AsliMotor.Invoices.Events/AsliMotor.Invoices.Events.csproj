@@ -46,8 +46,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AngsuranPaid.cs" />
+    <Compile Include="DueDateChanged.cs" />
     <Compile Include="InvoiceCreated.cs" />
+    <Compile Include="LamaAngsuranChanged.cs" />
+    <Compile Include="PaymentTypeChanged.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SukuBungaChanged.cs" />
+    <Compile Include="UangAngsuranChanged.cs" />
+    <Compile Include="UangMukaChanged.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AsliMotor.Invoice.Models\AsliMotor.Invoices.Snapshots.csproj">

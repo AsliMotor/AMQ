@@ -31,11 +31,18 @@
                         am.eventAggregator.trigger("showYearlyreport");
                     }
                 }, {
-                    id: 'customerReport',
-                    title: 'Per Pelanggan',
-                    class: 'icon-user',
+                    id: 'productReport',
+                    title: 'Peringkat Produk',
+                    class: 'icon-barcode',
                     action: function () {
-                        alert('pelanggan');
+                        am.eventAggregator.trigger("showRateProductReport");
+                    }
+                }, {
+                    id: 'chartProductReport',
+                    title: 'Grafik Produk',
+                    class: 'icon-signal',
+                    action: function () {
+                        am.eventAggregator.trigger("showGrafikProductReport");
                     }
                 }]
             });

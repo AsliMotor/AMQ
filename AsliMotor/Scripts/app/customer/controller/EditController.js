@@ -27,8 +27,8 @@
             var loadModel = function () {
                 customerModel = new am.customer.model.Customer();
                 customerModel.fetch({ data: { id: id }, success: function (m, d) {
-                    m.set('Birthday', d.Birthday.toDate());
-                    m.set('KTPDate', d.KTPDate.toDate());
+                    m.set('Birthday', d.Birthday.toDefaultFormatDate());
+                    m.set('KTPDate', d.KTPDate.toDefaultFormatDate());
                 }
                 });
             };

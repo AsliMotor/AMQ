@@ -62,13 +62,14 @@ namespace AsliMotor.Products
             ReportingRepository.Delete<Product>(product);
         }
 
-        public void ChangeStatus(Guid id, string branchid, string status)
+        public void ChangeStatus(Guid id, string branchid, string status, string username)
         {
             Product product = ProductRepository.GetProductById(id, branchid);
             if (product == null)
                 throw new Exception("Data tidak ditemukan.");
             product.Status = status;
             ReportingRepository.Update<Product>(product, new { Id = product.id });
+            PublishProductChanged(product, username);
         }
 
         private void FailIfExistProduct(Product product)
@@ -94,18 +95,12 @@ namespace AsliMotor.Products
 
         private void PublishProductCreated(Product p, string username)
         {
-            if (_bus != null)
-            {
-                _bus.Publish(new ProductCreated { Payload = p, UserName = username });
-            }
+            _bus.Publish(new ProductCreated { Payload = p, UserName = username });
         }
 
         private void PublishProductChanged(Product p, string username)
         {
-            if (_bus != null)
-            {
-                _bus.Publish(new ProductChanged { Payload = p, UserName = username });
-            }
+            _bus.Publish(new ProductChanged { Payload = p, UserName = username });
         }
     }
 }

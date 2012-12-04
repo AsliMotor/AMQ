@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using NServiceBus;
+using System.Globalization;
 
 namespace AsliMotor
 {
@@ -60,6 +61,12 @@ namespace AsliMotor
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
             RegisterNServiceBus();
+
+            System.Globalization.CultureInfo nNewCultur = (CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
+            nNewCultur.DateTimeFormat.ShortTimePattern = "dd-MM-yyyy";
+            nNewCultur.DateTimeFormat.LongDatePattern = "dd, MMMM yyyy";
+            nNewCultur.DateTimeFormat.DateSeparator = "-";
+            System.Threading.Thread.CurrentThread.CurrentCulture = nNewCultur;
         }
     }
 }

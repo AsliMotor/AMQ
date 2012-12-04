@@ -12,6 +12,7 @@ namespace AsliMotor.Customers
         Customer GetById(Guid id);
         IList<CustomerSearch> Search(string key, string branchid);
         IList<CustomerReport> GetListView(string branchid, int offset);
+        IList<CustomerReport> SearchListView(string branchid, int offset, string key);
         TotalCustomer GetTotalList(string branchid);
     }
 }

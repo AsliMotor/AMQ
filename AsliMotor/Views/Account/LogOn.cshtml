@@ -3,7 +3,7 @@
 @Html.ValidationSummary(true, "")
 
 @using (Html.BeginForm()) {
-    <div>
+ @*   <div>
         <fieldset>
             <legend>Account Information</legend>
 
@@ -33,4 +33,31 @@
             </p>
         </fieldset>
     </div>
+*@
+<link href="@Url.Content("~/Content/login.css")" rel="stylesheet" type="text/css" />
+<h1 class="logo">
+    <a href="http://heroku.com" title="Heroku">Heroku</a>
+</h1>
+<div id="login" class="dialog">
+	<form method="post" action="/login" class="panel-body">
+		<fieldset>
+			<div class="field">
+				<label for="email">Username</label>
+				<input type="text" name="Username" class="text" size="43" id="email" autocomplete='off'>
+			</div>
+			<div class="field">
+				<label for="password">Password</label>
+				<input type="password" name="Password" class="text password" size="43" id="password">
+			</div>
+		</fieldset>
+		<fieldset class="submit">
+			<input class="submit" name="commit" type="submit" value="Log In">
+		</fieldset>
+	</form>
+</div>   
+<div href="/signup" id="error">
+  @Html.ValidationMessageFor(m => m.UserName)
+  @Html.ValidationMessageFor(m => m.Password)
+  @Html.ValidationSummary(true, "")
+</div>
 }

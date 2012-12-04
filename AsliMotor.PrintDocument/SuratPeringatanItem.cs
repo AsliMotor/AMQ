@@ -12,5 +12,9 @@ namespace AsliMotor.PrintDocuments
         public string DueDate { get; set; }
         public string StringAngsuran { get; set; }
         public decimal Angsuran { get; set; }
+        public string StringDenda { get; set; }
+        public decimal Denda { get; set; }
+        public string StringTotal { get; set; }
+        public decimal Total { get; set; }
     }
 }

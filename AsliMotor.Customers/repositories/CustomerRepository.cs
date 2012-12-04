@@ -23,7 +23,7 @@ namespace AsliMotor.Customers
 
         public IList<CustomerSearch> Search(string key, string branchid)
         {
-            key = "%" + key + "%";
+            key = "%" + key.ToLower() + "%";
             IList<CustomerSearch> results = QueryObjectMapper.Map<CustomerSearch>("findByKey", new string[] { "key", "branchid" }, new object[] { key.ToLower(), branchid });
             return results;
         }
@@ -44,6 +44,13 @@ namespace AsliMotor.Customers
         {
             TotalCustomer result = QueryObjectMapper.Map<TotalCustomer>("count", new string[] { "branchid" }, new object[] { branchid }).FirstOrDefault();
             return result;
+        }
+
+        public IList<CustomerReport> SearchListView(string branchid, int offset, string key)
+        {
+            key = "%" + key.ToLower() + "%";
+            IList<CustomerReport> results = QueryObjectMapper.Map<CustomerReport>("searchByKey", new string[] { "branchid", "offset", "key" }, new object[] { branchid, (offset * 10), key }).ToList();
+            return results;
         }
     }
 }

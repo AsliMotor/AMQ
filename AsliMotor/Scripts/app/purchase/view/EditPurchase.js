@@ -94,6 +94,20 @@
                 required: true
             });
 
+            var chargeView = new HomeJS.components.TextField({
+                model: this.model,
+                title: 'Biaya-biaya',
+                dataIndex: "Charge",
+                placeholder: 'Ketik biaya-biaya',
+                type: 'price'
+            });
+
+            var priceView = new HomeJS.components.FormPanel({
+                formLayout: HomeJS.components.FormLayout.VERTICAL,
+                items: [hargaView, chargeView],
+                vertical: true
+            });
+
             var noRangkaView = new HomeJS.components.TextField({
                 model: this.model,
                 title: 'Nomor Rangka',
@@ -151,7 +165,7 @@
 
             var formPanel = new HomeJS.components.FormPanel({
                 formLayout: HomeJS.components.FormLayout.VERTICAL,
-                items: [noTransaksiView, siDateView, supplierView, merkView, typeView, noPolisiView, hargaView, noView, additionalView, noteView]
+                items: [noTransaksiView, siDateView, supplierView, merkView, typeView, noPolisiView, priceView, noView, additionalView, noteView]
             });
 
             this.$el.html(formPanel.render().el);

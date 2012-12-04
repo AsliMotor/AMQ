@@ -57,6 +57,13 @@ namespace AsliMotor.Products
             return listView;
         }
 
+        public IList<ProductReport> SearchListView(string branchId, int offset, string key)
+        {
+            key = "%" + key.ToLower() + "%";
+            IList<ProductReport> listView = _qryObjectMapper.Map<ProductReport>("searchByKey", new string[] { "branchid", "offset", "key" }, new object[] { branchId, (offset * 10), key }).ToList();
+            return listView;
+        }
+
         public TotalProduct GetTotalList(string branchid, string status)
         {
             TotalProduct total = _qryObjectMapper.Map<TotalProduct>("count", new string[] { "branchid","status" }, new object[] { branchid, status }).FirstOrDefault();
@@ -64,7 +71,7 @@ namespace AsliMotor.Products
         }
         public IList<ProductSearch> Search(string branchid, string key)
         {
-            key = "%" + key + "%";
+            key = "%" + key.ToLower() + "%";
             IList<ProductSearch> results = _qryObjectMapper.Map<ProductSearch>("findByKey", new string[] { "branchid", "key" }, new object[] { branchid, key});
             return results;
         }

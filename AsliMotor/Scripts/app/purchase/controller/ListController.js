@@ -37,7 +37,7 @@
                     type: HomeJS.components.InputSearchField,
                     placeholder: 'pencarian',
                     action: function (key) {
-                        alert(key);
+                        purchasesModel.searching(key);
                     }
                 }],
                 list: {
@@ -69,11 +69,23 @@
                         width: "100px",
                         title: "Klik untuk mengurutkan berdasarkan Type"
                     }, {
-                        name: "Total",
+                        name: "Harga Beli",
                         dataIndex: "HargaBeli",
                         width: "150px",
                         align: "right",
                         title: "Klik untuk mengurutkan berdasarkan Harga Beli"
+                    }, {
+                        name: "Biaya",
+                        dataIndex: "Charge",
+                        width: "100px",
+                        align: "right",
+                        title: "Klik untuk mengurutkan berdasarkan Biaya-Biaya"
+                    }, {
+                        name: "Total",
+                        dataIndex: "Total",
+                        width: "150px",
+                        align: "right",
+                        title: "Klik untuk mengurutkan berdasarkan Total"
                     }],
                     items: [{
                         dataIndex: "SupplierInvoiceNo"
@@ -90,6 +102,18 @@
                         dataIndex: "Type"
                     }, {
                         dataIndex: "HargaBeli",
+                        align: "right",
+                        onrender: function (data) {
+                            return data.toCurrency();
+                        }
+                    }, {
+                        dataIndex: "Charge",
+                        align: "right",
+                        onrender: function (data) {
+                            return data.toCurrency();
+                        }
+                    }, {
+                        dataIndex: "Total",
                         align: "right",
                         onrender: function (data) {
                             return data.toCurrency();

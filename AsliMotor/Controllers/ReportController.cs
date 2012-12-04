@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AsliMotor.Helper;
 
 namespace AsliMotor.Controllers
 {
+    [MyAuthorize]
     public class ReportController : Controller
     {
         public ActionResult Index()

@@ -74,5 +74,28 @@ namespace AsliMotor.SalesReports.ReportRepository
             }
             return reports.OrderBy(i => i.SalesDate).ToList();
         }
+
+        public IList<RateProductSalesReport> FindRateProductSalesReport(string branchid, DateTime fromDate, DateTime toDate, int periority)
+        {
+            IList<RateProductSalesReport> reports = QueryObjectMapper.Map<RateProductSalesReport>("findRateProductSalesReport",
+                new string[] {"branchid", "fromDate", "toDate", "periority"},
+                new object[]{branchid, fromDate, toDate, periority})
+                .ToList();
+            for (int i = 0; i < reports.Count; i++)
+            {
+                reports[i].No = i + 1;
+            }
+            return reports;
+        }
+
+
+        public IList<GrafikProductSalesReport> FindGrafikProductSalesReport(string branchid, DateTime fromDate, DateTime toDate)
+        {
+            IList<GrafikProductSalesReport> reports = QueryObjectMapper.Map<GrafikProductSalesReport>("findGrafikProductSalesReport",
+                new string[] {"branchid", "fromDate", "toDate"},
+                new object[]{branchid, fromDate, toDate})
+                .ToList();
+            return reports;
+        }
     }
 }

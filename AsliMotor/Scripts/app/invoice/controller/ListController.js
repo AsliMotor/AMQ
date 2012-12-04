@@ -37,7 +37,7 @@
                     type: HomeJS.components.InputSearchField,
                     placeholder: 'pencarian',
                     action: function (key) {
-                        alert(key);
+                        invoicesModel.searching(key);
                     }
                 }],
                 list: {

@@ -7,10 +7,11 @@ using AsliMotor.Models;
 using AsliMotor.Products;
 using Spring.Context.Support;
 using AsliMotor.Products.Models;
+using AsliMotor.Helper;
 
 namespace AsliMotor.Controllers
 {
-    [Authorize]
+    [MyAuthorize]
     public class ProductController : Controller
     {
         IProductRepository _repository;
@@ -19,6 +20,11 @@ namespace AsliMotor.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+        [HttpGet]
+        public ActionResult Edit(Guid id)
+        {
+            return View("index");
         }
         [HttpGet]
         public ActionResult Detail(Guid id)
@@ -33,10 +39,15 @@ namespace AsliMotor.Controllers
             return Json(si, JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
-        public JsonResult Lists(int offset, string status)
+        public JsonResult Lists(int offset, string status, bool search, string key)
         {
             CompanyProfile cp = new CompanyProfile(this.HttpContext);
-            IList<ProductReport> listView = ProductRepository.GetListView(cp.BranchId, offset, status);
+            IList<ProductReport> listView = new List<ProductReport>();
+            if (search)
+                listView = ProductRepository.SearchListView(cp.BranchId, offset, key);
+            else
+                listView = ProductRepository.GetListView(cp.BranchId, offset, status);
+
             return Json(listView, JsonRequestBehavior.AllowGet);
         }
         [HttpGet]

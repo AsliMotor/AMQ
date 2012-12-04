@@ -38,7 +38,14 @@
                 if (this.options.items) {
                     this.$el.find("tbody").remove();
                     this.$el.append("<tbody></tbody>");
-                    this.collection.forEach(this.addItem, this);
+                    if (this.collection.length > 0) {
+                        this.collection.forEach(this.addItem, this);
+                    }
+                    else {
+                        var cellLength = this.options.items.length;
+                        var html = "<tr><td style='text-align:center;color:DarkRed;' colspan='" + cellLength + "'>Tidak ada data</td></tr>";
+                        this.$el.find("tbody").html(html);
+                    }
                 }
             },
             addItem: function (item) {

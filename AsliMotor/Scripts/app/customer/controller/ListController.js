@@ -36,7 +36,7 @@
                     type: HomeJS.components.InputSearchField,
                     placeholder: 'pencarian',
                     action: function (key) {
-                        alert(key);
+                        customersModel.searching(key);
                     }
                 }],
                 list: {
@@ -68,11 +68,11 @@
                         width: "100px",
                         title: "Klik untuk mengurutkan berdasarkan jenis kelamin"
                     }, {
-                        name: "Piutang",
+                        name: "Sisa Tagihan",
                         dataIndex: "Outstanding",
                         align: "right",
                         width: "120px",
-                        title: "Klik untuk mengurutkan berdasarkan Piutang"
+                        title: "Klik untuk mengurutkan berdasarkan Sisa Tagihan"
                     }],
                     items: [{
                         dataIndex: "Name"

@@ -11,13 +11,13 @@ namespace AsliMotor.Perjanjian.Services
     {
         public IReportingRepository ReportingRepository { get; set; }
         public IPerjanjianAutoNumberGenerator PerjanjianAutoNumberGenerator { get; set; }
-        public void CreateSuratPerjanjian(Guid invId, string branchId)
+        public void CreateSuratPerjanjian(Guid invId, string branchId, DateTime date)
         {
             ReportingRepository.Save<SuratPerjanjian>(new SuratPerjanjian
             {
                 InvoiceId = invId,
                 SuratPerjanjianNo = PerjanjianAutoNumberGenerator.GeneratePerjanjianNumber(DateTime.Now, branchId),
-                SuratPerjanjianDate = DateTime.Now
+                SuratPerjanjianDate = date
             });
         }
     }

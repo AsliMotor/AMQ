@@ -3,7 +3,9 @@
     'underscore',
     'backbone',
     'namespace',
-    'eventAggregator'
+    'eventAggregator',
+    '../../../app/invoice/command/changepaymenttype',
+    'view/changepaymenttype'
 ], function ($, _, Backbone, ns, am) {
     ns.define('am.invoice.action');
     am.invoice.action.changePaymentType = function (spec) {

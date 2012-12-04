@@ -57,6 +57,8 @@
   <ItemGroup>
     <Compile Include="DashboardRepository.cs" />
     <Compile Include="IDashboardRepository.cs" />
+    <Compile Include="models\GrafikProductSalesReport.cs" />
+    <Compile Include="models\RateProductSalesReport.cs" />
     <Compile Include="models\PiutangTelahJatuhTempo.cs" />
     <Compile Include="models\SalesReport.cs" />
     <Compile Include="models\YearlySalesReport.cs" />

@@ -26,6 +26,16 @@ var ConvertMonthToIndonesian = function (month) {
 
     return bulan[month];
 }
+String.prototype.toDate4Digit = function () {
+    var month = getMonth(this.substr(0, 2));
+    var year = this.substr(2);
+    return month + " " + year;
+};
+var getMonth = function (m) {
+    var value = (m > 9) ? m : m.slice(-1);
+    var key = parseInt(value) - 1;
+    return ConvertMonthToIndonesian(key);
+}
 
 var getCurrentDate = function () {
     var currentDate = new Date();
@@ -55,12 +65,26 @@ var getStartDayInMonth = function () {
     var year = d.getFullYear();
     return date + "-" + month + "-" + year;
 };
+var getStartDayInYear = function () {
+    var d = new Date(new Date().getFullYear(),0, 1);
+    var date = ("0" + d.getDate()).slice(-2);
+    var month = ("0" + (d.getMonth() + 1)).slice(-2);
+    var year = d.getFullYear();
+    return date + "-" + month + "-" + year;
+};
 
 Date.prototype.toDateFromFullDateTime = function () {
     var day = ("0" + this.getDate()).slice(-2);
     var month = ("0" + this.getMonth()).slice(-2);
     var year = this.getFullYear();
     return day + "-" + month + "-" + year;
+}
+
+String.prototype.toDateFromStringDate = function () {
+    var day = ("0" + this.split('-')[0]).slice(-2);
+    var month = getMonth(this.split('-')[1]);
+    var year = this.split('-')[2];
+    return day + " " + month + " " + year;
 }
 
 String.prototype.toDefaultFormatDate = function () {

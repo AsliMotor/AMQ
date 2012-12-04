@@ -44,6 +44,9 @@ define([
                 am.tools.HideAjaxLoading();
             }
         });
+        $(document.body).ajaxError(function (a, resp, c, d) {
+            HomeJS.components.ErrorAlert(resp.responseText);
+        });
 
         var router = new am.purchase.router.PurchaseRouter();
         Backbone.history.start({ pushState: true });

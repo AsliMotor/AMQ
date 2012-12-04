@@ -14,6 +14,8 @@ namespace AsliMotor.Invoices.ReportRepository
 	cust.phone as CustomerPhone,
 	inv.angsuranbulanan,
 	inv.duedate,
+    inv.startduedate,
+    inv.lamaangsuran,
 	(extract(month from age(inv.duedate)) + 1) as DiffrentMonth,
 	prod.Merk,
 	prod.Type,
@@ -37,6 +39,8 @@ namespace AsliMotor.Invoices.ReportRepository
         public string CustomerPhone { get; set; }
         public decimal AngsuranBulanan { get; set; }
         public DateTime DueDate { get; set; }
+        public DateTime StartDueDate { get; set; }
+        public int LamaAngsuran { get; set; }
         public double DiffrentMonth { get; set; }
         public string NoSuratPerjanjian { get; set; }
         public DateTime SuratPerjanjianDate { get; set; }

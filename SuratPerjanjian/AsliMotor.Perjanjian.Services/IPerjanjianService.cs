@@ -7,6 +7,6 @@ namespace AsliMotor.Perjanjian.Services
 {
     public interface IPerjanjianService
     {
-        void CreateSuratPerjanjian(Guid invId, string branchId);
+        void CreateSuratPerjanjian(Guid invId, string branchId, DateTime date);
     }
 }

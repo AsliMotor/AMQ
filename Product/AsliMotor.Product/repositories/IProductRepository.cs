@@ -15,6 +15,7 @@ namespace AsliMotor.Products
         Product GetByNoBpkb(string nobpkp, string branchid);
         TypeProduct GetTypeByName(string type, string branchid);
         IList<ProductReport> GetListView(string branchid, int offset, string status);
+        IList<ProductReport> SearchListView(string branchId, int offset, string key);
         TotalProduct GetTotalList(string branchid, string status);
         IList<ProductSearch> Search(string branchid, string key);
     }

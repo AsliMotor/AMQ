@@ -56,7 +56,8 @@
                     onrender: function (price) {
                         return price.toCurrency();
                     }
-                }]
+                }],
+                createTotalView: true
             });
             var chart = new am.report.view.yearly.YearlyChart({
                 collection: yearlyReport,

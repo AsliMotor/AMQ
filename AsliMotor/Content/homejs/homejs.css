@@ -143,10 +143,10 @@ table.homejs-datatable thead tr th div span.currentSortedArrow
 }
 table.homejs-datatable th{
     height: auto;
-    font-size: 11px;
+    font-size: 10px;
     padding: 5px 10px 2px;
     border-bottom: 0;
-    color: #666;
+    color: #333;
     background-color: #EFEFEF;
     background-image: -webkit-gradient(linear, 0 0%, 0 100%, from(#FDFDFD), to(#EAEAEA));
     background-image: -webkit-linear-gradient(top, #FDFDFD 0%, #EAEAEA 100%);
@@ -155,6 +155,8 @@ table.homejs-datatable th{
     background-image: -o-linear-gradient(top, #FDFDFD 0%, #EAEAEA 100%);
     background-image: -linear-gradient(top, #FDFDFD 0%, #EAEAEA 100%);
     border-bottom: 1px solid #CDCDCD;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 table.homejs-datatable span.currentSortedArrow.asc
 {

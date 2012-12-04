@@ -4,8 +4,8 @@
     'backbone',
     'namespace',
     'eventAggregator',
-    '../../../app/invoice/command/changepaymenttype',
-    'view/changepaymenttype'
+    '../../../app/invoice/command/changeuangmuka',
+    'view/changeuangmuka'
 ], function ($, _, Backbone, ns, am) {
     ns.define('am.invoice.action');
     am.invoice.action.changeUangMuka = function (spec) {

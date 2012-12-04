@@ -23,10 +23,10 @@
                     description: "Daftar Kendaraan"
                 },
                 toolbar: [{
-                    type: HomeJS.components.SearchField,
+                    type: HomeJS.components.InputSearchField,
                     placeholder: 'pencarian',
                     action: function (key) {
-                        alert(key);
+                        productsModel.searching(key);
                     }
                 }],
                 list: {
@@ -37,7 +37,7 @@
                         dataIndex: "Merk",
                         width: "80px",
                         title: "Klik untuk mengurutkan berdasarkan Merk kendaraan"
-                    },{
+                    }, {
                         name: "Type",
                         dataIndex: "Type",
                         width: "150px",
@@ -71,7 +71,7 @@
                     }],
                     items: [{
                         dataIndex: "Merk"
-                    },{
+                    }, {
                         dataIndex: "Type"
                     }, {
                         dataIndex: "NoPolisi"

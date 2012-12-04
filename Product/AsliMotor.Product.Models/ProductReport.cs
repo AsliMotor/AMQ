@@ -17,6 +17,18 @@ namespace AsliMotor.Products.Models
 	                                    from product
 	                                    where branchid=@branchid and status=@status
 	                                    ORDER BY type ASC limit 10 offset @offset")]
+    [NamedSqlQuery("searchByKey", @"select id,
+                                        merk,
+	                                    type,
+	                                    nopolisi,
+	                                    nomesin,
+	                                    norangka,
+	                                    nobpkb,
+	                                    status 
+	                                    from product
+	                                    where branchid=@branchid and 
+                                        (LOWER(merk) like @key or LOWER(type) like @key or LOWER(nopolisi) like @key or LOWER(norangka) like @key or LOWER(nomesin) like @key or LOWER(status) like @key)
+	                                    ORDER BY type ASC limit 10 offset @offset")]
     public class ProductReport : IViewModel
     {
         public Guid id { get; set; }

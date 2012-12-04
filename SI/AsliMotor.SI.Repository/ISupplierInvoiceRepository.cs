@@ -10,5 +10,6 @@ namespace AsliMotor.SI.Repository
         SupplierInvoice GetById(Guid id, string branchid);
         IList<SupplierInvoiceReport> GetListView(string branchid, int offset);
         TotalSupplierInvoice GetTotalList(string branchid);
+        IList<SupplierInvoiceReport> SearchListView(string branchId, int offset, string key);
     }
 }

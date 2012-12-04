@@ -179,10 +179,11 @@ namespace AsliMotor.PrintDocuments
             string spNo = _spGen.GenerateSuratPeringatanNumber(DateTime.Now, branchid);
             StringTemplate template = new StringTemplate(SuratPeringatanTemplate.DEFAULT);
             IList<SuratPeringatanItem> items = new List<SuratPeringatanItem>();
+            DateTime currDate = (DateTime.Now > spReport.StartDueDate.AddMonths(spReport.LamaAngsuran)) ? spReport.StartDueDate.AddMonths(spReport.LamaAngsuran) : DateTime.Now;
             for (int i = 0; i < spReport.DiffrentMonth; i++)
             {
-                DateTime currDate = DateTime.Now;
                 DateTime dueDate = spReport.DueDate.AddMonths(i);
+                if (dueDate >= currDate) break;
                 TimeSpan ts = new TimeSpan();
                 ts = currDate.Subtract(dueDate);
                 decimal denda = (spReport.AngsuranBulanan * decimal.Parse(System.Configuration.ConfigurationManager.AppSettings["denda"])) * ts.Days;
@@ -192,8 +193,12 @@ namespace AsliMotor.PrintDocuments
                     No = i +1,
                     AngsuranKe = (i + 1)+spReport.AngsuranKe,
                     DueDate = spReport.DueDate.AddMonths(i).ToString("dd MMMM yyyy"),
-                    StringAngsuran = (spReport.AngsuranBulanan + denda).ToString("###,###,###,##0.#0"),
-                    Angsuran = spReport.AngsuranBulanan + denda
+                    StringDenda = denda.ToString("###,###,###,##0.#0"),
+                    Denda = denda,
+                    StringAngsuran = spReport.AngsuranBulanan.ToString("###,###,###,##0.#0"),
+                    Angsuran = spReport.AngsuranBulanan,
+                    Total = spReport.AngsuranBulanan + denda,
+                    StringTotal = (spReport.AngsuranBulanan + denda).ToString("###,###,###,##0.#0"),
                 });
             }
 
@@ -208,7 +213,7 @@ namespace AsliMotor.PrintDocuments
             template.SetAttribute("Warna", spReport.Warna == string.Empty ? "-": spReport.Warna);
             template.SetAttribute("NoRangka", spReport.NoRangka == string.Empty ? "-" : spReport.NoRangka);
             template.SetAttribute("NoMesin", spReport.NoMesin == string.Empty ? "-" : spReport.NoMesin);
-            template.SetAttribute("NetTotal", items.Sum(i => i.Angsuran).ToString("###,###,###,##0.#0"));
+            template.SetAttribute("NetTotal", items.Sum(i => i.Total).ToString("###,###,###,##0.#0"));
             return template.ToString();
         }
     }

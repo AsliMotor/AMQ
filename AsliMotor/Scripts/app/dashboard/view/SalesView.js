@@ -22,7 +22,6 @@
                 titleHtml += "<div class='title'>";
                 titleHtml += "<span class='icon'><i class='icon-signal'></i></span>";
                 titleHtml += "<h5>Penjualan</h5>";
-                titleHtml += "<div class='buttons'><a href='#' class='btn btn-mini'><i class='icon-refresh'></i> Update</a></div>";
                 titleHtml += "</div>";
                 this.$el.html(titleHtml);
             },
@@ -41,7 +40,11 @@
                 titleHtml += "<div class='title'>";
                 titleHtml += "<span class='icon'><i class='icon-tag'></i></span>";
                 titleHtml += "<h5>Piutang Telah Jatuh Tempo</h5>";
-                titleHtml += "<span class='label label-info tip-left' data-original-title='54 total posts'>-</span>";
+                titleHtml += "<div class='legend'>" +
+                            "<div class='outstanding-greater-3'>Besar dari 2 bulan</div>" +
+                            "<div class='outstanding-greater-2'>1 - 2 bulan</div>" +
+                            "<div class='outstanding-greater-1'>0 - 1 bulan</div>" +
+                            "</div>";
                 titleHtml += "</div>";
                 this.$el.append(titleHtml);
             },

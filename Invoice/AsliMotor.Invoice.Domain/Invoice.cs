@@ -29,9 +29,10 @@ namespace AsliMotor.Invoices.Domain
                 LamaAngsuran = p.LamaAngsuran,
                 SukuBunga = p.SukuBunga,
                 DueDate = p.DueDate,
+                StartDueDate = p.DueDate,
                 AngsuranBulanan = CalculateAngsuranBulanan(p.Price, p.UangMuka, p.LamaAngsuran, p.SukuBunga, 0),
                 TotalKredit = totalKredit,
-                Outstanding = (p.Price + totalKredit) - (p.UangMuka + p.UangTandaJadi)
+                Outstanding = (p.Status == StatusInvoice.PAID) ? 0 : (p.Price + totalKredit) - (p.UangMuka + p.UangTandaJadi)
             };
             _snapshot = snapshot;
         }
@@ -47,7 +48,8 @@ namespace AsliMotor.Invoices.Domain
             _snapshot.Status = (int)StatusInvoice.CREDIT;
             _snapshot.LamaAngsuran = p.LamaAngsuran;
             _snapshot.SukuBunga = p.SukuBunga;
-            _snapshot.DueDate = p.DueDate.AddMonths(1);
+            _snapshot.DueDate = p.DueDate;
+            _snapshot.StartDueDate = p.DueDate;
             _snapshot.AngsuranBulanan = CalculateAngsuranBulanan(_snapshot.Price, p.UangMuka, p.LamaAngsuran, p.SukuBunga, p.UangTandaJadi);
             _snapshot.TotalKredit = CalculateTotalKredit(_snapshot.Price, p.UangMuka, p.LamaAngsuran, p.SukuBunga, StatusInvoice.CREDIT, p.UangTandaJadi);
             _snapshot.Outstanding = (_snapshot.Price + _snapshot.TotalKredit) - (p.UangMuka + p.UangTandaJadi);
@@ -55,7 +57,7 @@ namespace AsliMotor.Invoices.Domain
 
         public void BayarAngsuran()
         {
-            _snapshot.DueDate = _snapshot.DueDate.AddMonths(1);
+            _snapshot.DueDate = _snapshot.DueDate.AddDays(30);
             _snapshot.Outstanding -= _snapshot.AngsuranBulanan;
         }
 
@@ -67,6 +69,37 @@ namespace AsliMotor.Invoices.Domain
                 _snapshot.TotalKredit = CalculateTotalKredit(_snapshot.Price, uangmuka, _snapshot.LamaAngsuran, _snapshot.SukuBunga, StatusInvoice.CREDIT, uangtandajadi);
                 _snapshot.Outstanding = (_snapshot.Price + _snapshot.TotalKredit) - (uangmuka + uangtandajadi);
             }
+        }
+
+        public void ChangeAngsuran(decimal angsuran, decimal uangmuka)
+        {
+            decimal total = _snapshot.LamaAngsuran * angsuran;
+            _snapshot.TotalKredit = (total / (1 + ((_snapshot.SukuBunga / 100) * (_snapshot.LamaAngsuran / 12))) - BiayaAdministration(_snapshot.LamaAngsuran));
+            _snapshot.Price = (_snapshot.TotalKredit) + uangmuka;
+            _snapshot.AngsuranBulanan = angsuran;
+            _snapshot.Outstanding = (_snapshot.Price + _snapshot.TotalKredit) - (uangmuka);
+        }
+
+        public void ChangeSukuBunga(decimal sukuBunga, decimal uangmuka, decimal uangtandajadi)
+        {
+            _snapshot.SukuBunga = sukuBunga;
+            _snapshot.TotalKredit = CalculateTotalKredit(_snapshot.Price, uangmuka, _snapshot.LamaAngsuran, sukuBunga, StatusInvoice.CREDIT, uangtandajadi);
+            _snapshot.AngsuranBulanan = CalculateAngsuranBulanan(_snapshot.Price, uangmuka, _snapshot.LamaAngsuran, sukuBunga, uangtandajadi);
+            _snapshot.Outstanding = (_snapshot.Price + _snapshot.TotalKredit) - (uangmuka + uangtandajadi);
+        }
+
+        public void ChangeLamaAngsuran(int lamaAngsuran, decimal uangmuka, decimal uangtandajadi)
+        {
+            _snapshot.LamaAngsuran = lamaAngsuran;
+            _snapshot.TotalKredit = CalculateTotalKredit(_snapshot.Price, uangmuka, lamaAngsuran, _snapshot.SukuBunga, StatusInvoice.CREDIT, uangtandajadi);
+            _snapshot.AngsuranBulanan = CalculateAngsuranBulanan(_snapshot.Price, uangmuka, lamaAngsuran, _snapshot.SukuBunga, uangtandajadi);
+            _snapshot.Outstanding = (_snapshot.Price + _snapshot.TotalKredit) - (uangmuka + uangtandajadi);
+        }
+
+        public void ChangeDueDate(DateTime duedate)
+        {
+            _snapshot.DueDate = duedate;
+            _snapshot.StartDueDate = duedate;
         }
 
         public void Cancel()

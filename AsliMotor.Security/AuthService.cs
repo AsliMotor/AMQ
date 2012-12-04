@@ -23,5 +23,13 @@ namespace AsliMotor.Security
             if (acc.Password != password) return null;
             return acc.BranchId;
         }
+
+        public bool IsValidLogin(string username, string password)
+        {
+            Account acc = userRepo.GetUserByUserName(username);
+            if (acc == null) return false;
+            if (acc.Password != password) return false;
+            return true;
+        }
     }
 }

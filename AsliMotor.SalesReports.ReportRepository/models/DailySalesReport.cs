@@ -10,7 +10,7 @@ namespace AsliMotor.SalesReports.ReportRepository
             sum(price+totalkredit) as Total, 
             invoicedate as SalesDate
         from invoicesnapshot 
-        where (invoicedate between @fromDate and @toDate) and branchid = @branchid group by invoicedate
+        where (invoicedate between @fromDate and @toDate) and branchid = @branchid and status != 3 group by invoicedate
         order by invoicedate asc")]
     public class DailySalesReport : IViewModel
     {

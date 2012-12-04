@@ -32,7 +32,6 @@ namespace AsliMotor.SI.Services
             si.TransactionDate = DateTime.Now;
             si.SupplierInvoiceNo = _autoNumberGenerator.GenerateSINumber(si.TransactionDate, si.BranchId);
             si.SupplierInvoiceDate = si.SupplierInvoiceDate.UtcDate();
-            si.ProductId = Guid.NewGuid();
             Product productCreated = CreateProduct(si, username);
             try
             {
@@ -70,7 +69,8 @@ namespace AsliMotor.SI.Services
                 Type = si.Type,
                 Warna = si.Warna,
                 Note = si.Note,
-                NoTelp = si.NoTelp
+                NoTelp = si.NoTelp,
+                Charge = si.Charge
             };
             UpdateProduct(siUpdated, username);
             ReportingRepository.Update<SupplierInvoice>(siUpdated, new { Id = si.id });

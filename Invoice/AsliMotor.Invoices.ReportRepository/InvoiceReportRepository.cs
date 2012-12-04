@@ -15,6 +15,13 @@ namespace AsliMotor.Invoices.ReportRepository
             return inv;
         }
 
+        public IList<InvoiceListViewReport> SearchListViewReport(string branchid, int offset, string key)
+        {
+            key = "%" + key.ToLower() + "%";
+            IList<InvoiceListViewReport> results = QueryObjectMapper.Map<InvoiceListViewReport>("searchByKey", new string[] { "branchid", "key", "offset" }, new object[] { branchid, key, (offset * 10) }).ToList();
+            return results;
+        }
+
         public IList<InvoiceListViewReport> GetListViewReport(string branchid, int offset)
         {
             IList<InvoiceListViewReport> listView = QueryObjectMapper.Map<InvoiceListViewReport>("findListView", new string[] { "branchid", "offset" }, new object[] { branchid, (offset * 10) });

@@ -50,10 +50,12 @@ namespace AsliMotor.PrintDocuments
         <table style='border:1px solid #000;' id='detail' border='0px' cellspacing='0px' cellpadding:'0px'>
             <thead>
                 <tr>
-                    <th style='width:40px;text-align:center;'>No</th>
-                    <th style='width:115px;text-align:left;'>Angsuran Ke</th>
-                    <th style='width:170px;text-align:left;'>Tanggal Jatuh Tempo</th>
+                    <th style='width:30px;text-align:center;'>No</th>
+                    <th style='width:125px;text-align:left;'>Angsuran Ke</th>
+                    <th style='width:190px;text-align:left;'>Jatuh Tempo</th>
                     <th style='width:170px;text-align:right;'>Jumlah Angsuran</th>
+                    <th style='width:160px;text-align:right;'>Denda</th>
+                    <th style='width:160px;text-align:right;'>Total</th>
                 </tr>
             </thead>
             <tbody>
@@ -63,6 +65,8 @@ namespace AsliMotor.PrintDocuments
                         <td>Angsuran ke $it.AngsuranKe$</td>
                         <td style='text-align:left;'>$it.DueDate$</td>
                         <td style='text-align:right;'>Rp $it.StringAngsuran$</td>
+                        <td style='text-align:right;'>Rp $it.StringDenda$</td>
+                        <td style='text-align:right;'>Rp $it.StringTotal$</td>
                     </tr>
                 }$
             </tbody>
@@ -70,7 +74,9 @@ namespace AsliMotor.PrintDocuments
                 <tr>
                     <td></td>
                     <td></td>
-                    <td style='text-align:left;'><b>Total</b></td>
+                    <td></td>
+                    <td></td>
+                    <td style='text-align:right;'><b>Total</b></td>
                     <td style='text-align:right;'><b>Rp $NetTotal$</b></td>
                 </tr>
             </tfoot>

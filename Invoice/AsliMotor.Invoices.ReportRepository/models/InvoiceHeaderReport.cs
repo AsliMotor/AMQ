@@ -12,6 +12,8 @@ namespace AsliMotor.Invoices.ReportRepository
 	inv.price as Price,
 	inv.status as Status,
     inv.duedate as DueDate,
+    inv.sukubunga as SukuBunga,
+    inv.lamaangsuran as LamaAngsuran,
 	inv.angsuranbulanan as AngsuranBulanan,
 	cust.name as CustomerName,
 	cust.address as CustomerAddress,
@@ -36,9 +38,11 @@ namespace AsliMotor.Invoices.ReportRepository
         public Guid id { get; set; }
         public DateTime InvoiceDate { get; set; }
         public decimal Price { get; set; }
+        public decimal SukuBunga { get; set; }
         public int Status { get; set; }
         public DateTime DueDate { get; set; }
         public decimal AngsuranBulanan { get; set; }
+        public int LamaAngsuran { get; set; }
         public string CustomerName { get; set; }
         public string CustomerAddress { get; set; }
         public string CustomerCity { get; set; }

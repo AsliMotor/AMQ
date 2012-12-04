@@ -23,10 +23,14 @@
             if (this.options.renderer) {
                 value = this.options.renderer(value);
             }
+
+            var styles = "float:left;margin-right:65px;";
+            if (this.options.style)
+                styles = this.options.style;
             var html = "";
             if (this.options.labelname)
-                html += "<label class='control-label' style='float:left;margin-right:65px;'>" + this.options.labelname + "</label>";
-            html += "<small>" + value + "</small> <button class='btn btn-mini btn-warning btn-change' style='visibility: hidden' title='" + title + "' ><i class='" + iconCls + "'></i></button>";
+                html += "<label class='control-label' style='" + styles + "'>" + this.options.labelname + "</label>";
+            html += "<small>" + value + "</small> <button class='btn btn-mini btn-success btn-change' style='visibility: hidden' title='" + title + "' ><i class='" + iconCls + "'></i></button>";
             this.$el.html(html);
             return this;
         },
@@ -43,7 +47,7 @@
         },
         edit: function (e) {
             e.preventDefault();
-            this.options.action(this.model);
+            this.options.action.execute();
         },
         parseData: function (data) {
             return data ? data : 0;

@@ -32,5 +32,12 @@ namespace AsliMotor.SI.Repository
             TotalSupplierInvoice total = _qryObjectMapper.Map<TotalSupplierInvoice>("count", new string[] { "branchid" }, new object[] { branchid }).FirstOrDefault();
             return total;
         }
+
+        public IList<SupplierInvoiceReport> SearchListView(string branchId, int offset, string key)
+        {
+            key = "%" + key.ToLower() + "%";
+            IList<SupplierInvoiceReport> listView = _qryObjectMapper.Map<SupplierInvoiceReport>("searchByKey", new string[] { "branchid", "offset", "key" }, new object[] { branchId, (offset * 10), key }).ToList();
+            return listView;
+        }
     }
 }

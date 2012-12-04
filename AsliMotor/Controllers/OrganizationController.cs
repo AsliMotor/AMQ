@@ -9,10 +9,11 @@ using System.Drawing.Imaging;
 using System.Drawing.Drawing2D;
 using AsliMotor.Models;
 using AsliMotor.Organizations;
+using AsliMotor.Helper;
 
 namespace AsliMotor.Controllers
 {
-    [Authorize]
+    [MyAuthorize]
     public class OrganizationController : Controller
     {
         IOrganizationRepository _orgRepo;

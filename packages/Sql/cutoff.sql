@@ -1,5 +1,6 @@
 delete from customer;
 delete from invoicesnapshot;
+delete from invoicelog;
 delete from perjanjianautonumberconfig;
 delete from perjanjianautonumbermonthly;
 delete from perjanjianautonumberyearly;
@@ -12,6 +13,9 @@ delete from receiveautonumberyearly;
 delete from siautonumberconfig;
 delete from siautonumbermonthly;
 delete from siautonumberyearly;
+delete from suratperingatanautonumberconfig;
+delete from suratperingatanautonumbermonthly;
+delete from suratperingatanautonumbermonthly;
 delete from supplierinvoice;
 delete from supplierinvoicelog;
 delete from suratperjanjian;

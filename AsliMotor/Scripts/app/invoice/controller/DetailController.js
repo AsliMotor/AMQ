@@ -7,11 +7,6 @@
         'model/InvoiceItemReports',
         'view/DetailInvoice',
         'view/ItemDetailInvoice',
-        'view/changeuangmuka',
-        '../../../app/invoice/action/changeuangmuka',
-        '../../../app/invoice/command/changeuangmuka',
-        '../../../app/invoice/action/changepaymenttype',
-        '../../../app/invoice/action/bayaruangangsuran',
         '../../../libs/Animation',
         '../../../libs/Date',
         '../../../libs/homejs/dialog/modaldialog',
@@ -60,10 +55,7 @@
 
             var createDetailHeaderInvoicePanel = function () {
                 detailHeaderInvoice = new am.invoice.view.DetailInvoice({
-                    model: headerModel,
-                    changeUangMuka: function () {
-                        am.invoice.action.changeUangMuka({ model: headerModel }).execute();
-                    }
+                    model: headerModel
                 });
             };
 

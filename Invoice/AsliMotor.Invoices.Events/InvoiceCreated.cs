@@ -13,5 +13,6 @@ namespace AsliMotor.Invoices.Events
     {
         public InvoiceSnapshot Payload { get; set; }
         public string Username { get; set; }
+        public DateTime Datetime { get { return DateTime.Now; } }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,19 +8,35 @@ using BonaStoco.Inf.Data.ViewModel;
 namespace AsliMotor.Invoices.ReportRepository
 {
     [NamedSqlQuery("findListView", @"select  inv.id,
-	inv.status,
-	inv.invoicedate,
-	(inv.price + inv.totalkredit) as NetTotal,
-	inv.outstanding,
-	p.nopolisi,
-	p.type,
-	cust.name as CustomerName
-	from invoicesnapshot inv 
-	inner join product p on inv.productid = p.id
-	inner join customer cust on inv.customerid = cust.id
-	where inv.branchid = @branchid
-	ORDER BY inv.invoicedate desc, inv.invoiceno desc
-	LIMIT 10 OFFSET @offset")]
+	                inv.status,
+	                inv.invoicedate,
+	                (inv.price + inv.totalkredit) as NetTotal,
+	                inv.outstanding,
+	                p.nopolisi,
+	                p.type,
+	                cust.name as CustomerName
+	                from invoicesnapshot inv 
+	                inner join product p on inv.productid = p.id
+	                inner join customer cust on inv.customerid = cust.id
+	                where inv.branchid = @branchid
+	                ORDER BY inv.invoicedate desc, inv.invoiceno desc
+	                LIMIT 10 OFFSET @offset")]
+    [NamedSqlQuery("searchByKey", @"select  
+                    inv.id,
+	                inv.status,
+	                inv.invoicedate,
+	                (inv.price + inv.totalkredit) as NetTotal,
+	                inv.outstanding,
+	                p.nopolisi,
+	                p.type,
+	                cust.name as CustomerName
+	                from invoicesnapshot inv 
+	                inner join product p on inv.productid = p.id
+	                inner join customer cust on inv.customerid = cust.id
+	                where inv.branchid = @branchid and
+		                (LOWER(p.nopolisi) like @key or LOWER(p.type) like @key or LOWER(cust.name) like @key)
+	                ORDER BY inv.invoicedate desc, inv.invoiceno desc
+	                LIMIT 10 OFFSET @offset")]
     public class InvoiceListViewReport:IViewModel
     {
         public Guid id { get; set; }

@@ -12,8 +12,21 @@ namespace AsliMotor.Customers
                                         city,
                                         phone,
                                         gender,
-                                        outstanding
-                                        FROM customer where branchid = @branchid ORDER BY name ASC limit 10 offset @offset")]
+                                        (select sum(outstanding) from invoicesnapshot where customerid = cust.id) as Outstanding
+                                        FROM customer cust 
+                                        where cust.branchid = @branchid
+                                        ORDER BY name ASC limit 10 offset @offset")]
+    [NamedSqlQuery("searchByKey", @"SELECT id, 
+                                        name, 
+                                        address,
+                                        city,
+                                        phone,
+                                        gender,
+                                        (select sum(outstanding) from invoicesnapshot where customerid = cust.id) as Outstanding
+                                        FROM customer cust 
+                                        where cust.branchid = @branchid and
+                                        (LOWER(name) like @key or LOWER(city) like @key or LOWER(address) like @key)
+                                        ORDER BY name ASC limit 10 offset @offset")]
     public class CustomerReport : IViewModel
     {
         public Guid id { get; set; }

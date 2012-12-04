@@ -22,6 +22,7 @@ namespace AsliMotor.Invoices.Snapshots
         public int LamaAngsuran { get; set; }
         public decimal SukuBunga { get; set; }
         public decimal AngsuranBulanan { get; set; }
+        public DateTime StartDueDate { get; set; }
         public DateTime DueDate { get; set; }
         public decimal Outstanding { get; set; }
     }

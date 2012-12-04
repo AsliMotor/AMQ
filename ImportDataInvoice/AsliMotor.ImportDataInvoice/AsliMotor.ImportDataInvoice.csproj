@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6C32EFFD-95DE-42A3-9A23-4A43EF57E3BD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AsliMotor.ImportDataInvoice</RootNamespace>
+    <AssemblyName>AsliMotor.ImportDataInvoice</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BonaStoco.Inf.Data.ViewModel">
+      <HintPath>..\..\packages\am-bin\BonaStoco.Inf.Data.ViewModel.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ImportDataInvoiceService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\AsliMotor.Customers\AsliMotor.Customers.csproj">
+      <Project>{16F8407F-6EB0-4161-8EDA-23BDB946E04A}</Project>
+      <Name>AsliMotor.Customers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Invoice\AsliMotor.Invoice.Command\AsliMotor.Invoices.Command.csproj">
+      <Project>{06ADC49F-5972-4388-9146-0EC3F0F6D499}</Project>
+      <Name>AsliMotor.Invoices.Command</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Invoice\AsliMotor.Invoice.Services\AsliMotor.Invoices.Services.csproj">
+      <Project>{D3F294F9-A4E6-46BC-A826-DB8424B73B5F}</Project>
+      <Name>AsliMotor.Invoices.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Product\AsliMotor.Product.Models\AsliMotor.Products.Models.csproj">
+      <Project>{C373B792-0B15-4784-9A18-0C59957BF260}</Project>
+      <Name>AsliMotor.Products.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Product\AsliMotor.Product\AsliMotor.Products.csproj">
+      <Project>{30FC3ABA-ADE1-42F3-AF27-618978F7A555}</Project>
+      <Name>AsliMotor.Products</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SI\AsliMotor.SI.Repository\AsliMotor.SI.Repository.csproj">
+      <Project>{CEDAFE71-569A-4E19-A1AA-376BD88199FC}</Project>
+      <Name>AsliMotor.SI.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SI\AsliMotor.SI.Services\AsliMotor.SI.Services.csproj">
+      <Project>{E9E273CE-3850-42DB-BEC6-ECE410A55638}</Project>
+      <Name>AsliMotor.SI.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

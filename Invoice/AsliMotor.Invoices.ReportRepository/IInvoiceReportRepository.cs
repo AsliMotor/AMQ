@@ -7,6 +7,7 @@ namespace AsliMotor.Invoices.ReportRepository
 {
     public interface IInvoiceReportRepository
     {
+        IList<InvoiceListViewReport> SearchListViewReport(string branchid, int offset, string key);
         IList<InvoiceListViewReport> GetListViewReport(string branchid, int offset);
         InvoiceHeaderReport GetHeader(Guid invoiceId, string branchId);
         IList<InvoiceItemReport> GetItems(Guid invoiceId, string branchid);

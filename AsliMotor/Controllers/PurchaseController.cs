@@ -10,10 +10,11 @@ using EO.Pdf;
 using AsliMotor.SI.Repository;
 using AsliMotor.SI.Services;
 using Spring.Context.Support;
+using AsliMotor.Helper;
 
 namespace AsliMotor.Controllers
 {
-    [Authorize]
+    [MyAuthorize]
     public class PurchaseController : Controller
     {
         IPrintDocument _printDocument;
@@ -22,6 +23,11 @@ namespace AsliMotor.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+        [HttpGet]
+        public ActionResult Edit(Guid id)
+        {
+            return View("index");
         }
         [HttpGet]
         public ActionResult Detail(Guid id)
@@ -41,6 +47,7 @@ namespace AsliMotor.Controllers
             return Json(si, JsonRequestBehavior.AllowGet);
         }
 
+        [MyAuthorize(Roles=RoleName.ADMINISTRATOR_OWNER_OFFICEADMIN, Message="Kamu tidak diizinkan mengubah data ini")]
         [HttpPut]
         public JsonResult Purchase(SupplierInvoice si)
         {
@@ -64,6 +71,7 @@ namespace AsliMotor.Controllers
                 CompanyProfile cp = new CompanyProfile(this.HttpContext);
                 si.BranchId = cp.BranchId;
                 si.id = Guid.NewGuid();
+                si.ProductId = Guid.NewGuid();
                 SupplierInvoiceService.Create(si, cp.UserName);
                 return Json(new { error = false, data = si }, JsonRequestBehavior.AllowGet);
             }
@@ -82,10 +90,15 @@ namespace AsliMotor.Controllers
         }
 
         [HttpGet]
-        public JsonResult Lists(int offset)
+        public JsonResult Lists(int offset, bool search, string key)
         {
             CompanyProfile cp = new CompanyProfile(this.HttpContext);
-            IList<SupplierInvoiceReport> listView = SupplierInvoiceRepository.GetListView(cp.BranchId, offset);
+            IList<SupplierInvoiceReport> listView = new List<SupplierInvoiceReport>();
+            if (search)
+                listView = SupplierInvoiceRepository.SearchListView(cp.BranchId, offset, key);
+            else
+                listView = SupplierInvoiceRepository.GetListView(cp.BranchId, offset);
+
             return Json(listView, JsonRequestBehavior.AllowGet);
         }
 

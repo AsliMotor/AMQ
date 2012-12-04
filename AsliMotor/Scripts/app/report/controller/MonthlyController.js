@@ -52,7 +52,8 @@
                     onrender: function (price) {
                         return price.toCurrency();
                     }
-                }]
+                }],
+                createTotalView: true
             });
 
             var chart = new am.report.view.monthly.MonthlyChart({

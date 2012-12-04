@@ -6,10 +6,11 @@ using System.Web.Mvc;
 using AsliMotor.Customers;
 using Spring.Context.Support;
 using AsliMotor.Models;
+using AsliMotor.Helper;
 
 namespace AsliMotor.Controllers
 {
-    [Authorize]
+    [MyAuthorize]
     public class CustomerController : Controller
     {
         ICustomerRepository _custRepo;
@@ -37,10 +38,14 @@ namespace AsliMotor.Controllers
         }
 
         [HttpGet]
-        public JsonResult Lists(int offset)
+        public JsonResult Lists(int offset, bool search, string key)
         {
             CompanyProfile cp = new CompanyProfile(this.HttpContext);
-            IList<CustomerReport> listView = CustomerRepository.GetListView(cp.BranchId, offset);
+            IList<CustomerReport> listView = new List<CustomerReport>();
+            if (search)
+                listView = CustomerRepository.SearchListView(cp.BranchId, offset, key);
+            else
+                listView = CustomerRepository.GetListView(cp.BranchId, offset);
             return Json(listView, JsonRequestBehavior.AllowGet);
         }
         [HttpGet]

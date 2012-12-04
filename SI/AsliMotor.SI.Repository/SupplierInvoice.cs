@@ -27,6 +27,7 @@ namespace AsliMotor.SI.Repository
         public string NoBpkb { get; set; }
         public string NoPolisi { get; set; }
         public decimal HargaBeli { get; set; }
+        public decimal Charge { get; set; }
         public string Note { get; set; }
         public Guid ProductId { get; set; }
     }

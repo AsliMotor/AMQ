@@ -73,6 +73,7 @@
             var nobpkp = this.model.get("NoBpkb") || "-";
             var warna = this.model.get("Warna") || "-";
             var harga = this.model.get("HargaBeli") ? this.model.get("HargaBeli").toCurrency() : "-";
+            var charge = this.model.get("Charge") ? this.model.get("Charge").toCurrency() : "-";
             var html = "";
             html += "<div class='clearfix'><div class='a'>Merk</div><div class='b'>:</div><div class='c'>" + merk + "</div></div>";
             html += "<div class='clearfix'><div class='a'>Nomor Polisi</div><div class='b'>:</div><div class='c'>" + nopolisi + "</div></div>";
@@ -83,6 +84,7 @@
             html += "<div class='clearfix'><div class='a'>Nomor BPKB</div><div class='b'>:</div><div class='c'>" + nobpkp + "</div></div>";
             html += "<div class='clearfix'><div class='a'>Warna</div><div class='b'>:</div><div class='c'>" + warna + "</div></div>";
             html += "<div class='clearfix'><div class='a'>Harga Beli</div><div class='b'>:</div><div class='c'>" + harga + "</div></div>";
+            html += "<div class='clearfix'><div class='a'>Biaya-Biaya</div><div class='b'>:</div><div class='c'>" + charge + "</div></div>";
             this.$el.html(html);
             return this;
         }

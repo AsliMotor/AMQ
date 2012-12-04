@@ -6,10 +6,11 @@ using System.Web.Mvc;
 using AsliMotor.Models;
 using AsliMotor.SalesReports.ReportRepository;
 using Spring.Context.Support;
+using AsliMotor.Helper;
 
 namespace AsliMotor.Controllers
 {
-    [Authorize]
+    [MyAuthorize]
     public class HomeController : Controller
     {
         IDashboardRepository _repo;
