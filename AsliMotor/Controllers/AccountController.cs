@@ -8,15 +8,22 @@ using System.Web.Security;
 using AsliMotor.Models;
 using AsliMotor.Security;
 using AsliMotor.Security.Models;
+using AsliMotor.Helper;
 
 namespace AsliMotor.Controllers
 {
     public class AccountController : Controller
     {
-
         public ActionResult LogOn()
         {
             return View();
+        }
+
+        [MyAuthorize]
+        public JsonResult CurrentUser()
+        {
+            string[] roles = Roles.GetRolesForUser(this.User.Identity.Name);
+            return Json(new { Username = this.User.Identity.Name, Role = roles }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -62,9 +69,7 @@ namespace AsliMotor.Controllers
             return View(model);
         }
 
-        //
-        // GET: /Account/LogOff
-
+        [MyAuthorize]
         public ActionResult LogOff()
         {
             FormsAuthentication.SignOut();

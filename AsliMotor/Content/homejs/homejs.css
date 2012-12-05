@@ -286,7 +286,7 @@ input.search-input-field + .loading-container > img
 /*********************************************MODAL DIALOG************************************************************/
  #mask {
 	display: none;
-	background: #535353; 
+	background: #000; 
 	position: fixed; left: 0; top: 0; 
 	z-index: 10;
 	width: 100%; height: 100%;

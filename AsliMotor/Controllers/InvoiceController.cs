@@ -12,10 +12,11 @@ using Spring.Context.Support;
 using AsliMotor.Invoices.Services;
 using AsliMotor.Invoices.Command;
 using AsliMotor.Helper;
+using AsliMotor.Security.Models;
 
 namespace AsliMotor.Controllers
 {
-    [MyAuthorize]
+    [MyAuthorize(Roles = RoleName.ADMINISTRATOR_OWNER_ADMINSALES_CASHIER)]
     public class InvoiceController : Controller
     {
         IPrintDocument _printDocument;
@@ -72,6 +73,8 @@ namespace AsliMotor.Controllers
             TotalInvoice result = InvoiceReportRepository.GetTotalListView(cp.BranchId);
             return Json(result, JsonRequestBehavior.AllowGet);
         }
+
+        [MyAuthorize(Roles = RoleName.ADMINISTRATOR_OWNER_ADMINSALES)]
         [HttpPost]
         public JsonResult Booking(BookingCommand cmd)
         {
@@ -88,6 +91,8 @@ namespace AsliMotor.Controllers
                 return Json(new { error = true, message = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
+
+        [MyAuthorize(Roles = RoleName.ADMINISTRATOR_OWNER_ADMINSALES)]
         [HttpPost]
         public JsonResult Credit(CreditCommand cmd)
         {
@@ -104,6 +109,8 @@ namespace AsliMotor.Controllers
                 return Json(new { error = true, message = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
+
+        [MyAuthorize(Roles = RoleName.ADMINISTRATOR_OWNER_ADMINSALES)]
         [HttpPost]
         public JsonResult Cash(CashCommand cmd)
         {
@@ -120,6 +127,8 @@ namespace AsliMotor.Controllers
                 return Json(new { error = true, message = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
+
+        [MyAuthorize(Roles = RoleName.ADMINISTRATOR_OWNER_ADMINSALES)]
         [HttpPost]
         public JsonResult UpdateToCash(UpdateToCashCommand cmd)
         {
@@ -135,6 +144,8 @@ namespace AsliMotor.Controllers
                 return Json(new { error = true, message = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
+
+        [MyAuthorize(Roles = RoleName.ADMINISTRATOR_OWNER_ADMINSALES)]
         [HttpPost]
         public JsonResult UpdateToCredit(UpdateToCreditCommand cmd)
         {
@@ -150,6 +161,8 @@ namespace AsliMotor.Controllers
                 return Json(new { error = true, message = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
+
+        [MyAuthorize(Roles = RoleName.ADMINISTRATOR_OWNER_ADMINSALES)]
         [HttpPost]
         public JsonResult ChangeUangMuka(Guid invoiceId, decimal uangmuka)
         {
@@ -164,6 +177,8 @@ namespace AsliMotor.Controllers
                 return Json(new { error = true, message = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
+
+        [MyAuthorize(Roles = RoleName.ADMINISTRATOR_OWNER_ADMINSALES)]
         [HttpPost]
         public JsonResult ChangeUangAngsuran(Guid invoiceId, decimal angsuran)
         {
@@ -178,6 +193,8 @@ namespace AsliMotor.Controllers
                 return Json(new { error = true, message = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
+
+        [MyAuthorize(Roles = RoleName.ADMINISTRATOR_OWNER_ADMINSALES)]
         [HttpPost]
         public JsonResult ChangeSukuBunga(Guid invoiceId, decimal sukuBunga)
         {
@@ -192,6 +209,8 @@ namespace AsliMotor.Controllers
                 return Json(new { error = true, message = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
+
+        [MyAuthorize(Roles = RoleName.ADMINISTRATOR_OWNER_ADMINSALES)]
         [HttpPost]
         public JsonResult ChangeLamaAngsuran(Guid invoiceId, int lamaAngsuran)
         {
@@ -206,6 +225,8 @@ namespace AsliMotor.Controllers
                 return Json(new { error = true, message = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
+
+        [MyAuthorize(Roles = RoleName.ADMINISTRATOR_OWNER_ADMINSALES)]
         [HttpPost]
         public JsonResult ChangeDueDate(Guid invoiceId, string dueDate)
         {
@@ -222,6 +243,8 @@ namespace AsliMotor.Controllers
                 return Json(new { error = true, message = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
+
+        [MyAuthorize(Roles = RoleName.ADMINISTRATOR_OWNER_ADMINSALES_CASHIER)]
         [HttpPost]
         public JsonResult BayarAngsuran(Guid invoiceId, string date)
         {
@@ -238,6 +261,8 @@ namespace AsliMotor.Controllers
                 return Json(new { error = true, message = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
+
+        [MyAuthorize(Roles = RoleName.ADMINISTRATOR_OWNER_ADMINSALES)]
         [HttpGet]
         public FileStreamResult PrintSuratPernyataanKredit(Guid id)
         {
@@ -251,6 +276,7 @@ namespace AsliMotor.Controllers
             MemoryStream resultStream = new MemoryStream(memStream.GetBuffer());
             return new FileStreamResult(resultStream, "application/pdf");
         }
+
         [HttpGet]
         public FileStreamResult PrintKwitansiTandaJadi(Guid id)
         {
@@ -264,6 +290,7 @@ namespace AsliMotor.Controllers
             MemoryStream resultStream = new MemoryStream(memStream.GetBuffer());
             return new FileStreamResult(resultStream, "application/pdf");
         }
+
         [HttpGet]
         public FileStreamResult PrintKwitansiKontan(Guid id)
         {
@@ -277,6 +304,7 @@ namespace AsliMotor.Controllers
             MemoryStream resultStream = new MemoryStream(memStream.GetBuffer());
             return new FileStreamResult(resultStream, "application/pdf");
         }
+        
         [HttpGet]
         public FileStreamResult PrintKwitansiUangMuka(Guid id)
         {
@@ -303,6 +331,8 @@ namespace AsliMotor.Controllers
             MemoryStream resultStream = new MemoryStream(memStream.GetBuffer());
             return new FileStreamResult(resultStream, "application/pdf");
         }
+
+        [MyAuthorize(Roles = RoleName.ADMINISTRATOR_OWNER_ADMINSALES)]
         [HttpGet]
         public FileStreamResult PrintSuratPeringatan(Guid id)
         {

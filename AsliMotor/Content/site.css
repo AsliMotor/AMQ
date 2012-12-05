@@ -336,3 +336,26 @@ a:hover {
 	margin-right: 5px;
 	opacity: .8;
 }
+.navbar ul li a#username
+{
+    min-width:70px;
+    color:White;
+}
+.navbar ul li a#username span
+{
+    margin:0px 3px;
+    text-transform:capitalize;
+    font-weight:bold;
+}
+.navbar ul li a#username + .dropdown-menu li a:hover {
+	background-color: #f3f1f1;
+    background-image: -webkit-gradient(linear, 0 0%, 0 100%, from(#f3f1f1), to(#f3f1f1));
+    background-image: -webkit-linear-gradient(top, #f3f1f1 0%, #f3f1f1 100%);
+    background-image: -moz-linear-gradient(top, #f3f1f1 0%, #f3f1f1 100%);
+	background-image: -ms-linear-gradient(top, #f3f1f1 0%, #f3f1f1 100%);
+	background-image: -o-linear-gradient(top, #f3f1f1 0%, #f3f1f1 100%);
+	background-image: linear-gradient(top, #f3f1f1 0%, #f3f1f1 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3f1f1', endColorstr='#f3f1f1',GradientType=0 ); /* IE6-9 */
+    color: #000;
+    text-shadow: 0 -1px 0 #fff;
+}

@@ -8,6 +8,7 @@ using AsliMotor.Products;
 using Spring.Context.Support;
 using AsliMotor.Products.Models;
 using AsliMotor.Helper;
+using AsliMotor.Security.Models;
 
 namespace AsliMotor.Controllers
 {
@@ -57,6 +58,8 @@ namespace AsliMotor.Controllers
             TotalProduct total = ProductRepository.GetTotalList(cp.BranchId, status);
             return Json(total, JsonRequestBehavior.AllowGet);
         }
+
+        [MyAuthorize(Roles = RoleName.ADMINISTRATOR_OWNER_ADMINPURCHASE)]
         [HttpPut]
         public JsonResult Product(Product product)
         {

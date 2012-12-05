@@ -7,10 +7,11 @@ using AsliMotor.Customers;
 using Spring.Context.Support;
 using AsliMotor.Models;
 using AsliMotor.Helper;
+using AsliMotor.Security.Models;
 
 namespace AsliMotor.Controllers
 {
-    [MyAuthorize]
+    [MyAuthorize(Roles=RoleName.ADMINISTRATOR_OWNER_ADMINSALES_CASHIER)]
     public class CustomerController : Controller
     {
         ICustomerRepository _custRepo;
@@ -53,6 +54,8 @@ namespace AsliMotor.Controllers
         {
             return Json(CustomerRepository.GetById(id), JsonRequestBehavior.AllowGet);
         }
+
+        [MyAuthorize(Roles=RoleName.ADMINISTRATOR_OWNER_ADMINSALES)]
         [HttpPost]
         public JsonResult Customer(Customer cust)
         {
@@ -69,6 +72,8 @@ namespace AsliMotor.Controllers
                 return Json(new { error = true, message = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
+
+        [MyAuthorize(Roles = RoleName.ADMINISTRATOR_OWNER_ADMINSALES)]
         [HttpPut]
         public JsonResult UpdateCustomer(Customer cust)
         {

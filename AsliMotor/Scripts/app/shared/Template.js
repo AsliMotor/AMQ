@@ -1,15 +1,20 @@
-﻿define([
+﻿/// <reference path="RoleName.js" />
+
+define([
     'jquery',
     'underscore',
     'backbone',
-    'namespace'
-], function ($, _, Backbone, ns) {
+    'namespace',
+    '/scripts/app/shared/AccountModel.js',
+    '/scripts/app/shared/RoleName.js'
+], function ($, _, Backbone, ns, AccountModel, RoleName) {
     ns.define('am');
+    var accountModel = am.AccountModel().get();
     am.Navigation = function (activeElement) {
         var headerHtml = "<div id='header'><h1><a href='#'>Asli Motor</a></h1</div>";
         $(document.body).append(headerHtml);
-        $(document.body).append(new am.NavBar().render().el);
-        $(document.body).append(new am.SideBar({ activeElement: activeElement }).render().el);
+        $(document.body).append(new am.NavBar({ model: accountModel }).render().el);
+        $(document.body).append(new am.SideBar({ model: accountModel, activeElement: activeElement }).render().el);
         $(document.body).append("<div id='content'><div id='main-container'></div></div>");
     };
 
@@ -18,52 +23,67 @@
         className: '',
         id: 'sidebar',
         initialize: function () {
+            this.model.on('change', this.render, this);
         },
         render: function () {
+            var userRole = (this.model.get("Role")) ? this.model.get("Role")[0] : null;
             var sidebarHtml = "<ul style='display: block;'>" +
-			                            "<li id='dashboard'>" +
-                                            "<a href='/'>" +
-                                                "<i class='icon icon-home'></i>" +
-                                                "<span>Dashboard</span>" +
-                                            "</a>" +
-                                        "</li>" +
-			                            "<li id='invoice'>" +
-				                            "<a href='/invoice'>" +
-                                                "<i class='icon icon-bookmark'></i>" +
-                                                "<span>Penjualan</span>" +
-                                            "</a>" +
-			                            "</li>" +
-			                            "<li id='purchase'>" +
-                                            "<a href='/purchase'>" +
-                                                "<i class='icon icon-tint'></i>" +
-                                                "<span>Pembelian</span>" +
-                                            "</a>" +
-                                        "</li>" +
-			                            "<li class='submenu' id='report'>" +
-                                            "<a href='#'>" +
-                                                "<i class='icon icon-signal'></i>" +
-                                                "<span>Laporan</span>" +
-                                                "<span class='label'>3</span>" +
-                                            "</a>" +
-                                            "<ul>" +
-					                            "<li><a href='/report'>Laporan Penjualan</a></li>" +
-					                            "<li><a href='/report'>Laporan Piutang</a></li>" +
-					                            "<li><a href='/report'>Laporan Keuangan</a></li>" +
-				                            "</ul>" +
-                                        "</li>" +
-			                            "<li id='customer'>" +
-                                            "<a href='/customer'>" +
-                                                "<i class='icon icon-user'></i>" +
-                                                "<span>Pelanggan</span>" +
-                                            "</a>" +
-                                        "</li>" +
-			                            "<li id='product'>" +
-                                            "<a href='/product'>" +
-                                                "<i class='icon icon-file'></i>" +
-                                                "<span>Kendaraan</span>" +
-                                            "</a>" +
-                                        "</li>" +
-		                            "</ul>";
+			                    "<li id='dashboard'>" +
+                                    "<a href='/'>" +
+                                        "<i class='icon icon-home'></i>" +
+                                        "<span>Dashboard</span>" +
+                                    "</a>" +
+                                "</li>";
+
+            if (userRole && RoleName.ADMINISTRATOR_OWNER_ADMINSALES_CASHIER.indexOf(userRole) > 0) {
+                sidebarHtml += "<li id='invoice'>" +
+				                "<a href='/invoice'>" +
+                                    "<i class='icon icon-bookmark'></i>" +
+                                    "<span>Penjualan</span>" +
+                                "</a>" +
+			                "</li>";
+            }
+
+            if (userRole && RoleName.ADMINISTRATOR_OWNER_ADMINPURCHASE_CASHIER.indexOf(userRole) > 0) {
+                sidebarHtml += "<li id='purchase'>" +
+                                "<a href='/purchase'>" +
+                                    "<i class='icon icon-tint'></i>" +
+                                    "<span>Pembelian</span>" +
+                                "</a>" +
+                            "</li>";
+            }
+
+            if (userRole && RoleName.ADMINISTRATOR_OWNER.indexOf(userRole) > 0) {
+                sidebarHtml += "<li class='submenu' id='report'>" +
+                                "<a href='#'>" +
+                                    "<i class='icon icon-signal'></i>" +
+                                    "<span>Laporan</span>" +
+                                    "<span class='label'>3</span>" +
+                                "</a>" +
+                                "<ul>" +
+					                "<li><a href='/report'>Laporan Penjualan</a></li>" +
+					                "<li><a href='/report'>Laporan Piutang</a></li>" +
+					                "<li><a href='/report'>Laporan Keuangan</a></li>" +
+				                "</ul>" +
+                            "</li>";
+            }
+
+            if (userRole && RoleName.ADMINISTRATOR_OWNER_ADMINPURCHASE.indexOf(userRole) < 0) {
+                sidebarHtml += "<li id='customer'>" +
+                                "<a href='/customer'>" +
+                                    "<i class='icon icon-user'></i>" +
+                                    "<span>Pelanggan</span>" +
+                                "</a>" +
+                            "</li>";
+            }
+
+            sidebarHtml += "<li id='product'>" +
+                                "<a href='/product'>" +
+                                    "<i class='icon icon-file'></i>" +
+                                    "<span>Kendaraan</span>" +
+                                "</a>" +
+                            "</li>" +
+		                "</ul>";
             this.$el.html(sidebarHtml);
             $("#" + this.options.activeElement, this.$el).addClass('active');
             if (this.options.activeElement == "report")
@@ -89,8 +109,12 @@
         tagName: 'div',
         className: 'navbar navbar-inverse',
         id: 'user-nav',
+        initialize: function () {
+            this.model.on('change', this.render, this);
+        },
         render: function () {
-            var navBarHtml = "<ul class='nav btn-group'>" +
+            var username = this.model.get("Username") || "-";
+            var navBarHtml = "<ul class='nav btn-group pull-right'>" +
                                     "<li class='btn btn-inverse'>" +
                                         "<a title='' href='#'>" +
                                             "<i class='icon icon-user'></i> " +
@@ -117,11 +141,28 @@
                                             "<span class='text'>Settings</span>" +
                                         "</a>" +
                                     "</li>" +
-                                    "<li class='btn btn-inverse'>" +
-                                        "<a title='' href='/account/LogOff'>" +
-                                            "<i class='icon icon-share-alt'></i>" +
-                                            "<span class='text'>Logout</span>" +
+                                    "<li class='btn btn-inverse dropdown'>" +
+            //                                        "<a title='' href='/account/LogOff'>" +
+            //                                            "<i class='icon icon-share-alt'></i>" +
+            //                                            "<span class='text'>Logout</span>" +
+            //                                        "</a>" +
+                                        "<a href='#' class='dropdown-toggle' data-toggle='dropdown' id='username'>" +
+                                            "<i class='icon-user icon-white'></i>" +
+                                            "&nbsp;" +
+                                            "<span>" + username + "</span>" +
+                                            "&nbsp;" +
+                                            "<b class='caret'></b>" +
                                         "</a>" +
+                                        "<ul class='dropdown-menu'>" +
+                                            "<li>" +
+                                                "<a href='/Account/LogOff'>" +
+                                                    "<i class='icon-off'></i>" +
+                                                    "&nbsp;" +
+                                                    "Log out" +
+                                                    "&nbsp;" +
+                                                "</a>" +
+                                            "</li>" +
+                                        "</ul>" +
                                     "</li>" +
                                 "</ul>";
             this.$el.html(navBarHtml);

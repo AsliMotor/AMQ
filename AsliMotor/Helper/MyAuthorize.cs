@@ -13,11 +13,12 @@ namespace AsliMotor.Helper
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
             base.OnAuthorization(filterContext);
-            if (!filterContext.HttpContext.User.Identity.IsAuthenticated)
+            if (!filterContext.HttpContext.User.Identity.IsAuthenticated || filterContext.HttpContext.Session["loginsession"] == null)
             {
                 filterContext.Result = new RedirectResult("~/Account/Logon");
                 return;
             }
+            
             if (filterContext.Result is HttpUnauthorizedResult)
             {
                 filterContext.Result =

@@ -80,6 +80,7 @@
     <Compile Include="ObjectExtension.cs" />
     <Compile Include="Provider\AsliMotorMembershipProvider.cs" />
     <Compile Include="Provider\AsliMotorRoleProvider.cs" />
+    <Compile Include="Models\RoleName.cs" />
     <Compile Include="UserRepository\IUserRepository.cs" />
     <Compile Include="AccountMembershipProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

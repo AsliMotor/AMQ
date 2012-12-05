@@ -13,7 +13,8 @@
         'view/SalesView',
         '../../../libs/date',
         '../../../libs/currency',
-        '../../../libs/homejs/datatable'],
+        '../../../libs/homejs/datatable',
+        '/scripts/app/shared/AccountModel.js'],
     function ($, _, Backbone, ns, am) {
         ns.define('am.dashboard.controller');
         am.dashboard.controller.DashboardController = function () {
@@ -26,12 +27,14 @@
             var detailSalesView;
             var salesChart;
             var piutangView;
+            var accountModel;
 
             var loadModel = function () {
                 totalTransactionModel = new am.dashboard.model.TotalTransaction();
                 chartModel = new am.dashboard.model.DailySalesReport();
                 salesReportModel = new am.dashboard.model.SalesReport();
                 piutangTelahJatuhTempoModel = new am.dashboard.model.PiutangTelahJatuhTempo();
+                accountModel = am.AccountModel().get();
             };
 
             var createTotalTransactionView = function () {
@@ -40,7 +43,7 @@
                 });
             };
             var createSalesView = function () {
-                salesView = new am.dashboard.view.SalesView();
+                salesView = new am.dashboard.view.SalesView({ model: accountModel });
                 detailSalesView = new am.dashboard.view.DetailSalesView({ model: salesReportModel });
                 salesChart = new am.dashboard.view.ChartSalesView({
                     collection: chartModel,
@@ -134,15 +137,15 @@
             var show = function () {
                 loadModel();
                 fetchData();
-                createTotalTransactionView();
                 createSalesView();
+                createTotalTransactionView();
+                salesChart.render();
                 createPiutangView();
                 $("#main-container").html(totalTransactionView.render().el);
                 $("#main-container").append(salesView.render().el);
                 $("#detail-sales").append(detailSalesView.render().el);
                 $("#chart-sales").append(salesChart.render().el);
                 $("#piutang-telah-jatuh-tempo").html(piutangView.render().el);
-                salesChart.render();
             };
 
             return { show: show };

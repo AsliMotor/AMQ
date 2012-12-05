@@ -11,10 +11,11 @@ using AsliMotor.SI.Repository;
 using AsliMotor.SI.Services;
 using Spring.Context.Support;
 using AsliMotor.Helper;
+using AsliMotor.Security.Models;
 
 namespace AsliMotor.Controllers
 {
-    [MyAuthorize]
+    [MyAuthorize(Roles = RoleName.ADMINISTRATOR_OWNER_ADMINPURCHASE_CASHIER)]
     public class PurchaseController : Controller
     {
         IPrintDocument _printDocument;
@@ -47,7 +48,7 @@ namespace AsliMotor.Controllers
             return Json(si, JsonRequestBehavior.AllowGet);
         }
 
-        [MyAuthorize(Roles=RoleName.ADMINISTRATOR_OWNER_OFFICEADMIN, Message="Kamu tidak diizinkan mengubah data ini")]
+        [MyAuthorize(Roles = RoleName.ADMINISTRATOR_OWNER_ADMINPURCHASE)]
         [HttpPut]
         public JsonResult Purchase(SupplierInvoice si)
         {
@@ -63,6 +64,7 @@ namespace AsliMotor.Controllers
             }
         }
 
+        [MyAuthorize(Roles = RoleName.ADMINISTRATOR_OWNER_ADMINPURCHASE)]
         [HttpPost]
         public JsonResult CreatePurchase(SupplierInvoice si)
         {

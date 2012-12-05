@@ -2,13 +2,25 @@
     'jquery',
     'underscore',
     'backbone',
-    'namespace'],
-    function ($, _, Backbone, ns) {
+    'namespace',
+    '/scripts/app/shared/RoleName.js'],
+    function ($, _, Backbone, ns, RoleName) {
         ns.define('am.dashboard.view');
         am.dashboard.view.SalesView = Backbone.View.extend({
             className: 'sales-view',
             initialize: function () {
-
+                this.model.on('change', this.renderByRole, this);
+            },
+            renderByRole: function () {
+                var userRole = (this.model.get("Role")) ? this.model.get("Role")[0] : null;
+                if (userRole && RoleName.ADMINISTRATOR_OWNER.indexOf(userRole) < 0) {
+                    $("#title-penjualan").remove();
+                    $("#content-penjualan").remove();
+                }
+                if (userRole && RoleName.ADMINISTRATOR_OWNER_ADMINSALES.indexOf(userRole) < 0) {
+                    $("#title-piutang").remove();
+                    $("#content-piutang").remove();
+                }
             },
             render: function () {
                 this.createTitle();
@@ -19,7 +31,7 @@
             },
             createTitle: function () {
                 var titleHtml = "";
-                titleHtml += "<div class='title'>";
+                titleHtml += "<div class='title' id='title-penjualan'>";
                 titleHtml += "<span class='icon'><i class='icon-signal'></i></span>";
                 titleHtml += "<h5>Penjualan</h5>";
                 titleHtml += "</div>";
@@ -27,7 +39,7 @@
             },
             createBody: function () {
                 var contentHtml = "";
-                contentHtml += "<div class='content'>";
+                contentHtml += "<div class='content' id='content-penjualan'>";
                 contentHtml += "<div class='row-fluid'>";
                 contentHtml += "<div class='span4' id='detail-sales'></div>";
                 contentHtml += "<div class='span8' id='chart-sales-container'></div>";
@@ -37,7 +49,7 @@
             },
             createOutstandingTitle: function () {
                 var titleHtml = "";
-                titleHtml += "<div class='title'>";
+                titleHtml += "<div class='title' id='title-piutang'>";
                 titleHtml += "<span class='icon'><i class='icon-tag'></i></span>";
                 titleHtml += "<h5>Piutang Telah Jatuh Tempo</h5>";
                 titleHtml += "<div class='legend'>" +
@@ -50,7 +62,7 @@
             },
             createBodyOutstanding: function () {
                 var contentHtml = "";
-                contentHtml += "<div class='content'>";
+                contentHtml += "<div class='content' id='content-piutang'>";
                 contentHtml += "<div class='row-fluid'>";
                 contentHtml += "<div class='span12' id='piutang-telah-jatuh-tempo'></div>";
                 contentHtml += "</div>";

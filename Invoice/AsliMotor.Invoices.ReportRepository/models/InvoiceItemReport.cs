@@ -17,7 +17,7 @@ namespace AsliMotor.Invoices.ReportRepository
 	r.receiveno
 	from receive r inner join invoicesnapshot inv on r.invoiceid = inv.id 
 	where r.receivetype = 3 and inv.id = @id and inv.branchid = @branchid
-	order by r.receiveno asc
+	order by r.receivedate asc, r.month asc
     ")]
     public class InvoiceItemReport : IViewModel
     {

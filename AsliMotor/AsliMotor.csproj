@@ -132,7 +132,6 @@
     <Compile Include="Helper\MyAuthorize.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\CompanyProfile.cs" />
-    <Compile Include="Models\RoleName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Content\img\homesoft.png" />
     <Content Include="Content\login.css" />
@@ -266,6 +265,8 @@
     <Content Include="Scripts\app\report\view\TableData.js" />
     <Content Include="Scripts\app\report\view\TotalSummaryGrafikProduk.js" />
     <Content Include="Scripts\app\report\view\yearly\YearlyChart.js" />
+    <Content Include="Scripts\app\shared\AccountModel.js" />
+    <Content Include="Scripts\app\shared\RoleName.js" />
     <Content Include="Scripts\app\shared\Template.js" />
     <Content Include="Scripts\libs\AjaxLoading.js" />
     <Content Include="Scripts\libs\backbone\backbone.js" />
