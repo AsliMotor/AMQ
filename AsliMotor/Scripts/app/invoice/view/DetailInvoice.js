@@ -66,6 +66,8 @@
             if (status == 0) status = "Booking";
             else if (status == 1) status = "Kredit";
             else if (status == 2) status = "Lunas";
+            else if (status == 3) status = "Batal";
+            else if (status == 4) status = "Sudah di Tarik";
 
             var dueDateButton = new HomeJS.components.ButtonField({
                 model: this.model,

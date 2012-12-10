@@ -83,6 +83,34 @@
                             window.open("/invoice/PrintKwitansiTandaJadi/" + id, 'Kwitansi Tanda Jadi', null, null);
                         }
                     }, {
+                        title: "Batal",
+                        tooltip: "Batal Transaksi Ini",
+                        iconClass: 'icon-remove',
+                        id: "btn-cancel",
+                        renderer: function () {
+                            if (headerModel.get("Status") == 0)
+                                return true;
+                            return false;
+                        },
+                        action: function () {
+                            if (confirm("Anda yakin untuk membatalkan transaksi ini?")) {
+                                $.ajax({
+                                    type: "POST",
+                                    url: "/invoice/cancel",
+                                    data: { id: id },
+                                    dataType: "json",
+                                    success: function (resp) {
+                                        if (resp.error) {
+                                            HomeJS.components.ErrorAlert(resp.message);
+                                        } else {
+                                            window.location.reload();
+                                            //am.eventAggregator.trigger("showDetail", resp.data);
+                                        }
+                                    }
+                                });
+                            }
+                        }
+                    }, {
                         title: "Kwitansi Uang Muka",
                         tooltip: "Print kwitansi uang muka",
                         iconClass: 'icon-print',
@@ -101,7 +129,7 @@
                         iconClass: 'icon-print',
                         id: "printKwitansiCash",
                         renderer: function () {
-                            if (headerModel.get("Status") == 2)
+                            if (headerModel.get("Status") == 2 && headerModel.get("AngsuranBulanan") <= 0)
                                 return true;
                             return false;
                         },
@@ -114,12 +142,90 @@
                         iconClass: 'icon-print',
                         id: "printPernyataanKredit",
                         renderer: function () {
-                            if (headerModel.get("Status") == 1)
+                            if (headerModel.get("Status") == 1 || headerModel.get("Status") == 4)
                                 return true;
                             return false;
                         },
                         action: function () {
                             window.open("/invoice/PrintSuratPernyataanKredit/" + id, 'Surat Penyataan Kredit', null, null);
+                        }
+                    }, {
+                        title: "Surat Pernyataan",
+                        tooltip: "Cetak Surat Pernyataan",
+                        iconClass: 'icon-print',
+                        id: "printPernyataan",
+                        renderer: function () {
+                            if (headerModel.get("Status") == 1 || headerModel.get("Status") == 4)
+                                return true;
+                            return false;
+                        },
+                        action: function () {
+                            window.open("/invoice/PrintSuratPernyataan/" + id, 'Surat Penyataan', null, null);
+                        }
+                    }, {
+                        title: "Pernyataan Mampu",
+                        tooltip: "Cetak Surat Pernyataan Mampu",
+                        iconClass: 'icon-print',
+                        id: "printPernyataanMampu",
+                        renderer: function () {
+                            if (headerModel.get("Status") == 1 || headerModel.get("Status") == 4)
+                                return true;
+                            return false;
+                        },
+                        action: function () {
+                            window.open("/invoice/PrintSuratPernyataanMampu/" + id, 'Surat Penyataan Mampu', null, null);
+                        }
+                    }, {
+                        title: "Surat Kuasa",
+                        tooltip: "Cetak Surat Kuasa",
+                        iconClass: 'icon-print',
+                        id: "printSuratKuasa",
+                        renderer: function () {
+                            if (headerModel.get("Status") == 1 || headerModel.get("Status") == 4)
+                                return true;
+                            return false;
+                        },
+                        action: function () {
+                            window.open("/invoice/PrintSuratKuasa/" + id, 'Surat Kuasa', null, null);
+                        }
+                    }, {
+                        title: "JB Angsuran",
+                        tooltip: "Cetak PERJANJIAN JUAL BELI DENGAN PEMBAYARAN ANGSURAN",
+                        iconClass: 'icon-print',
+                        id: "printJBAngsuran",
+                        renderer: function () {
+                            if (headerModel.get("Status") == 1 || headerModel.get("Status") == 4)
+                                return true;
+                            return false;
+                        },
+                        action: function () {
+                            window.open("/invoice/PrintJBAngsuran/" + id, 'PERJANJIAN JUAL BELI DENGAN PEMBAYARAN ANGSURAN', null, null);
+                        }
+                    }, {
+                        title: "JB Fidusia",
+                        tooltip: "Cetak PERJANJIAN JUAL BELI DENGAN PEMBAYARAN ANGSURAN",
+                        iconClass: 'icon-print',
+                        id: "printJBFidusia",
+                        renderer: function () {
+                            if (headerModel.get("Status") == 1 || headerModel.get("Status") == 4)
+                                return true;
+                            return false;
+                        },
+                        action: function () {
+                            window.open("/invoice/PrintJBFidusia/" + id, 'PERJANJIAN JUAL BELI DENGAN PEMBAYARAN ANGSURAN', null, null);
+                        }
+                    }, {
+                        title: "Tanda Terima",
+                        tooltip: "Cetak Surat Tanda Terima",
+                        iconClass: 'icon-print',
+                        id: "printTandaTerima",
+                        renderer: function () {
+                            if (headerModel.get("Status") == 1 || headerModel.get("Status") == 4)
+                                return true;
+                            return false;
+                        },
+                        action: function () {
+                            window.open("/invoice/PrintSuratTandaTerima/" + id, 'Surat Tanda Terima', null, null);
                         }
                     }, {
                         title: "Bayar Angsuran",
@@ -153,12 +259,40 @@
                         iconClass: 'icon-print',
                         id: "printSuratPenarikan",
                         renderer: function () {
-                            if (headerModel.get("Status") == 1 && headerModel.get("DueDate") && headerModel.get("DueDate").toDateTime() < getCurrentDateTime())
+                            if ((headerModel.get("Status") == 1 || headerModel.get("Status") == 4) && headerModel.get("DueDate") && headerModel.get("DueDate").toDateTime() < getCurrentDateTime())
                                 return true;
                             return false;
                         },
                         action: function () {
                             window.open("/invoice/PrintSuratPeringatan/" + id, 'Surat Penarikan Kendaraan', null, null);
+                        }
+                    }, {
+                        title: "Tarik Kendaraan",
+                        tooltip: "Tarik Kendaraan",
+                        iconClass: 'icon-lock',
+                        id: "btn-cancel",
+                        renderer: function () {
+                            if (headerModel.get("Status") == 1 && headerModel.get("DueDate") && headerModel.get("DueDate").toDateTime() < getCurrentDateTime())
+                                return true;
+                            return false;
+                        },
+                        action: function () {
+                            if (confirm("Anda yakin kendaraan ini telah ditarik?")) {
+                                $.ajax({
+                                    type: "POST",
+                                    url: "/invoice/pull",
+                                    data: { id: id },
+                                    dataType: "json",
+                                    success: function (resp) {
+                                        if (resp.error) {
+                                            HomeJS.components.ErrorAlert(resp.message);
+                                        } else {
+                                            window.location.reload();
+                                            //am.eventAggregator.trigger("showDetail", resp.data);
+                                        }
+                                    }
+                                });
+                            }
                         }
                     }]
                 });

@@ -13,10 +13,11 @@ using AsliMotor.Invoices.Services;
 using AsliMotor.Invoices.Command;
 using AsliMotor.Helper;
 using AsliMotor.Security.Models;
+using System.Drawing;
 
 namespace AsliMotor.Controllers
 {
-    [MyAuthorize(Roles = RoleName.ADMINISTRATOR_OWNER_ADMINSALES_CASHIER)]
+    [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES_CASHIER)]
     public class InvoiceController : Controller
     {
         IPrintDocument _printDocument;
@@ -74,7 +75,7 @@ namespace AsliMotor.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
-        [MyAuthorize(Roles = RoleName.ADMINISTRATOR_OWNER_ADMINSALES)]
+        [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES)]
         [HttpPost]
         public JsonResult Booking(BookingCommand cmd)
         {
@@ -92,7 +93,7 @@ namespace AsliMotor.Controllers
             }
         }
 
-        [MyAuthorize(Roles = RoleName.ADMINISTRATOR_OWNER_ADMINSALES)]
+        [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES)]
         [HttpPost]
         public JsonResult Credit(CreditCommand cmd)
         {
@@ -110,7 +111,7 @@ namespace AsliMotor.Controllers
             }
         }
 
-        [MyAuthorize(Roles = RoleName.ADMINISTRATOR_OWNER_ADMINSALES)]
+        [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES)]
         [HttpPost]
         public JsonResult Cash(CashCommand cmd)
         {
@@ -128,7 +129,7 @@ namespace AsliMotor.Controllers
             }
         }
 
-        [MyAuthorize(Roles = RoleName.ADMINISTRATOR_OWNER_ADMINSALES)]
+        [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES)]
         [HttpPost]
         public JsonResult UpdateToCash(UpdateToCashCommand cmd)
         {
@@ -145,7 +146,39 @@ namespace AsliMotor.Controllers
             }
         }
 
-        [MyAuthorize(Roles = RoleName.ADMINISTRATOR_OWNER_ADMINSALES)]
+        [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES)]
+        [HttpPost]
+        public JsonResult Cancel(Guid id)
+        {
+            try
+            {
+                CompanyProfile cp = new CompanyProfile(this.HttpContext);
+                InvoiceService.Cancel(id, cp.UserName);
+                return Json(new { error = false, data = id }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { error = true, message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES)]
+        [HttpPost]
+        public JsonResult Pull(Guid id)
+        {
+            try
+            {
+                CompanyProfile cp = new CompanyProfile(this.HttpContext);
+                InvoiceService.Pull(id, cp.UserName);
+                return Json(new { error = false, data = id }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { error = true, message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES)]
         [HttpPost]
         public JsonResult UpdateToCredit(UpdateToCreditCommand cmd)
         {
@@ -162,7 +195,7 @@ namespace AsliMotor.Controllers
             }
         }
 
-        [MyAuthorize(Roles = RoleName.ADMINISTRATOR_OWNER_ADMINSALES)]
+        [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES)]
         [HttpPost]
         public JsonResult ChangeUangMuka(Guid invoiceId, decimal uangmuka)
         {
@@ -178,7 +211,7 @@ namespace AsliMotor.Controllers
             }
         }
 
-        [MyAuthorize(Roles = RoleName.ADMINISTRATOR_OWNER_ADMINSALES)]
+        [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES)]
         [HttpPost]
         public JsonResult ChangeUangAngsuran(Guid invoiceId, decimal angsuran)
         {
@@ -194,7 +227,7 @@ namespace AsliMotor.Controllers
             }
         }
 
-        [MyAuthorize(Roles = RoleName.ADMINISTRATOR_OWNER_ADMINSALES)]
+        [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES)]
         [HttpPost]
         public JsonResult ChangeSukuBunga(Guid invoiceId, decimal sukuBunga)
         {
@@ -210,7 +243,7 @@ namespace AsliMotor.Controllers
             }
         }
 
-        [MyAuthorize(Roles = RoleName.ADMINISTRATOR_OWNER_ADMINSALES)]
+        [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES)]
         [HttpPost]
         public JsonResult ChangeLamaAngsuran(Guid invoiceId, int lamaAngsuran)
         {
@@ -226,7 +259,7 @@ namespace AsliMotor.Controllers
             }
         }
 
-        [MyAuthorize(Roles = RoleName.ADMINISTRATOR_OWNER_ADMINSALES)]
+        [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES)]
         [HttpPost]
         public JsonResult ChangeDueDate(Guid invoiceId, string dueDate)
         {
@@ -244,7 +277,7 @@ namespace AsliMotor.Controllers
             }
         }
 
-        [MyAuthorize(Roles = RoleName.ADMINISTRATOR_OWNER_ADMINSALES_CASHIER)]
+        [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES_CASHIER)]
         [HttpPost]
         public JsonResult BayarAngsuran(Guid invoiceId, string date)
         {
@@ -262,90 +295,141 @@ namespace AsliMotor.Controllers
             }
         }
 
-        [MyAuthorize(Roles = RoleName.ADMINISTRATOR_OWNER_ADMINSALES)]
+        #region PRINT MODULE
+
+        [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES)]
         [HttpGet]
         public FileStreamResult PrintSuratPernyataanKredit(Guid id)
         {
             CompanyProfile cp = new CompanyProfile(this.HttpContext);
             string template = PrintDocument.PrintSuratPernyataanKredit(id, cp.BranchId);
-            EO.Pdf.Runtime.AddLicense(System.Configuration.ConfigurationManager.AppSettings["EOPdfLicense"]);
-            EO.Pdf.HtmlToPdf.Options.PageSize = EO.Pdf.PdfPageSizes.A4;
-            EO.Pdf.HtmlToPdf.Options.OutputArea = new System.Drawing.RectangleF(0.5f, 0.1f, 7.3f, 12.1f);
-            MemoryStream memStream = new MemoryStream();
-            HtmlToPdf.ConvertHtml(template, memStream);
-            MemoryStream resultStream = new MemoryStream(memStream.GetBuffer());
+            MemoryStream resultStream = ConvertToHtml(template, new RectangleF(0.5f, 0.1f, 7.3f, 12.1f));
             return new FileStreamResult(resultStream, "application/pdf");
         }
 
+        [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES_CASHIER)]
         [HttpGet]
         public FileStreamResult PrintKwitansiTandaJadi(Guid id)
         {
             CompanyProfile cp = new CompanyProfile(this.HttpContext);
             string template = PrintDocument.PrintKwitansiTandaJadi(id, cp.BranchId);
-            EO.Pdf.Runtime.AddLicense(System.Configuration.ConfigurationManager.AppSettings["EOPdfLicense"]);
-            EO.Pdf.HtmlToPdf.Options.PageSize = EO.Pdf.PdfPageSizes.A4;
-            EO.Pdf.HtmlToPdf.Options.OutputArea = new System.Drawing.RectangleF(0.5f, 0.1f, 7.3f, 12.1f);
-            MemoryStream memStream = new MemoryStream();
-            HtmlToPdf.ConvertHtml(template, memStream);
-            MemoryStream resultStream = new MemoryStream(memStream.GetBuffer());
+            MemoryStream resultStream = ConvertToHtml(template, new RectangleF(0.5f, 0.1f, 7.3f, 12.1f));
             return new FileStreamResult(resultStream, "application/pdf");
         }
 
+        [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES_CASHIER)]
         [HttpGet]
         public FileStreamResult PrintKwitansiKontan(Guid id)
         {
             CompanyProfile cp = new CompanyProfile(this.HttpContext);
             string template = PrintDocument.PrintKwitansiKontan(id, cp.BranchId);
-            EO.Pdf.Runtime.AddLicense(System.Configuration.ConfigurationManager.AppSettings["EOPdfLicense"]);
-            EO.Pdf.HtmlToPdf.Options.PageSize = EO.Pdf.PdfPageSizes.A4;
-            EO.Pdf.HtmlToPdf.Options.OutputArea = new System.Drawing.RectangleF(0.5f, 0.1f, 7.3f, 12.1f);
-            MemoryStream memStream = new MemoryStream();
-            HtmlToPdf.ConvertHtml(template, memStream);
-            MemoryStream resultStream = new MemoryStream(memStream.GetBuffer());
+            MemoryStream resultStream = ConvertToHtml(template, new RectangleF(0.5f, 0.1f, 7.3f, 12.1f));
             return new FileStreamResult(resultStream, "application/pdf");
         }
-        
+
+        [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES_CASHIER)]
         [HttpGet]
         public FileStreamResult PrintKwitansiUangMuka(Guid id)
         {
             CompanyProfile cp = new CompanyProfile(this.HttpContext);
             string template = PrintDocument.PrintKwitansiUangMuka(id, cp.BranchId);
-            EO.Pdf.Runtime.AddLicense(System.Configuration.ConfigurationManager.AppSettings["EOPdfLicense"]);
-            EO.Pdf.HtmlToPdf.Options.PageSize = EO.Pdf.PdfPageSizes.A4;
-            EO.Pdf.HtmlToPdf.Options.OutputArea = new System.Drawing.RectangleF(0.5f, 0.1f, 7.3f, 12.1f);
-            MemoryStream memStream = new MemoryStream();
-            HtmlToPdf.ConvertHtml(template, memStream);
-            MemoryStream resultStream = new MemoryStream(memStream.GetBuffer());
+            MemoryStream resultStream = ConvertToHtml(template, new RectangleF(0.5f, 0.1f, 7.3f, 12.1f));
             return new FileStreamResult(resultStream, "application/pdf");
         }
+
+        [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES_CASHIER)]
         [HttpGet]
         public FileStreamResult PrintKwitansiAngsuranBulanan(Guid id)
         {
             CompanyProfile cp = new CompanyProfile(this.HttpContext);
             string template = PrintDocument.PrintKwitansiAngsuranBulanan(id, cp.BranchId);
-            EO.Pdf.Runtime.AddLicense(System.Configuration.ConfigurationManager.AppSettings["EOPdfLicense"]);
-            EO.Pdf.HtmlToPdf.Options.PageSize = EO.Pdf.PdfPageSizes.A4;
-            EO.Pdf.HtmlToPdf.Options.OutputArea = new System.Drawing.RectangleF(0.5f, 0.1f, 7.3f, 12.1f);
-            MemoryStream memStream = new MemoryStream();
-            HtmlToPdf.ConvertHtml(template, memStream);
-            MemoryStream resultStream = new MemoryStream(memStream.GetBuffer());
+            MemoryStream resultStream = ConvertToHtml(template, new RectangleF(0.5f, 0.1f, 7.3f, 12.1f));
             return new FileStreamResult(resultStream, "application/pdf");
         }
 
-        [MyAuthorize(Roles = RoleName.ADMINISTRATOR_OWNER_ADMINSALES)]
+        [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES)]
         [HttpGet]
         public FileStreamResult PrintSuratPeringatan(Guid id)
         {
             CompanyProfile cp = new CompanyProfile(this.HttpContext);
             string template = PrintDocument.PrintSuratPeringatan(id, cp.BranchId);
+            MemoryStream resultStream = ConvertToHtml(template, new RectangleF(0.5f, 0.1f, 7.3f, 12.1f));
+            return new FileStreamResult(resultStream, "application/pdf");
+        }
+
+        [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES)]
+        [HttpGet]
+        public FileStreamResult PrintSuratPernyataan(Guid id)
+        {
+            CompanyProfile cp = new CompanyProfile(this.HttpContext);
+            string template = PrintDocument.PrintSuratPernyataan(id, cp.BranchId);
+            MemoryStream resultStream = ConvertToHtml(template, new RectangleF(0.5f, 0.1f, 7.3f, 12.1f));
+            return new FileStreamResult(resultStream, "application/pdf");
+        }
+
+        [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES)]
+        [HttpGet]
+        public FileStreamResult PrintSuratPernyataanMampu(Guid id)
+        {
+            CompanyProfile cp = new CompanyProfile(this.HttpContext);
+            string template = PrintDocument.PrintSuratPernyataanMampu(id, cp.BranchId);
+            MemoryStream resultStream = ConvertToHtml(template, new RectangleF(0.5f, 0.1f, 7.3f, 12.1f));
+            return new FileStreamResult(resultStream, "application/pdf");
+        }
+
+        [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES)]
+        [HttpGet]
+        public FileStreamResult PrintSuratKuasa(Guid id)
+        {
+            CompanyProfile cp = new CompanyProfile(this.HttpContext);
+            string template = PrintDocument.PrintSuratKuasa(id, cp.BranchId);
+            MemoryStream resultStream = ConvertToHtml(template, new RectangleF(0.5f, 0.1f, 7.3f, 12.1f));
+            return new FileStreamResult(resultStream, "application/pdf");
+        }
+
+        [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES)]
+        [HttpGet]
+        public FileStreamResult PrintJBAngsuran(Guid id)
+        {
+            CompanyProfile cp = new CompanyProfile(this.HttpContext);
+            string template = PrintDocument.PrintJBAngsuran(id, cp.BranchId);
+            MemoryStream resultStream = ConvertToHtml(template, new RectangleF(0.5f, 0.1f, 7.3f, 11f));
+            return new FileStreamResult(resultStream, "application/pdf");
+        }
+
+        [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES)]
+        [HttpGet]
+        public FileStreamResult PrintJBFidusia(Guid id)
+        {
+            CompanyProfile cp = new CompanyProfile(this.HttpContext);
+            string template = PrintDocument.PrintJBFidusia(id, cp.BranchId);
+            MemoryStream resultStream = ConvertToHtml(template, new RectangleF(0.5f, 0.1f, 7.3f, 11f));
+            return new FileStreamResult(resultStream, "application/pdf");
+        }
+
+        [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES)]
+        [HttpGet]
+        public FileStreamResult PrintSuratTandaTerima(Guid id)
+        {
+            CompanyProfile cp = new CompanyProfile(this.HttpContext);
+            string template = PrintDocument.PrintTandaTerima(id, cp.BranchId);
+            MemoryStream resultStream = ConvertToHtml(template, new RectangleF(0.5f, 0.1f, 7.3f, 11f));
+            return new FileStreamResult(resultStream, "application/pdf");
+        }
+
+        private MemoryStream ConvertToHtml(string template, RectangleF outputArea)
+        {
             EO.Pdf.Runtime.AddLicense(System.Configuration.ConfigurationManager.AppSettings["EOPdfLicense"]);
             EO.Pdf.HtmlToPdf.Options.PageSize = EO.Pdf.PdfPageSizes.A4;
-            EO.Pdf.HtmlToPdf.Options.OutputArea = new System.Drawing.RectangleF(0.5f, 0.1f, 7.3f, 12.1f);
+            EO.Pdf.HtmlToPdf.Options.OutputArea = outputArea;
             MemoryStream memStream = new MemoryStream();
             HtmlToPdf.ConvertHtml(template, memStream);
             MemoryStream resultStream = new MemoryStream(memStream.GetBuffer());
-            return new FileStreamResult(resultStream, "application/pdf");
+            return resultStream;
         }
+
+        #endregion
+
         private IPrintDocument PrintDocument
         {
             get

@@ -13,11 +13,11 @@
             },
             renderByRole: function () {
                 var userRole = (this.model.get("Role")) ? this.model.get("Role")[0] : null;
-                if (userRole && RoleName.ADMINISTRATOR_OWNER.indexOf(userRole) < 0) {
+                if (userRole && RoleName.OWNER.indexOf(userRole) < 0) {
                     $("#title-penjualan").remove();
                     $("#content-penjualan").remove();
                 }
-                if (userRole && RoleName.ADMINISTRATOR_OWNER_ADMINSALES.indexOf(userRole) < 0) {
+                if (userRole && RoleName.OWNER_ADMINSALES.indexOf(userRole) < 0) {
                     $("#title-piutang").remove();
                     $("#content-piutang").remove();
                 }

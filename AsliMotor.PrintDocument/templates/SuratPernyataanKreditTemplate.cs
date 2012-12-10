@@ -31,26 +31,25 @@ namespace AsliMotor.PrintDocuments
 	    <div style='margin-top:30px;'>Saya yang bertanda tangan dibawah ini :</div>
         <div class='rowheight indent'>
             <table>
-                <tr><td width='100px'>Nama</td><td width='20px'>:</td><td>SALAM AZIZ</td></tr>
-                <tr><td>No. KTP</td><td>:</td><td>2104010101560002</td></tr>
-                <tr><td>Umur</td><td>:</td><td>01 Januari 1956</td></tr>
-                <tr><td>Alamat</td><td>:</td><td>JL.GANG ANTIK DABO LAMA RT.002/RW.004</td></tr>
-                <tr><td>Pekerjaan</td><td>:</td><td>BURUH HARIAN LEPAS</td></tr>
+                <tr><td width='100px'>Nama</td><td width='20px'>:</td><td>$custname$</td></tr>
+                <tr><td>No. KTP</td><td>:</td><td>$noktp$</td></tr>
+                <tr><td>Umur</td><td>:</td><td>$ktpdate$</td></tr>
+                <tr><td>Alamat</td><td>:</td><td>$billingaddress$ - $city$</td></tr>
+                <tr><td>Pekerjaan</td><td>:</td><td>$job$</td></tr>
             </table>
         </div>
 	    <div class='rowheight'>
             Dengan ini menyatakan mampu dan tidak pailit dan sanggup untuk pengambilan angsuran
-            kredit Kendaraan Roda Dua <b>MERK YAMAHA</b> dari Dealer “ASLI MOTOR” Jl. Raja Ali			
-            Haji Dabo Singkep.
+            kredit Kendaraan Roda Dua <b>MERK $merk$</b> dari Dealer “$organization.OrganizationName$” $organization.OrganizationAddress$ $organization.City$.
         </div>
         <div class='rowheight indent'>
             <table>
-                <tr><td width='100px'>Type</td><td width='20px'>:</td><td>JUPITER MX CW</td></tr>
-                <tr><td>Nomor POLISI</td><td>:</td><td>BP 3443 LF</td></tr>
-                <tr><td>Warna</td><td>:</td><td>Putih</td></tr>
-                <tr><td>Tahun</td><td>:</td><td>2012</td></tr>
-                <tr><td>Nomor Mesin</td><td>:</td><td>431306</td></tr>
-                <tr><td>Nomor Rangka</td><td>:</td><td>431114</td></tr>
+                <tr><td width='100px'>Type</td><td width='20px'>:</td><td>$type$</td></tr>
+                <tr><td>Nomor POLISI</td><td>:</td><td>$nopolisi$</td></tr>
+                <tr><td>Warna</td><td>:</td><td>$warna$</td></tr>
+                <tr><td>Tahun</td><td>:</td><td>$tahun$</td></tr>
+                <tr><td>Nomor Mesin</td><td>:</td><td>$nomesin$</td></tr>
+                <tr><td>Nomor Rangka</td><td>:</td><td>$norangka$</td></tr>
             </table>
         </div>
         <div class='rowheight'>Saya sanggup, mampu dan patuh terhadap syarat-syarat di bawah ini dan menyatakan dengan sebenarnya :</div>
@@ -59,16 +58,16 @@ namespace AsliMotor.PrintDocuments
                 <tr>
                     <td width='20px'>1.</td>
                     <td>
-                        Uang Muka (DP) yang saya bayar adalah sebesar Rp4,250,000 		
-	                    (empat juta dua ratus lima puluh ribu rupiah)							
-	                    Lamanya angsuran kredit : 3 Tahun (tiga puluh enam bulan)			
-	                    Besar angsuran kredit :	 Rp 635,000 (enam ratus tiga puluh lima ribu rupiah)
+                        Uang Muka (DP) yang saya bayar adalah sebesar <b>Rp $uangmuka$</b>
+	                    ($uangmukaterbilang$)							
+	                    Lamanya angsuran kredit : <b>$lamaangsuran$ Bulan</b> ($lamaangsuranterbilang$ bulan)			
+	                    Besar angsuran kredit :	 <b>Rp $angsuranbulanan$</b> ($angsuranbulananterbilang$ rupiah)
                     </td>
                 </tr>
                 <tr>
                     <td>2.</td>
                     <td>
-                        Saya bersedia membayar denda keterlambatan tunggakan angsuran sebesar 0.005% dari besar angsuran per hari.							
+                        Saya bersedia membayar denda keterlambatan tunggakan angsuran sebesar 0.5% dari besar angsuran per hari.							
                     </td>
                 </tr>
                 <tr>
@@ -80,7 +79,7 @@ namespace AsliMotor.PrintDocuments
                 <tr>
                     <td>4.</td>
                     <td>
-                        Saya bersedia sepeda motor saya ditarik oleh pihak Dealer “ASLI MOTOR” jika terjadi tunggakan 1 bulan 2 minggu dari tanggal jatuh tempo kredit.
+                        Saya bersedia sepeda motor saya ditarik oleh pihak Dealer “$organization.OrganizationName$” jika terjadi tunggakan 1 bulan 2 minggu dari tanggal jatuh tempo kredit.
                     </td>
                 </tr>
                 <tr>
@@ -100,51 +99,51 @@ namespace AsliMotor.PrintDocuments
                 <tr>
                     <td>7.</td>
                     <td>
-                        Saya bersedia langsung datang bayar angsuran ke Kantor Dealer “ASLI MOTOR”.
+                        Saya bersedia langsung datang bayar angsuran ke Kantor Dealer “$organization.OrganizationName$”.
                     </td>
                 </tr>
                 <tr>
                     <td>8.</td>
                     <td>
-                        Saya bersedia memberitahukan kepada Dealer “ASLI MOTOR” Jika saya pindah ke alamat baru (pindah rumah).							
+                        Saya bersedia memberitahukan kepada Dealer “$organization.OrganizationName$” Jika saya pindah ke alamat baru (pindah rumah).							
                     </td>
                 </tr>
                 <tr>
                     <td>9.</td>
                     <td>
-                        Saya bersedia menyerahkan sepeda motor dengan baik ataupun dalam kondisi 100% lengkap jika terjadi penarikan dari pihak Dealer “ ASLI MOTOR “.	
+                        Saya bersedia menyerahkan sepeda motor dengan baik ataupun dalam kondisi 100% lengkap jika terjadi penarikan dari pihak Dealer “$organization.OrganizationName$“.	
                     </td>
                 </tr>
                 <tr>
                     <td>10.</td>
                     <td>
-                        Saya bersedia untuk tidak menjual / menggadaikan sepeda motor tersebut diatas kepada pihak lain, atau jika saya menjual akan saya laporkan kepada pihak “ASLI MOTOR”.							
+                        Saya bersedia untuk tidak menjual / menggadaikan sepeda motor tersebut diatas kepada pihak lain, atau jika saya menjual akan saya laporkan kepada pihak “$organization.OrganizationName$”.							
                     </td>
                 </tr>
                 <tr>
                     <td>11.</td>
                     <td>
-                        Surat pernyataan ini telah saya baca dengan teliti dan saya menerima ketentuan-ketentuan yang telah ditetapkan oleh pihak 'ASLI MOTOR'.
+                        Surat pernyataan ini telah saya baca dengan teliti dan saya menerima ketentuan-ketentuan yang telah ditetapkan oleh pihak '$organization.OrganizationName$'.
                     </td>
                 </tr>
                 <tr>
                     <td>12.</td>
                     <td>
                         Jika saya melanggar / tidak mematuhi ketentuan yang telah ditetapkan oleh pihak
-                        “ASLI MOTOR” saya bersedia diajukan pada hukum yang berlaku sesuai dengan surat perjanjian 'ASLI MOTOR'.							
+                        “$organization.OrganizationName$” saya bersedia diajukan pada hukum yang berlaku sesuai dengan surat perjanjian '$organization.OrganizationName$'.							
                     </td>
                 </tr>
             </table>
         </div>
         <div class='rowheight'>
             Demikianlah Surat Pernyataan ini saya buat dengan sebenarnya di hadapan Pihak Pemasaran
-            ASLI MOTOR SIQ tanpa ada paksaan dan tuntutan dari pihak manapun juga.								
+            $organization.OrganizationName$ tanpa ada paksaan dan tuntutan dari pihak manapun juga.								
         </div>
         <div style='padding-top:20px;padding-right:50px;text-align:right;'>
-            $organization.City$, $currentDate$
+            $organization.City$, $currentdate$
         </div>
         <div style='padding-top:70px;padding-right:100px;text-align:right;'>
-            SALAM AZIZ
+            $custname$
         </div>
     </div>";
     }

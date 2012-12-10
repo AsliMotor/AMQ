@@ -119,6 +119,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageUserController.cs" />
     <Compile Include="Controllers\OrganizationController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\PurchaseController.cs" />
@@ -130,11 +131,22 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\MyAuthorize.cs" />
+    <Compile Include="Helper\RoleConfig.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\CompanyProfile.cs" />
+    <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Content\img\homesoft.png" />
+    <Content Include="Content\img\User-icon.png" />
     <Content Include="Content\login.css" />
+    <Content Include="Scripts\app\manageuser\action\AddUserAction.js" />
+    <Content Include="Scripts\app\manageuser\command\AddUser.js" />
+    <Content Include="Scripts\app\manageuser\controller\ListController.js" />
+    <Content Include="Scripts\app\manageuser\main.js" />
+    <Content Include="Scripts\app\manageuser\model\UserListReport.js" />
+    <Content Include="Scripts\app\manageuser\model\UserListReports.js" />
+    <Content Include="Scripts\app\manageuser\router\ManageUserRouter.js" />
+    <Content Include="Scripts\app\manageuser\view\AddUser.js" />
     <Content Include="Scripts\app\report\controller\GrafikProductController.js" />
     <Content Include="Scripts\app\report\controller\RateProductController.js" />
     <Content Include="Content\bootstrap\bootstrap-responsive.min.css" />
@@ -302,6 +314,7 @@
     <Content Include="Scripts\libs\homejs\RadioButton.js" />
     <Content Include="Scripts\libs\homejs\inputfield\InputSearchField.js" />
     <Content Include="Scripts\libs\homejs\SideBar.js" />
+    <Content Include="Scripts\libs\homejs\WebCamera.js" />
     <Content Include="Scripts\libs\jquery\jquery-1.7.2.js" />
     <Content Include="Scripts\libs\jquery\jquery-1.7.2.min.js" />
     <Content Include="Scripts\libs\jquery\jquery.cookie.js" />
@@ -315,6 +328,9 @@
     <Content Include="Scripts\libs\underscore\underscore.js" />
     <Content Include="Scripts\libs\underscore\underscore.min.js" />
     <Content Include="Scripts\libs\underscore\underscore.string.js" />
+    <Content Include="Scripts\libs\webcam\jquery.webcam.js" />
+    <Content Include="Scripts\libs\webcam\jscam.swf" />
+    <Content Include="Scripts\libs\webcam\jscam_canvas_only.swf" />
     <Content Include="Scripts\test\component\erroralert.js" />
     <Content Include="Scripts\test\component\FormPanel.js" />
     <Content Include="Scripts\test\component\radiobutton.js" />
@@ -324,6 +340,7 @@
     <Content Include="Scripts\test\component\TextField.js" />
     <Content Include="Scripts\test\invoice\DetailInvoice.js" />
     <Content Include="Scripts\test\purchase\DetailPurchase.js" />
+    <Content Include="Scripts\test\webcam.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -477,6 +494,27 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\aslimotor.blue.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Test\WebCam.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Test\PrintSuratPernyattanMampu.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Test\PrintSuratKuasa.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Test\PrintJBAngsuran.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Test\PrintJBFidusia.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Test\PrintSuratTandaTerima.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ManageUser\Index.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

@@ -52,5 +52,11 @@ namespace AsliMotor.Customers
             IList<CustomerReport> results = QueryObjectMapper.Map<CustomerReport>("searchByKey", new string[] { "branchid", "offset", "key" }, new object[] { branchid, (offset * 10), key }).ToList();
             return results;
         }
+
+        public CustomerImage GetImage(Guid id)
+        {
+            CustomerImage image = QueryObjectMapper.Map<CustomerImage>("findById", new string[] { "id" }, new object[] { id }).FirstOrDefault();
+            return image;
+        }
     }
 }

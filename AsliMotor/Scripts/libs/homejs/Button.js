@@ -10,7 +10,9 @@
             initialize: function () {
                 this.$el.addClass("floatleft");
                 if (this.options.typeButton)
-                    this.$el.addClass(this.options.typeButton);
+                    this.$el.addClass(this.options.typeButton); 
+                if (this.options.size)
+                    this.$el.addClass(this.options.size);
                 if (this.options.float) {
                     if (this.options.float.toLowerCase() === "right")
                         this.$el.addClass("floatright");

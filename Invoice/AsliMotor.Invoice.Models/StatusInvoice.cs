@@ -10,6 +10,7 @@ namespace AsliMotor.Invoices.Snapshots
         BOOKING,
         CREDIT,
         PAID,
-        CANCELED
+        CANCELED,
+        PULL
     }
 }

@@ -12,9 +12,9 @@ namespace AsliMotor.Security.Models
         public const string ADMINPURCHASE = "AdminPurchase";
         public const string ADMINSALES = "AdminSales";
         public const string CASHIER = "Cashier";
-        public const string ADMINISTRATOR_OWNER_ADMINPURCHASE = "Administrator, Owner, AdminPurchase";
-        public const string ADMINISTRATOR_OWNER_ADMINPURCHASE_CASHIER = "Administrator, Owner, AdminPurchase, Cashier";
-        public const string ADMINISTRATOR_OWNER_ADMINSALES = "Administrator, Owner, AdminSales";
-        public const string ADMINISTRATOR_OWNER_ADMINSALES_CASHIER = "Administrator, Owner, AdminSales, Cashier";
+        public const string OWNER_ADMINPURCHASE = "Owner, AdminPurchase";
+        public const string OWNER_ADMINPURCHASE_CASHIER = "Owner, AdminPurchase, Cashier";
+        public const string OWNER_ADMINSALES = "Owner, AdminSales";
+        public const string OWNER_ADMINSALES_CASHIER = "Owner, AdminSales, Cashier";
     }
 }

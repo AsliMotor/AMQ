@@ -14,5 +14,6 @@ namespace AsliMotor.Customers
         IList<CustomerReport> GetListView(string branchid, int offset);
         IList<CustomerReport> SearchListView(string branchid, int offset, string key);
         TotalCustomer GetTotalList(string branchid);
+        CustomerImage GetImage(Guid id);
     }
 }

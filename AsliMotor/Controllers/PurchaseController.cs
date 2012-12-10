@@ -15,7 +15,7 @@ using AsliMotor.Security.Models;
 
 namespace AsliMotor.Controllers
 {
-    [MyAuthorize(Roles = RoleName.ADMINISTRATOR_OWNER_ADMINPURCHASE_CASHIER)]
+    [MyAuthorize(Roles = RoleName.OWNER_ADMINPURCHASE_CASHIER)]
     public class PurchaseController : Controller
     {
         IPrintDocument _printDocument;
@@ -48,7 +48,7 @@ namespace AsliMotor.Controllers
             return Json(si, JsonRequestBehavior.AllowGet);
         }
 
-        [MyAuthorize(Roles = RoleName.ADMINISTRATOR_OWNER_ADMINPURCHASE)]
+        [MyAuthorize(Roles = RoleName.OWNER_ADMINPURCHASE)]
         [HttpPut]
         public JsonResult Purchase(SupplierInvoice si)
         {
@@ -64,7 +64,7 @@ namespace AsliMotor.Controllers
             }
         }
 
-        [MyAuthorize(Roles = RoleName.ADMINISTRATOR_OWNER_ADMINPURCHASE)]
+        [MyAuthorize(Roles = RoleName.OWNER_ADMINPURCHASE)]
         [HttpPost]
         public JsonResult CreatePurchase(SupplierInvoice si)
         {

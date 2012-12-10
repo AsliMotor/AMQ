@@ -15,5 +15,6 @@ namespace AsliMotor.Organizations
         public string City { get; set; }
         public string Country { get; set; }
         public string Telp { get; set; }
+        public string Pimpinan { get; set; }
     }
 }

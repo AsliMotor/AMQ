@@ -7,6 +7,7 @@ using BonaStoco.Inf.Data.ViewModel;
 namespace AsliMotor.Security.Models
 {
     [NamedSqlQuery("remove", @"delete from userrole where rolename = @rolename and applicationname = @applicationname")]
+    [NamedSqlQuery("removeByUserId", @"delete from userrole where userid = @userid")]
     [NamedSqlQuery("findByUsername", @"select * from userrole where username = @username and applicationname = @applicationname")]
     [NamedSqlQuery("findByRoleName", @"select * from userrole where rolename = @rolename and applicationname = @applicationname")]
     [NamedSqlQuery("findByUserNameAndRoleName",@"select * from userrole where username = @username and rolename = @rolename and applicationname = @applicationname")]

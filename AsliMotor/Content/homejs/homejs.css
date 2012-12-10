@@ -429,6 +429,11 @@ input.search-input-field + .loading-container > img
 {
     font-size:12px;
 }
+.modal-dialog .modal-dialog-body.webcam
+{
+    border:2px solid #333;
+    height:240px;
+}
 
 /********************************************************Datepicket********************************************************/
 .datepicker.dropdown-menu

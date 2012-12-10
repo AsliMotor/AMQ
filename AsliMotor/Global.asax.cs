@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using NServiceBus;
 using System.Globalization;
+using AsliMotor.Helper;
 
 namespace AsliMotor
 {
@@ -61,6 +62,8 @@ namespace AsliMotor
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
             RegisterNServiceBus();
+
+            RoleConfig.Configure();
 
             System.Globalization.CultureInfo nNewCultur = (CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
             nNewCultur.DateTimeFormat.ShortTimePattern = "dd-MM-yyyy";

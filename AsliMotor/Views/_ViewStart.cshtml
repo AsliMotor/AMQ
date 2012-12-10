@@ -3,11 +3,7 @@
     if (this.Request.IsAuthenticated)
     {
         CompanyProfile cp = new CompanyProfile(this.Context);
-        if (cp.Role == 1)
-        {
-            Layout = "~/Views/Shared/_LayoutOwner.cshtml";
-        }
-        else if (cp.Role == 5)
+        if (cp != null)
         {
             Layout = "~/Views/Shared/_LayoutBranch.cshtml";
         }

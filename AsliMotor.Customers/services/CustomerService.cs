@@ -47,6 +47,19 @@ namespace AsliMotor.Customers
             ReportingRepository.Update<Customer>(custUpdated, new { id = custUpdated.id });
         }
 
+
+        public void UploadImage(Guid id, byte[] image)
+        {
+            if (CustomerRepository.GetImage(id) == null)
+            {
+                ReportingRepository.Save<CustomerImage>(new CustomerImage { id = id, Image = image });
+            }
+            else
+            {
+                ReportingRepository.Update<CustomerImage>(new CustomerImage { id = id, Image = image }, new { id = id });
+            }
+        }
+
         public void ChangeStatus(Guid id, StatusCustomer status)
         {
             Customer exist = CustomerRepository.GetById(id);

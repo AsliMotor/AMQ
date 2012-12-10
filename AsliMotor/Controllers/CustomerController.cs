@@ -11,7 +11,7 @@ using AsliMotor.Security.Models;
 
 namespace AsliMotor.Controllers
 {
-    [MyAuthorize(Roles=RoleName.ADMINISTRATOR_OWNER_ADMINSALES_CASHIER)]
+    [MyAuthorize(Roles=RoleName.OWNER_ADMINSALES_CASHIER)]
     public class CustomerController : Controller
     {
         ICustomerRepository _custRepo;
@@ -55,7 +55,7 @@ namespace AsliMotor.Controllers
             return Json(CustomerRepository.GetById(id), JsonRequestBehavior.AllowGet);
         }
 
-        [MyAuthorize(Roles=RoleName.ADMINISTRATOR_OWNER_ADMINSALES)]
+        [MyAuthorize(Roles=RoleName.OWNER_ADMINSALES)]
         [HttpPost]
         public JsonResult Customer(Customer cust)
         {
@@ -73,7 +73,32 @@ namespace AsliMotor.Controllers
             }
         }
 
-        [MyAuthorize(Roles = RoleName.ADMINISTRATOR_OWNER_ADMINSALES)]
+        [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES)]
+        [HttpPost]
+        public JsonResult UploadCustomerImage(Guid id, string image){
+            try
+            {
+                image = image.Substring("data:image/png;base64,".Length);
+                var buffer = Convert.FromBase64String(image);
+                CustomerService.UploadImage(id, buffer);
+                return Json(new { error = false }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { error = true, message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult Image(Guid id)
+        {
+            CustomerImage image = CustomerRepository.GetImage(id);
+            if (image != null)
+                return File(image.Image, "image/png");
+            return Json(null, JsonRequestBehavior.AllowGet);
+        }
+
+        [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES)]
         [HttpPut]
         public JsonResult UpdateCustomer(Customer cust)
         {

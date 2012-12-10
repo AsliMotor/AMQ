@@ -59,7 +59,7 @@ namespace AsliMotor.Controllers
             return Json(total, JsonRequestBehavior.AllowGet);
         }
 
-        [MyAuthorize(Roles = RoleName.ADMINISTRATOR_OWNER_ADMINPURCHASE)]
+        [MyAuthorize(Roles = RoleName.OWNER_ADMINPURCHASE)]
         [HttpPut]
         public JsonResult Product(Product product)
         {

@@ -18,4 +18,10 @@
             Black: "",
             White: "icon-white"
         };
+        HomeJS.components.ButtonSize = {
+            Mini: "btn-mini",
+            Small: "btn-small",
+            Large: "btn-large",
+            XLarge: "btn-xlarge"
+        };
     });

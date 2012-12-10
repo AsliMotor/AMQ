@@ -84,6 +84,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="when_create_administrastor_user.cs" />
     <Compile Include="customers\when_change_status_customer.cs" />
     <Compile Include="customers\when_update_customer.cs" />
     <Compile Include="customers\when_create_customer.cs" />

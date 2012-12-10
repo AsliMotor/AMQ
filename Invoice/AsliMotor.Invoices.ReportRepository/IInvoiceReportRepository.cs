@@ -9,6 +9,7 @@ namespace AsliMotor.Invoices.ReportRepository
     {
         IList<InvoiceListViewReport> SearchListViewReport(string branchid, int offset, string key);
         IList<InvoiceListViewReport> GetListViewReport(string branchid, int offset);
+        TotalInvoice GetTotalListView(string branchId);
         InvoiceHeaderReport GetHeader(Guid invoiceId, string branchId);
         IList<InvoiceItemReport> GetItems(Guid invoiceId, string branchid);
         InvoiceBookingReport GetInvoiceBookingReport(Guid invoiceId, string branchid);
@@ -16,6 +17,12 @@ namespace AsliMotor.Invoices.ReportRepository
         ReceiveUangMukaReport GetReceiveUangMukaReport(Guid invoiceId, string branchid);
         ReceiveAngsuranReport GetReceiveAngsuranReport(Guid rcvId);
         SuratPeringatanReport GetSuratPeringatanReport(Guid invId, string branchid);
-        TotalInvoice GetTotalListView(string branchId);
+        PernyataanKreditReport GetPernyataanKredit(Guid invId);
+        SuratPernyataanReport GetSuratPernyataan(Guid invId);
+        SuratPernyataanMampu GetSuratPernyataanMampu(Guid invId);
+        SuratKuasaReport GetSuratKuasa(Guid invId);
+        JBAngsuranReport GetJBAngsuran(Guid invId);
+        JBFidusiaReport GetJBFidusia(Guid invId);
+        SuratTandaTerima GetSuratTandaTerima(Guid invId);
     }
 }

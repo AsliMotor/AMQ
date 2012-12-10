@@ -10,5 +10,6 @@ namespace AsliMotor.Customers
         void Create(Customer cust);
         void Update(Customer cust);
         void ChangeStatus(Guid id, StatusCustomer status);
+        void UploadImage(Guid id, byte[] image);
     }
 }

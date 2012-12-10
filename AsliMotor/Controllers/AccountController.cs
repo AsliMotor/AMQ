@@ -37,7 +37,7 @@ namespace AsliMotor.Controllers
                     {
                         Users user = Membership.GetUser(model.UserName);
                         CompanyProfile cp = new CompanyProfile(this.HttpContext);
-                        cp.Role = 5;
+                        cp.RoleName = Roles.GetRolesForUser(user.Name)[0];
                         cp.OwnerId = user.OwnerId;
                         cp.BranchId = user.BranchId;
                         cp.UserName = user.Name;
@@ -57,7 +57,7 @@ namespace AsliMotor.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("", "User atau password anda salah.");
+                        ModelState.AddModelError("", "Username atau password anda salah.");
                     }
                 }
             }

@@ -54,7 +54,7 @@
                                         if (resp.error)
                                             HomeJS.components.ErrorAlert(resp.message);
                                         else
-                                            am.eventAggregator.trigger("showList");
+                                            am.eventAggregator.trigger('editCustomer', resp.data.id);
                                     }
                                 });
                             }

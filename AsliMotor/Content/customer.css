@@ -2,3 +2,24 @@
 {
     width:160px;
 }
+img.customer-photo
+{
+    width:256px;
+    height:192px;
+    padding: 4px;
+    background-color: white;
+    border: 1px solid #CCC;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    background-image:url('img/User-icon.png')
+}
+#upload-photo
+{
+    display:block;
+}
+.right-contain
+{
+    text-align:center;
+}

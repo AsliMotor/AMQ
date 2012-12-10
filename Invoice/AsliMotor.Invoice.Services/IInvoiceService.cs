@@ -14,6 +14,7 @@ namespace AsliMotor.Invoices.Services
         void Credit(CreditCommand cmd, string username);
         void UpdateToCredit(UpdateToCreditCommand cmd, string username);
         void Cancel(Guid id, string username);
+        void Pull(Guid id, string username);
         void ChangeUangMuka(Guid id, decimal uangmuka, string username);
         void BayarAngsuran(Guid id, DateTime date, string username);
         void UpdateUangAngsuran(Guid id, decimal angsuran, string username);

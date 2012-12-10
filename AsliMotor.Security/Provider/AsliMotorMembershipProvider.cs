@@ -120,7 +120,7 @@ namespace AsliMotor.Security.Provider
             user.ResetPasswordOnFirstLogin = false;
             user.FailedPasswordAnswerAttemptCount = 0;
             user.FailedPasswordAttemptCount = 0;
-            _reportingRepository.Save<Users>(user);
+            _reportingRepository.Update<Users>(user, new { Id = user.Id });
             return true;
         }
         public override bool ChangePasswordQuestionAndAnswer(string username, string password, string newPwdQuestion, string newPwdAnswer)
@@ -132,7 +132,7 @@ namespace AsliMotor.Security.Provider
             string passSalt = ASCIIEncoding.ASCII.GetString(user.PasswordSalt);
             user.PasswordQuestion = newPwdQuestion;
             user.PasswordAnswer = encodePassword(newPwdAnswer, passSalt);
-            _reportingRepository.Save<Users>(user);
+            _reportingRepository.Update<Users>(user, new { Id = user.Id });
             return true;
         }
 
@@ -221,7 +221,7 @@ namespace AsliMotor.Security.Provider
             _queryObjectMapper.Map<Users>("deleteByEmail", new string[] { "email" }, new object[] { user.Email});
             //pUsersCollection.Remove(Query.EQ("Email", user.Email), SafeMode.True);
             if (deleteAllRelatedData)
-                _reportingRepository.Delete<Users>(user);
+                _queryObjectMapper.Map<UserRole>("removeByUserId", new string[] { "userid" }, new object[] { user.Id });
             return true;
         }
 
@@ -286,7 +286,7 @@ namespace AsliMotor.Security.Provider
             if (userIsOnline)
             {
                 user.LastActivityDate = DateTime.Now;
-                _reportingRepository.Save<Users>(user);
+                _reportingRepository.Update<Users>(user, new { Id = user.Id });
             }
             MembershipUser memUser = user;
             return memUser;
@@ -301,7 +301,7 @@ namespace AsliMotor.Security.Provider
             if (userIsOnline)
             {
                 user.LastActivityDate = DateTime.Now;
-                _reportingRepository.Save<Users>(user);
+                _reportingRepository.Update<Users>(user, new { Id = user.Id });
             }
             MembershipUser memUser = user;
             return memUser;
@@ -312,7 +312,7 @@ namespace AsliMotor.Security.Provider
             Users user = getProviderUser(username, true);
             user.IsLockedOut = false;
             user.LastLockedOutDate = DateTime.Now;
-            _reportingRepository.Save<Users>(user);
+            _reportingRepository.Update<Users>(user, new { Id = user.Id });
             return true;
         }
 
@@ -372,7 +372,7 @@ namespace AsliMotor.Security.Provider
             user.FailedPasswordAnswerAttemptWindowStart = DateTime.Now;
             try
             {
-                _reportingRepository.Save<Users>(user);
+                _reportingRepository.Update<Users>(user, new { Id = user.Id });
             }
             catch
             {
@@ -537,7 +537,7 @@ namespace AsliMotor.Security.Provider
                         break;
                 }
             }
-            _reportingRepository.Save<Users>(user);
+            _reportingRepository.Update<Users>(user, new { Id = user.Id });
         }
 
         private bool validatePassword(string password, string dbpassword, string salt)

@@ -160,7 +160,8 @@ namespace AsliMotor.Invoices.Services
                     hariTelat = ts.Days;
                 }
                 decimal denda = (invSnap.AngsuranBulanan * decimal.Parse(System.Configuration.ConfigurationManager.AppSettings["denda"])) * hariTelat;
-                inv.BayarAngsuran();
+                long totalAngsuran = Repository.CountAngsuranBulanan(invSnap.id);
+                inv.BayarAngsuran(totalAngsuran);
                 Repository.Update(inv);
                 CreateAngsuranReceive(inv,date, denda);
                 PublishAngsuranPaid(inv, username);
@@ -239,6 +240,15 @@ namespace AsliMotor.Invoices.Services
             ProductService.ChangeStatus(invSnap.ProductId, invSnap.BranchId, StatusProduct.AKTIF, username);
         }
 
+        public void Pull(Guid id, string username)
+        {
+            Invoice inv = Repository.Get(id);
+            inv.Pull();
+            Repository.Update(inv);
+            InvoiceSnapshot invSnap = inv.CreateSnapshot();
+            ProductService.ChangeStatus(invSnap.ProductId, invSnap.BranchId, StatusProduct.AKTIF, username);
+        }
+
         #region create receive
 
         private void CreateAngsuranReceive(Invoice inv,DateTime date, decimal denda)
@@ -307,6 +317,10 @@ namespace AsliMotor.Invoices.Services
             {
                 if (Repository.CountAngsuranBulanan(invSnap.id) > 0)
                     throw new ApplicationException("Angsuran bulanan transaksi ini telah dibayar, sehingga tidak bisa mengubah data");
+            }
+            else if (invSnap.Status == (int)StatusInvoice.PAID)
+            {
+                throw new ApplicationException("Transaksi ini telah lunas, sehingga tidak bisa mengubah data");
             }
         }
 

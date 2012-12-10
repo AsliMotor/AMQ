@@ -56,6 +56,7 @@ div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, pre, a, abbr, acronym, add
     font-size: 100%;
     font-family: arial,helvetica,sans-serif;
     vertical-align: baseline;
+    color: white;
 }
 body .dialog {
     color: #BFB8E5;
@@ -150,6 +151,7 @@ html input.text, body input.text {
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     background-color: #C9C3E6;
+    color: black;
 }
  body input.text:focus
  {

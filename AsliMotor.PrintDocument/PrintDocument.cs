@@ -16,6 +16,33 @@ namespace AsliMotor.PrintDocuments
         ISupplierInvoiceRepository _siRepo;
         ISuratPeringatanAutoNumberGenerator _spGen;
         public IInvoiceReportRepository InvoiceReportRepository { get; set; }
+
+        #region Property
+        private const string ORGANIZATIONNAME = "OrganizationName";
+        private const string CUSTOMERNAME = "custname";
+        private const string NOKTP = "noktp";
+        private const string KTPDATE = "ktpdate";
+        private const string BILLINGADDRESS = "billingaddress";
+        private const string GENDER = "gender";
+        private const string BIRTHDAY = "birthday";
+        private const string CITY = "city";
+        private const string JOB = "job";
+        private const string MERK = "merk";
+        private const string NoBpkb = "nobpkb";
+        private const string NoMesin = "nomesin";
+        private const string NoPolisi = "nopolisi";
+        private const string NoRangka = "norangka";
+        private const string Warna = "warna";
+        private const string Note = "note";
+        private const string Tahun = "tahun";
+        private const string Type = "type";
+        private const string Total = "total";
+        private const string Terbilang = "terbilang";
+        private const string CurrentDate = "currentdate";
+        private const string SURATPERJANJIANNO = "suratperjanjianno";
+        private const string SURATPERJANJIANDATE = "suratperjanjiandate";
+        #endregion
+
         public PrintDocument()
         {
             _orgRepo = new OrganizationRepository();
@@ -31,20 +58,20 @@ namespace AsliMotor.PrintDocuments
             SupplierInvoice si = _siRepo.GetById(siId, branchId);
             template.SetAttribute("organization", org);
             template.SetAttribute("logodata", Convert.ToBase64String(logoOrg.Image));
-            template.SetAttribute("OrganizationName", org.OrganizationName);
-            template.SetAttribute("Merk", (si.Merk == "") ? "-": si.Merk);
-            template.SetAttribute("NoBpkb", (si.NoBpkb == "") ? "-": si.NoBpkb);
-            template.SetAttribute("NoMesin", (si.NoMesin == "") ? "-": si.NoMesin);
-            template.SetAttribute("NoPolisi", (si.NoPolisi == "") ? "-" : si.NoPolisi);
-            template.SetAttribute("NoRangka", (si.NoRangka == "") ? "-" : si.NoRangka);
-            template.SetAttribute("Note", (si.Note == "") ? "-" : si.Note);
-            template.SetAttribute("Tahun", (si.Tahun == "") ? "-" : si.Tahun);
+            template.SetAttribute(ORGANIZATIONNAME, org.OrganizationName);
+            template.SetAttribute(MERK, si.Merk.parseString());
+            template.SetAttribute(NoBpkb, si.NoBpkb.parseString());
+            template.SetAttribute(NoMesin, (si.NoMesin == "") ? "-": si.NoMesin);
+            template.SetAttribute(NoPolisi, (si.NoPolisi == "") ? "-" : si.NoPolisi);
+            template.SetAttribute(NoRangka, (si.NoRangka == "") ? "-" : si.NoRangka);
+            template.SetAttribute(Note, (si.Note == "") ? "-" : si.Note);
+            template.SetAttribute(Tahun, (si.Tahun == "") ? "-" : si.Tahun);
             template.SetAttribute("SupplierInvoiceNo", si.SupplierInvoiceNo);
-            template.SetAttribute("Type", si.Type);
+            template.SetAttribute(Type, si.Type);
             template.SetAttribute("SIDate", si.SupplierInvoiceDate.ToString("dd MMMM yyyy"));
-            template.SetAttribute("Total", si.HargaBeli.ToString("###,###,###,##0.#0"));
-            template.SetAttribute("terbilang", SayNumber.Terbilang(si.HargaBeli) + "Rupiah");
-            template.SetAttribute("currentDate", DateTime.Now.ToString("dd MMMM yyyy"));
+            template.SetAttribute(Total, si.HargaBeli.ToString("###,###,###,##0.#0"));
+            template.SetAttribute(Terbilang, SayNumber.Terbilang(si.HargaBeli) + "Rupiah");
+            template.SetAttribute(CurrentDate, DateTime.Now.ToString("dd MMMM yyyy"));
             return template.ToString();
         }
 
@@ -64,10 +91,30 @@ namespace AsliMotor.PrintDocuments
             Organization org = _orgRepo.GetOrganization(branchId);
             LogoOrganization logoOrg = _orgRepo.GetLogoOrganization(branchId);
             StringTemplate template = new StringTemplate(SuratPernyataanKreditTemplate.DEFAULT);
+            PernyataanKreditReport report = InvoiceReportRepository.GetPernyataanKredit(invId);
             template.SetAttribute("organization", org);
             template.SetAttribute("logodata", Convert.ToBase64String(logoOrg.Image));
             template.SetAttribute("OrganizationName", org.OrganizationName);
-            template.SetAttribute("currentDate", DateTime.Now.ToString("dd MMMM yyyy"));
+            template.SetAttribute(CurrentDate, DateTime.Now.ToString("dd MMMM yyyy"));
+            template.SetAttribute(CUSTOMERNAME, report.CustomerName.parseString());
+            template.SetAttribute(BILLINGADDRESS, report.BillingAddress.parseString());
+            template.SetAttribute(NOKTP, report.NoKtp.parseString());
+            template.SetAttribute(KTPDATE, report.KtpDate.parseStringDate());
+            template.SetAttribute(CITY, report.City.parseString());
+            template.SetAttribute(JOB, report.Job.parseString());
+            template.SetAttribute("angsuranbulanan", report.AngsuranBulanan.parsePrice());
+            template.SetAttribute("angsuranbulananterbilang", report.AngsuranBulanan.parseTerbilang());
+            template.SetAttribute("lamaangsuran", report.LamaAngsuran);
+            template.SetAttribute("lamaangsuranterbilang", SayNumber.Terbilang(decimal.Parse(report.LamaAngsuran.ToString())));
+            template.SetAttribute("uangmuka", report.UangMuka.parsePrice());
+            template.SetAttribute("uangmukaterbilang", report.UangMuka.parseTerbilang());
+            template.SetAttribute(MERK, report.Merk.parseString());
+            template.SetAttribute(Type, report.Type.parseString());
+            template.SetAttribute(Tahun, report.Tahun.parseString());
+            template.SetAttribute(Warna, report.Warna.parseString());
+            template.SetAttribute(NoMesin, report.NoMesin.parseString());
+            template.SetAttribute(NoPolisi, report.NoPolisi.parseString());
+            template.SetAttribute(NoRangka, report.NoRangka.parseString());
             return template.ToString();
         }
 
@@ -133,20 +180,19 @@ namespace AsliMotor.PrintDocuments
             template.SetAttribute("custName", inv.CustomerName);
             template.SetAttribute("terbilang", SayNumber.Terbilang(inv.Total) + " Rupiah");
             template.SetAttribute("total", inv.Total.ToString("###,###,###,##0.#0"));
-            template.SetAttribute("merk", inv.Merk);
-            template.SetAttribute("type", inv.Type);
-            template.SetAttribute("warna", inv.Warna);
-            template.SetAttribute("norangka", inv.NoRangka);
-            template.SetAttribute("nomesin", inv.NoMesin);
-            template.SetAttribute("norangka", inv.NoRangka);
-            template.SetAttribute("nopolisi", inv.NoPolisi);
-            template.SetAttribute("NoSuratPerjanjian", inv.NoSuratPerjanjian);
+            template.SetAttribute("merk", inv.Merk.parseString());
+            template.SetAttribute("type", inv.Type.parseString());
+            template.SetAttribute("warna", inv.Warna.parseString());
+            template.SetAttribute("norangka", inv.NoRangka.parseString());
+            template.SetAttribute("nomesin", inv.NoMesin.parseString());
+            template.SetAttribute("norangka", inv.NoRangka.parseString());
+            template.SetAttribute("nopolisi", inv.NoPolisi.parseString());
+            template.SetAttribute("NoSuratPerjanjian", inv.NoSuratPerjanjian.parseString());
             template.SetAttribute("SuratPerjanjianDate", inv.SuratPerjanjianDate.ToString("dd MMMM yyyy"));
             template.SetAttribute("LamaAngsuran", inv.LamaAngsuran);
             template.SetAttribute("AngsuranBulanan", inv.AngsuranBulanan.ToString("###,###,###,##0.#0"));
             return template.ToString();
         }
-
 
         public string PrintKwitansiAngsuranBulanan(Guid rcvId, string branchid)
         {
@@ -170,7 +216,6 @@ namespace AsliMotor.PrintDocuments
             return template.ToString();
         }
 
-
         public string PrintSuratPeringatan(Guid invId, string branchid)
         {
             SuratPeringatanReport spReport = InvoiceReportRepository.GetSuratPeringatanReport(invId, branchid);
@@ -184,6 +229,7 @@ namespace AsliMotor.PrintDocuments
             {
                 DateTime dueDate = spReport.DueDate.AddMonths(i);
                 if (dueDate >= currDate) break;
+                if ((i + 1) + spReport.AngsuranKe > spReport.LamaAngsuran) break;
                 TimeSpan ts = new TimeSpan();
                 ts = currDate.Subtract(dueDate);
                 decimal denda = (spReport.AngsuranBulanan * decimal.Parse(System.Configuration.ConfigurationManager.AppSettings["denda"])) * ts.Days;
@@ -215,6 +261,208 @@ namespace AsliMotor.PrintDocuments
             template.SetAttribute("NoMesin", spReport.NoMesin == string.Empty ? "-" : spReport.NoMesin);
             template.SetAttribute("NetTotal", items.Sum(i => i.Total).ToString("###,###,###,##0.#0"));
             return template.ToString();
+        }
+
+        public string PrintSuratPernyataan(Guid invId, string branchid)
+        {
+            Organization org = _orgRepo.GetOrganization(branchid);
+            LogoOrganization logoOrg = _orgRepo.GetLogoOrganization(branchid);
+            StringTemplate template = new StringTemplate(SuratPernyataanTemplate.DEFAULT);
+            SuratPernyataanReport report = InvoiceReportRepository.GetSuratPernyataan(invId);
+            template.SetAttribute("organization", org);
+            template.SetAttribute("logodata", Convert.ToBase64String(logoOrg.Image));
+            template.SetAttribute("OrganizationName", org.OrganizationName);
+            template.SetAttribute(CurrentDate, DateTime.Now.ToString("dd MMMM yyyy"));
+            template.SetAttribute(CUSTOMERNAME, report.CustomerName.parseString());
+            template.SetAttribute(BILLINGADDRESS, report.BillingAddress.parseString());
+            template.SetAttribute(CITY, report.City.parseString());
+            template.SetAttribute(MERK, report.Merk.parseString());
+            template.SetAttribute(Type, report.Type.parseString());
+            template.SetAttribute(NoMesin, report.NoMesin.parseString());
+            template.SetAttribute(NoPolisi, report.NoPolisi.parseString());
+            template.SetAttribute(NoRangka, report.NoRangka.parseString());
+            template.SetAttribute(GENDER, report.Gender.parseString());
+            template.SetAttribute(BIRTHDAY, report.Birthday.parseStringDate());
+            template.SetAttribute(SURATPERJANJIANNO, report.NoSuratPerjanjian.parseString());
+            template.SetAttribute(SURATPERJANJIANDATE, report.SuratPerjanjianDate.parseStringDate());
+            return template.ToString();
+        }
+
+
+        public string PrintSuratPernyataanMampu(Guid invId, string branchid)
+        {
+            Organization org = _orgRepo.GetOrganization(branchid);
+            LogoOrganization logoOrg = _orgRepo.GetLogoOrganization(branchid);
+            StringTemplate template = new StringTemplate(SuratPernyataanMampuTemplate.DEFAULT);
+            SuratPernyataanMampu report = InvoiceReportRepository.GetSuratPernyataanMampu(invId);
+            template.SetAttribute("organization", org);
+            template.SetAttribute("logodata", Convert.ToBase64String(logoOrg.Image));
+            template.SetAttribute("OrganizationName", org.OrganizationName);
+            template.SetAttribute(CurrentDate, DateTime.Now.ToString("dd MMMM yyyy"));
+            template.SetAttribute(CUSTOMERNAME, report.CustomerName.parseString());
+            template.SetAttribute(BILLINGADDRESS, report.BillingAddress.parseString());
+            template.SetAttribute(JOB, report.Job.parseString());
+            template.SetAttribute(CITY, report.City.parseString());
+            template.SetAttribute(MERK, report.Merk.parseString());
+            template.SetAttribute(Type, report.Type.parseString());
+            template.SetAttribute(NoMesin, report.NoMesin.parseString());
+            template.SetAttribute(NoPolisi, report.NoPolisi.parseString());
+            template.SetAttribute(NoRangka, report.NoRangka.parseString());
+            template.SetAttribute(GENDER, report.Gender.parseString());
+            template.SetAttribute(BIRTHDAY, report.Birthday.parseStringDate());
+            template.SetAttribute(Warna, report.Warna.parseString());
+            template.SetAttribute(Tahun, report.Tahun.parseString());
+            return template.ToString();
+        }
+
+        public string PrintSuratKuasa(Guid invId, string branchid)
+        {
+            Organization org = _orgRepo.GetOrganization(branchid);
+            LogoOrganization logoOrg = _orgRepo.GetLogoOrganization(branchid);
+            StringTemplate template = new StringTemplate(SuratKuasaTemplate.DEFAULT);
+            SuratKuasaReport report = InvoiceReportRepository.GetSuratKuasa(invId);
+            template.SetAttribute("organization", org);
+            template.SetAttribute("logodata", Convert.ToBase64String(logoOrg.Image));
+            template.SetAttribute("OrganizationName", org.OrganizationName);
+            template.SetAttribute(CurrentDate, DateTime.Now.ToString("dd MMMM yyyy"));
+            template.SetAttribute(CUSTOMERNAME, report.CustomerName.parseString());
+            template.SetAttribute(BILLINGADDRESS, report.BillingAddress.parseString());
+            template.SetAttribute(JOB, report.Job.parseString());
+            template.SetAttribute(CITY, report.City.parseString());
+            template.SetAttribute(MERK, report.Merk.parseString());
+            template.SetAttribute(Type, report.Type.parseString());
+            template.SetAttribute(NoMesin, report.NoMesin.parseString());
+            template.SetAttribute(NoPolisi, report.NoPolisi.parseString());
+            template.SetAttribute(NoRangka, report.NoRangka.parseString());
+            template.SetAttribute(GENDER, report.Gender.parseString());
+            template.SetAttribute(BIRTHDAY, report.Birthday.parseStringDate());
+            template.SetAttribute(Warna, report.Warna.parseString());
+            template.SetAttribute(Tahun, report.Tahun.parseString());
+            template.SetAttribute(NOKTP, report.NoKtp.parseString());
+            template.SetAttribute(KTPDATE, report.KtpDate.parseStringDate());
+            template.SetAttribute(SURATPERJANJIANNO, report.NoSuratPerjanjian.parseString());
+            template.SetAttribute(SURATPERJANJIANDATE, report.SuratPerjanjianDate.parseStringDate());
+            template.SetAttribute("ktppublisher", report.KtpPublisher.parseString());
+            template.SetAttribute("ddddmmmmyyyy", DateTime.Now.ToString("dddd dd MMMM yyyy"));
+            return template.ToString();
+        }
+
+        public string PrintJBAngsuran(Guid invId, string branchid)
+        {
+            Organization org = _orgRepo.GetOrganization(branchid);
+            LogoOrganization logoOrg = _orgRepo.GetLogoOrganization(branchid);
+            StringTemplate template = new StringTemplate(JSAngsuranTemplate.DEFAULT);
+            JBAngsuranReport report = InvoiceReportRepository.GetJBAngsuran(invId);
+            template.SetAttribute("organization", org);
+            template.SetAttribute("logodata", Convert.ToBase64String(logoOrg.Image));
+            template.SetAttribute("OrganizationName", org.OrganizationName);
+            template.SetAttribute(CurrentDate, DateTime.Now.ToString("dd MMMM yyyy"));
+            template.SetAttribute(CUSTOMERNAME, report.CustomerName.parseString());
+            template.SetAttribute(BILLINGADDRESS, report.BillingAddress.parseString());
+            template.SetAttribute(JOB, report.Job.parseString());
+            template.SetAttribute(CITY, report.City.parseString());
+            template.SetAttribute(MERK, report.Merk.parseString());
+            template.SetAttribute(Type, report.Type.parseString());
+            template.SetAttribute(NoMesin, report.NoMesin.parseString());
+            template.SetAttribute(NoPolisi, report.NoPolisi.parseString());
+            template.SetAttribute(NoRangka, report.NoRangka.parseString());
+            template.SetAttribute(GENDER, report.Gender.parseString());
+            template.SetAttribute(BIRTHDAY, report.Birthday.parseStringDate());
+            template.SetAttribute(Warna, report.Warna.parseString());
+            template.SetAttribute(Tahun, report.Tahun.parseString());
+            template.SetAttribute(NOKTP, report.NoKtp.parseString());
+            template.SetAttribute(KTPDATE, report.KtpDate.parseStringDate());
+            template.SetAttribute(SURATPERJANJIANNO, report.NoSuratPerjanjian.parseString());
+            template.SetAttribute(SURATPERJANJIANDATE, report.SuratPerjanjianDate.parseStringDate());
+            template.SetAttribute("ktppublisher", report.KtpPublisher.parseString());
+            template.SetAttribute("price", report.Price.parsePrice());
+            template.SetAttribute("uangmuka", (report.UangMuka + report.Booking).parsePrice());
+            template.SetAttribute("sisahutang", (report.Price - (report.UangMuka + report.Booking)).parsePrice());
+            template.SetAttribute("sisahutangterbilang", (report.Price - (report.UangMuka + report.Booking)).parseTerbilang());
+            template.SetAttribute("lamaangsuran", report.LamaAngsuran);
+            template.SetAttribute("lamaangsuranterbilang", SayNumber.Terbilang(report.LamaAngsuran));
+            template.SetAttribute("angsuranbulanan", report.AngsuranBulanan.parsePrice());
+            template.SetAttribute("angsuranbulananterbilang", report.AngsuranBulanan.parseTerbilang());
+            return template.ToString();
+        }
+
+        public string PrintJBFidusia(Guid invId, string branchid)
+        {
+            Organization org = _orgRepo.GetOrganization(branchid);
+            LogoOrganization logoOrg = _orgRepo.GetLogoOrganization(branchid);
+            StringTemplate template = new StringTemplate(JBFidusiaTemplate.DEFAULT);
+            JBFidusiaReport report = InvoiceReportRepository.GetJBFidusia(invId);
+            template.SetAttribute("organization", org);
+            template.SetAttribute("logodata", Convert.ToBase64String(logoOrg.Image));
+            template.SetAttribute("OrganizationName", org.OrganizationName);
+            template.SetAttribute(CurrentDate, DateTime.Now.ToString("dd MMMM yyyy"));
+            template.SetAttribute(CUSTOMERNAME, report.CustomerName.parseString());
+            template.SetAttribute(BILLINGADDRESS, report.BillingAddress.parseString());
+            template.SetAttribute(JOB, report.Job.parseString());
+            template.SetAttribute(CITY, report.City.parseString());
+            template.SetAttribute(MERK, report.Merk.parseString());
+            template.SetAttribute(Type, report.Type.parseString());
+            template.SetAttribute(NoMesin, report.NoMesin.parseString());
+            template.SetAttribute(NoPolisi, report.NoPolisi.parseString());
+            template.SetAttribute(NoRangka, report.NoRangka.parseString());
+            template.SetAttribute(GENDER, report.Gender.parseString());
+            template.SetAttribute(BIRTHDAY, report.Birthday.parseStringDate());
+            template.SetAttribute(Warna, report.Warna.parseString());
+            template.SetAttribute(Tahun, report.Tahun.parseString());
+            template.SetAttribute(NOKTP, report.NoKtp.parseString());
+            template.SetAttribute(KTPDATE, report.KtpDate.parseStringDate());
+            template.SetAttribute(SURATPERJANJIANNO, report.NoSuratPerjanjian.parseString());
+            template.SetAttribute(SURATPERJANJIANDATE, report.SuratPerjanjianDate.parseStringDate());
+            template.SetAttribute("ktppublisher", report.KtpPublisher.parseString());
+            template.SetAttribute("sisahutang", (report.Price - (report.UangMuka + report.Booking)).parsePrice());
+            template.SetAttribute("sisahutangterbilang", (report.Price - (report.UangMuka + report.Booking)).parseTerbilang());
+            template.SetAttribute("lamaangsuran", report.LamaAngsuran);
+            template.SetAttribute("lamaangsuranterbilang", SayNumber.Terbilang(report.LamaAngsuran));
+            return template.ToString();
+        }
+
+        public string PrintTandaTerima(Guid invId, string branchid)
+        {
+            Organization org = _orgRepo.GetOrganization(branchid);
+            LogoOrganization logoOrg = _orgRepo.GetLogoOrganization(branchid);
+            StringTemplate template = new StringTemplate(TandaTerimaTemplate.DEFAULT);
+            JBFidusiaReport report = InvoiceReportRepository.GetJBFidusia(invId);
+            template.SetAttribute("organization", org);
+            template.SetAttribute("logodata", Convert.ToBase64String(logoOrg.Image));
+            template.SetAttribute("OrganizationName", org.OrganizationName);
+            template.SetAttribute(CurrentDate, DateTime.Now.ToString("dd MMMM yyyy"));
+            template.SetAttribute(CUSTOMERNAME, report.CustomerName.parseString());
+            template.SetAttribute(BILLINGADDRESS, report.BillingAddress.parseString());
+            template.SetAttribute(JOB, report.Job.parseString());
+            template.SetAttribute(MERK, report.Merk.parseString());
+            template.SetAttribute(Type, report.Type.parseString());
+            template.SetAttribute(NoMesin, report.NoMesin.parseString());
+            template.SetAttribute(NoPolisi, report.NoPolisi.parseString());
+            template.SetAttribute(NoRangka, report.NoRangka.parseString());
+            template.SetAttribute(Warna, report.Warna.parseString());
+            template.SetAttribute(Tahun, report.Tahun.parseString());
+            template.SetAttribute(NOKTP, report.NoKtp.parseString());
+            return template.ToString();
+        }
+    }
+
+    public static class ObjectExtension
+    {
+        public static string parseString(this string text)
+        {
+            return (text == "") ? "-" : text;
+        }
+        public static string parseStringDate(this DateTime date)
+        {
+            return date.ToString("dd MMMM yyyy");
+        }
+        public static string parsePrice(this decimal price)
+        {
+            return price.ToString("###,###,###,##0.#0");
+        }
+        public static string parseTerbilang(this decimal price)
+        {
+            return SayNumber.Terbilang(price) + " Rupiah";
         }
     }
 }

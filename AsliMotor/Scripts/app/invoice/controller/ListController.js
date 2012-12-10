@@ -109,6 +109,8 @@
                                 return "Lunas";
                             else if (data == 3)
                                 return "Batal";
+                            else if (data == 4)
+                                return "Sudah di Tarik";
                         }
                     }, {
                         dataIndex: "Outstanding",

@@ -9,14 +9,30 @@
     '../../../libs/homejs/inputfield/datefield',
     '../../../libs/homejs/inputfield/textfield',
     '../../../libs/homejs/inputfield/textarea',
-    '../../../libs/homejs/radiobutton'
+    '../../../libs/homejs/radiobutton',
+    '/scripts/libs/homejs/WebCamera.js'
 ], function ($, _, Backbone, ns, am) {
     ns.define("am.customer.view");
     am.customer.view.EditCustomer = Backbone.View.extend({
         className: "edit-customer",
         initialize: function () {
+            this.model.on('change', this.imageView, this);
+        },
+        imageView: function () {
+            if (this.model.get("id")) {
+                var html = "<img src='/customer/image/" + this.model.get("id") + "' class='customer-photo'/>";
+                html += "<a href='#' id='upload-photo'>Unggah Foto</a>";
+                $(".right-contain", this.$el).html(html);
+            }
         },
         render: function () {
+            var html = "";
+            html += "<div><div class='span8'></div>";
+            html += "<div class='span4 right-contain'>";
+            html += "</div>";
+            html += "</div>";
+            this.$el.html(html);
+            this.imageView();
             var namaView = new HomeJS.components.TextField({
                 model: this.model,
                 title: 'Nama Pelanggan',
@@ -118,8 +134,22 @@
                 items: [namaView, alamatView, cityView, regionView, ktpNoView, ktpPublisherView, ktpDateView, birthdayView, emailView, jobView, phoneView, genderView]
             });
 
-            this.$el.html(formPanel.render().el);
+            $(".span8", this.$el).html(formPanel.render().el);
             return this;
+        },
+        events: {
+            'click #upload-photo': 'uploadPhoto'
+        },
+        uploadPhoto: function () {
+            var webCamera = new HomeJS.components.WebCamera({
+                title: 'Web Camera',
+                url: '/customer/UploadCustomerImage',
+                data: this.model.get('id'),
+                success: function () {
+                    window.location.reload();
+                }
+            });
+            webCamera.render().show();
         }
     });
 

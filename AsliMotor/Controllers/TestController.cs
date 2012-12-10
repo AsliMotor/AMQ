@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Drawing;
+using System.IO;
 
 namespace AsliMotor.Controllers
 {
@@ -75,6 +77,39 @@ namespace AsliMotor.Controllers
         public ActionResult PrintSuratPeringatan()
         {
             return View();
+        }
+        public ActionResult PrintSuratPernyattanMampu()
+        {
+            return View();
+        }
+        public ActionResult PrintSuratKuasa()
+        {
+            return View();
+        }
+        public ActionResult PrintJBAngsuran()
+        {
+            return View();
+        }
+        public ActionResult PrintJBFidusia()
+        {
+            return View();
+        }
+        public ActionResult PrintSuratTandaTerima()
+        {
+            return View();
+        }
+        public ActionResult WebCam()
+        {
+            return View();
+        }
+        public JsonResult UploadCustomerImage(string image)
+        {
+            image = image.Substring("data:image/png;base64,".Length);
+            var buffer = Convert.FromBase64String(image);
+            // TODO: I am saving the image on the hard disk but
+            // you could do whatever processing you want with it
+            System.IO.File.WriteAllBytes(Server.MapPath("~/capture.png"), buffer);
+            return Json(new { success = true },JsonRequestBehavior.AllowGet);
         }
     }
 }

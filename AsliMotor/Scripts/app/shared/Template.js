@@ -35,7 +35,7 @@ define([
                                     "</a>" +
                                 "</li>";
 
-            if (userRole && RoleName.ADMINISTRATOR_OWNER_ADMINSALES_CASHIER.indexOf(userRole) > 0) {
+            if (userRole && RoleName.OWNER_ADMINSALES_CASHIER.indexOf(userRole) >= 0) {
                 sidebarHtml += "<li id='invoice'>" +
 				                "<a href='/invoice'>" +
                                     "<i class='icon icon-bookmark'></i>" +
@@ -44,7 +44,7 @@ define([
 			                "</li>";
             }
 
-            if (userRole && RoleName.ADMINISTRATOR_OWNER_ADMINPURCHASE_CASHIER.indexOf(userRole) > 0) {
+            if (userRole && RoleName.OWNER_ADMINPURCHASE_CASHIER.indexOf(userRole) >= 0) {
                 sidebarHtml += "<li id='purchase'>" +
                                 "<a href='/purchase'>" +
                                     "<i class='icon icon-tint'></i>" +
@@ -53,7 +53,7 @@ define([
                             "</li>";
             }
 
-            if (userRole && RoleName.ADMINISTRATOR_OWNER.indexOf(userRole) > 0) {
+            if (userRole && RoleName.OWNER.indexOf(userRole) >= 0) {
                 sidebarHtml += "<li class='submenu' id='report'>" +
                                 "<a href='#'>" +
                                     "<i class='icon icon-signal'></i>" +
@@ -68,7 +68,7 @@ define([
                             "</li>";
             }
 
-            if (userRole && RoleName.ADMINISTRATOR_OWNER_ADMINPURCHASE.indexOf(userRole) < 0) {
+            if (userRole && RoleName.OWNER_ADMINSALES_CASHIER.indexOf(userRole) >= 0) {
                 sidebarHtml += "<li id='customer'>" +
                                 "<a href='/customer'>" +
                                     "<i class='icon icon-user'></i>" +
@@ -76,14 +76,24 @@ define([
                                 "</a>" +
                             "</li>";
             }
-
-            sidebarHtml += "<li id='product'>" +
+            if (userRole && RoleName.ADMINISTRATOR.indexOf(userRole) < 0) {
+                sidebarHtml += "<li id='product'>" +
                                 "<a href='/product'>" +
                                     "<i class='icon icon-file'></i>" +
                                     "<span>Kendaraan</span>" +
                                 "</a>" +
-                            "</li>" +
-		                "</ul>";
+                            "</li>";
+            }
+            if (userRole && RoleName.ADMINISTRATOR.indexOf(userRole) >= 0) {
+                sidebarHtml += "<li id='manageuser'>" +
+                                "<a href='/manageuser'>" +
+                                    "<i class='icon icon-user'></i>" +
+                                    "<span>Manage User</span>" +
+                                "</a>" +
+                            "</li>";
+            }
+            sidebarHtml += "</ul>";
+
             this.$el.html(sidebarHtml);
             $("#" + this.options.activeElement, this.$el).addClass('active');
             if (this.options.activeElement == "report")
@@ -94,7 +104,7 @@ define([
             'click #report': 'reportClicked'
         },
         reportClicked: function () {
-            if ($("#report", this.$el).attr('class').indexOf('shown') == -1) {
+            if ($("#report", this.$el).length > 0 && $("#report", this.$el).attr('class').indexOf('shown') == -1) {
                 $("#report ul", this.$el).slideDown();
                 $("#report", this.$el).addClass('shown');
             }

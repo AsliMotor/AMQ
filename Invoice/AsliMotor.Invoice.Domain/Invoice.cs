@@ -55,10 +55,15 @@ namespace AsliMotor.Invoices.Domain
             _snapshot.Outstanding = (_snapshot.Price + _snapshot.TotalKredit) - (p.UangMuka + p.UangTandaJadi);
         }
 
-        public void BayarAngsuran()
+        public void BayarAngsuran(long totalAngsuran)
         {
             _snapshot.DueDate = _snapshot.DueDate.AddDays(30);
             _snapshot.Outstanding -= _snapshot.AngsuranBulanan;
+            if (totalAngsuran == _snapshot.LamaAngsuran - 1)
+            {
+                _snapshot.Outstanding = 0;
+                _snapshot.Status = (int)StatusInvoice.PAID;
+            }
         }
 
         public void ChangeUangMuka(decimal uangmuka, decimal uangtandajadi)
@@ -111,6 +116,15 @@ namespace AsliMotor.Invoices.Domain
             }
         }
 
+        public void Pull()
+        {
+            if (_snapshot.Status == (int)StatusInvoice.CREDIT)
+            {
+                _snapshot.Status = (int)StatusInvoice.PULL;
+                _snapshot.Outstanding = 0;
+            }
+        }
+
         public InvoiceSnapshot CreateSnapshot()
         {
             return _snapshot;
@@ -131,7 +145,7 @@ namespace AsliMotor.Invoices.Domain
             int totalTahunAngsuran = lamaAngsuran / 12;
             decimal totalbunga = (totalyangdikredit * (sukuBunga / 100)) * totalTahunAngsuran;
             //decimal total = (status == StatusInvoice.CREDIT) ? (totalyangdikredit + totalbunga) : 0;
-            return Math.Round(totalbunga);
+            return Math.Round(totalbunga + BiayaAdministration(lamaAngsuran));
         }
 
         private decimal BiayaAdministration(int lamaAngsuran)

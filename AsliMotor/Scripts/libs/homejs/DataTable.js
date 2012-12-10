@@ -146,7 +146,13 @@
                     if (cell.onrender) {
                         value = cell.onrender(value);
                     }
-                    this.$el.append("<td style='" + styles + "'>" + value + "</td>");
+                    value = (value == null) ? '-' : value;
+                    value = typeof value == "number" ? value.toCurrency() : value;
+                    if (typeof value == "object") {
+                        var html = $("<td>");
+                        this.$el.append(html.append(value, this.model));
+                    } else
+                        this.$el.append("<td style='" + styles + "'>" + value + "</td>");
                 }
             },
             events: {
