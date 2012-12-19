@@ -62,6 +62,13 @@ namespace AsliMotor.Receives.AutoNumberGenerator
                     }
             }
         }
+        public ReceiveAutoNumberConfig GetReceiveAutoNumberConfig(string id)
+        {
+            ReceiveAutoNumberConfig cfg = QueryObjectMapper.Map<ReceiveAutoNumberConfig>("findByIdAndBranchId",
+                new string[] { "id", "branchid" },
+                new object[] { id.AutoNumberConfigId(), id }).FirstOrDefault();
+            return cfg;
+        }
         private ReceiveAutoNumberConfig GetReceiveAutoNumberConfig()
         {
             ReceiveAutoNumberConfig cfg = QueryObjectMapper.Map<ReceiveAutoNumberConfig>("findByIdAndBranchId", 

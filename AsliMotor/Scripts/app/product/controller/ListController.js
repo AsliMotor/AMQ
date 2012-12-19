@@ -20,7 +20,7 @@
             var listProductView = new HomeJS.components.List({
                 header: {
                     title: "Kendaraan",
-                    description: "Daftar Kendaraan"
+                    description: "Data Kendaraan"
                 },
                 toolbar: [{
                     type: HomeJS.components.InputSearchField,

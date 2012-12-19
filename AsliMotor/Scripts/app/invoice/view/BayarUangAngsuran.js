@@ -32,6 +32,29 @@
                 dataIndex: "AngsuranBulanan",
                 readonly: true
             });
+            var angsuranPlusDendaView = new HomeJS.components.TextField({
+                model: this.model,
+                title: 'Angsuran Bulanan + Denda',
+                type: 'price',
+                placeholder: '',
+                dataIndex: "AngsuranBulanan",
+                readonly: true,
+                onshow: function (m) {
+                    if (m.get('DueDate') && m.get('DueDate').toDateTime() < new Date())
+                        return true;
+                    return false;
+                },
+                onrendervalue: function (m) {
+                    var currDate = new Date();
+                    var date = new Date((currDate.getMonth() + 1) + "-" + currDate.getDate() + "-" + currDate.getFullYear());
+                    var date2 = m.get("DueDate").toDateTime();
+                    var timeDiff = Math.abs(date2.getTime() - date.getTime());
+                    var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+                    var angsuranBulanan = parseInt(m.get("AngsuranBulanan"));
+                    var denda = (angsuranBulanan * 0.005) * diffDays;
+                    return angsuranBulanan + denda;
+                }
+            });
             var yesButtonView = new HomeJS.components.Button({
                 title: "Simpan",
                 model: this.model,
@@ -65,11 +88,11 @@
 
             var uangMukaFormPanel = new HomeJS.components.FormPanel({
                 formLayout: HomeJS.components.FormLayout.VERTICAL,
-                items: [paymentDateView, uangMukaView, buttonFormPanel]
+                items: [paymentDateView, uangMukaView, angsuranPlusDendaView, buttonFormPanel]
             });
 
             var changeUangMukaDialog = new HomeJS.components.ModalDialog({
-                title: 'Ubah Uang Muka',
+                title: 'Bayar Angsuran',
                 model: this.model,
                 view: uangMukaFormPanel
             });

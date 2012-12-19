@@ -46,8 +46,18 @@ namespace AsliMotor.Controllers
         public JsonResult PiutangTelahJatuhTempo(int offset)
         {
             CompanyProfile cp = new CompanyProfile(this.HttpContext);
+            IList<PiutangTelahJatuhTempo> results = new List<PiutangTelahJatuhTempo>();
             return Json(DashboardRepository.GetPiutangTelahJatuhTempo(cp.BranchId, offset), JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
+        public JsonResult TotalPiutangTelahJatuhTempo()
+        {
+            CompanyProfile cp = new CompanyProfile(this.HttpContext);
+            TotalPiutangTelahJatuhTempo total = DashboardRepository.GetTotalPiutangTelahJatuhTempo(cp.BranchId);
+            return Json(total, JsonRequestBehavior.AllowGet);
+        }
+
         #region Private
 
         private ISalesReportRepository SalesReportRepository

@@ -230,7 +230,7 @@
                     }, {
                         title: "Bayar Angsuran",
                         tooltip: "Bayar Uang Angsuran",
-                        iconClass: 'icon-print',
+                        iconClass: 'icon-ok-circle',
                         id: "bayarUangAngsuran",
                         renderer: function () {
                             if (headerModel.get("Status") == 1)
@@ -269,7 +269,7 @@
                     }, {
                         title: "Tarik Kendaraan",
                         tooltip: "Tarik Kendaraan",
-                        iconClass: 'icon-lock',
+                        iconClass: 'icon-ban-circle',
                         id: "btn-cancel",
                         renderer: function () {
                             if (headerModel.get("Status") == 1 && headerModel.get("DueDate") && headerModel.get("DueDate").toDateTime() < getCurrentDateTime())

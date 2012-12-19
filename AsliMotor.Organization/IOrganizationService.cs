@@ -9,5 +9,6 @@ namespace AsliMotor.Organizations
     public interface IOrganizationService
     {
         void SaveLogo(Image img, string branchid);
+        void Update(Organization org);
     }
 }

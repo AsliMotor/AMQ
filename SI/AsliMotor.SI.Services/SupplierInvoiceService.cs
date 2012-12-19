@@ -30,9 +30,9 @@ namespace AsliMotor.SI.Services
         public void Create(SupplierInvoice si, string username)
         {
             si.TransactionDate = DateTime.Now;
-            si.SupplierInvoiceNo = _autoNumberGenerator.GenerateSINumber(si.TransactionDate, si.BranchId);
             si.SupplierInvoiceDate = si.SupplierInvoiceDate.UtcDate();
             Product productCreated = CreateProduct(si, username);
+            si.SupplierInvoiceNo = _autoNumberGenerator.GenerateSINumber(si.TransactionDate, si.BranchId);
             try
             {
                 ReportingRepository.Save<SupplierInvoice>(si);
@@ -75,6 +75,7 @@ namespace AsliMotor.SI.Services
             UpdateProduct(siUpdated, username);
             ReportingRepository.Update<SupplierInvoice>(siUpdated, new { Id = si.id });
             PublishSupplierInvoiceChanged(siUpdated, username);
+            PublishSupplierInvoicePriceChanged(siUpdated, exist, username);
         }
 
         private Product CreateProduct(SupplierInvoice si, string username)
@@ -130,6 +131,20 @@ namespace AsliMotor.SI.Services
             if (_bus != null)
             {
                 _bus.Publish(new SupplierInvoiceCreated { Payload = si, UserName = username });
+            }
+        }
+        private void PublishSupplierInvoicePriceChanged(SupplierInvoice siUpdated, SupplierInvoice exist, string username)
+        {
+            if (_bus != null)
+            {
+                if (siUpdated.HargaBeli != exist.HargaBeli || siUpdated.Charge != exist.Charge)
+                    _bus.Publish(new PriceSupplierInvoiceChanged
+                    {
+                        Payload = siUpdated,
+                        UserName = username,
+                        BeforeCharge = exist.Charge,
+                        BeforeHargaBeli = exist.HargaBeli
+                    });
             }
         }
     }

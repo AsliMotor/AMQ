@@ -30,7 +30,7 @@
                 return value.length > 0 ? { isValid: true} : { isValid: false, message: "Merk kendaraan harus diisi" };
             };
             this.validators.Type = function (value) {
-                return value.length > 0 ? { isValid: true} : { isValid: false, message: "Tipe kendaraan harus diisi" };
+                return value.length > 0 ? { isValid: true} : { isValid: false, message: "Type kendaraan harus diisi" };
             };
             this.validators.NoPolisi = function (value) {
                 return value.length > 0 ? { isValid: true} : { isValid: false, message: "Nomor Polisi harus diisi" };

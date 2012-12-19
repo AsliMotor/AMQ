@@ -61,6 +61,7 @@
     <Compile Include="models\RateProductSalesReport.cs" />
     <Compile Include="models\PiutangTelahJatuhTempo.cs" />
     <Compile Include="models\SalesReport.cs" />
+    <Compile Include="models\TotalPiutangTelahJatuhTempo.cs" />
     <Compile Include="models\YearlySalesReport.cs" />
     <Compile Include="models\MonthlySalesReport.cs" />
     <Compile Include="models\DailySalesReport.cs" />

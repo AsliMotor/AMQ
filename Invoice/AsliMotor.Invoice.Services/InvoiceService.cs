@@ -161,10 +161,14 @@ namespace AsliMotor.Invoices.Services
                 }
                 decimal denda = (invSnap.AngsuranBulanan * decimal.Parse(System.Configuration.ConfigurationManager.AppSettings["denda"])) * hariTelat;
                 long totalAngsuran = Repository.CountAngsuranBulanan(invSnap.id);
-                inv.BayarAngsuran(totalAngsuran);
+                StatusInvoice status = inv.BayarAngsuran(totalAngsuran);
                 Repository.Update(inv);
                 CreateAngsuranReceive(inv,date, denda);
                 PublishAngsuranPaid(inv, username);
+                if (status == StatusInvoice.PAID)
+                {
+                    ProductService.ChangeStatus(invSnap.ProductId , invSnap.BranchId, StatusProduct.TERJUAL_LUNAS, username);
+                }
             }
         }
 
@@ -238,6 +242,7 @@ namespace AsliMotor.Invoices.Services
             Repository.Update(inv);
             InvoiceSnapshot invSnap = inv.CreateSnapshot();
             ProductService.ChangeStatus(invSnap.ProductId, invSnap.BranchId, StatusProduct.AKTIF, username);
+            PublishInvoiceCanceled(inv, username);
         }
 
         public void Pull(Guid id, string username)
@@ -247,6 +252,34 @@ namespace AsliMotor.Invoices.Services
             Repository.Update(inv);
             InvoiceSnapshot invSnap = inv.CreateSnapshot();
             ProductService.ChangeStatus(invSnap.ProductId, invSnap.BranchId, StatusProduct.AKTIF, username);
+            PublishInvoicePulled(inv, username);
+        }
+
+        public void ChangeProduct(Guid id, Guid productId, string username)
+        {
+            Invoice inv = Repository.Get(id);
+            InvoiceSnapshot invSnap = inv.CreateSnapshot();
+            FailIfInvoiceNotFound(invSnap);
+            FailIfCantChange(invSnap);
+            FailIfProductCantSale(productId, invSnap.BranchId);
+            Guid oldProductId = invSnap.ProductId;
+            inv.ChangeProduct(productId);
+            Repository.Update(inv);
+            ProductService.ChangeStatus(oldProductId, invSnap.BranchId, StatusProduct.AKTIF, username);
+            ProductService.ChangeStatus(productId, invSnap.BranchId, StatusProduct.TERJUAL, username);
+            PublishProductChanged(inv, username);
+        }
+
+        public void ChangeCustomer(Guid id, Guid custId, string username)
+        {
+            Invoice inv = Repository.Get(id);
+            InvoiceSnapshot invSnap = inv.CreateSnapshot();
+            FailIfInvoiceNotFound(invSnap);
+            FailIfCantChange(invSnap);
+            FailIfCustomerNotFound(custId);
+            inv.ChangeCustomer(custId);
+            Repository.Update(inv);
+            PublishCustomerChanged(inv, username);
         }
 
         #region create receive
@@ -379,6 +412,22 @@ namespace AsliMotor.Invoices.Services
         private void PublishPaymentTypeChanged(Invoice inv, string username)
         {
             _bus.Publish(new PaymentTypeChanged { Payload = inv.CreateSnapshot(), Username = username });
+        }
+        private void PublishInvoiceCanceled(Invoice inv, string username)
+        {
+            _bus.Publish(new InvoiceCanceled { Payload = inv.CreateSnapshot(), Username = username });
+        }
+        private void PublishInvoicePulled(Invoice inv, string username)
+        {
+            _bus.Publish(new InvoicePulled { Payload = inv.CreateSnapshot(), Username = username });
+        }
+        private void PublishProductChanged(Invoice inv, string username)
+        {
+            _bus.Publish(new ProductChanged { Payload = inv.CreateSnapshot(), Username = username });
+        }
+        private void PublishCustomerChanged(Invoice inv, string username)
+        {
+            _bus.Publish(new CustomerChanged { Payload = inv.CreateSnapshot(), Username = username });
         }
         #endregion
     }

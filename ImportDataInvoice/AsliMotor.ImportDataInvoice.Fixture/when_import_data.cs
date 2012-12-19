@@ -18,8 +18,8 @@ namespace AsliMotor.ImportDataInvoice.Fixture
         };
         Because of = () =>
         {
-            string fileLocation = "C:\\Users\\Denny Wu\\Desktop\\DATA PELANGGAN DARI JUNI 2011-DESEMBER 2011(NEW).csv";
-            importDataInvoiceService.Import("dny@gmail.com", "dny@gmail.com", fileLocation);
+            string fileLocation = "C:\\Users\\Denny Wu\\Desktop\\data-aslimotor(2012).csv";
+            importDataInvoiceService.Import("aslimotor@aslimotorsiq.com", "aslimotor@aslimotorsiq.com", fileLocation);
         };
         It should_imported = () =>
         {

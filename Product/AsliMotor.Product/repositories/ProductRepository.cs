@@ -75,5 +75,18 @@ namespace AsliMotor.Products
             IList<ProductSearch> results = _qryObjectMapper.Map<ProductSearch>("findByKey", new string[] { "branchid", "key" }, new object[] { branchid, key});
             return results;
         }
+
+        public IList<TypeProduct> SearchType(string key, string branchid)
+        {
+            key = "%" + key.ToLower() + "%";
+            IList<TypeProduct> results = _qryObjectMapper.Map<TypeProduct>("findByKey", new string[] { "branchid", "key" }, new object[] { branchid, key });
+            return results;
+        }
+
+        public IList<TypeProduct> GetAllType(string branchid)
+        {
+            IList<TypeProduct> results = _qryObjectMapper.Map<TypeProduct>("getAll", new string[] { "branchid" }, new object[] { branchid }).ToList();
+            return results;
+        }
     }
 }

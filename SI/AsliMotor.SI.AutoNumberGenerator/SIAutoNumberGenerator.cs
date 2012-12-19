@@ -67,6 +67,15 @@ namespace AsliMotor.SI.AutoNumberGenerator
                     }
             }
         }
+
+        public SIAutoNumberConfig GetSIAutoNumberConfig(string id)
+        {
+            SIAutoNumberConfig cfg = _qryObjectMapper.Map<SIAutoNumberConfig>("findByIdAndBranchId",
+                new string[] { "id", "branchid" },
+                new object[] { id.AutoNumberConfigId(), id }).FirstOrDefault();
+            return cfg;
+        }
+
         private SIAutoNumberConfig GetSIAutoNumberConfig()
         {
             SIAutoNumberConfig cfg = _qryObjectMapper.Map<SIAutoNumberConfig>("findByIdAndBranchId", 

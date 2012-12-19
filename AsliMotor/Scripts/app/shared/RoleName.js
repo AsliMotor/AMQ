@@ -11,7 +11,8 @@
         OWNER_ADMINSALES: "Owner, AdminSales",
         OWNER_ADMINSALES_CASHIER: "Owner, AdminSales, Cashier",
         OWNER_ADMINPURCHASE: "Owner, AdminPurchase",
-        OWNER_ADMINPURCHASE_CASHIER: "Owner, AdminPurchase, Cashier"
+        OWNER_ADMINPURCHASE_CASHIER: "Owner, AdminPurchase, Cashier",
+        OWNER_ADMINISTRATOR: "Owner, Administrator"
     };
 
     return am.RoleName;

@@ -62,6 +62,15 @@ namespace AsliMotor.Perjanjian.AutoNumberGenerator
                     }
             }
         }
+
+        public PerjanjianAutoNumberConfig GetPerjanjianAutoNumberConfig(string id)
+        {
+            PerjanjianAutoNumberConfig cfg = QueryObjectMapper.Map<PerjanjianAutoNumberConfig>("findByIdAndBranchId",
+                new string[] { "id", "branchid" },
+                new object[] { id.AutoNumberConfigId(), id }).FirstOrDefault();
+            return cfg;
+        }
+
         private PerjanjianAutoNumberConfig GetPerjanjianAutoNumberConfig()
         {
             PerjanjianAutoNumberConfig cfg = QueryObjectMapper.Map<PerjanjianAutoNumberConfig>("findByIdAndBranchId", 

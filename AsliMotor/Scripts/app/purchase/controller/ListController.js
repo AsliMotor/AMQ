@@ -20,13 +20,13 @@
             var listPurchaseView = new HomeJS.components.List({
                 header: {
                     title: "Pembelian",
-                    description: "Daftar Pembelian"
+                    description: "Data Pembelian"
                 },
                 toolbar: [{
                     type: HomeJS.components.Button,
                     title: "Tambah",
                     typeButton: HomeJS.components.ButtonType.Success,
-                    icon: "icon-file",
+                    icon: "icon-plus-sign",
                     iconColor: HomeJS.components.ButtonColor.White,
                     events: {
                         'click': function () {

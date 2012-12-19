@@ -7,13 +7,14 @@
         'model/dailysalesreport',
         'model/salesreport',
         'model/piutangtelahjatuhtempo',
+        'model/totalpiutangtelahjatuhtempo',
         'view/TotalTransactionView',
         'view/DetailSalesView',
         'view/ChartSalesView',
         'view/SalesView',
         '../../../libs/date',
         '../../../libs/currency',
-        '../../../libs/homejs/datatable',
+        '../../../libs/homejs/list',
         '/scripts/app/shared/AccountModel.js'],
     function ($, _, Backbone, ns, am) {
         ns.define('am.dashboard.controller');
@@ -22,6 +23,7 @@
             var totalTransactionModel;
             var salesReportModel;
             var piutangTelahJatuhTempoModel;
+            var totalPiutangTelahJatuhTempoModel;
             var totalTransactionView;
             var salesView;
             var detailSalesView;
@@ -34,6 +36,7 @@
                 chartModel = new am.dashboard.model.DailySalesReport();
                 salesReportModel = new am.dashboard.model.SalesReport();
                 piutangTelahJatuhTempoModel = new am.dashboard.model.PiutangTelahJatuhTempo();
+                totalPiutangTelahJatuhTempoModel = new am.dashboard.model.TotalPiutangTelahJatuhTempo();
                 accountModel = am.AccountModel().get();
             };
 
@@ -53,10 +56,14 @@
             };
 
             var createPiutangView = function () {
-                piutangView = new HomeJS.components.DataTable({
-                    resizable: true,
-                    collection: piutangTelahJatuhTempoModel,
-                    headers: [
+                piutangView = new HomeJS.components.List({
+                    header: {
+                        title: ""
+                    },
+                    list: {
+                        resizable: true,
+                        collection: piutangTelahJatuhTempoModel,
+                        headers: [
                             {
                                 name: "Type",
                                 dataIndex: "Type",
@@ -91,40 +98,42 @@
                                 title: "Klik untuk mengurutkan berdasarkan Tanggal Jatuh Tempo"
                             }
                          ],
-                    items: [{
-                        dataIndex: "Type"
-                    }, {
-                        dataIndex: "NoPolisi"
-                    }, {
-                        dataIndex: "CustomerName"
-                    }, {
-                        dataIndex: "InvoiceDate",
-                        onrender: function (date) {
-                            return date.toDate();
+                        items: [{
+                            dataIndex: "Type"
+                        }, {
+                            dataIndex: "NoPolisi"
+                        }, {
+                            dataIndex: "CustomerName"
+                        }, {
+                            dataIndex: "InvoiceDate",
+                            onrender: function (date) {
+                                return date.toDate();
+                            }
+                        }, {
+                            dataIndex: "Outstanding",
+                            align: 'right',
+                            onrender: function (out) {
+                                return out.toCurrency();
+                            }
+                        }, {
+                            dataIndex: "DueDate",
+                            onrender: function (date) {
+                                return date.toDate();
+                            }
+                        }],
+                        onrenderItem: function (model) {
+                            if (model.get("DiffrentMonth") >= 3)
+                                return "outstanding-greater-3";
+                            if (model.get("DiffrentMonth") >= 2)
+                                return "outstanding-greater-2";
+                            if (model.get("DiffrentMonth") >= 1)
+                                return "outstanding-greater-1";
+                        },
+                        eventclick: function (data) {
+                            am.eventAggregator.trigger('showDetailInvoice', data.id);
                         }
-                    }, {
-                        dataIndex: "Outstanding",
-                        align: 'right',
-                        onrender: function (out) {
-                            return out.toCurrency();
-                        }
-                    }, {
-                        dataIndex: "DueDate",
-                        onrender: function (date) {
-                            return date.toDate();
-                        }
-                    }],
-                    onrenderItem: function (model) {
-                        if (model.get("DiffrentMonth") >= 3)
-                            return "outstanding-greater-3";
-                        if (model.get("DiffrentMonth") >= 2)
-                            return "outstanding-greater-2";
-                        if (model.get("DiffrentMonth") >= 1)
-                            return "outstanding-greater-1";
                     },
-                    eventclick: function (data) {
-                        am.eventAggregator.trigger('showDetailInvoice', data.id);
-                    }
+                    showmore: totalPiutangTelahJatuhTempoModel
                 });
             };
             var fetchData = function () {
@@ -132,6 +141,7 @@
                 chartModel.fetch();
                 salesReportModel.fetch();
                 piutangTelahJatuhTempoModel.fetch({ data: { offset: 0} });
+                totalPiutangTelahJatuhTempoModel.fetch();
             };
 
             var show = function () {

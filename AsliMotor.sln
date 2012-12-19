@@ -87,6 +87,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsliMotor.ImportDataInvoice
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsliMotor.ImportDataInvoice.Fixture", "ImportDataInvoice\AsliMotor.ImportDataInvoice.Fixture\AsliMotor.ImportDataInvoice.Fixture.csproj", "{F8DDBBB1-A3AB-41B3-80C9-61E839F9D7F7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsliMotor.AuditLog.Repository", "AsliMotor.AuditLog.Repository\AsliMotor.AuditLog.Repository.csproj", "{B7F5A3FB-612B-42DE-91ED-E6CE4728C6A1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -237,6 +239,10 @@ Global
 		{F8DDBBB1-A3AB-41B3-80C9-61E839F9D7F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8DDBBB1-A3AB-41B3-80C9-61E839F9D7F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8DDBBB1-A3AB-41B3-80C9-61E839F9D7F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7F5A3FB-612B-42DE-91ED-E6CE4728C6A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7F5A3FB-612B-42DE-91ED-E6CE4728C6A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7F5A3FB-612B-42DE-91ED-E6CE4728C6A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7F5A3FB-612B-42DE-91ED-E6CE4728C6A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

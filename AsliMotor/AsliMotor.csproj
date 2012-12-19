@@ -23,6 +23,10 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <ExcludeApp_Data>false</ExcludeApp_Data>
+    <ExcludeGeneratedDebugSymbol>false</ExcludeGeneratedDebugSymbol>
+    <PublishDatabases>false</PublishDatabases>
+    <DesktopBuildPackageLocation>\\EDDY-IT\denny\aslimotor-built\AsliMotor.zip</DesktopBuildPackageLocation>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -53,6 +57,10 @@
     </Reference>
     <Reference Include="BonaStoco.Inf.Reporting">
       <HintPath>..\packages\am-bin\BonaStoco.Inf.Reporting.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging, Version=1.2.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Common.Logging.2.0.0\lib\2.0\Common.Logging.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
@@ -117,16 +125,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AngsuranReportController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageUserController.cs" />
     <Compile Include="Controllers\OrganizationController.cs" />
+    <Compile Include="Controllers\OutstandingReportController.cs" />
+    <Compile Include="Controllers\PriceChangeLogController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\PurchaseController.cs" />
     <Compile Include="Controllers\InvoiceController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\SalesReportController.cs" />
+    <Compile Include="Controllers\SettingAutoNumberController.cs" />
+    <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Controllers\TypeProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -136,17 +150,90 @@
     <Compile Include="Models\CompanyProfile.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Content\angsuranreport.css" />
+    <Content Include="Content\img\icon\glyphicons_227_usd.png" />
+    <Content Include="Content\organization.css" />
     <Content Include="Content\img\homesoft.png" />
     <Content Include="Content\img\User-icon.png" />
     <Content Include="Content\login.css" />
+    <Content Include="Content\setting.css" />
+    <Content Include="Scripts\app\angsuranreport\controller\TelahJatuhTempoController.js" />
+    <Content Include="Scripts\app\auditlog\controller\ListInvoiceController.js" />
+    <Content Include="Scripts\app\auditlog\controller\ListController.js" />
+    <Content Include="Scripts\app\auditlog\main.js" />
+    <Content Include="Scripts\app\auditlog\model\AuditLogListReport.js" />
+    <Content Include="Scripts\app\auditlog\model\AuditLogListReports.js" />
+    <Content Include="Scripts\app\auditlog\model\InvoiceAuditLogAction.js" />
+    <Content Include="Scripts\app\auditlog\model\InvoiceAuditLogListReport.js" />
+    <Content Include="Scripts\app\auditlog\model\InvoiceAuditLogListReports.js" />
+    <Content Include="Scripts\app\auditlog\model\TotalInvoiceAuditLogList.js" />
+    <Content Include="Scripts\app\auditlog\model\TotalAuditLogList.js" />
+    <Content Include="Scripts\app\auditlog\router\AuditLogRouter.js" />
+    <Content Include="Scripts\app\angsuranreport\controller\SideBarController.js" />
+    <Content Include="Scripts\app\angsuranreport\main.js" />
+    <Content Include="Scripts\app\angsuranreport\model\DailyReports.js" />
+    <Content Include="Scripts\app\angsuranreport\model\GrafikProductReports.js" />
+    <Content Include="Scripts\app\angsuranreport\model\MonthlyReports.js" />
+    <Content Include="Scripts\app\angsuranreport\model\RateProductReports.js" />
+    <Content Include="Scripts\app\angsuranreport\model\YearlyReports.js" />
+    <Content Include="Scripts\app\angsuranreport\router\AngsuranReportRouter.js" />
+    <Content Include="Scripts\app\angsuranreport\view\Container.js" />
+    <Content Include="Scripts\app\angsuranreport\view\ProductChart.js" />
+    <Content Include="Scripts\app\angsuranreport\view\SelectDateView.js" />
+    <Content Include="Scripts\app\angsuranreport\view\SelectDateViewForRateProduct.js" />
+    <Content Include="Scripts\app\angsuranreport\view\SelectMonthView.js" />
+    <Content Include="Scripts\app\angsuranreport\view\SelectYearView.js" />
+    <Content Include="Scripts\app\angsuranreport\view\TableData.js" />
+    <Content Include="Scripts\app\angsuranreport\view\TotalSummaryGrafikProduk.js" />
+    <Content Include="Scripts\app\outstandingreport\controller\SideBarController.js" />
+    <Content Include="Scripts\app\outstandingreport\main.js" />
+    <Content Include="Scripts\app\outstandingreport\model\DailyReports.js" />
+    <Content Include="Scripts\app\outstandingreport\model\GrafikProductReports.js" />
+    <Content Include="Scripts\app\outstandingreport\model\MonthlyReports.js" />
+    <Content Include="Scripts\app\outstandingreport\model\RateProductReports.js" />
+    <Content Include="Scripts\app\outstandingreport\model\YearlyReports.js" />
+    <Content Include="Scripts\app\outstandingreport\router\OutstandingReportRouter.js" />
+    <Content Include="Scripts\app\outstandingreport\view\Container.js" />
+    <Content Include="Scripts\app\outstandingreport\view\daily\DailyChart.js" />
+    <Content Include="Scripts\app\outstandingreport\view\monthly\MonthlyChart.js" />
+    <Content Include="Scripts\app\outstandingreport\view\ProductChart.js" />
+    <Content Include="Scripts\app\outstandingreport\view\SelectDateView.js" />
+    <Content Include="Scripts\app\outstandingreport\view\SelectDateViewForRateProduct.js" />
+    <Content Include="Scripts\app\outstandingreport\view\SelectMonthView.js" />
+    <Content Include="Scripts\app\outstandingreport\view\SelectYearView.js" />
+    <Content Include="Scripts\app\outstandingreport\view\TableData.js" />
+    <Content Include="Scripts\app\outstandingreport\view\TotalSummaryGrafikProduk.js" />
+    <Content Include="Scripts\app\outstandingreport\view\yearly\YearlyChart.js" />
+    <Content Include="Scripts\app\dashboard\model\TotalPiutangTelahJatuhTempo.js" />
+    <Content Include="Scripts\app\invoice\action\changeProduct.js" />
+    <Content Include="Scripts\app\invoice\action\changeCustomer.js" />
+    <Content Include="Scripts\app\invoice\command\ChangeProduct.js" />
+    <Content Include="Scripts\app\invoice\command\ChangeCustomer.js" />
+    <Content Include="Scripts\app\invoice\view\ChangeProduct.js" />
+    <Content Include="Scripts\app\invoice\view\ChangeCustomer.js" />
     <Content Include="Scripts\app\manageuser\action\AddUserAction.js" />
+    <Content Include="Scripts\app\manageuser\action\DeleteUserAction.js" />
     <Content Include="Scripts\app\manageuser\command\AddUser.js" />
+    <Content Include="Scripts\app\manageuser\command\DeleteUser.js" />
     <Content Include="Scripts\app\manageuser\controller\ListController.js" />
     <Content Include="Scripts\app\manageuser\main.js" />
+    <Content Include="Scripts\app\manageuser\model\RoleSelectionList.js" />
     <Content Include="Scripts\app\manageuser\model\UserListReport.js" />
     <Content Include="Scripts\app\manageuser\model\UserListReports.js" />
     <Content Include="Scripts\app\manageuser\router\ManageUserRouter.js" />
     <Content Include="Scripts\app\manageuser\view\AddUser.js" />
+    <Content Include="Scripts\app\manageuser\view\DeleteUser.js" />
+    <Content Include="Scripts\app\manageuser\view\RoleSelectionView.js" />
+    <Content Include="Scripts\app\organization\action\ChangeProfileAction.js" />
+    <Content Include="Scripts\app\organization\action\ChangeLogoAction.js" />
+    <Content Include="Scripts\app\organization\command\ChangeProfile.js" />
+    <Content Include="Scripts\app\organization\controller\OrganizationController.js" />
+    <Content Include="Scripts\app\organization\main.js" />
+    <Content Include="Scripts\app\organization\model\Organization.js" />
+    <Content Include="Scripts\app\organization\router\OrganizationRouter.js" />
+    <Content Include="Scripts\app\organization\view\ChangeProfile.js" />
+    <Content Include="Scripts\app\organization\view\ChangeLogo.js" />
+    <Content Include="Scripts\app\organization\view\ProfileOrganization.js" />
     <Content Include="Scripts\app\report\controller\GrafikProductController.js" />
     <Content Include="Scripts\app\report\controller\RateProductController.js" />
     <Content Include="Content\bootstrap\bootstrap-responsive.min.css" />
@@ -277,6 +364,30 @@
     <Content Include="Scripts\app\report\view\TableData.js" />
     <Content Include="Scripts\app\report\view\TotalSummaryGrafikProduk.js" />
     <Content Include="Scripts\app\report\view\yearly\YearlyChart.js" />
+    <Content Include="Scripts\app\settingautonumber\controller\SuratPerjanjianAutoNumberController.js" />
+    <Content Include="Scripts\app\settingautonumber\controller\SuratPeringatanAutoNumberController.js" />
+    <Content Include="Scripts\app\settingautonumber\controller\InvoiceAutoNumberController.js" />
+    <Content Include="Scripts\app\settingautonumber\controller\SIAutoNumberController.js" />
+    <Content Include="Scripts\app\settingautonumber\controller\SideBarController.js" />
+    <Content Include="Scripts\app\settingautonumber\main.js" />
+    <Content Include="Scripts\app\settingautonumber\model\SuratPerjanjianAutoNumber.js" />
+    <Content Include="Scripts\app\settingautonumber\model\SuratPeringatanAutoNumber.js" />
+    <Content Include="Scripts\app\settingautonumber\model\InvoiceAutoNumber.js" />
+    <Content Include="Scripts\app\settingautonumber\model\SIAutoNumber.js" />
+    <Content Include="Scripts\app\settingautonumber\router\SettingAutoNumberRouter.js" />
+    <Content Include="Scripts\app\settingautonumber\view\SuratPerjanjianAutoNumberView.js" />
+    <Content Include="Scripts\app\settingautonumber\view\SuratPeringatanAutoNumberView.js" />
+    <Content Include="Scripts\app\settingautonumber\view\InvoiceAutoNumberView.js" />
+    <Content Include="Scripts\app\settingautonumber\view\SIAutoNumberView.js" />
+    <Content Include="Scripts\app\setting\controller\ChangePasswordController.js" />
+    <Content Include="Scripts\app\setting\controller\ProfileUserController.js" />
+    <Content Include="Scripts\app\setting\controller\SideBarController.js" />
+    <Content Include="Scripts\app\setting\main.js" />
+    <Content Include="Scripts\app\setting\model\ChangePassword.js" />
+    <Content Include="Scripts\app\setting\model\ProfileUser.js" />
+    <Content Include="Scripts\app\setting\router\SettingRouter.js" />
+    <Content Include="Scripts\app\setting\view\ChangePassword.js" />
+    <Content Include="Scripts\app\setting\view\ProfileUser.js" />
     <Content Include="Scripts\app\shared\AccountModel.js" />
     <Content Include="Scripts\app\shared\RoleName.js" />
     <Content Include="Scripts\app\shared\Template.js" />
@@ -299,10 +410,13 @@
     <Content Include="Scripts\libs\homejs\ButtonType.js" />
     <Content Include="Scripts\libs\homejs\chart\Chart.js" />
     <Content Include="Scripts\libs\homejs\DataTable.js" />
+    <Content Include="Scripts\libs\homejs\dialog\Confirm.js" />
+    <Content Include="Scripts\libs\homejs\dialog\SuccessAlert.js" />
     <Content Include="Scripts\libs\homejs\dialog\ErrorAlert.js" />
     <Content Include="Scripts\libs\homejs\dialog\ModalDialog.js" />
     <Content Include="Scripts\libs\homejs\FormLayout.js" />
     <Content Include="Scripts\libs\homejs\FormPanel.js" />
+    <Content Include="Scripts\libs\homejs\inputfield\Typeahead.js" />
     <Content Include="Scripts\libs\homejs\inputfield\DateField.js" />
     <Content Include="Scripts\libs\homejs\DetailPanel.js" />
     <Content Include="Scripts\libs\homejs\HomeJS.js" />
@@ -365,6 +479,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AsliMotor.AuditLog.Repository\AsliMotor.AuditLog.Repository.csproj">
+      <Project>{B7F5A3FB-612B-42DE-91ED-E6CE4728C6A1}</Project>
+      <Name>AsliMotor.AuditLog.Repository</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AsliMotor.Customers\AsliMotor.Customers.csproj">
       <Project>{16F8407F-6EB0-4161-8EDA-23BDB946E04A}</Project>
       <Name>AsliMotor.Customers</Name>
@@ -384,6 +502,10 @@
     <ProjectReference Include="..\AsliMotor.Security\AsliMotor.Security.csproj">
       <Project>{3BAA56DC-9289-4B77-A727-5FC551095F1B}</Project>
       <Name>AsliMotor.Security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AsliMotor.SuratPeringatan.AutoNumberGenerator\AsliMotor.SuratPeringatan.AutoNumberGenerator.csproj">
+      <Project>{0102257A-255E-496D-B037-4E153BA336AE}</Project>
+      <Name>AsliMotor.SuratPeringatan.AutoNumberGenerator</Name>
     </ProjectReference>
     <ProjectReference Include="..\Invoice\AsliMotor.Invoice.Command\AsliMotor.Invoices.Command.csproj">
       <Project>{06ADC49F-5972-4388-9146-0EC3F0F6D499}</Project>
@@ -405,6 +527,14 @@
       <Project>{30FC3ABA-ADE1-42F3-AF27-618978F7A555}</Project>
       <Name>AsliMotor.Products</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Receive\AsliMotor.Receive.AutoNumberGenerator\AsliMotor.Receives.AutoNumberGenerator.csproj">
+      <Project>{4F0A2D4E-2D73-4B0A-A8A3-3BA729EA5885}</Project>
+      <Name>AsliMotor.Receives.AutoNumberGenerator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SI\AsliMotor.SI.AutoNumberGenerator\AsliMotor.SI.AutoNumberGenerator.csproj">
+      <Project>{9FE58E93-1CC7-4E98-80D5-F96EA4944871}</Project>
+      <Name>AsliMotor.SI.AutoNumberGenerator</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SI\AsliMotor.SI.Repository\AsliMotor.SI.Repository.csproj">
       <Project>{CEDAFE71-569A-4E19-A1AA-376BD88199FC}</Project>
       <Name>AsliMotor.SI.Repository</Name>
@@ -412,6 +542,10 @@
     <ProjectReference Include="..\SI\AsliMotor.SI.Services\AsliMotor.SI.Services.csproj">
       <Project>{E9E273CE-3850-42DB-BEC6-ECE410A55638}</Project>
       <Name>AsliMotor.SI.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SuratPerjanjian\AsliMotor.Perjanjian.AutoNumberGenerator\AsliMotor.Perjanjian.AutoNumberGenerator.csproj">
+      <Project>{DD117B45-95F8-4C50-A1C5-8CBE3BDEF689}</Project>
+      <Name>AsliMotor.Perjanjian.AutoNumberGenerator</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -425,9 +559,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Test\PrintSI.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Organization\Change.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Test\DateField.cshtml" />
@@ -515,6 +646,27 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\ManageUser\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Setting\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Organization\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\SettingAutoNumber\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\PriceChangeLog\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\OutstandingReport\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\AngsuranReport\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\libs\bootstrap\bootstrap-typeahead.js" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

@@ -44,7 +44,7 @@
             },
             render: function () {
                 var checked = '';
-                if (this.options.attr.parentModel.get(this.options.attr.dataIndex)) {
+                if (this.options.attr.parentModel.get(this.options.attr.dataIndex) != null) {
                     if (this.options.attr.parentModel.get(this.options.attr.dataIndex) == this.model.get('value')) {
                         checked = 'checked';
                         this.triggerEventChanged();

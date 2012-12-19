@@ -9,5 +9,6 @@ namespace AsliMotor.Receives.AutoNumberGenerator
     {
         void SetupReceiveAutoMumber(int mode, string prefix, string branchId);
         string GenerateReceiveNumber(DateTime transactionDate, string branchId);
+        ReceiveAutoNumberConfig GetReceiveAutoNumberConfig(string id);
     }
 }

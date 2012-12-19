@@ -277,6 +277,38 @@ namespace AsliMotor.Controllers
             }
         }
 
+        [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES)]
+        [HttpPost]
+        public JsonResult ChangeProduct(Guid invoiceId, Guid productId)
+        {
+            try
+            {
+                CompanyProfile cp = new CompanyProfile(this.HttpContext);
+                InvoiceService.ChangeProduct(invoiceId, productId, cp.UserName);
+                return Json(new { error = false, data = new { id = invoiceId } }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { error = true, message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES)]
+        [HttpPost]
+        public JsonResult ChangeCustomer(Guid invoiceId, Guid customerId)
+        {
+            try
+            {
+                CompanyProfile cp = new CompanyProfile(this.HttpContext);
+                InvoiceService.ChangeCustomer(invoiceId, customerId, cp.UserName);
+                return Json(new { error = false, data = new { id = invoiceId } }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { error = true, message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES_CASHIER)]
         [HttpPost]
         public JsonResult BayarAngsuran(Guid invoiceId, string date)

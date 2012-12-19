@@ -40,6 +40,12 @@ namespace AsliMotor.Organizations
             }
         }
 
+
+        public void Update(Organization org)
+        {
+            _reportingRepository.Update<Organization>(org, new { BranchId = org.BranchId });
+        }
+
         private byte[] readImageAndCompress(Stream stream)
         {
             var image = Image.FromStream(stream);

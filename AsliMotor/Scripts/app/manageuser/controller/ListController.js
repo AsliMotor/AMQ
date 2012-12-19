@@ -5,6 +5,7 @@
         '../model/UserListReports',
         'eventAggregator',
         '../action/addUserAction',
+        '../action/deleteUserAction',
         '../../../libs/Animation',
         '../../../libs/homejs/List',
         '../../../libs/homejs/Button'],
@@ -49,6 +50,12 @@
                         minwidth: "120px",
                         title: "Klik untuk mengurutkan berdasarkan Email"
                     }, {
+                        dataIndex: "LockedOut",
+                        width: "70px",
+                        title: "User yang terkunci, karena gagal login sebanyak 10 kali",
+                        name:"Status",
+                        align:'center'
+                    }, {
                         dataIndex: "Username",
                         width: "20px",
                         title: "Delete User"
@@ -60,18 +67,28 @@
                     }, {
                         dataIndex: "Email"
                     }, {
+                        dataIndex: "Locked",
+                        align:'center',
+                        onrender: function (val, model) {
+                            if (model.get('Locked') == true) {
+                                return "Terkunci";
+                            } else {
+                                return "Aktif";
+                            }
+                        }
+                    }, {
                         align: 'center',
                         onrender: function (value, user) {
                             var buttonDeleteUser = new HomeJS.components.Button({
                                 model: user,
-                                title:'',
+                                title: '',
                                 size: HomeJS.components.ButtonSize.Mini,
                                 icon: "icon-trash",
                                 iconColor: HomeJS.components.ButtonColor.Black,
                                 description: "Click to delete this user",
                                 events: {
                                     'click': function () {
-                                        alert("test");
+                                        am.manageuser.action.deleteUser().execute(user);
                                     }
                                 }
                             });

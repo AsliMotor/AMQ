@@ -1,7 +1,5 @@
 ﻿@model AsliMotor.Models.LogOnModel
 
-@Html.ValidationSummary(true, "")
-
 @using (Html.BeginForm()) {
  @*   <div>
         <fieldset>
@@ -36,18 +34,18 @@
 *@
 <link href="@Url.Content("~/Content/login.css")" rel="stylesheet" type="text/css" />
 <h1 class="logo">
-    <a href="http://heroku.com" title="Heroku">Heroku</a>
+    <a href="http://www.homejs.com" title="HomeJS">HomeJS</a>
 </h1>
 <div id="login" class="dialog">
 	<form method="post" action="/login" class="panel-body">
 		<fieldset>
 			<div class="field">
 				<label for="email">Username</label>
-				<input type="text" name="Username" class="text" size="43" id="email" autocomplete='off'>
+				<input type="text" name="Username" class="text" size="43" id="email" autocomplete='off' autofocus placeholder='Username'>
 			</div>
 			<div class="field">
 				<label for="password">Password</label>
-				<input type="password" name="Password" class="text password" size="43" id="password">
+				<input type="password" name="Password" class="text password" size="43" id="password" placeholder='Password'>
 			</div>
 		</fieldset>
 		<fieldset class="submit">

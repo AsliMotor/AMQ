@@ -9,5 +9,6 @@ namespace AsliMotor.Perjanjian.AutoNumberGenerator
     {
         void SetupPerjanjianAutoMumber(int mode, string prefix, string branchId);
         string GeneratePerjanjianNumber(DateTime transactionDate, string branchId);
+        PerjanjianAutoNumberConfig GetPerjanjianAutoNumberConfig(string id);
     }
 }

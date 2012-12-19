@@ -13,6 +13,11 @@
             this.model.on("change:" + this.options.dataIndex, this.render, this);
         },
         render: function () {
+            if (this.options.onshow) {
+                if (!this.options.onshow(this.model)) {
+                    return this;
+                }
+            }
             var value = this.model.get(this.options.dataIndex) || "";
             var required = (this.options.required === true) ? "required" : "";
             var colorLabel = (this.options.required === true) ? "#9C0000" : "";
@@ -24,6 +29,10 @@
             type = (type.toLowerCase() == 'price') ? 'text' : type;
             var size = this.options.size || "input-large";
             var html = "";
+
+            if (this.options.onrendervalue) {
+                value = this.options.onrendervalue(this.model);
+            }
 
             if (this.options.title && this.options.title != "") {
                 html = "<label class='control-label' style='color:" + colorLabel + "'>" + this.options.title + "</label>\

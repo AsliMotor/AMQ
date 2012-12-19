@@ -47,7 +47,15 @@
     min-height:55px;
     border-radius:7px;
 }
-.detail-invoice-billing{width:300px;float:left;}
+.detail-invoice-billing{width:300px;float:left;position:relative;}
+.detail-invoice-billing #edit-customer
+{
+    position:absolute;
+    top:3px;
+    right:5px;
+    width:30px;
+    display:none;
+}
 .detail-invoice-billing .title{font-size:14px;font-weight:bold;}
 .detail-invoice-billing .description{padding-left:10px;font-size:11px;text-transform:capitalize;}
 .detail-invoice-subheader{width:350px;float:right;margin-right:10px;}
@@ -65,12 +73,20 @@
     margin-top:10px;
     border-radius:7px;
 }
-.detail-invoice-product{width:300px;float:left;}
+.detail-invoice-product{width:300px;float:left;position:relative;}
 .detail-invoice-product > div{margin: 5px 0px;}
 .detail-invoice-product div:first-child{margin: 0px;}
 .detail-invoice-product div > div{float:left;}
 .detail-invoice-product div > div:first-child{min-width:110px;}
 .detail-invoice-product{clear:both;}
+.detail-invoice-product #edit-product
+{
+    position:absolute;
+    top:0;
+    right:5px;
+    width:30px;
+    display:none;
+}
 
 
 .detail-invoice-payment

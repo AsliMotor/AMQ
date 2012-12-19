@@ -9,5 +9,6 @@ namespace AsliMotor.SI.AutoNumberGenerator
     {
         void SetupSIAutoMumber(int mode, string prefix, string branchId);
         string GenerateSINumber(DateTime transactionDate, string branchId);
+        SIAutoNumberConfig GetSIAutoNumberConfig(string branchid);
     }
 }

@@ -16,4 +16,5 @@
                 return this;
             }
         });
+        return HomeJS.components.Breadcrumb;
     });

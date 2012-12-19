@@ -6,10 +6,10 @@ using BonaStoco.Inf.Data.ViewModel;
 
 namespace AsliMotor.Products.Models
 {
-    [NamedSqlQuery("findByNoPolisi",@"SELECT * FROM product WHERE nopolisi = @nopolisi and branchid=@branchid")]
-    [NamedSqlQuery("findByNoRangka", @"SELECT * FROM product WHERE norangka = @norangka and branchid=@branchid")]
-    [NamedSqlQuery("findByNoMesin", @"SELECT * FROM product WHERE nomesin = @nomesin and branchid=@branchid")]
-    [NamedSqlQuery("findByNoBpkb", @"SELECT * FROM product WHERE nobpkb = @nobpkb and branchid=@branchid")]
+    [NamedSqlQuery("findByNoPolisi",@"SELECT * FROM product WHERE nopolisi = @nopolisi and branchid=@branchid and status != 'Terjual_Lunas'")]
+    [NamedSqlQuery("findByNoRangka", @"SELECT * FROM product WHERE norangka = @norangka and branchid=@branchid and status != 'Terjual_Lunas'")]
+    [NamedSqlQuery("findByNoMesin", @"SELECT * FROM product WHERE nomesin = @nomesin and branchid=@branchid and status != 'Terjual_Lunas'")]
+    [NamedSqlQuery("findByNoBpkb", @"SELECT * FROM product WHERE nobpkb = @nobpkb and branchid=@branchid and status != 'Terjual_Lunas'")]
     [NamedSqlQuery("findById", @"SELECT * FROM product WHERE id = @id and branchid=@branchid")]
     [Serializable]
     public class Product : IViewModel

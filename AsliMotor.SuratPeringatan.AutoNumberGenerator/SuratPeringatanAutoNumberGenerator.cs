@@ -67,6 +67,15 @@ namespace AsliMotor.SuratPeringatan.AutoNumberGenerator
                     }
             }
         }
+
+        public SuratPeringatanAutoNumberConfig GetSuratPeringatanAutoNumberConfig(string id)
+        {
+            SuratPeringatanAutoNumberConfig cfg = _qryObjectMapper.Map<SuratPeringatanAutoNumberConfig>("findByIdAndBranchId",
+                new string[] { "id", "branchid" },
+                new object[] { id.AutoNumberConfigId(), id }).FirstOrDefault();
+            return cfg;
+        }
+
         private SuratPeringatanAutoNumberConfig GetSuratPeringatanAutoNumberConfig()
         {
             SuratPeringatanAutoNumberConfig cfg = _qryObjectMapper.Map<SuratPeringatanAutoNumberConfig>("findByIdAndBranchId", 

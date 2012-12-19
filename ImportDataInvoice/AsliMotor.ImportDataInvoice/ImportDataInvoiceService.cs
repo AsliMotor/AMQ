@@ -21,6 +21,7 @@ namespace AsliMotor.ImportDataInvoice
         public ISupplierInvoiceService SupplierInvoiceService { get; set; }
         public IProductService ProductService { get; set; }
         public ICustomerService CustomerService { get; set; }
+        public ICustomerRepository CustomerRepository { get; set; }
         public IInvoiceService InvoiceService { get; set; }
         int index = 0;
 
@@ -53,10 +54,10 @@ namespace AsliMotor.ImportDataInvoice
                     {
                         index++;
                         SupplierInvoice si = ParseSupplierInvoice(rawData);
-                        Customer cust = ParseCustomer(rawData);
+                        Customer pelanggan = ParseCustomer(rawData);
+                        Customer cust = SaveCustomer(pelanggan);
                         CreditCommand command = ParseCommandCreateInvoice(rawData, cust.id, si.ProductId);
                         SupplierInvoiceService.Create(si, userName);
-                        CustomerService.Create(cust);
                         InvoiceService.Credit(command, this.userName);
                         ProductService.ChangeStatus(si.ProductId, this.branchId, ParseStatusProduct(rawData), this.userName);
 
@@ -73,6 +74,17 @@ namespace AsliMotor.ImportDataInvoice
             }
         }
 
+        private Customer SaveCustomer(Customer cust)
+        {
+            Customer c = CustomerRepository.GetByKTPNo(cust.KTPNo, cust.BranchId);
+            if (c == null)
+            {
+                CustomerService.Create(cust);
+                return cust;
+            }
+            return c;
+        }
+
         private int ParseCountPaid(string rawData)
         {
             string[] itemRow = rawData.Split(',');
@@ -86,13 +98,13 @@ namespace AsliMotor.ImportDataInvoice
             string branchId = this.branchId;
             string[] date = itemRow[1].Split('-');
             DateTime invoiceDate = new DateTime(int.Parse(date[2]), int.Parse(date[1]), int.Parse(date[0]), 0, 0, 0);
-            decimal price = decimal.Parse(itemRow[12]) * 1000;
-            decimal uangmuka = decimal.Parse(itemRow[8]) * 1000;
+            decimal price = decimal.Parse(itemRow[12]);
+            decimal uangmuka = decimal.Parse(itemRow[8]);
             int lamaAngsuran = int.Parse(itemRow[9]);
-            decimal angsuranBulanan = decimal.Parse(itemRow[10]) * 1000;
+            decimal angsuranBulanan = decimal.Parse(itemRow[10]);
             decimal plafon = price - uangmuka;
-            decimal sukubunga = (((angsuranBulanan * lamaAngsuran) - plafon) / (plafon * (lamaAngsuran / 12)) * 100);
-            DateTime duedate = invoiceDate;
+            decimal sukubunga = (((angsuranBulanan * lamaAngsuran) - plafon) / (plafon * decimal.Parse((lamaAngsuran / (double)12).ToString()) ) * 100);
+            DateTime duedate = invoiceDate.AddDays(30);
             return new CreditCommand()
             {
                 id = Guid.NewGuid(),
@@ -115,7 +127,7 @@ namespace AsliMotor.ImportDataInvoice
             string billingAddress = itemRow[11];
             string city = itemRow[17];
             string phone = itemRow[18];
-            string noKtp = (itemRow[3] == "-") ? null : itemRow[3];
+            string noKtp = (itemRow[3] == "-" || itemRow[3] == "") ? null : itemRow[3];
             return new Customer()
             {
                 id = Guid.NewGuid(),

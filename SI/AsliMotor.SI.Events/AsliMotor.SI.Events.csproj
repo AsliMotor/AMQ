@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PriceSupplierInvoiceChanged.cs" />
     <Compile Include="SupplierInvoiceCreated.cs" />
     <Compile Include="SupplierInvoiceChanged.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

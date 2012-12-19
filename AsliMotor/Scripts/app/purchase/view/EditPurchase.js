@@ -8,7 +8,8 @@
     '../../../libs/homejs/formpanel',
     '../../../libs/homejs/inputfield/datefield',
     '../../../libs/homejs/inputfield/textfield',
-    '../../../libs/homejs/inputfield/textarea'
+    '../../../libs/homejs/inputfield/textarea',
+    '../../../libs/homejs/inputfield/typeahead'
 ], function ($, _, Backbone, ns, am) {
     ns.define("am.purchase.view");
     am.purchase.view.EditPurchase = Backbone.View.extend({
@@ -61,12 +62,28 @@
                 vertical: true
             });
 
-            var typeView = new HomeJS.components.TextField({
+            //            var typeView = new HomeJS.components.TextField({
+            //                model: this.model,
+            //                title: 'Tipe',
+            //                placeholder: 'Ketik Tipe Kendaraan',
+            //                required: true,
+            //                dataIndex: "Type"
+            //            });
+
+            var CollectionType = Backbone.Collection.extend({
+                url: '/TypeProduct/GetAll'
+            });
+            var typeColl = new CollectionType();
+            typeColl.fetch();
+            //var a = ["randy", "denny", "ganteng", "sekali"];
+            var typeView = new HomeJS.components.Typeahead({
                 model: this.model,
+                collection: typeColl,
                 title: 'Tipe',
                 placeholder: 'Ketik Tipe Kendaraan',
                 required: true,
-                dataIndex: "Type"
+                dataIndex: "Type",
+                dataIndexTypeAhead: "Name"
             });
 
             var merkView = new HomeJS.components.TextField({
@@ -90,7 +107,7 @@
                 title: 'Harga Beli',
                 dataIndex: "HargaBeli",
                 placeholder: 'Ketik Harga Beli',
-                type:'price',
+                type: 'price',
                 required: true
             });
 

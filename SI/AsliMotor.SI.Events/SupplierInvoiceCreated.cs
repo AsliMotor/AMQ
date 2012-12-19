@@ -12,5 +12,6 @@ namespace AsliMotor.SI.Events
     {
         public SupplierInvoice Payload { get; set; }
         public string UserName { get; set; }
+        public DateTime DateTime { get { return DateTime.Now; } }
     }
 }

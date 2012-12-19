@@ -17,7 +17,7 @@
             var yearlyReport = new am.report.model.YearlyReports();
             var breadcrumb = new HomeJS.components.Breadcrumb({
                 title: 'Laporan Penjualan Tahunan',
-                icon: 'icon-th icon-white'
+                icon: 'icon-text-width icon-white'
             });
             var SelectYearModel = Backbone.Model.extend();
             var selectYearModel = new SelectYearModel({ FromYear: getCurrentYear(), ToYear: getCurrentYear() });

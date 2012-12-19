@@ -1,4 +1,5 @@
 delete from customer;
+delete from customerimage;
 delete from invoicesnapshot;
 delete from invoicelog;
 delete from perjanjianautonumberconfig;
@@ -19,4 +20,7 @@ delete from suratperingatanautonumbermonthly;
 delete from supplierinvoice;
 delete from supplierinvoicelog;
 delete from suratperjanjian;
+delete from typeproduct;
+delete from userrole;
+delete from users;
 delete from typeproduct;

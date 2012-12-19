@@ -12,21 +12,21 @@
                 items: [{
                     id: 'dailyReport',
                     title: 'Harian',
-                    class: 'icon-home',
+                    class: 'icon-calendar',
                     action: function () {
                         am.eventAggregator.trigger("showDailyreport");
                     }
                 }, {
                     id: 'monthlyReport',
                     title: 'Bulanan',
-                    class: 'icon-calendar',
+                    class: 'icon-th',
                     action: function () {
                         am.eventAggregator.trigger("showMonthlyreport");
                     }
                 }, {
                     id: 'yearlyReport',
                     title: 'Tahunan',
-                    class: 'icon-th',
+                    class: 'icon-text-width',
                     action: function () {
                         am.eventAggregator.trigger("showYearlyreport");
                     }

@@ -19,8 +19,8 @@ namespace AsliMotor.SalesReports.ReportRepository
 	inner join product p on inv.productid = p.id
 	inner join customer cust on inv.customerid = cust.id
 	where inv.branchid = @branchid and inv.status = 1 and inv.duedate < NOW()::date
-	ORDER BY DiffrentMonth desc, inv.duedate asc")]
-	//LIMIT 20 OFFSET @offset")]
+	ORDER BY DiffrentMonth desc, inv.duedate asc
+	LIMIT 20 OFFSET @offset")]
     public class PiutangTelahJatuhTempo : IViewModel
     {
         public Guid id { get; set; }

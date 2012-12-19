@@ -144,7 +144,7 @@
                     var styles = align;
                     var value = this.model.get(cell.dataIndex);
                     if (cell.onrender) {
-                        value = cell.onrender(value);
+                        value = cell.onrender(value, this.model);
                     }
                     value = (value == null) ? '-' : value;
                     value = typeof value == "number" ? value.toCurrency() : value;

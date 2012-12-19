@@ -10,5 +10,6 @@ namespace AsliMotor.SalesReports.ReportRepository
         TotalTransactionReport GetTotalTransaction(string branchid);
         SalesReport GetSalesReport(string branchid);
         IList<PiutangTelahJatuhTempo> GetPiutangTelahJatuhTempo(string branchid, int offset);
+        TotalPiutangTelahJatuhTempo GetTotalPiutangTelahJatuhTempo(string branchid);
     }
 }

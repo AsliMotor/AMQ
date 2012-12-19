@@ -1,0 +1,12 @@
+﻿table.profile-user tr td
+{
+    padding:6px 10px;
+    border-bottom:1px solid #ccc;
+}
+table.profile-user tr td.last-coloumn{
+    min-width: 200px;
+}
+table.profile-user tr:nth-child(2n) td
+{
+    background-color:#f8f8f8;
+}

@@ -16,5 +16,6 @@ namespace AsliMotor.Security.Models
         public const string OWNER_ADMINPURCHASE_CASHIER = "Owner, AdminPurchase, Cashier";
         public const string OWNER_ADMINSALES = "Owner, AdminSales";
         public const string OWNER_ADMINSALES_CASHIER = "Owner, AdminSales, Cashier";
+        public const string OWNER_ADMINISTRATOR = "Owner, Administrator";
     }
 }

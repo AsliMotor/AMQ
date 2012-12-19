@@ -5,6 +5,26 @@
     var year = dateFormated.getFullYear();
     return day + " " + ConvertMonthToIndonesian(month) + " " + year;
 }
+String.prototype.toFormatDateTime = function () {
+    var dateFormated = new Date(parseInt(this.replace(/\/Date\((-?\d+)\)\//, '$1')));
+    var day = ("0" + dateFormated.getDate()).slice(-2);
+    var month = dateFormated.getMonth();
+    var year = dateFormated.getFullYear();
+    var hour = ("0" + dateFormated.getHours()).slice(-2);
+    var minute = ("0" + dateFormated.getMinutes()).slice(-2);
+    var second = ("0" + dateFormated.getSeconds()).slice(-2);
+    return day + " " + ConvertMonthToIndonesian(month) + " " + year + " " + hour + ":" + minute + ":" + second;
+}
+Number.prototype.toDateTimeFromTick = function () {
+    var dateFormated = new Date(this);
+    var day = ("0" + dateFormated.getDate()).slice(-2);
+    var month = dateFormated.getMonth();
+    var year = dateFormated.getFullYear();
+    var hour = ("0" + dateFormated.getHours()).slice(-2);
+    var minute = ("0" + dateFormated.getMinutes()).slice(-2);
+    var second = ("0" + dateFormated.getSeconds()).slice(-2);
+    return day + " " + ConvertMonthToIndonesian(month) + " " + year + " " + hour + ":" + minute + ":" + second;
+}
 String.prototype.toMonthAndYear = function () {
     var dateFormated = new Date(parseInt(this.replace(/\/Date\((-?\d+)\)\//, '$1')));
     var month = dateFormated.getMonth();

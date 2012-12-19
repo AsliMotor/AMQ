@@ -2,7 +2,7 @@
 {
     border:1px solid #f8f8f8;
     padding:7px;
-    background-color:#fefefe;
+    background-color:#f6f6f6;
     min-height:55px;
 }
 .detail-purchase-billing{width:300px;float:left;}
@@ -21,3 +21,26 @@
 .detail-purchase-footer{padding-top:20px;clear:both;}
 .detail-purchase-footer div > div.a{width:90px;}
 .detail-purchase-footer div > div.note{width:400px;}
+
+
+
+div.edit-purchase input.search-input-field + .loading-container {
+    margin-right: 633px;
+    height: 26px;
+    width: 23px;
+    position: relative;
+    float: right;
+    margin-top: -37px;
+}
+div.edit-purchase input.search-input-field
+{
+    width:210px;
+}
+
+div.edit-purchase .search-result-section
+{
+    width:218px;
+}
+div.edit-purchase input.search-input-field + .loading-container.error,div.edit-purchase input.search-input-field.error {
+    border-color: #ccc;
+}

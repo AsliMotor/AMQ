@@ -10,7 +10,7 @@
         className: 'modal-dialog',
         initialize: function () {
             var title = this.options.title || "HomeJS Modal Dialog";
-            var html = "<div class='toolbar'><div class='logo'><img src='../../Content/img/error.png'/></div><title>" + title + "</title></div>" +
+            var html = "<div class='toolbar'><div class='logo'><img src='../../Content/img/homesoft-1.png'/></div><title>" + title + "</title></div>" +
                        "<fieldset class='textbox'>" +
                        "<section class='modal-dialog-body'>" +
                        "</section>" +

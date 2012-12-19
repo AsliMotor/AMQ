@@ -17,7 +17,7 @@
             var monthlyReport = new am.report.model.MonthlyReports();
             var breadcrumb = new HomeJS.components.Breadcrumb({
                 title: 'Laporan Penjualan Bulanan',
-                icon: 'icon-calendar icon-white'
+                icon: 'icon-th icon-white'
             });
             var selectMonthView = new am.report.view.SelectMonthView({
                 action: function (year) {

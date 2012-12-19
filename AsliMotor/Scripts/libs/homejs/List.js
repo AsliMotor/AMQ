@@ -81,7 +81,8 @@
             render: function () {
                 if (this.model.get("Total")) {
                     if (this.options.collectionList.length < this.model.get("Total"))
-                        this.$el.html("<button class='btn btn-small btn-success' style='margin-top:10px;'>Selanjutnya</button>");
+                        this.$el.html("<button class='btn btn-small btn-success' style='margin-top:10px;float:left;'>Selanjutnya</button>"+
+                        "<div style='float:left;margin-top:15px;margin-left:10px;'>Total : " + this.model.get("Total") + "</div>");
                     else
                         this.$el.remove();
                 }

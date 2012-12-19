@@ -19,11 +19,15 @@ namespace AsliMotor.SalesReports.ReportRepository
             SalesReport report = QueryObjectMapper.Map<SalesReport>("findSales", new string[] { "branchid" }, new object[] { branchid }).FirstOrDefault();
             return report;
         }
-
         public IList<PiutangTelahJatuhTempo> GetPiutangTelahJatuhTempo(string branchid, int offset)
         {
-            IList<PiutangTelahJatuhTempo> results = QueryObjectMapper.Map<PiutangTelahJatuhTempo>("findPiutang", new string[] { "branchid", "offset" }, new object[] { branchid,offset }).ToList();
+            IList<PiutangTelahJatuhTempo> results = QueryObjectMapper.Map<PiutangTelahJatuhTempo>("findPiutang", new string[] { "branchid", "offset" }, new object[] { branchid, offset * 20 }).ToList();
             return results;
+        }
+        public TotalPiutangTelahJatuhTempo GetTotalPiutangTelahJatuhTempo(string branchid)
+        {
+            TotalPiutangTelahJatuhTempo result = QueryObjectMapper.Map<TotalPiutangTelahJatuhTempo>("count", new string[] { "branchid" }, new object[] { branchid }).FirstOrDefault();
+            return result;
         }
     }
 }

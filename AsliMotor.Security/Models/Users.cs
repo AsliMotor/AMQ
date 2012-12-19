@@ -24,15 +24,15 @@ namespace AsliMotor.Security.Models
             : base(Guid.NewGuid(), username, applicationname)
         {
             Email = email;
-            Password = ASCIIEncoding.ASCII.GetBytes(password);
+            Password = password;
         }
         public string ProviderName { get; set; }
         public string EmployeeName { get; set; }
         public string Email { get; set; }
         public string Comment { get; set; }
         public bool ResetPasswordOnFirstLogin { get; set; }
-        public byte[] Password { get; set; }
-        public byte[] PasswordSalt { get; set; }
+        public string Password { get; set; }
+        public string PasswordSalt { get; set; }
         public string PasswordQuestion { get; set; }
         public string PasswordAnswer { get; set; }
         public bool IsApproved { get; set; }

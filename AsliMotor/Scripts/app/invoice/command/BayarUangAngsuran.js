@@ -13,7 +13,8 @@
         defaults: {
             InvoiceId: "",
             AngsuranBulanan: 0,
-            Date: getCurrentDate()
+            Date: getCurrentDate(),
+            DueDate: ""
         }
     });
 
@@ -22,7 +23,8 @@
         var createCommand = function (model) {
             var bayarUangAngsuranCommand = new am.invoice.command.BayarUangAngsuran({
                 InvoiceId: model.get("id"),
-                AngsuranBulanan: model.get("AngsuranBulanan")
+                AngsuranBulanan: model.get("AngsuranBulanan"),
+                DueDate: model.get("DueDate")
             });
             return bayarUangAngsuranCommand;
         }

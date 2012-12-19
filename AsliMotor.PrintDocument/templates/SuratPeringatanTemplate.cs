@@ -51,7 +51,7 @@ namespace AsliMotor.PrintDocuments
             <thead>
                 <tr>
                     <th style='width:30px;text-align:center;'>No</th>
-                    <th style='width:125px;text-align:left;'>Angsuran Ke</th>
+                    <th style='width:130px;text-align:left;'>Angsuran Ke</th>
                     <th style='width:190px;text-align:left;'>Jatuh Tempo</th>
                     <th style='width:170px;text-align:right;'>Jumlah Angsuran</th>
                     <th style='width:160px;text-align:right;'>Denda</th>

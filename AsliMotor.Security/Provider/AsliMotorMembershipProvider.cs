@@ -113,9 +113,8 @@ namespace AsliMotor.Security.Provider
 
             Users user = getProviderUser(username, true);
             string dbAnswer = user.PasswordAnswer;
-            string pwSalt = ASCIIEncoding.ASCII.GetString(user.PasswordSalt);
-            user.Password = ASCIIEncoding.ASCII.GetBytes(encodePassword(newPassword, pwSalt));
-            user.PasswordAnswer = encodePassword(dbAnswer, pwSalt);
+            string pwSalt = user.PasswordSalt;
+            user.Password = encodePassword(newPassword, pwSalt);
             user.LastPasswordChangedDate = DateTime.Now;
             user.ResetPasswordOnFirstLogin = false;
             user.FailedPasswordAnswerAttemptCount = 0;
@@ -129,7 +128,7 @@ namespace AsliMotor.Security.Provider
                 return false;
 
             Users user = getProviderUser(username, true);
-            string passSalt = ASCIIEncoding.ASCII.GetString(user.PasswordSalt);
+            string passSalt = user.PasswordSalt;
             user.PasswordQuestion = newPwdQuestion;
             user.PasswordAnswer = encodePassword(newPwdAnswer, passSalt);
             _reportingRepository.Update<Users>(user, new { Id = user.Id });
@@ -182,7 +181,7 @@ namespace AsliMotor.Security.Provider
                 Users user = new Users(username, ApplicationName, email, encodePassword(password, salt));
                 user.DateCreated = DateTime.Now;
                 user.LastPasswordChangedDate = DateTime.Now;
-                user.PasswordSalt = ASCIIEncoding.ASCII.GetBytes(salt);
+                user.PasswordSalt = salt;
                 user.ProviderName = this.Name;
                 user.PasswordQuestion = passwordQuestion;
                 user.PasswordAnswer = passwordAnswer.IsNullOrWhiteSpace() ? null : encodePassword(passwordAnswer, salt);
@@ -263,9 +262,9 @@ namespace AsliMotor.Security.Provider
             if (user.IsLockedOut)
                 throw new Exception(String.Format("Wrong password. Maximum invalid password attempt {0} has reached.", MaxInvalidPasswordAttempts));
 
-            string password = ASCIIEncoding.ASCII.GetString(user.Password);
+            string password = user.Password;
             string dbAnswer = user.PasswordAnswer;
-            string passSalt = ASCIIEncoding.ASCII.GetString(user.PasswordSalt);
+            string passSalt = user.PasswordSalt;
 
             if (RequiresQuestionAndAnswer && !validatePassword(answer, dbAnswer, passSalt))
             {
@@ -361,8 +360,8 @@ namespace AsliMotor.Security.Provider
                 updateFailureCount(user, FailureType.PasswordAnswer);
                 throw new Exception("Incorrect password answer.");
             }
-            user.Password = ASCIIEncoding.ASCII.GetBytes(encodePassword(newPassword, salt));
-            user.PasswordSalt = ASCIIEncoding.ASCII.GetBytes(salt);
+            user.Password = encodePassword(newPassword, salt);
+            user.PasswordSalt = salt;
             user.PasswordAnswer = encodePassword(dbAnswer, salt);
             user.LastPasswordChangedDate = DateTime.Now;
             user.ResetPasswordOnFirstLogin = false;
@@ -398,15 +397,13 @@ namespace AsliMotor.Security.Provider
                 return false;
             bool isValid = false;
             Users user = _queryObjectMapper.Map<Users>("findByName", new string[] { "name", "applicationname" }, new object[] { username, ApplicationName }).FirstOrDefault();
-            //User user = pUsersCollection.FindByName<User>(username, ApplicationName);
             if (user.IsNull())
                 return false;
 
             if (user.IsLockedOut)
                 throw new Exception(String.Format("Wrong password. Max invalid password attempts {0} has been reached.", MaxInvalidPasswordAttempts));
-            string pwd = ASCIIEncoding.ASCII.GetString(user.Password);
-            string salt = user.PasswordSalt != null ? ASCIIEncoding.ASCII.GetString(user.PasswordSalt) : String.Empty;
-
+            string pwd = user.Password;
+            string salt = user.PasswordSalt != null ? user.PasswordSalt : String.Empty;
             if (validatePassword(password, pwd, salt))
             {
                 if (user.IsApproved)
@@ -598,7 +595,7 @@ namespace AsliMotor.Security.Provider
         {
             Users user = getProviderUser(username, true);
             string answer = user.PasswordAnswer;
-            salt = ASCIIEncoding.ASCII.GetString(user.PasswordSalt);
+            salt = user.PasswordSalt;
             isLockedOut = user.IsLockedOut;
             return answer;
         }

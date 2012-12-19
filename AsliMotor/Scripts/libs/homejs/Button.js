@@ -1,7 +1,8 @@
 ﻿define(['jquery',
         'underscore',
         'backbone',
-        'namespace', ],
+        'namespace', 
+        '/scripts/libs/homejs/buttontype.js'],
     function ($, _, Backbone, ns) {
         ns.define("HomeJS.components");
         HomeJS.components.Button = Backbone.View.extend({

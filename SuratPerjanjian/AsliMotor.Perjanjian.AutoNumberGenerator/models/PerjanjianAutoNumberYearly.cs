@@ -26,7 +26,7 @@ namespace AsliMotor.Perjanjian.AutoNumberGenerator
         public string PerjanjianNumberInStringFormat(string prefix)
         {
             return string.Format("{0}/{1}/{2}",
-                Value.ToString().PadLeft(7, '0'),
+                Value.ToString().PadLeft(5, '0'),
                 prefix,
                 Year.ToString());
         }

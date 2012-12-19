@@ -20,13 +20,13 @@
             var listInvoiceView = new HomeJS.components.List({
                 header: {
                     title: "Penjualan",
-                    description: "Daftar Penjualan"
+                    description: "Data Penjualan"
                 },
                 toolbar: [{
                     type: HomeJS.components.Button,
                     title: "Tambah",
                     typeButton: HomeJS.components.ButtonType.Success,
-                    icon: "icon-file",
+                    icon: "icon-plus-sign",
                     iconColor: HomeJS.components.ButtonColor.White,
                     events: {
                         'click': function () {

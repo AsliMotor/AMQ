@@ -1,0 +1,38 @@
+﻿#main-container
+{
+    background-color: #FAFAFA;
+    padding:0px 0px 20px 0px;
+}
+table.profile-organization
+{
+    margin-left:20px;
+}
+table.profile-organization tr td
+{
+    padding:6px 10px;
+    border-bottom:1px solid #ccc;
+}
+table.profile-organization tr td.last-coloumn{
+    min-width: 200px;
+}
+table.profile-organization tr:nth-child(2n) td
+{
+    background-color:#f8f8f8;
+}
+.profile-organization .toolbar
+{
+    margin-top:10px;
+    padding-left:20px;
+}
+img.logo-organization
+{
+    min-width:100px;
+    height:60px;
+    padding: 4px;
+    background-color: white;
+    border: 1px solid #CCC;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}

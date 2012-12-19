@@ -7,6 +7,7 @@
         'view/CreateCustomer',
         '../../../libs/Animation',
         '../../../libs/homejs/dialog/erroralert',
+        '../../../libs/homejs/dialog/confirm',
         '../../../libs/homejs/DetailPanel'],
     function ($, _, Backbone, ns, am) {
         ns.define('am.customer.controller');
@@ -71,7 +72,12 @@
                         iconClass: 'icon-remove-circle',
                         id: "cancel",
                         action: function () {
-                            alert("Cancel");
+                            HomeJS.components.Confirm({
+                                message: "Anda yakin untuk membatalkan pengubahan data pelanggan ini ?",
+                                action: function () {
+                                    am.eventAggregator.trigger("showList");
+                                }
+                            });
                         }
                     }]
                 });

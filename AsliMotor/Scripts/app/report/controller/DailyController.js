@@ -19,7 +19,7 @@
             var dailyReport = new am.report.model.DailyReports();
             var breadcrumb = new HomeJS.components.Breadcrumb({
                 title: 'Laporan Penjualan Harian',
-                icon: 'icon-home icon-white'
+                icon: 'icon-calendar icon-white'
             });
 
             var SelectDateModel = Backbone.Model.extend();

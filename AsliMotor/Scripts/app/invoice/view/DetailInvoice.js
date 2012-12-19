@@ -11,6 +11,8 @@
     '../../../app/invoice/action/changesukubunga',
     '../../../app/invoice/action/changelamaangsuran',
     '../../../app/invoice/action/changeduedate',
+    '../../../app/invoice/action/changeproduct',
+    '../../../app/invoice/action/changecustomer',
     '../../../libs/homejs/ButtonField',
     '../../../libs/Date',
     '../../../libs/Currency'
@@ -49,8 +51,24 @@
             html += "<div class='description'>" + address + "</div>";
             html += "<div class='description'>" + city + ", " + region + "</div>";
             html += "<div class='description'>Telp. " + telp + "</div>";
+            html += "<div id='edit-customer'><button class='btn btn-mini btn-success'><i class='icon-pencil icon-white'></button></div>";
             this.$el.html(html);
             return this;
+        },
+        events: {
+            'hover': 'showBtnEdit',
+            'mouseleave': 'hideBtnEdit',
+            'click #edit-customer': 'showEditDialog'
+        },
+        showBtnEdit: function () {
+            $("#edit-customer").show();
+        },
+        hideBtnEdit: function () {
+            $("#edit-customer").hide();
+        },
+        showEditDialog: function (ev) {
+            ev.preventDefault();
+            am.invoice.action.changeCustomer().execute(this.model);
         }
     });
 
@@ -112,8 +130,24 @@
             html += "<div class='clearfix'><div>Warna</div><div>" + warna + "</div></div>";
             html += "<div class='clearfix'><div>Tahun</div><div>" + tahun + "</div></div>";
             html += "<div class='clearfix'><div>Nomor Polisi</div><div>" + noPolisi + "</div></div>";
+            html += "<div id='edit-product'><button class='btn btn-mini btn-success'><i class='icon-pencil icon-white'></button></div>";
             this.$el.html(html);
             return this;
+        },
+        events: {
+            'hover': 'showBtnEdit',
+            'mouseleave': 'hideBtnEdit',
+            'click #edit-product': 'showEditDialog'
+        },
+        showBtnEdit: function () {
+            $("#edit-product").show();
+        },
+        hideBtnEdit: function () {
+            $("#edit-product").hide();
+        },
+        showEditDialog: function (ev) {
+            ev.preventDefault();
+            am.invoice.action.changeProduct().execute(this.model);
         }
     });
 

@@ -30,14 +30,20 @@ div.homejs-list > div.homejs-list-header:hover
 
 div.homejs-list > div.homejs-list-header > .title
 {
-    font-size:24px;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #334;
+    text-shadow: white 0px 1px 0px, #CCC 0px -1px 0px;
+    text-shadow: 1px 4px 6px #DEF, 0 0 0 black, 1px 4px 6px #DEF;
 }
 
 div.homejs-list > div.homejs-list-header > .description
 {
     font-size:12px;
     color:#333;
-    margin:0px 5px;
+    margin:0px 0px;
+    font-family:Arial;
 }
 div.homejs-search-field
 {
@@ -58,7 +64,7 @@ button.homejs-btn i
 }
 button.homejs-btn i + span
 {
-    margin: 0px 0px 0px 4px;
+    margin: 0px 0px 0px 2px;
 }
 /****************************************************Detail Panel****************************************************/
 div.left-detail-panel
@@ -338,6 +344,29 @@ input.search-input-field + .loading-container > img
         -moz-box-shadow: 0px 0px 3px red; /* Firefox */
         -webkit-box-shadow: 0px 0px 3px red; /* Safari, Chrome */
 }
+
+.popup.confirm .toolbar
+{
+    color: white;
+    background-color: #BD362F;text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    background-color: #DA4F49;
+    background-image: -moz-linear-gradient(top, #e88316, #c47016);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#e88316), to(#c47016));
+    background-image: -webkit-linear-gradient(top, #e88316, #c47016);
+    background-image: -o-linear-gradient(top, #e88316, #c47016);
+    background-image: linear-gradient(to bottom, #e88316, #c47016);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+}
+.popup.confirm
+{
+	border: 1px solid;
+    border-color: #c47016;
+    box-shadow: 0px 0px 3px #c47016; /* CSS3 */
+        -moz-box-shadow: 0px 0px 3px #c47016; /* Firefox */
+        -webkit-box-shadow: 0px 0px 3px #c47016; /* Safari, Chrome */
+}
+
 .popup .toolbar title{
     display: block;
     font-size: 12px;
@@ -365,8 +394,13 @@ input.search-input-field + .loading-container > img
     margin: 15px auto 0px;
     display: block;
     color:White;
+    float:left;
+    margin-left:10px;
 }
-
+.popup.confirm fieldset div.toolbar-footer
+{
+    text-align:center;
+}
 /************************************************Modal Dialog************************************************/
 .modal-dialog{
 	display:none;
@@ -410,7 +444,7 @@ input.search-input-field + .loading-container > img
 .modal-dialog .toolbar title{
     display: block;
     font-size: 12px;
-    padding-left: 23px;
+    padding-left: 35px;
     padding-top: 2px;
 }
 .modal-dialog .toolbar .logo
@@ -434,13 +468,28 @@ input.search-input-field + .loading-container > img
     border:2px solid #333;
     height:240px;
 }
-
+.modal-dialog fieldset button.alert-success
+{
+    margin: 15px auto 0px;
+    display: block;
+    color:White;
+}
 /********************************************************Datepicket********************************************************/
 .datepicker.dropdown-menu
 {
     z-index:999999;
 }
 /********************************************SIDE BAR***********************************************************/
+.homejs-sidebar .nav .nav-header {
+    display: block;
+    padding: 3px 15px 3px 3px;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 18px;
+    color: #333;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+}
 .nav-tabs.nav-stacked  > li.active > a {
   margin: 2px;	
   border: 1px solid #3c4049;
@@ -479,7 +528,7 @@ input.search-input-field + .loading-container > img
 
 .nav-tabs.nav-stacked > li > a > i {
 	opacity: .7;
-	margin-right:2px;
+	margin-right:4px;
 	margin-top:1px;
 }
 
@@ -533,6 +582,7 @@ ul.breadcrumb {
     border-radius: 2px;
     box-shadow: none;
     padding:8px 10px;
+    margin-bottom:0px;
 }
 .breadcrumb li {
     display: inline-block;
@@ -548,4 +598,9 @@ ul.breadcrumb {
     opacity: 1;
 	margin-right:2px;
 	margin-top:1px;   
+}
+/**************TypeAhead************************/
+input.typeahead + ul.typeahead
+{
+    width:218px;
 }

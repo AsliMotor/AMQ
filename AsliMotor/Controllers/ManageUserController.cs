@@ -42,11 +42,57 @@ namespace AsliMotor.Controllers
                 {
                     Username = muser.UserName,
                     Roles = rolesString,
-                    Email = usr.Email
+                    Email = usr.Email,
+                    Locked = usr.IsLockedOut
                 });
             }
 
             return Json(allUsers, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult AllRoles()
+        {
+            string[] allRoles = Roles.GetAllRoles();
+            IList<object> result = new List<object>();
+            foreach (string role in allRoles)
+            {
+                result.Add(new { id = role, name = role });
+            }
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult AddUser(string username, string password, string email, string role)
+        {
+            try
+            {
+                CompanyProfile cp = new CompanyProfile(this.HttpContext);
+                Users user = Membership.CreateUser(username, password, email);
+                user.BranchId = cp.BranchId;
+                user.OwnerId = cp.OwnerId;
+                Membership.UpdateUser(user);
+                Roles.AddUserToRole(user.Name, role);
+                return Json(new { error = false, data = user }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { error = true, message = ex.Message });
+            }
+        }
+        [HttpPost]
+        public JsonResult DeleteUser(string username)
+        {
+            try
+            {
+                Membership.DeleteUser(username);
+                return Json(new { error = false, data = string.Empty }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { error = true, message = ex.Message });
+            }
         }
     }
 }

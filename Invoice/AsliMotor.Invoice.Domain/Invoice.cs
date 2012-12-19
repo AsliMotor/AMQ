@@ -55,7 +55,7 @@ namespace AsliMotor.Invoices.Domain
             _snapshot.Outstanding = (_snapshot.Price + _snapshot.TotalKredit) - (p.UangMuka + p.UangTandaJadi);
         }
 
-        public void BayarAngsuran(long totalAngsuran)
+        public StatusInvoice BayarAngsuran(long totalAngsuran)
         {
             _snapshot.DueDate = _snapshot.DueDate.AddDays(30);
             _snapshot.Outstanding -= _snapshot.AngsuranBulanan;
@@ -64,6 +64,7 @@ namespace AsliMotor.Invoices.Domain
                 _snapshot.Outstanding = 0;
                 _snapshot.Status = (int)StatusInvoice.PAID;
             }
+            return (StatusInvoice)_snapshot.Status;
         }
 
         public void ChangeUangMuka(decimal uangmuka, decimal uangtandajadi)
@@ -123,6 +124,16 @@ namespace AsliMotor.Invoices.Domain
                 _snapshot.Status = (int)StatusInvoice.PULL;
                 _snapshot.Outstanding = 0;
             }
+        }
+
+        public void ChangeProduct(Guid productId)
+        {
+            _snapshot.ProductId = productId;
+        }
+
+        public void ChangeCustomer(Guid customerId)
+        {
+            _snapshot.CustomerId = customerId;
         }
 
         public InvoiceSnapshot CreateSnapshot()

@@ -9,5 +9,6 @@ namespace AsliMotor.SuratPeringatan.AutoNumberGenerator
     {
         void SetupSuratPeringatanAutoMumber(int mode, string prefix, string branchId);
         string GenerateSuratPeringatanNumber(DateTime transactionDate, string branchId);
+        SuratPeringatanAutoNumberConfig GetSuratPeringatanAutoNumberConfig(string id);
     }
 }
