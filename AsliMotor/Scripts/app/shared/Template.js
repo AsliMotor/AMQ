@@ -63,7 +63,7 @@ define([
                                 "<ul>" +
 					                "<li><a href='/report'>Laporan Penjualan</a></li>" +
 					                //"<li><a href='/outstandingreport'>Laporan Piutang</a></li>" +
-                                    "<li><a href='/angsuranreport'>Laporan Angsuran</a></li>" +
+                                    //"<li><a href='/angsuranreport'>Laporan Angsuran</a></li>" +
 					                //"<li><a href='/report'>Laporan Keuangan</a></li>" +
 				                "</ul>" +
                             "</li>";
