@@ -1,49 +1,48 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <publishData>
-  <publishProfile publishUrl="\\EDDY-IT\denny\aslimotor-built" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FileSystem" replaceMatchingFiles="True" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
+  <publishProfile publishUrl="D:\aslimotor-built" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FileSystem" replaceMatchingFiles="True" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
     <file relUrl="Scripts/app/invoice/view/ChangeDueDate.js" publishTime="11/20/2012 23:11:47" />
     <file relUrl="Scripts/libs/require/text.js" publishTime="09/25/2012 09:23:24" />
-    <file relUrl="Scripts/libs/homejs/inputfield/Typeahead.js" publishTime="12/19/2012 11:42:54" />
     <file relUrl="bin/AsliMotor.SalesReports.ReportRepository.dll" publishTime="12/17/2012 15:18:14" />
     <file relUrl="bin/antlr.runtime.dll" publishTime="07/03/2012 10:38:17" />
     <file relUrl="Scripts/test/component/SearchField.js" publishTime="10/27/2012 20:37:30" />
-    <file relUrl="bin/AsliMotor.Invoices.Services.dll" publishTime="12/19/2012 11:58:40" />
+    <file relUrl="bin/AsliMotor.Invoices.Services.dll" publishTime="12/21/2012 14:31:41" />
     <file relUrl="bin/Antlr3.StringTemplate.dll" publishTime="02/02/2012 14:34:46" />
     <file relUrl="Scripts/app/report/view/ProductChart.js" publishTime="11/25/2012 14:09:35" />
     <file relUrl="bin/NServiceBus.Core.dll" publishTime="07/03/2012 10:37:56" />
     <file relUrl="Scripts/app/settingautonumber/view/SuratPerjanjianAutoNumberView.js" publishTime="12/14/2012 10:22:02" />
-    <file relUrl="Scripts/libs/homejs/chart/Chart.js" publishTime="11/14/2012 17:07:11" />
+    <file relUrl="bin/Spring.Core.xml" publishTime="07/03/2012 10:37:57" />
     <file relUrl="bin/AsliMotor.Perjanjian.Services.dll" publishTime="12/17/2012 15:18:15" />
-    <file relUrl="Scripts/app/auditlog/main.js" publishTime="12/16/2012 23:33:31" />
+    <file relUrl="bin/AsliMotor.SI.AutoNumberGenerator.dll" publishTime="12/17/2012 15:18:09" />
     <file relUrl="Scripts/libs/homejs/dialog/ModalDialog.js" publishTime="12/12/2012 22:57:30" />
     <file relUrl="Scripts/app/manageuser/model/UserListReport.js" publishTime="12/10/2012 15:55:04" />
     <file relUrl="Scripts/app/settingautonumber/view/SuratPeringatanAutoNumberView.js" publishTime="12/14/2012 10:14:26" />
     <file relUrl="Scripts/libs/homejs/RadioButton.js" publishTime="12/13/2012 17:14:08" />
     <file relUrl="Scripts/libs/homejs/Breadcrumb.js" publishTime="12/12/2012 09:08:52" />
     <file relUrl="Scripts/app/outstandingreport/view/TotalSummaryGrafikProduk.js" publishTime="12/18/2012 13:48:12" />
-    <file relUrl="Scripts/app/product/controller/EditController.js" publishTime="12/12/2012 23:32:21" />
+    <file relUrl="Scripts/app/product/main.js" publishTime="11/14/2012 11:11:16" />
+    <file relUrl="bin/BonaStoco.Inf.DataMapper.Impl.dll" publishTime="06/29/2012 11:51:05" />
     <file relUrl="Content/setting.css" publishTime="12/12/2012 16:26:49" />
     <file relUrl="Scripts/app/invoice/view/ChangeCustomer.js" publishTime="12/15/2012 00:32:31" />
     <file relUrl="Views/Test/PrintJBFidusia.cshtml" publishTime="12/09/2012 15:48:24" />
     <file relUrl="Scripts/app/setting/view/ChangePassword.js" publishTime="12/13/2012 18:25:26" />
     <file relUrl="Scripts/test/component/datefield.js" publishTime="10/18/2012 15:34:26" />
-    <file relUrl="bin/AsliMotor.Invoices.Domain.dll" publishTime="12/19/2012 11:58:34" />
+    <file relUrl="bin/AsliMotor.Invoices.Domain.dll" publishTime="12/21/2012 14:31:36" />
     <file relUrl="Scripts/app/settingautonumber/view/InvoiceAutoNumberView.js" publishTime="12/14/2012 10:14:35" />
     <file relUrl="bin/Newtonsoft.Json.xml" publishTime="12/17/2012 15:02:55" />
-    <file relUrl="bin/AsliMotor.SI.AutoNumberGenerator.dll" publishTime="12/17/2012 15:18:09" />
+    <file relUrl="Content/img/icon/glyphicons_227_usd.png" publishTime="12/18/2012 22:31:43" />
     <file relUrl="Scripts/libs/require/require.js" publishTime="09/25/2012 17:53:17" />
-    <file relUrl="Scripts/app/product/controller/ListController.js" publishTime="12/18/2012 23:23:31" />
+    <file relUrl="Scripts/app/invoice/command/ChangeCustomer.js" publishTime="12/14/2012 23:56:53" />
     <file relUrl="Views/Test/TextArea.cshtml" publishTime="10/20/2012 12:41:02" />
     <file relUrl="bin/AsliMotor.Receives.Models.pdb" publishTime="12/17/2012 15:18:04" />
+    <file relUrl="Scripts/app/invoice/action/changePaymentType.js" publishTime="11/20/2012 22:18:10" />
     <file relUrl="Views/Test/SearchField.cshtml" publishTime="10/27/2012 20:04:39" />
-    <file relUrl="Scripts/app/invoice/model/InvoiceHeaderReport.js" publishTime="10/30/2012 22:08:23" />
+    <file relUrl="bin/AsliMotor.Security.pdb" publishTime="12/17/2012 20:01:37" />
     <file relUrl="Scripts/app/organization/model/Organization.js" publishTime="12/12/2012 17:01:35" />
     <file relUrl="Scripts/test/component/TextArea.js" publishTime="10/20/2012 12:42:35" />
-    <file relUrl="bin/AsliMotor.pdb" publishTime="12/19/2012 11:58:41" />
     <file relUrl="Scripts/app/setting/view/ProfileUser.js" publishTime="12/12/2012 16:42:49" />
-    <file relUrl="bin/Spring.Data.pdb" publishTime="07/03/2012 10:37:57" />
     <file relUrl="Scripts/app/auditlog/model/InvoiceAuditLogAction.js" publishTime="12/17/2012 15:48:28" />
-    <file relUrl="bin/AsliMotor.PrintDocuments.dll" publishTime="12/19/2012 11:58:38" />
+    <file relUrl="bin/AsliMotor.PrintDocuments.dll" publishTime="12/21/2012 14:31:40" />
     <file relUrl="bin/Spring.Aop.dll" publishTime="07/03/2012 10:37:56" />
     <file relUrl="Scripts/app/report/controller/MonthlyController.js" publishTime="12/18/2012 22:59:17" />
     <file relUrl="Views/Test/PrintJBAngsuran.cshtml" publishTime="12/09/2012 01:58:41" />
@@ -52,15 +51,18 @@
     <file relUrl="bin/Newtonsoft.Json.dll" publishTime="12/17/2012 15:02:55" />
     <file relUrl="Scripts/app/shared/RoleName.js" publishTime="12/12/2012 18:41:35" />
     <file relUrl="Scripts/app/dashboard/view/ChartSalesView.js" publishTime="11/15/2012 18:39:01" />
+    <file relUrl="Scripts/app/setting/controller/ChangePasswordController.js" publishTime="12/12/2012 09:43:54" />
     <file relUrl="bin/Antlr3.Runtime.Debug.dll" publishTime="02/02/2012 14:34:46" />
-    <file relUrl="Scripts/app/customer/model/CustomerListReport.js" publishTime="11/05/2012 21:15:10" />
+    <file relUrl="Scripts/libs/bootstrap/bootstrap-typeahead.js" publishTime="12/19/2012 00:21:59" />
     <file relUrl="Scripts/app/purchase/model/Purchase.js" publishTime="12/18/2012 23:42:07" />
     <file relUrl="bin/Common.Logging.dll" publishTime="07/03/2012 10:37:56" />
+    <file relUrl="Scripts/libs/numbering/autonumeric.js" publishTime="10/30/2012 17:55:44" />
     <file relUrl="Scripts/app/invoice/view/CreateInvoice.js" publishTime="12/14/2012 23:57:47" />
-    <file relUrl="Scripts/app/invoice/view/ChangeUangMuka.js" publishTime="11/04/2012 14:29:24" />
+    <file relUrl="Scripts/test/component/erroralert.js" publishTime="11/01/2012 13:38:32" />
+    <file relUrl="Scripts/libs/Date.js" publishTime="12/17/2012 00:25:37" />
     <file relUrl="bin/Npgsql.dll" publishTime="06/29/2012 11:51:04" />
-    <file relUrl="Scripts/libs/bootstrap/bootstrap-typeahead.js" publishTime="12/19/2012 00:21:59" />
     <file relUrl="Scripts/libs/homejs/List.js" publishTime="12/14/2012 19:46:19" />
+    <file relUrl="Content/aslimotor.grey.css" publishTime="11/12/2012 16:18:57" />
     <file relUrl="Content/img/homesoft.png" publishTime="12/18/2012 00:17:59" />
     <file relUrl="Scripts/app/invoice/action/changeSukuBunga.js" publishTime="12/12/2012 18:34:06" />
     <file relUrl="Scripts/libs/bootstrap/bootstrap-dropdown.js" publishTime="11/14/2012 11:03:20" />
@@ -74,20 +76,17 @@
     <file relUrl="Scripts/libs/homejs/DataTable.js" publishTime="12/11/2012 18:55:47" />
     <file relUrl="Content/bootstrap/bootstrap-responsive.min.css" publishTime="09/25/2012 17:53:17" />
     <file relUrl="Views/ManageUser/Index.cshtml" publishTime="12/10/2012 15:38:26" />
-    <file relUrl="Scripts/app/invoice/view/ChangeSukuBunga.js" publishTime="11/20/2012 23:12:01" />
     <file relUrl="Scripts/app/outstandingreport/view/yearly/YearlyChart.js" publishTime="12/18/2012 13:48:12" />
-    <file relUrl="bin/Spring.Core.pdb" publishTime="07/03/2012 10:37:57" />
+    <file relUrl="Scripts/app/angsuranreport/model/MonthlyReports.js" publishTime="12/18/2012 14:11:10" />
     <file relUrl="Scripts/app/customer/view/CreateCustomer.js" publishTime="12/06/2012 00:04:45" />
     <file relUrl="Scripts/app/angsuranreport/model/YearlyReports.js" publishTime="12/18/2012 14:11:10" />
     <file relUrl="Content/img/page-bg.png" publishTime="10/17/2012 23:06:36" />
-    <file relUrl="Scripts/app/outstandingreport/model/RateProductReports.js" publishTime="12/18/2012 13:48:12" />
+    <file relUrl="Scripts/app/outstandingreport/view/Container.js" publishTime="12/18/2012 13:48:12" />
     <file relUrl="Scripts/app/organization/command/ChangeProfile.js" publishTime="12/12/2012 18:29:06" />
     <file relUrl="Scripts/app/customer/model/TotalCustomerList.js" publishTime="11/05/2012 21:16:25" />
-    <file relUrl="Scripts/app/outstandingreport/model/MonthlyReports.js" publishTime="12/18/2012 13:48:12" />
-    <file relUrl="Views/AngsuranReport/Index.cshtml" publishTime="12/18/2012 14:28:44" />
     <file relUrl="Scripts/app/auditlog/model/InvoiceAuditLogListReports.js" publishTime="12/17/2012 15:42:41" />
     <file relUrl="bin/AsliMotor.Security.dll" publishTime="12/17/2012 20:01:37" />
-    <file relUrl="Scripts/app/product/main.js" publishTime="11/14/2012 11:11:16" />
+    <file relUrl="Scripts/app/outstandingreport/main.js" publishTime="12/18/2012 13:49:22" />
     <file relUrl="Scripts/app/report/model/YearlyReports.js" publishTime="11/08/2012 15:08:06" />
     <file relUrl="Scripts/app/outstandingreport/view/SelectYearView.js" publishTime="12/18/2012 13:48:12" />
     <file relUrl="Views/Setting/Index.cshtml" publishTime="12/12/2012 16:24:39" />
@@ -99,7 +98,7 @@
     <file relUrl="Scripts/libs/homejs/dialog/Confirm.js" publishTime="12/12/2012 23:19:53" />
     <file relUrl="Scripts/app/invoice/view/BayarUangAngsuran.js" publishTime="12/18/2012 22:13:54" />
     <file relUrl="bin/AsliMotor.Perjanjian.Services.pdb" publishTime="12/17/2012 15:18:15" />
-    <file relUrl="Scripts/libs/underscore/underscore.string.js" publishTime="09/25/2012 09:23:24" />
+    <file relUrl="Scripts/app/product/controller/ListController.js" publishTime="12/18/2012 23:23:31" />
     <file relUrl="Scripts/libs/require/require.min.js" publishTime="09/25/2012 17:53:17" />
     <file relUrl="Views/Shared/_LogOnPartial.cshtml" publishTime="10/07/2012 12:58:29" />
     <file relUrl="Scripts/app/settingautonumber/view/SIAutoNumberView.js" publishTime="12/13/2012 18:24:54" />
@@ -112,12 +111,13 @@
     <file relUrl="bin/BonaStoco.Inf.Data.ViewModel.dll" publishTime="06/29/2012 11:51:05" />
     <file relUrl="Scripts/app/dashboard/view/DetailSalesView.js" publishTime="11/16/2012 14:12:19" />
     <file relUrl="Scripts/app/invoice/controller/CreateController.js" publishTime="12/12/2012 23:36:35" />
+    <file relUrl="Content/img/homesoft-1.png" publishTime="12/12/2012 23:02:39" />
     <file relUrl="Scripts/app/invoice/view/ChangeLamaAngsuran.js" publishTime="11/20/2012 23:12:13" />
     <file relUrl="Scripts/app/invoice/model/TotalInvoiceList.js" publishTime="10/23/2012 22:05:07" />
     <file relUrl="Scripts/app/dashboard/model/TotalTransaction.js" publishTime="11/15/2012 18:40:45" />
     <file relUrl="Scripts/app/shared/AccountModel.js" publishTime="12/04/2012 21:52:15" />
     <file relUrl="Scripts/app/settingautonumber/model/InvoiceAutoNumber.js" publishTime="12/14/2012 10:03:23" />
-    <file relUrl="Scripts/app/customer/controller/ListController.js" publishTime="12/18/2012 23:27:16" />
+    <file relUrl="Content/img/menu-active.png" publishTime="11/12/2012 16:26:54" />
     <file relUrl="Views/Test/PrintSuratPeringatan.cshtml" publishTime="11/18/2012 17:57:28" />
     <file relUrl="Scripts/app/invoice/model/InvoiceItemReports.js" publishTime="11/03/2012 16:14:22" />
     <file relUrl="Content/img/logo.png" publishTime="11/25/2012 01:13:43" />
@@ -130,7 +130,6 @@
     <file relUrl="Scripts/app/angsuranreport/controller/TelahJatuhTempoController.js" publishTime="12/18/2012 15:39:36" />
     <file relUrl="Scripts/app/invoice/model/InvoiceListReport.js" publishTime="11/03/2012 16:09:46" />
     <file relUrl="Scripts/app/invoice/action/changeProduct.js" publishTime="12/14/2012 23:23:46" />
-    <file relUrl="Scripts/app/outstandingreport/main.js" publishTime="12/18/2012 13:49:22" />
     <file relUrl="Content/invoice.css" publishTime="12/15/2012 00:32:37" />
     <file relUrl="Views/Shared/_LayoutBranch.cshtml" publishTime="12/18/2012 15:49:59" />
     <file relUrl="Scripts/libs/homejs/ButtonType.js" publishTime="12/10/2012 16:39:22" />
@@ -138,9 +137,9 @@
     <file relUrl="Content/img/desc.gif" publishTime="11/12/2012 22:56:08" />
     <file relUrl="Views/Product/Index.cshtml" publishTime="11/12/2012 21:58:11" />
     <file relUrl="bin/EO.Pdf.dll" publishTime="09/27/2012 15:04:27" />
-    <file relUrl="Scripts/libs/numbering/autonumeric.js" publishTime="10/30/2012 17:55:44" />
+    <file relUrl="Scripts/app/invoice/view/ChangeUangMuka.js" publishTime="11/04/2012 14:29:24" />
     <file relUrl="Scripts/app/customer/model/Customer.js" publishTime="11/05/2012 23:06:35" />
-    <file relUrl="bin/AsliMotor.Invoices.Command.dll" publishTime="12/19/2012 11:58:37" />
+    <file relUrl="bin/AsliMotor.Invoices.Command.dll" publishTime="12/21/2012 14:31:39" />
     <file relUrl="bin/Spring.Core.dll" publishTime="07/03/2012 10:37:57" />
     <file relUrl="Scripts/app/report/model/MonthlyReports.js" publishTime="11/08/2012 13:50:05" />
     <file relUrl="Scripts/app/manageuser/action/DeleteUserAction.js" publishTime="12/11/2012 19:00:42" />
@@ -151,12 +150,11 @@
     <file relUrl="Scripts/app/auditlog/model/AuditLogListReport.js" publishTime="12/16/2012 23:40:07" />
     <file relUrl="Scripts/test/component/TextField.js" publishTime="10/20/2012 12:31:11" />
     <file relUrl="Scripts/app/settingautonumber/router/SettingAutoNumberRouter.js" publishTime="12/14/2012 10:23:14" />
-    <file relUrl="bin/AsliMotor.Receives.Commands.pdb" publishTime="12/17/2012 15:18:06" />
     <file relUrl="bin/AsliMotor.Customers.dll" publishTime="12/17/2012 15:18:07" />
     <file relUrl="Scripts/libs/underscore/underscore.js" publishTime="09/25/2012 17:53:17" />
     <file relUrl="Scripts/app/customer/controller/CreateController.js" publishTime="12/12/2012 23:35:17" />
-    <file relUrl="Scripts/app/invoice/command/ChangeCustomer.js" publishTime="12/14/2012 23:56:53" />
-    <file relUrl="Scripts/app/customer/main.js" publishTime="11/14/2012 11:10:53" />
+    <file relUrl="Scripts/libs/homejs/chart/Chart.js" publishTime="11/14/2012 17:07:11" />
+    <file relUrl="Scripts/app/outstandingreport/model/RateProductReports.js" publishTime="12/18/2012 13:48:12" />
     <file relUrl="Content/login.css" publishTime="12/18/2012 23:43:47" />
     <file relUrl="Global.asax" publishTime="10/07/2012 12:58:29" />
     <file relUrl="bin/AsliMotor.SI.Repository.dll" publishTime="12/17/2012 15:18:06" />
@@ -171,34 +169,34 @@
     <file relUrl="Scripts/app/angsuranreport/view/SelectDateViewForRateProduct.js" publishTime="12/18/2012 14:11:10" />
     <file relUrl="Scripts/app/manageuser/view/DeleteUser.js" publishTime="12/11/2012 19:02:22" />
     <file relUrl="Scripts/app/angsuranreport/router/AngsuranReportRouter.js" publishTime="12/18/2012 15:24:07" />
+    <file relUrl="Scripts/app/product/controller/DetailController.js" publishTime="10/21/2012 23:03:26" />
     <file relUrl="Scripts/app/invoice/command/ChangeProduct.js" publishTime="12/14/2012 22:32:45" />
     <file relUrl="Scripts/app/organization/router/OrganizationRouter.js" publishTime="12/12/2012 22:46:15" />
-    <file relUrl="Scripts/app/invoice/action/changePaymentType.js" publishTime="11/20/2012 22:18:10" />
-    <file relUrl="Scripts/app/outstandingreport/view/Container.js" publishTime="12/18/2012 13:48:12" />
+    <file relUrl="bin/AsliMotor.Receives.Commands.pdb" publishTime="12/17/2012 15:18:06" />
+    <file relUrl="Scripts/app/outstandingreport/view/daily/DailyChart.js" publishTime="12/18/2012 13:48:12" />
     <file relUrl="Views/PriceChangeLog/Index.cshtml" publishTime="12/16/2012 23:31:00" />
     <file relUrl="Scripts/app/setting/router/SettingRouter.js" publishTime="12/12/2012 16:22:55" />
-    <file relUrl="Views/Test/PrintTandaJadi.cshtml" publishTime="10/31/2012 20:26:43" />
     <file relUrl="Scripts/app/product/view/EditProduct.js" publishTime="10/21/2012 23:46:11" />
     <file relUrl="Scripts/app/auditlog/model/TotalInvoiceAuditLogList.js" publishTime="12/17/2012 15:31:46" />
     <file relUrl="Scripts/app/report/controller/SideBarController.js" publishTime="12/18/2012 22:57:49" />
     <file relUrl="Scripts/libs/resizable-tables.js" publishTime="11/08/2012 00:43:49" />
     <file relUrl="Scripts/libs/bootstrap/bootstrap-datepicker.js" publishTime="10/16/2012 13:53:14" />
     <file relUrl="Scripts/app/invoice/view/DetailInvoice.js" publishTime="12/15/2012 00:30:19" />
+    <file relUrl="bin/Spring.Core.pdb" publishTime="07/03/2012 10:37:57" />
     <file relUrl="Views/Report/Index.cshtml" publishTime="11/12/2012 22:33:29" />
-    <file relUrl="Views/Test/PrintSuratPernyattanMampu.cshtml" publishTime="12/08/2012 16:41:18" />
     <file relUrl="bin/AsliMotor.Organizations.dll" publishTime="12/17/2012 15:18:11" />
-    <file relUrl="bin/AsliMotor.Invoices.Snapshots.pdb" publishTime="12/19/2012 11:58:34" />
+    <file relUrl="bin/AsliMotor.Invoices.Snapshots.pdb" publishTime="12/21/2012 14:31:36" />
     <file relUrl="Scripts/app/settingautonumber/model/SIAutoNumber.js" publishTime="12/13/2012 18:10:37" />
     <file relUrl="Scripts/app/angsuranreport/view/SelectYearView.js" publishTime="12/18/2012 14:11:10" />
     <file relUrl="Scripts/app/invoice/controller/DetailController.js" publishTime="12/18/2012 22:57:07" />
-    <file relUrl="Views/Account/LogOn.cshtml" publishTime="12/18/2012 00:19:24" />
+    <file relUrl="Views/Account/LogOn.cshtml" publishTime="12/20/2012 16:58:56" />
     <file relUrl="bin/Spring.Data.dll" publishTime="07/03/2012 10:37:57" />
     <file relUrl="Content/bootstrap/bootstrap.css" publishTime="08/16/2012 14:57:15" />
     <file relUrl="bin/AsliMotor.Receives.AutoNumberGenerator.pdb" publishTime="12/17/2012 15:18:05" />
-    <file relUrl="bin/AsliMotor.Invoices.Command.pdb" publishTime="12/19/2012 11:58:37" />
+    <file relUrl="bin/AsliMotor.Invoices.Command.pdb" publishTime="12/21/2012 14:31:39" />
     <file relUrl="Scripts/app/purchase/controller/CreateController.js" publishTime="12/12/2012 23:33:00" />
     <file relUrl="Scripts/app/invoice/view/ChangeUangAngsuran.js" publishTime="11/19/2012 15:08:58" />
-    <file relUrl="bin/AsliMotor.Invoices.Events.pdb" publishTime="12/19/2012 11:58:36" />
+    <file relUrl="bin/AsliMotor.Invoices.Events.pdb" publishTime="12/21/2012 14:31:37" />
     <file relUrl="Scripts/app/auditlog/model/AuditLogListReports.js" publishTime="12/16/2012 23:42:14" />
     <file relUrl="Scripts/app/organization/main.js" publishTime="12/12/2012 22:08:57" />
     <file relUrl="Views/Test/PrintSI.cshtml" publishTime="10/23/2012 18:42:21" />
@@ -213,19 +211,18 @@
     <file relUrl="Scripts/app/dashboard/router/DashboardRouter.js" publishTime="11/13/2012 16:45:43" />
     <file relUrl="Views/Test/PrintSuratPernyataanKredit.cshtml" publishTime="10/27/2012 15:07:53" />
     <file relUrl="bin/AsliMotor.Products.dll" publishTime="12/19/2012 11:08:29" />
-    <file relUrl="bin/AsliMotor.Invoices.Events.dll" publishTime="12/19/2012 11:58:36" />
+    <file relUrl="bin/AsliMotor.Invoices.Events.dll" publishTime="12/21/2012 14:31:37" />
     <file relUrl="Scripts/libs/homejs/ButtonField.js" publishTime="11/20/2012 22:58:09" />
-    <file relUrl="bin/AsliMotor.Invoices.Domain.pdb" publishTime="12/19/2012 11:58:34" />
-    <file relUrl="Content/img/icon/glyphicons_227_usd.png" publishTime="12/18/2012 22:31:43" />
+    <file relUrl="bin/AsliMotor.Invoices.Domain.pdb" publishTime="12/21/2012 14:31:36" />
     <file relUrl="bin/AsliMotor.AuditLog.Repository.dll" publishTime="12/17/2012 15:44:45" />
     <file relUrl="bin/EntityFramework.dll" publishTime="10/07/2012 12:58:32" />
     <file relUrl="bin/AsliMotor.SI.Services.pdb" publishTime="12/19/2012 11:08:32" />
     <file relUrl="Scripts/app/outstandingreport/view/ProductChart.js" publishTime="12/18/2012 13:48:12" />
     <file relUrl="Views/Test/DateField.cshtml" publishTime="10/16/2012 13:59:04" />
-    <file relUrl="Scripts/app/report/view/SelectDateView.js" publishTime="11/24/2012 13:49:54" />
-    <file relUrl="Scripts/app/outstandingreport/model/YearlyReports.js" publishTime="12/18/2012 13:48:12" />
-    <file relUrl="Scripts/app/report/model/DailyReports.js" publishTime="11/08/2012 10:48:45" />
     <file relUrl="Scripts/app/outstandingreport/model/GrafikProductReports.js" publishTime="12/18/2012 13:48:12" />
+    <file relUrl="Scripts/app/outstandingreport/model/YearlyReports.js" publishTime="12/18/2012 13:48:12" />
+    <file relUrl="Scripts/app/outstandingreport/model/MonthlyReports.js" publishTime="12/18/2012 13:48:12" />
+    <file relUrl="Content/img/homesoft-big.png" publishTime="12/21/2012 14:13:55" />
     <file relUrl="Scripts/app/report/model/GrafikProductReports.js" publishTime="11/24/2012 14:34:44" />
     <file relUrl="Scripts/app/report/view/SelectYearView.js" publishTime="11/08/2012 15:24:14" />
     <file relUrl="Views/Shared/_Layout.cshtml" publishTime="11/25/2012 00:06:18" />
@@ -233,22 +230,24 @@
     <file relUrl="Scripts/app/setting/model/ChangePassword.js" publishTime="12/12/2012 13:26:27" />
     <file relUrl="bin/AsliMotor.Receives.Services.dll" publishTime="12/17/2012 15:18:10" />
     <file relUrl="Scripts/app/namespace.js" publishTime="10/09/2012 21:52:00" />
-    <file relUrl="bin/Spring.Core.xml" publishTime="07/03/2012 10:37:57" />
+    <file relUrl="Scripts/app/outstandingreport/controller/SideBarController.js" publishTime="12/18/2012 14:01:57" />
     <file relUrl="Scripts/app/invoice/view/ItemDetailInvoice.js" publishTime="11/21/2012 15:59:55" />
     <file relUrl="Scripts/libs/homejs/inputfield/TextField.js" publishTime="12/18/2012 20:22:44" />
     <file relUrl="Scripts/app/outstandingreport/view/monthly/MonthlyChart.js" publishTime="12/18/2012 13:48:12" />
-    <file relUrl="bin/AsliMotor.dll" publishTime="12/19/2012 11:58:41" />
-    <file relUrl="bin/AsliMotor.Invoices.Repository.dll" publishTime="12/19/2012 11:58:37" />
-    <file relUrl="ErrorPages/Oops.html" publishTime="10/23/2012 18:23:03" />
+    <file relUrl="bin/AsliMotor.dll" publishTime="12/21/2012 14:31:42" />
+    <file relUrl="bin/AsliMotor.Invoices.Repository.dll" publishTime="12/21/2012 14:31:39" />
+    <file relUrl="ErrorPages/Oops.html" publishTime="12/21/2012 14:29:47" />
     <file relUrl="Scripts/libs/homejs/FormPanel.js" publishTime="10/28/2012 01:42:18" />
+    <file relUrl="Scripts/app/product/controller/EditController.js" publishTime="12/12/2012 23:32:21" />
     <file relUrl="Scripts/app/invoice/command/BayarUangAngsuran.js" publishTime="12/18/2012 20:19:04" />
     <file relUrl="bin/Antlr3.Runtime.dll" publishTime="02/02/2012 14:34:46" />
-    <file relUrl="Scripts/app/setting/controller/ChangePasswordController.js" publishTime="12/12/2012 09:43:54" />
+    <file relUrl="Views/Test/PrintSuratPernyattanMampu.cshtml" publishTime="12/08/2012 16:41:18" />
     <file relUrl="Content/organization.css" publishTime="12/12/2012 22:09:08" />
-    <file relUrl="bin/AsliMotor.Security.pdb" publishTime="12/17/2012 20:01:37" />
+    <file relUrl="Scripts/app/shared/Template.js" publishTime="12/20/2012 16:51:43" />
     <file relUrl="Scripts/libs/homejs/inputfield/SearchField.js" publishTime="12/19/2012 00:17:47" />
     <file relUrl="Scripts/app/angsuranreport/view/SelectMonthView.js" publishTime="12/18/2012 14:11:10" />
     <file relUrl="Views/SettingAutoNumber/Index.cshtml" publishTime="12/13/2012 15:35:13" />
+    <file relUrl="Scripts/app/invoice/model/InvoiceItemReport.js" publishTime="11/03/2012 16:09:56" />
     <file relUrl="Scripts/app/organization/view/ChangeProfile.js" publishTime="12/12/2012 18:20:57" />
     <file relUrl="bin/AsliMotor.Organizations.pdb" publishTime="12/17/2012 15:18:11" />
     <file relUrl="Scripts/app/auditlog/router/AuditLogRouter.js" publishTime="12/17/2012 15:40:33" />
@@ -256,45 +255,40 @@
     <file relUrl="Scripts/app/invoice/command/ChangeUangMuka.js" publishTime="11/04/2012 14:26:35" />
     <file relUrl="Scripts/app/organization/action/ChangeProfileAction.js" publishTime="12/12/2012 18:34:14" />
     <file relUrl="Views/Test/DetailInvoice.cshtml" publishTime="10/30/2012 19:01:20" />
-    <file relUrl="Scripts/app/outstandingreport/view/daily/DailyChart.js" publishTime="12/18/2012 13:48:12" />
     <file relUrl="Scripts/app/purchase/controller/DetailController.js" publishTime="10/21/2012 15:35:56" />
     <file relUrl="Scripts/app/purchase/model/TotalPurchaseList.js" publishTime="10/15/2012 15:58:01" />
     <file relUrl="Content/img/User-icon.png" publishTime="12/06/2012 00:12:40" />
     <file relUrl="Views/Test/PrintSuratTandaTerima.cshtml" publishTime="12/09/2012 16:35:36" />
-    <file relUrl="Scripts/libs/Animation.js" publishTime="11/12/2012 17:12:18" />
+    <file relUrl="Views/Test/PrintTandaJadi.cshtml" publishTime="10/31/2012 20:26:43" />
     <file relUrl="Scripts/app/settingautonumber/controller/SideBarController.js" publishTime="12/14/2012 10:19:33" />
     <file relUrl="Scripts/libs/jquery/jquery-1.7.2.js" publishTime="09/25/2012 17:53:17" />
-    <file relUrl="Scripts/app/angsuranreport/model/MonthlyReports.js" publishTime="12/18/2012 14:11:10" />
-    <file relUrl="Scripts/app/invoice/model/InvoiceItemReport.js" publishTime="11/03/2012 16:09:56" />
+    <file relUrl="Scripts/libs/Animation.js" publishTime="11/12/2012 17:12:18" />
     <file relUrl="bin/AsliMotor.SuratPeringatan.AutoNumberGenerator.dll" publishTime="12/17/2012 15:18:12" />
-    <file relUrl="Content/customer.css" publishTime="12/18/2012 23:54:46" />
+    <file relUrl="Content/customer.css" publishTime="12/21/2012 14:27:11" />
     <file relUrl="Scripts/app/organization/controller/OrganizationController.js" publishTime="12/12/2012 18:22:55" />
     <file relUrl="Scripts/app/report/controller/GrafikProductController.js" publishTime="11/25/2012 14:24:28" />
     <file relUrl="Scripts/app/angsuranreport/main.js" publishTime="12/18/2012 14:11:46" />
-    <file relUrl="Scripts/app/shared/Template.js" publishTime="12/18/2012 22:52:28" />
-    <file relUrl="bin/AsliMotor.Invoices.ReportRepository.dll" publishTime="12/19/2012 11:58:35" />
+    <file relUrl="Scripts/app/report/model/DailyReports.js" publishTime="11/08/2012 10:48:45" />
+    <file relUrl="bin/AsliMotor.Invoices.ReportRepository.dll" publishTime="12/21/2012 14:31:37" />
     <file relUrl="Scripts/app/report/view/SelectMonthView.js" publishTime="11/08/2012 15:09:23" />
     <file relUrl="Scripts/libs/homejs/SideBar.js" publishTime="11/07/2012 00:21:05" />
     <file relUrl="Scripts/app/invoice/action/BayarUangAngsuran.js" publishTime="11/03/2012 17:50:31" />
-    <file relUrl="Content/img/menu-active.png" publishTime="11/12/2012 16:26:54" />
     <file relUrl="Scripts/app/manageuser/model/UserListReports.js" publishTime="12/10/2012 16:06:25" />
     <file relUrl="bin/AsliMotor.Perjanjian.AutoNumberGenerator.pdb" publishTime="12/17/2012 15:18:07" />
-    <file relUrl="bin/AsliMotor.Customers.pdb" publishTime="12/17/2012 15:18:07" />
     <file relUrl="Views/Test/RadioButton.cshtml" publishTime="10/28/2012 17:01:28" />
     <file relUrl="Scripts/app/angsuranreport/view/ProductChart.js" publishTime="12/18/2012 14:11:10" />
     <file relUrl="Scripts/app/invoice/view/ChangePaymentType.js" publishTime="11/03/2012 18:23:10" />
-    <file relUrl="bin/BonaStoco.Inf.DataMapper.Impl.dll" publishTime="06/29/2012 11:51:05" />
+    <file relUrl="Scripts/app/customer/main.js" publishTime="11/14/2012 11:10:53" />
     <file relUrl="Views/Test/PrintSuratPernyataan.cshtml" publishTime="11/02/2012 23:20:11" />
     <file relUrl="Scripts/app/report/view/SelectDateViewForRateProduct.js" publishTime="11/24/2012 13:55:29" />
     <file relUrl="Content/img/loader.gif" publishTime="10/27/2012 20:10:17" />
     <file relUrl="Scripts/app/manageuser/action/AddUserAction.js" publishTime="12/11/2012 19:00:32" />
     <file relUrl="packages.config" publishTime="10/07/2012 12:58:32" />
-    <file relUrl="bin/AsliMotor.Invoices.Snapshots.dll" publishTime="12/19/2012 11:58:34" />
+    <file relUrl="bin/AsliMotor.Invoices.Snapshots.dll" publishTime="12/21/2012 14:31:36" />
     <file relUrl="Views/Test/WebCam.cshtml" publishTime="12/05/2012 14:56:22" />
     <file relUrl="Views/Test/PrintSuratKuasa.cshtml" publishTime="12/08/2012 17:45:01" />
     <file relUrl="Views/Invoice/Index.cshtml" publishTime="11/12/2012 21:54:28" />
     <file relUrl="Views/Shared/_LayoutOwner.cshtml" publishTime="10/21/2012 21:16:27" />
-    <file relUrl="bin/AsliMotor.SI.AutoNumberGenerator.pdb" publishTime="12/17/2012 15:18:09" />
     <file relUrl="Scripts/app/angsuranreport/view/SelectDateView.js" publishTime="12/18/2012 15:37:20" />
     <file relUrl="Scripts/app/report/controller/RateProductController.js" publishTime="11/24/2012 13:52:31" />
     <file relUrl="Scripts/app/report/main.js" publishTime="12/12/2012 08:51:29" />
@@ -304,7 +298,7 @@
     <file relUrl="Scripts/app/customer/controller/EditController.js" publishTime="12/12/2012 23:35:57" />
     <file relUrl="Scripts/app/eventAggregator.js" publishTime="10/15/2012 13:20:13" />
     <file relUrl="Scripts/app/outstandingreport/view/SelectMonthView.js" publishTime="12/18/2012 13:48:12" />
-    <file relUrl="bin/AsliMotor.Invoices.Services.pdb" publishTime="12/19/2012 11:58:40" />
+    <file relUrl="bin/AsliMotor.Invoices.Services.pdb" publishTime="12/21/2012 14:31:41" />
     <file relUrl="bin/AsliMotor.Products.pdb" publishTime="12/19/2012 11:08:29" />
     <file relUrl="Scripts/app/customer/router/CustomerRouter.js" publishTime="11/05/2012 23:02:39" />
     <file relUrl="Scripts/app/invoice/action/changeDueDate.js" publishTime="11/20/2012 23:04:33" />
@@ -314,24 +308,28 @@
     <file relUrl="Scripts/app/invoice/main.js" publishTime="11/14/2012 11:11:12" />
     <file relUrl="Views/Test/TextField.cshtml" publishTime="10/20/2012 12:25:12" />
     <file relUrl="Scripts/app/purchase/view/EditPurchase.js" publishTime="12/19/2012 11:38:34" />
+    <file relUrl="Scripts/app/customer/model/CustomerListReport.js" publishTime="11/05/2012 21:15:10" />
+    <file relUrl="Content/img/errorpage.png" publishTime="12/21/2012 14:10:43" />
     <file relUrl="Scripts/libs/jquery/jquery.cookie.js" publishTime="09/25/2012 09:23:24" />
     <file relUrl="Content/img/glyphicons-halflings-white.png" publishTime="09/08/2012 19:36:22" />
     <file relUrl="Scripts/app/purchase/router/PurchaseRouter.js" publishTime="10/21/2012 18:06:51" />
+    <file relUrl="Scripts/app/invoice/model/InvoiceHeaderReport.js" publishTime="10/30/2012 22:08:23" />
     <file relUrl="Scripts/app/invoice/model/Invoice.js" publishTime="11/20/2012 16:40:35" />
     <file relUrl="bin/BonaStoco.Inf.Reporting.dll" publishTime="06/29/2012 11:51:05" />
     <file relUrl="Scripts/app/outstandingreport/view/SelectDateViewForRateProduct.js" publishTime="12/18/2012 13:48:12" />
     <file relUrl="Scripts/app/setting/main.js" publishTime="12/12/2012 08:59:13" />
+    <file relUrl="Scripts/app/customer/controller/ListController.js" publishTime="12/18/2012 23:27:16" />
     <file relUrl="Content/bootstrap/bootstrap.min.css" publishTime="12/18/2012 23:30:08" />
     <file relUrl="bin/AsliMotor.Receives.Services.pdb" publishTime="12/17/2012 15:18:10" />
     <file relUrl="Scripts/app/settingautonumber/main.js" publishTime="12/13/2012 16:00:26" />
-    <file relUrl="Scripts/app/report/router/ReportRouter.js" publishTime="11/24/2012 14:01:57" />
+    <file relUrl="bin/Spring.Data.pdb" publishTime="07/03/2012 10:37:57" />
     <file relUrl="Scripts/libs/backbone/backbone.marionette.js" publishTime="09/25/2012 09:23:24" />
     <file relUrl="Scripts/libs/highcharts/highcharts.js" publishTime="11/08/2012 18:20:59" />
     <file relUrl="Views/Test/ErrorAlert.cshtml" publishTime="11/01/2012 13:25:45" />
-    <file relUrl="Scripts/app/manageuser/model/RoleSelectionList.js" publishTime="12/11/2012 16:38:32" />
+    <file relUrl="bin/AsliMotor.pdb" publishTime="12/21/2012 14:31:42" />
     <file relUrl="bin/Spring.Aop.xml" publishTime="07/03/2012 10:37:56" />
-    <file relUrl="bin/AsliMotor.Invoices.Repository.pdb" publishTime="12/19/2012 11:58:37" />
-    <file relUrl="Scripts/app/organization/action/ChangeLogoAction.js" publishTime="12/12/2012 22:23:29" />
+    <file relUrl="bin/AsliMotor.Invoices.Repository.pdb" publishTime="12/21/2012 14:31:39" />
+    <file relUrl="Scripts/app/product/model/Product.js" publishTime="10/21/2012 23:44:10" />
     <file relUrl="bin/AsliMotor.Products.Models.dll" publishTime="12/19/2012 11:08:26" />
     <file relUrl="Scripts/app/outstandingreport/model/DailyReports.js" publishTime="12/18/2012 13:48:12" />
     <file relUrl="Scripts/test/webcam.js" publishTime="12/05/2012 22:23:48" />
@@ -339,7 +337,7 @@
     <file relUrl="Content/aslimotor.blue.css" publishTime="11/25/2012 01:05:12" />
     <file relUrl="Content/img/favicon.ico" publishTime="11/14/2012 10:43:18" />
     <file relUrl="Content/img/asc.gif" publishTime="11/12/2012 22:56:08" />
-    <file relUrl="bin/AsliMotor.Invoices.ReportRepository.pdb" publishTime="12/19/2012 11:58:35" />
+    <file relUrl="bin/AsliMotor.Invoices.ReportRepository.pdb" publishTime="12/21/2012 14:31:37" />
     <file relUrl="Scripts/libs/webcam/jscam_canvas_only.swf" publishTime="12/05/2012 14:34:59" />
     <file relUrl="Scripts/app/outstandingreport/router/OutstandingReportRouter.js" publishTime="12/18/2012 13:57:41" />
     <file relUrl="Scripts/libs/homejs/FormLayout.js" publishTime="10/20/2012 12:54:17" />
@@ -348,7 +346,7 @@
     <file relUrl="Views/Test/FormPanel.cshtml" publishTime="10/20/2012 13:09:00" />
     <file relUrl="Content/dashboard.css" publishTime="11/23/2012 20:36:33" />
     <file relUrl="Scripts/app/report/controller/DailyController.js" publishTime="12/18/2012 22:59:07" />
-    <file relUrl="Scripts/app/product/controller/DetailController.js" publishTime="10/21/2012 23:03:26" />
+    <file relUrl="bin/AsliMotor.Customers.pdb" publishTime="12/17/2012 15:18:07" />
     <file relUrl="Scripts/app/angsuranreport/view/TotalSummaryGrafikProduk.js" publishTime="12/18/2012 14:11:10" />
     <file relUrl="Scripts/app/purchase/controller/EditController.js" publishTime="12/12/2012 23:29:56" />
     <file relUrl="bin/log4net.dll" publishTime="01/16/2012 13:44:02" />
@@ -356,6 +354,7 @@
     <file relUrl="Scripts/app/report/model/RateProductReports.js" publishTime="11/24/2012 12:58:15" />
     <file relUrl="Scripts/libs/jquery/jquery-1.7.2.min.js" publishTime="09/25/2012 17:53:17" />
     <file relUrl="Scripts/libs/require/domReady.js" publishTime="09/25/2012 09:23:24" />
+    <file relUrl="Scripts/app/auditlog/main.js" publishTime="12/16/2012 23:33:31" />
     <file relUrl="Scripts/libs/backbone/backbone.js" publishTime="09/25/2012 17:53:17" />
     <file relUrl="Scripts/app/angsuranreport/view/Container.js" publishTime="12/18/2012 15:37:13" />
     <file relUrl="Scripts/app/dashboard/controller/DashboardController.js" publishTime="12/14/2012 19:41:56" />
@@ -367,16 +366,19 @@
     <file relUrl="bin/AsliMotor.Products.Events.dll" publishTime="12/19/2012 11:08:27" />
     <file relUrl="Scripts/app/report/view/TotalSummaryGrafikProduk.js" publishTime="11/25/2012 14:26:33" />
     <file relUrl="Scripts/app/invoice/router/InvoiceRouter.js" publishTime="11/10/2012 14:28:23" />
-    <file relUrl="Scripts/app/outstandingreport/controller/SideBarController.js" publishTime="12/18/2012 14:01:57" />
+    <file relUrl="Scripts/app/product/model/ProductListReports.js" publishTime="11/19/2012 20:38:32" />
     <file relUrl="bin/AsliMotor.SalesReports.ReportRepository.pdb" publishTime="12/17/2012 15:18:14" />
     <file relUrl="bin/Spring.Aop.pdb" publishTime="07/03/2012 10:37:56" />
     <file relUrl="Scripts/libs/AjaxLoading.js" publishTime="10/28/2012 03:46:34" />
+    <file relUrl="Scripts/app/organization/action/ChangeLogoAction.js" publishTime="12/12/2012 22:23:29" />
+    <file relUrl="Scripts/app/report/router/ReportRouter.js" publishTime="11/24/2012 14:01:57" />
+    <file relUrl="Scripts/app/report/view/SelectDateView.js" publishTime="11/24/2012 13:49:54" />
     <file relUrl="Scripts/app/manageuser/view/RoleSelectionView.js" publishTime="12/11/2012 16:40:02" />
     <file relUrl="Scripts/app/settingautonumber/model/SuratPeringatanAutoNumber.js" publishTime="12/14/2012 10:12:17" />
     <file relUrl="Scripts/app/setting/controller/SideBarController.js" publishTime="12/12/2012 15:53:13" />
     <file relUrl="Scripts/app/invoice/command/ChangeDueDate.js" publishTime="11/20/2012 23:21:08" />
     <file relUrl="Scripts/libs/webcam/jscam.swf" publishTime="12/05/2012 14:34:59" />
-    <file relUrl="bin/AsliMotor.PrintDocuments.pdb" publishTime="12/19/2012 11:58:38" />
+    <file relUrl="bin/AsliMotor.PrintDocuments.pdb" publishTime="12/21/2012 14:31:40" />
     <file relUrl="Scripts/app/auditlog/controller/ListInvoiceController.js" publishTime="12/17/2012 15:54:10" />
     <file relUrl="Scripts/libs/homejs/inputfield/DateField.js" publishTime="11/06/2012 21:37:19" />
     <file relUrl="Scripts/app/angsuranreport/model/DailyReports.js" publishTime="12/18/2012 14:11:10" />
@@ -389,9 +391,9 @@
     <file relUrl="Scripts/app/auditlog/controller/ListController.js" publishTime="12/17/2012 15:45:22" />
     <file relUrl="bin/AsliMotor.Products.Models.pdb" publishTime="12/19/2012 11:08:26" />
     <file relUrl="Scripts/test/purchase/DetailPurchase.js" publishTime="10/17/2012 22:16:16" />
-    <file relUrl="Content/aslimotor.grey.css" publishTime="11/12/2012 16:18:57" />
+    <file relUrl="bin/AsliMotor.SI.AutoNumberGenerator.pdb" publishTime="12/17/2012 15:18:09" />
     <file relUrl="Scripts/app/angsuranreport/model/GrafikProductReports.js" publishTime="12/18/2012 14:11:10" />
-    <file relUrl="Web.config" publishTime="12/17/2012 19:39:07" />
+    <file relUrl="Web.config" publishTime="12/21/2012 14:31:24" />
     <file relUrl="bin/Spring.Data.xml" publishTime="07/03/2012 10:37:57" />
     <file relUrl="Scripts/app/product/router/ProductRouter.js" publishTime="10/21/2012 23:36:30" />
     <file relUrl="Scripts/libs/homejs/dialog/ErrorAlert.js" publishTime="11/01/2012 13:48:15" />
@@ -401,7 +403,7 @@
     <file relUrl="bin/AsliMotor.Receives.Models.dll" publishTime="12/17/2012 15:18:04" />
     <file relUrl="bin/AsliMotor.SI.Services.dll" publishTime="12/19/2012 11:08:32" />
     <file relUrl="Scripts/test/component/radiobutton.js" publishTime="10/28/2012 17:12:16" />
-    <file relUrl="Views/_ViewStart.cshtml" publishTime="12/10/2012 15:13:30" />
+    <file relUrl="Views/AngsuranReport/Index.cshtml" publishTime="12/18/2012 14:28:44" />
     <file relUrl="Scripts/app/dashboard/main.js" publishTime="11/17/2012 15:34:54" />
     <file relUrl="Scripts/libs/bootstrap/bootstrap.min.js" publishTime="09/25/2012 17:53:17" />
     <file relUrl="bin/AsliMotor.Receives.Repository.dll" publishTime="12/17/2012 15:18:06" />
@@ -411,7 +413,7 @@
     <file relUrl="Scripts/app/invoice/view/ChangeProduct.js" publishTime="12/14/2012 23:16:13" />
     <file relUrl="Content/angsuranreport.css" publishTime="12/18/2012 15:25:27" />
     <file relUrl="Scripts/app/organization/view/ProfileOrganization.js" publishTime="12/12/2012 22:33:14" />
-    <file relUrl="Scripts/app/product/model/Product.js" publishTime="10/21/2012 23:44:10" />
+    <file relUrl="Scripts/libs/underscore/underscore.string.js" publishTime="09/25/2012 09:23:24" />
     <file relUrl="Scripts/app/report/view/daily/DailyChart.js" publishTime="11/15/2012 18:39:32" />
     <file relUrl="Scripts/libs/homejs/HomeJS.js" publishTime="09/08/2012 19:16:08" />
     <file relUrl="Scripts/app/invoice/command/ChangeUangAngsuran.js" publishTime="11/19/2012 15:22:32" />
@@ -420,14 +422,14 @@
     <file relUrl="Scripts/app/dashboard/model/SalesReport.js" publishTime="11/16/2012 14:12:44" />
     <file relUrl="Scripts/app/setting/model/ProfileUser.js" publishTime="12/12/2012 16:31:15" />
     <file relUrl="Scripts/app/angsuranreport/view/TableData.js" publishTime="12/18/2012 14:11:10" />
-    <file relUrl="Scripts/app/product/model/ProductListReports.js" publishTime="11/19/2012 20:38:32" />
+    <file relUrl="Scripts/libs/homejs/inputfield/Typeahead.js" publishTime="12/19/2012 11:42:54" />
     <file relUrl="Scripts/app/auditlog/model/TotalAuditLogList.js" publishTime="12/16/2012 23:43:13" />
     <file relUrl="Scripts/app/manageuser/command/DeleteUser.js" publishTime="12/11/2012 19:01:19" />
-    <file relUrl="Scripts/test/component/erroralert.js" publishTime="11/01/2012 13:38:32" />
+    <file relUrl="Scripts/app/manageuser/model/RoleSelectionList.js" publishTime="12/11/2012 16:38:32" />
     <file relUrl="Scripts/app/settingautonumber/controller/SuratPeringatanAutoNumberController.js" publishTime="12/14/2012 10:11:42" />
     <file relUrl="Views/OutstandingReport/Index.cshtml" publishTime="12/18/2012 13:46:45" />
     <file relUrl="Scripts/app/angsuranreport/model/RateProductReports.js" publishTime="12/18/2012 14:11:10" />
-    <file relUrl="Scripts/libs/Date.js" publishTime="12/17/2012 00:25:37" />
+    <file relUrl="Scripts/app/invoice/view/ChangeSukuBunga.js" publishTime="11/20/2012 23:12:01" />
     <file relUrl="Scripts/libs/backbone/backbone.min.js" publishTime="09/25/2012 17:53:17" />
     <file relUrl="Content/img/glyphicons-halflings.png" publishTime="09/08/2012 19:36:22" />
     <file relUrl="Views/Purchase/Index.cshtml" publishTime="11/12/2012 21:58:15" />
@@ -439,6 +441,7 @@
     <file relUrl="bin/EntityFramework.xml" publishTime="10/07/2012 12:58:32" />
     <file relUrl="Scripts/app/invoice/command/ChangePaymentType.js" publishTime="11/07/2012 23:47:29" />
     <file relUrl="Scripts/app/setting/controller/ProfileUserController.js" publishTime="12/12/2012 16:39:06" />
+    <file relUrl="Views/_ViewStart.cshtml" publishTime="12/10/2012 15:13:30" />
     <file relUrl="Scripts/app/settingautonumber/controller/SuratPerjanjianAutoNumberController.js" publishTime="12/14/2012 10:20:13" />
   </publishProfile>
 </publishData>

@@ -151,6 +151,9 @@
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Content\angsuranreport.css" />
+    <Content Include="Content\img\errorpage.png" />
+    <Content Include="Content\img\homesoft-1.png" />
+    <Content Include="Content\img\homesoft-big.png" />
     <Content Include="Content\img\icon\glyphicons_227_usd.png" />
     <Content Include="Content\organization.css" />
     <Content Include="Content\img\homesoft.png" />
