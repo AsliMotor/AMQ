@@ -108,6 +108,11 @@ namespace AsliMotor.Invoices.Domain
             _snapshot.StartDueDate = duedate;
         }
 
+        public void ChangeInvoiceDate(DateTime duedate)
+        {
+            _snapshot.InvoiceDate = duedate;
+        }
+
         public void Cancel()
         {
             if (_snapshot.Status == (int)StatusInvoice.BOOKING)

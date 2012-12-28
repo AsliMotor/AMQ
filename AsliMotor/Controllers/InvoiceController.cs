@@ -279,6 +279,24 @@ namespace AsliMotor.Controllers
 
         [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES)]
         [HttpPost]
+        public JsonResult ChangeInvoiceDate(Guid invoiceId, string invoiceDate)
+        {
+            try
+            {
+                string[] stringDate = invoiceDate.Split('-');
+                DateTime date = new DateTime(int.Parse(stringDate[2]), int.Parse(stringDate[1]), int.Parse(stringDate[0]));
+                CompanyProfile cp = new CompanyProfile(this.HttpContext);
+                InvoiceService.ChangeInvoiceDate(invoiceId, date, cp.UserName);
+                return Json(new { error = false, data = new { id = invoiceId } }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { error = true, message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES)]
+        [HttpPost]
         public JsonResult ChangeProduct(Guid invoiceId, Guid productId)
         {
             try

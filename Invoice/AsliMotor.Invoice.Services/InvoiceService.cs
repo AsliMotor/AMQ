@@ -236,6 +236,17 @@ namespace AsliMotor.Invoices.Services
             PublishDueDateChanged(inv, username);
         }
 
+        public void ChangeInvoiceDate(Guid id, DateTime invoiceDate, string username)
+        {
+            Invoice inv = Repository.Get(id);
+            InvoiceSnapshot invSnap = inv.CreateSnapshot();
+            FailIfInvoiceNotFound(invSnap);
+            FailIfCantChange(invSnap);
+            inv.ChangeInvoiceDate(invoiceDate);
+            Repository.Update(inv);
+            PublishInvoiceDateChanged(inv, username);
+        }
+
         public void Cancel(Guid id, string username)
         {
             Invoice inv = Repository.Get(id);
@@ -390,6 +401,10 @@ namespace AsliMotor.Invoices.Services
         private void PublishDueDateChanged(Invoice inv, string username)
         {
             _bus.Publish(new DueDateChanged { Payload = inv.CreateSnapshot(), Username = username });
+        }
+        private void PublishInvoiceDateChanged(Invoice inv, string username)
+        {
+            _bus.Publish(new InvoiceDateChanged { Payload = inv.CreateSnapshot(), Username = username });
         }
         private void PublishUangMukaChanged(Invoice inv, string username)
         {

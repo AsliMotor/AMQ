@@ -21,6 +21,7 @@ namespace AsliMotor.Invoices.Services
         void ChangeSukuBunga(Guid id, decimal sukubunga, string username);
         void ChangeLamaAngsuran(Guid id, int lamaAngsuran, string username);
         void ChangeDueDate(Guid id, DateTime dueDate, string username);
+        void ChangeInvoiceDate(Guid id, DateTime invoiceDate, string username);
         void ChangeProduct(Guid id, Guid productId, string username);
         void ChangeCustomer(Guid id, Guid custId, string username);
     }

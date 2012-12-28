@@ -11,6 +11,7 @@
     '../../../app/invoice/action/changesukubunga',
     '../../../app/invoice/action/changelamaangsuran',
     '../../../app/invoice/action/changeduedate',
+    '../../../app/invoice/action/changeinvoicedate',
     '../../../app/invoice/action/changeproduct',
     '../../../app/invoice/action/changecustomer',
     '../../../libs/homejs/ButtonField',
@@ -87,6 +88,21 @@
             else if (status == 3) status = "Batal";
             else if (status == 4) status = "Sudah di Tarik";
 
+            var invoiceDateButton = new HomeJS.components.ButtonField({
+                model: this.model,
+                id: "invoiceDate",
+                name: "invoiceDate",
+                title: "Ubah Tanggal Transaksi",
+                dataIndex: "InvoiceDate",
+                icon: "icon-pencil icon-white",
+                labelname: "Tanggal",
+                style: "float:left;margin-right:118px;",
+                renderer: function (data) {
+                    return data.toDate();
+                },
+                action: am.invoice.action.changeInvoiceDate({ model: this.model })
+            });
+
             var dueDateButton = new HomeJS.components.ButtonField({
                 model: this.model,
                 id: "dueDate",
@@ -103,8 +119,10 @@
             });
             var html = "";
             html += "<div class='clearfix'><div>Status</div><div class='transaction-no'>" + status + "</div></div>";
-            html += "<div class='clearfix'><div>Tanggal</div><div>" + date + "</div></div>";
+            //html += "<div class='clearfix'><div>Tanggal</div><div>" + date + "</div></div>";
             this.$el.html(html);
+            if (date != '-')
+                this.$el.append(invoiceDateButton.render().el);
             if (this.model.get("Status") == 1 && duedate != '-')
                 this.$el.append(dueDateButton.render().el);
             return this;
