@@ -72,37 +72,37 @@ namespace AsliMotor.PrintDocuments
                                     <tr>
                                         <td width='150px'>Merk</td>
                                         <td width='20px'>:</td>
-                                        <td>$Merk$</td>
+                                        <td>$merk$</td>
                                     </tr>
                                     <tr>
                                         <td width='150px'>Nomor Polisi</td>
                                         <td width='20px'>:</td>
-                                        <td>$NoPolisi$</td>
+                                        <td>$nopolisi$</td>
                                     </tr>
                                     <tr>
                                         <td width='150px'>Type</td>
                                         <td width='20px'>:</td>
-                                        <td>$Type$</td>
+                                        <td>$type$</td>
                                     </tr>
                                     <tr>
                                         <td width='150px'>Tahun</td>
                                         <td width='20px'>:</td>
-                                        <td>$Tahun$</td>
+                                        <td>$tahun$</td>
                                     </tr>
                                     <tr>
                                         <td width='150px'>Nomor Rangka</td>
                                         <td width='20px'>:</td>
-                                        <td>$NoRangka$</td>
+                                        <td>$norangka$</td>
                                     </tr>
                                     <tr>
                                         <td width='150px'>Nomor Mesin</td>
                                         <td width='20px'>:</td>
-                                        <td>$NoMesin$</td>
+                                        <td>$nomesin$</td>
                                     </tr>
                                     <tr>
                                         <td width='150px'>Nomor BPKB</td>
                                         <td width='20px'>:</td>
-                                        <td>$NoBpkb$</td>
+                                        <td>$nobpkb$</td>
                                     </tr>
                                 </table>
                             </td>
@@ -110,18 +110,18 @@ namespace AsliMotor.PrintDocuments
                         <tr>
                             <td style='padding-left:10px;vertical-align:top;'>Keterangan</td>
                             <td>:</td>
-                            <td style='padding-left:10px;'>$Note$</td>
+                            <td style='padding-left:10px;'>$note$</td>
                         </tr>
                         <tr>
                             <td style='padding-left:10px;'>
                                 <div style='margin-top:6pt; padding:6pt; border:2pt solid;background:#CACACA; font-size:12px; min-width:150px;'>Rp
-                                    <span style='float:right;font-weight:bold;font-family:Tahoma;font-size:11pt;'>$Total$</span>
+                                    <span style='float:right;font-weight:bold;font-family:Tahoma;font-size:11pt;'>$total$</span>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td colspan='3'  align='right' style='padding-top:100px;padding-right:50px;'>
-                                $organization.City$, $currentDate$
+                                $organization.City$, $currentdate$
                             </td>
                         </tr>
                         <tr>

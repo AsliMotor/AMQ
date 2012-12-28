@@ -183,7 +183,6 @@ namespace AsliMotor.PrintDocuments
             template.SetAttribute("merk", inv.Merk.parseString());
             template.SetAttribute("type", inv.Type.parseString());
             template.SetAttribute("warna", inv.Warna.parseString());
-            template.SetAttribute("norangka", inv.NoRangka.parseString());
             template.SetAttribute("nomesin", inv.NoMesin.parseString());
             template.SetAttribute("norangka", inv.NoRangka.parseString());
             template.SetAttribute("nopolisi", inv.NoPolisi.parseString());
@@ -201,7 +200,7 @@ namespace AsliMotor.PrintDocuments
             LogoOrganization logoOrg = _orgRepo.GetLogoOrganization(branchid);
             StringTemplate template = new StringTemplate(KwitansiAngsuranTemplate.DEFAULT);
             string dendaTemplate = (rcv.Denda > 0) ? "<tr><td colspan='3'>Denda Sebesar <b>Rp. " + rcv.Denda.ToString("###,###,###,##0.#0") + "</b></td></tr>" : "";
-            DateTime bulanAngsuran = new DateTime(Int32.Parse(rcv.Month.Substring(2, 4)), Int32.Parse(rcv.Month.Substring(0, 2)), 1);
+            //DateTime bulanAngsuran = new DateTime(Int32.Parse(rcv.Month.Substring(2, 4)), Int32.Parse(rcv.Month.Substring(0, 2)), 1);
             template.SetAttribute("organization", org);
             template.SetAttribute("logodata", Convert.ToBase64String(logoOrg.Image));
             template.SetAttribute("OrganizationName", org.OrganizationName);
@@ -211,7 +210,8 @@ namespace AsliMotor.PrintDocuments
             template.SetAttribute("SuratPerjanjianDate", rcv.SuratPerjanjianDate.ToString("dd MMMM yyyy"));
             template.SetAttribute("AngsuranBulanan", rcv.AngsuranBulanan.ToString("###,###,###,##0.#0"));
             template.SetAttribute("DendaTemplate", dendaTemplate);
-            template.SetAttribute("BulanAngsuran", bulanAngsuran.ToString("MMMM yyyy"));
+            //template.SetAttribute("BulanAngsuran", bulanAngsuran.ToString("MMMM yyyy"));
+            template.SetAttribute("BulanAngsuran", rcv.MonthNumber);
             template.SetAttribute("rcv", rcv);
             return template.ToString();
         }
@@ -231,7 +231,7 @@ namespace AsliMotor.PrintDocuments
                 if (dueDate >= currDate) break;
                 if ((i + 1) + spReport.AngsuranKe > spReport.LamaAngsuran) break;
                 TimeSpan ts = new TimeSpan();
-                ts = currDate.Subtract(dueDate);
+                ts = DateTime.Now.Subtract(dueDate);
                 decimal denda = (spReport.AngsuranBulanan * decimal.Parse(System.Configuration.ConfigurationManager.AppSettings["denda"])) * ts.Days;
                 
                 items.Add(new SuratPeringatanItem

@@ -71,7 +71,11 @@ namespace AsliMotor.Controllers
         public ActionResult Logo()
         {
             CompanyProfile cp = new CompanyProfile(this.HttpContext);
-            return File(OrganizationRepository.GetLogoOrganization(cp.BranchId).Image, "image/png");
+            //Image img = Image.FromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Content\img\logoorg\" + cp.BranchId + ".png"));
+            //MemoryStream ms = new MemoryStream();
+            //img.Save(ms, ImageFormat.Png);
+            LogoOrganization logoOrg = OrganizationRepository.GetLogoOrganization(cp.BranchId);
+            return File(logoOrg.Image, "image/png");
         }
         private IOrganizationRepository OrganizationRepository
         {

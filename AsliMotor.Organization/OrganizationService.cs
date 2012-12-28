@@ -25,8 +25,9 @@ namespace AsliMotor.Organizations
         {
             MemoryStream imgStream = new MemoryStream();
             img.Save(imgStream, ImageFormat.Png);
+//            File.WriteAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Content\img\logoorg\"+branchid+".png"), imgStream.ToArray());
             byte[] logoByte = readImageAndCompress(imgStream);
-            
+            //byte[] logoByte = imgStream.ToArray();
             LogoOrganization logoOrg = _repository.GetLogoOrganization(branchid);
             if (logoOrg == null)
             {

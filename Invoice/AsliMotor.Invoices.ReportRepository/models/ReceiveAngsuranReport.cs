@@ -20,6 +20,7 @@ namespace AsliMotor.Invoices.ReportRepository
 	rcv.receiveno as ReceiveNo,
 	rcv.denda as Denda,
 	rcv.month as Month,
+    rcv.monthnumber as MonthNumber,
 	(select suratperjanjianno from suratperjanjian where invoiceid = inv.id) as NoSuratPerjanjian,
 	(select suratperjanjiandate from suratperjanjian where invoiceid = inv.id) as SuratPerjanjianDate,
 	(select charge from receive where invoiceid = inv.id and receivetype = 1) as Charge
@@ -36,6 +37,7 @@ namespace AsliMotor.Invoices.ReportRepository
         public DateTime SuratPerjanjianDate { get; set; }
         public decimal Denda { get; set; }
         public string Month { get; set; }
+        public long MonthNumber { get; set; }
         public decimal Total { get; set; }
         public string Merk { get; set; }
         public string Type { get; set; }

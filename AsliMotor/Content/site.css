@@ -254,6 +254,7 @@ a:hover {
     border-top-left-radius: 8px;
     margin-top: -30px;
     min-width:999px;
+    padding-bottom:40px;
 }
 
 #content-header {

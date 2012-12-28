@@ -13,6 +13,7 @@ namespace AsliMotor.Invoices.ReportRepository
 	r.total,
 	r.denda,
     r.month as Month,
+    r.monthnumber as MonthNumber,
 	inv.angsuranbulanan,
 	r.receiveno
 	from receive r inner join invoicesnapshot inv on r.invoiceid = inv.id 
@@ -26,6 +27,7 @@ namespace AsliMotor.Invoices.ReportRepository
         public decimal Total { get; set; }
         public decimal Denda { get; set; }
         public string Month { get; set; }
+        public long MonthNumber { get; set; }
         public decimal AngsuranBulanan { get; set; }
         public string ReceiveNo { get; set; }
     }

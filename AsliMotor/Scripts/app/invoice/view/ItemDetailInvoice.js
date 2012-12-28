@@ -20,8 +20,8 @@
                 html += "<table class='table table-striped'>" +
                     "<thead>" +
                         "<tr>" +
-                            "<th>No. Kwitansi</th>" +
                             "<th>Angsuran</th>" +
+                            "<th>No. Kwitansi</th>" +
                             "<th>Tanggal Pembayaran</th>" +
                             "<th class='right'>Besar Angsuran</th>" +
                             "<th class='right'>Denda</th>" +
@@ -48,13 +48,13 @@
         tagName: 'tr',
         render: function () {
             var transactionNo = this.model.get("ReceiveNo") || '-';
-            var month = this.model.get("Month") ? this.model.get("Month").toDate4Digit() : '-';
+            var month = this.model.get("MonthNumber") ? this.model.get("MonthNumber") : '-';
             var receiveDate = this.model.get("ReceiveDate") ? this.model.get("ReceiveDate").toDate() : '-';
             var angsuranBulanan = this.model.get("AngsuranBulanan") ? this.model.get("AngsuranBulanan").toCurrency() : '-';
             var denda = this.model.get("Denda") ? this.model.get("Denda").toCurrency() : '-';
             var jumlah = this.model.get("Total") ? this.model.get("Total").toCurrency() : '-';
-            var html = "<td>" + transactionNo + "</td>" +
-                        "<td>" + month + "</td>" +
+            var html =  "<td>" + month + "</td>" +
+                        "<td>" + transactionNo + "</td>" +
                         "<td>" + receiveDate + "</td>" +
                         "<td class='right'>" + angsuranBulanan + "</td>" +
                         "<td class='right'>" + denda + "</td>" +

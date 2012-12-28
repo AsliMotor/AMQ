@@ -19,7 +19,7 @@ namespace AsliMotor.Fixture
             MembershipCreateStatus createStatus;
             if (Membership.GetUser("administrator") == null)
             {
-                Users user = Membership.CreateUser("administrator", "123456", "admin@aslimotor.com", null, null, true, null, out createStatus);
+                Users user = Membership.CreateUser("administrator", "123456", "admin@aslimotorsiq.com", null, null, true, null, out createStatus);
                 user.OwnerId = "aslimotor@aslimotorsiq.com";
                 user.BranchId = "aslimotor@aslimotorsiq.com";
                 Membership.UpdateUser(user);

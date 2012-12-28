@@ -81,7 +81,8 @@ namespace AsliMotor.Receives.Services
                 Total = cmd.Total,
                 BranchId = cmd.BranchId,
                 Denda = cmd.Denda,
-                Month = cmd.BulanAngsuran
+                Month = cmd.BulanAngsuran,
+                MonthNumber = cmd.BulanAngsuranNumber
             };
             ReceiveRepository.Save(rcv);
         }

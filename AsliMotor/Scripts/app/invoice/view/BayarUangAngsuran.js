@@ -15,7 +15,7 @@
         tagName: 'div',
         className: 'bayar-uang-angsuran',
         initialize: function () {
-
+            this.model.on('change', this.render, this);
         },
         render: function () {
             var self = this;
@@ -40,13 +40,21 @@
                 dataIndex: "AngsuranBulanan",
                 readonly: true,
                 onshow: function (m) {
-                    if (m.get('DueDate') && m.get('DueDate').toDateTime() < new Date())
+                    var day = this.model.get("Date").split('-')[0];
+                    var month = this.model.get("Date").split('-')[1];
+                    var year = this.model.get("Date").split('-')[2];
+
+                    var date = new Date(month + "-" + day + "-" + year);
+                    if (m.get('DueDate') && m.get('DueDate').toDateTime() < date)
                         return true;
                     return false;
                 },
                 onrendervalue: function (m) {
-                    var currDate = new Date();
-                    var date = new Date((currDate.getMonth() + 1) + "-" + currDate.getDate() + "-" + currDate.getFullYear());
+                    var day = this.model.get("Date").split('-')[0];
+                    var month = this.model.get("Date").split('-')[1];
+                    var year = this.model.get("Date").split('-')[2];
+
+                    var date = new Date(month + "-" + day + "-" + year);
                     var date2 = m.get("DueDate").toDateTime();
                     var timeDiff = Math.abs(date2.getTime() - date.getTime());
                     var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));

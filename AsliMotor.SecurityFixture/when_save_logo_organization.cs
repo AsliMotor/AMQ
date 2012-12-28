@@ -17,12 +17,12 @@ namespace AsliMotor.Fixture
         Establish context = () =>
         {
             orgService = new OrganizationService();
-            img = Image.FromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"image\logo.png"));
+            img = Image.FromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"image\Angkasa.png"));
         };
 
         Because of = () =>
         {
-            orgService.SaveLogo(img, "dny@gmail.com");
+            orgService.SaveLogo(img, "aslimotor@aslimotorsiq.com");
         };
 
         It should_be_save_logo_organization = () =>

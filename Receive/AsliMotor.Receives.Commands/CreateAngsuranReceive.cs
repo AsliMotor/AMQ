@@ -12,6 +12,7 @@ namespace AsliMotor.Receives.Commands
         public decimal Total { get; set; }
         public decimal Denda { get; set; }
         public string BulanAngsuran { get; set; }
+        public long BulanAngsuranNumber { get; set; }
         public DateTime PaymentDate { get; set; }
     }
 }

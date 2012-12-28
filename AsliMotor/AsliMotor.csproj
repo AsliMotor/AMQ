@@ -155,6 +155,9 @@
     <Content Include="Content\img\homesoft-1.png" />
     <Content Include="Content\img\homesoft-big.png" />
     <Content Include="Content\img\icon\glyphicons_227_usd.png" />
+    <Content Include="Content\img\logoorg\logo-amq.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\organization.css" />
     <Content Include="Content\img\homesoft.png" />
     <Content Include="Content\img\User-icon.png" />

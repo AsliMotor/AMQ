@@ -20,5 +20,6 @@ namespace AsliMotor.Receives.Models
         public decimal Denda { get; set; }
         public string BranchId { get; set; }
         public string Month { get; set; }
+        public long MonthNumber { get; set; }
     }
 }

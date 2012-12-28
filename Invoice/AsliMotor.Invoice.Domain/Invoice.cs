@@ -144,7 +144,7 @@ namespace AsliMotor.Invoices.Domain
         private decimal CalculateAngsuranBulanan(decimal price, decimal uangmuka, int lamaAngsuran, decimal sukuBunga, decimal uangtandajadi)
         {
             decimal totalyangdikredit = (price - uangmuka - uangtandajadi + BiayaAdministration(lamaAngsuran));
-            int totalTahunAngsuran = lamaAngsuran / 12;
+            decimal totalTahunAngsuran = decimal.Parse((lamaAngsuran / (double)12).ToString());
             decimal totalbunga = (totalyangdikredit * (sukuBunga / 100)) * totalTahunAngsuran;
             decimal angsuran = (lamaAngsuran == 0) ? 0 : (totalyangdikredit + totalbunga) / lamaAngsuran;
             return Math.Round(angsuran);
@@ -153,7 +153,7 @@ namespace AsliMotor.Invoices.Domain
         private decimal CalculateTotalKredit(decimal price, decimal uangmuka, int lamaAngsuran, decimal sukuBunga, StatusInvoice status, decimal uangtandajadi)
         {
             decimal totalyangdikredit = (price - uangmuka - uangtandajadi + BiayaAdministration(lamaAngsuran));
-            int totalTahunAngsuran = lamaAngsuran / 12;
+            decimal totalTahunAngsuran = decimal.Parse((lamaAngsuran / (double)12).ToString());
             decimal totalbunga = (totalyangdikredit * (sukuBunga / 100)) * totalTahunAngsuran;
             //decimal total = (status == StatusInvoice.CREDIT) ? (totalyangdikredit + totalbunga) : 0;
             return Math.Round(totalbunga + BiayaAdministration(lamaAngsuran));
@@ -161,8 +161,8 @@ namespace AsliMotor.Invoices.Domain
 
         private decimal BiayaAdministration(int lamaAngsuran)
         {
-            int totalTahun = lamaAngsuran / 12;
-            decimal biayaAdministrasi = totalTahun * decimal.Parse(System.Configuration.ConfigurationManager.AppSettings["biayaadministrasi"]);
+            //decimal totalTahunAngsuran = decimal.Parse((lamaAngsuran / (double)12).ToString());
+            decimal biayaAdministrasi = decimal.Parse(System.Configuration.ConfigurationManager.AppSettings["biayaadministrasi"]);
             return biayaAdministrasi;
         }
     }

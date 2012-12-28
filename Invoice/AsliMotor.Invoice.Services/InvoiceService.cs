@@ -49,6 +49,7 @@ namespace AsliMotor.Invoices.Services
                 CustomerId = cmd.CustomerId,
                 id = cmd.id,
                 InvoiceDate = cmd.InvoiceDate,
+                DueDate = cmd.InvoiceDate,
                 Price = cmd.Price,
                 ProductId = cmd.ProductId,
                 UangTandaJadi = cmd.DebitNote,
@@ -163,7 +164,7 @@ namespace AsliMotor.Invoices.Services
                 long totalAngsuran = Repository.CountAngsuranBulanan(invSnap.id);
                 StatusInvoice status = inv.BayarAngsuran(totalAngsuran);
                 Repository.Update(inv);
-                CreateAngsuranReceive(inv,date, denda);
+                CreateAngsuranReceive(inv,date, denda, totalAngsuran);
                 PublishAngsuranPaid(inv, username);
                 if (status == StatusInvoice.PAID)
                 {
@@ -284,7 +285,7 @@ namespace AsliMotor.Invoices.Services
 
         #region create receive
 
-        private void CreateAngsuranReceive(Invoice inv,DateTime date, decimal denda)
+        private void CreateAngsuranReceive(Invoice inv,DateTime date, decimal denda, long totalangsuran)
         {
             InvoiceSnapshot invSnapshot = inv.CreateSnapshot();
             ReceiveService.CreateAngsuran(new CreateAngsuranReceive
@@ -294,7 +295,8 @@ namespace AsliMotor.Invoices.Services
                 Total = Math.Round(invSnapshot.AngsuranBulanan + denda),
                 InvoiceId = invSnapshot.id,
                 BulanAngsuran = invSnapshot.DueDate.AddMonths(-1).ToString("MMyyyy"),
-                PaymentDate = date
+                PaymentDate = date,
+                BulanAngsuranNumber = totalangsuran + 1
             });
         }
 

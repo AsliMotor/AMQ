@@ -60,12 +60,13 @@ namespace AsliMotor.ImportDataInvoice
                         SupplierInvoiceService.Create(si, userName);
                         InvoiceService.Credit(command, this.userName);
                         ProductService.ChangeStatus(si.ProductId, this.branchId, ParseStatusProduct(rawData), this.userName);
-
+                        
                         int countPaid = ParseCountPaid(rawData);
                         for (int i = 0; i < countPaid; i++)
                         {
                             InvoiceService.BayarAngsuran(command.id, command.InvoiceDate.AddDays(i * 30), this.userName);
                         }
+                        InvoiceService.ChangeDueDate(command.id, command.InvoiceDate.AddMonths(countPaid + 1), userName);
                     }
                     catch (Exception ex)
                     {
