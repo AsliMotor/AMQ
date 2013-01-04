@@ -18,7 +18,7 @@ namespace AsliMotor
         IBus bus;
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new HandleErrorAttribute());
+            filters.Add(new HandleErrorAttribute { View = "ErrorPages/Oops" });
         }
 
         public static void RegisterRoutes(RouteCollection routes)

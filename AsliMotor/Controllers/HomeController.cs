@@ -10,11 +10,12 @@ using AsliMotor.Helper;
 
 namespace AsliMotor.Controllers
 {
-    [MyAuthorize]
+    [Authorize]
     public class HomeController : Controller
     {
         IDashboardRepository _repo;
         ISalesReportRepository _salesReportRepo;
+        [MyAuthorize]
         public ActionResult Index()
         {
             return View();

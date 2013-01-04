@@ -10,7 +10,7 @@ using AsliMotor.Helper;
 
 namespace AsliMotor.Controllers
 {
-    [MyAuthorize(Roles= RoleName.ADMINISTRATOR)]
+    [Authorize(Roles= RoleName.ADMINISTRATOR)]
     public class ManageUserController : Controller
     {
         public ActionResult Index()

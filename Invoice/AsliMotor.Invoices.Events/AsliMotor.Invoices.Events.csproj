@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AngsuranPaid.cs" />
+    <Compile Include="HargaJualChanged.cs" />
     <Compile Include="InvoiceDateChanged.cs" />
     <Compile Include="CustomerChanged.cs" />
     <Compile Include="ProductChanged.cs" />

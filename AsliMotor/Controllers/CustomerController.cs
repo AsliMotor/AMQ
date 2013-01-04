@@ -11,7 +11,7 @@ using AsliMotor.Security.Models;
 
 namespace AsliMotor.Controllers
 {
-    [MyAuthorize(Roles=RoleName.OWNER_ADMINSALES_CASHIER)]
+    [Authorize(Roles=RoleName.OWNER_ADMINSALES_CASHIER)]
     public class CustomerController : Controller
     {
         ICustomerRepository _custRepo;

@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace AsliMotor.Helper
 {
+    [AttributeUsage(AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
     public class MyAuthorize : AuthorizeAttribute
     {
-        public string Message { get; set; }
-
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
             base.OnAuthorization(filterContext);
-            if (!filterContext.HttpContext.User.Identity.IsAuthenticated || filterContext.HttpContext.Session["loginsession"] == null)
+            if (filterContext.HttpContext.Session["companyprofile"] == null)
             {
-                filterContext.Result = new RedirectResult("~/Account/Logon");
-                return;
+                FormsAuthentication.SignOut();
+                filterContext.Result = new RedirectResult("/");
             }
             
             if (filterContext.Result is HttpUnauthorizedResult)
@@ -27,29 +27,22 @@ namespace AsliMotor.Helper
                         Data = new { error = true, message = "User ini tidak diizinkan untuk melakukan aksi ini." },
                         JsonRequestBehavior = JsonRequestBehavior.AllowGet
                     };
-                return;
             }
         }
 
-        protected override bool AuthorizeCore(HttpContextBase httpContext)
-        {
-            var authroized = base.AuthorizeCore(httpContext);
-            if (!authroized)
-            {
-                // the user is not authenticated or the forms authentication
-                // cookie has expired
-                return false;
-            }
-
-            // Now check the session:
-            var myvar = httpContext.Session["loginsession"];
-            if (myvar == null)
-            {
-                // the session has expired
-                return false;
-            }
-
-            return true;
-        }
+        //protected override bool AuthorizeCore(HttpContextBase httpContext)
+        //{
+        //    var authroized = base.AuthorizeCore(httpContext);
+        //    if (!authroized)
+        //    {
+        //        return false;
+        //    }
+        //    var myvar = httpContext.Session["loginsession"];
+        //    if (myvar == null)
+        //    {
+        //        return false;
+        //    }
+        //    return true;
+        //}
     }
 }

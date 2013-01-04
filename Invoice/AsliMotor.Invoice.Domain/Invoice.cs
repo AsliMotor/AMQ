@@ -77,6 +77,17 @@ namespace AsliMotor.Invoices.Domain
             }
         }
 
+        public void ChangeHargaJual(decimal hargajual, decimal uangmuka, decimal debitNote)
+        {
+            if (_snapshot.Status == (int)StatusInvoice.CREDIT)
+            {
+                _snapshot.AngsuranBulanan = CalculateAngsuranBulanan(hargajual, uangmuka, _snapshot.LamaAngsuran, _snapshot.SukuBunga, debitNote);
+                _snapshot.TotalKredit = CalculateTotalKredit(hargajual, uangmuka, _snapshot.LamaAngsuran, _snapshot.SukuBunga, StatusInvoice.CREDIT, debitNote);
+                _snapshot.Outstanding = (hargajual + _snapshot.TotalKredit) - (uangmuka + debitNote);
+                _snapshot.Price = hargajual;
+            }
+        }
+
         public void ChangeAngsuran(decimal angsuran, decimal uangmuka)
         {
             decimal total = _snapshot.LamaAngsuran * angsuran;

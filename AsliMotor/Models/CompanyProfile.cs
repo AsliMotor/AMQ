@@ -12,6 +12,7 @@ namespace AsliMotor.Models
         public CompanyProfile(HttpContextBase context)
         {
             this.context = context.Session;
+
         }
         public CompanyProfile(HttpSessionStateBase context)
         {

@@ -8,7 +8,7 @@ using AsliMotor.Security.Models;
 
 namespace AsliMotor.Controllers
 {
-    [MyAuthorize(Roles=RoleName.OWNER_ADMINISTRATOR)]
+    [Authorize(Roles = RoleName.OWNER_ADMINISTRATOR)]
     public class AngsuranReportController : Controller
     {
         public ActionResult Index()

@@ -42,7 +42,7 @@ namespace AsliMotor.Controllers
                         cp.BranchId = user.BranchId;
                         cp.UserName = user.Name;
 
-                        this.HttpContext.Session["loginsession"] = model.UserName;
+                        //this.HttpContext.Session["loginsession"] = model.UserName;
                         FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
                         if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
                             && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
@@ -53,7 +53,6 @@ namespace AsliMotor.Controllers
                         {
                             return RedirectToAction("Index", "Home");
                         }
-
                     }
                     else
                     {
@@ -69,7 +68,7 @@ namespace AsliMotor.Controllers
             return View(model);
         }
 
-        [MyAuthorize]
+        [Authorize]
         public ActionResult LogOff()
         {
             FormsAuthentication.SignOut();

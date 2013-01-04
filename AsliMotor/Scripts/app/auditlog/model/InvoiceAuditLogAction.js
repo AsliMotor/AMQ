@@ -13,7 +13,8 @@
         InvoiceCanceled : 8,
         InvoicePulled : 9,
         ProductChanged : 10,
-        CustomerChanged : 11
+        CustomerChanged : 11,
+        PriceChanged: 12
     };
 
     return am.InvoiceAuditLogAction;

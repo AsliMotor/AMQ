@@ -186,6 +186,19 @@ namespace AsliMotor.Invoices.Services
             PublishUangMukaChanged(inv, username);
         }
 
+        public void ChangeHargaJual(Guid id, decimal hargaJual, string username)
+        {
+            Invoice inv = Repository.Get(id);
+            InvoiceSnapshot invSnap = inv.CreateSnapshot();
+            FailIfInvoiceNotFound(invSnap);
+            FailIfCantChange(invSnap);
+            decimal debitnote = Repository.GetUangTandaJadi(id);
+            Receive uangMukaRcv = ReceiveRepository.GetByInvoiceIdAndPaymentType(invSnap.id, 1);
+            inv.ChangeHargaJual(hargaJual, uangMukaRcv.Total, debitnote);
+            Repository.Update(inv);
+            PublishHargaJualChanged(inv, username);
+        }
+
         public void UpdateUangAngsuran(Guid id, decimal angsuran, string username)
         {
             Invoice inv = Repository.Get(id);
@@ -445,6 +458,10 @@ namespace AsliMotor.Invoices.Services
         private void PublishCustomerChanged(Invoice inv, string username)
         {
             _bus.Publish(new CustomerChanged { Payload = inv.CreateSnapshot(), Username = username });
+        }
+        private void PublishHargaJualChanged(Invoice inv, string username)
+        {
+            _bus.Publish(new HargaJualChanged { Payload = inv.CreateSnapshot(), Username = username });
         }
         #endregion
     }

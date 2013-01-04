@@ -17,7 +17,7 @@ using System.Drawing;
 
 namespace AsliMotor.Controllers
 {
-    [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES_CASHIER)]
+    [Authorize(Roles = RoleName.OWNER_ADMINSALES_CASHIER)]
     public class InvoiceController : Controller
     {
         IPrintDocument _printDocument;
@@ -203,6 +203,22 @@ namespace AsliMotor.Controllers
             {
                 CompanyProfile cp = new CompanyProfile(this.HttpContext);
                 InvoiceService.ChangeUangMuka(invoiceId, uangmuka, cp.UserName);
+                return Json(new { error = false, data = new { id = invoiceId } }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { error = true, message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES)]
+        [HttpPost]
+        public JsonResult ChangeHargaJual(Guid invoiceId, decimal price)
+        {
+            try
+            {
+                CompanyProfile cp = new CompanyProfile(this.HttpContext);
+                InvoiceService.ChangeHargaJual(invoiceId, price, cp.UserName);
                 return Json(new { error = false, data = new { id = invoiceId } }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)

@@ -192,8 +192,11 @@
     <Content Include="Scripts\app\angsuranreport\view\TableData.js" />
     <Content Include="Scripts\app\angsuranreport\view\TotalSummaryGrafikProduk.js" />
     <Content Include="Scripts\app\invoice\action\changeInvoiceDate.js" />
+    <Content Include="Scripts\app\invoice\action\changeHargaJual.js" />
     <Content Include="Scripts\app\invoice\command\ChangeInvoiceDate.js" />
+    <Content Include="Scripts\app\invoice\command\ChangeHargaJual.js" />
     <Content Include="Scripts\app\invoice\view\ChangeInvoiceDate.js" />
+    <Content Include="Scripts\app\invoice\view\ChangeHargaJual.js" />
     <Content Include="Scripts\app\outstandingreport\controller\SideBarController.js" />
     <Content Include="Scripts\app\outstandingreport\main.js" />
     <Content Include="Scripts\app\outstandingreport\model\DailyReports.js" />

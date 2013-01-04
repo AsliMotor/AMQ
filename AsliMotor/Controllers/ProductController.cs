@@ -12,7 +12,7 @@ using AsliMotor.Security.Models;
 
 namespace AsliMotor.Controllers
 {
-    [MyAuthorize]
+    [Authorize]
     public class ProductController : Controller
     {
         IProductRepository _repository;

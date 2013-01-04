@@ -9,9 +9,11 @@ using AsliMotor.Receives.AutoNumberGenerator;
 using AsliMotor.SuratPeringatan.AutoNumberGenerator;
 using AsliMotor.Perjanjian.AutoNumberGenerator;
 using Spring.Context.Support;
+using AsliMotor.Security.Models;
 
 namespace AsliMotor.Controllers
 {
+    [Authorize(Roles=RoleName.ADMINISTRATOR)]
     public class SettingAutoNumberController : Controller
     {
         ISIAutoNumberGenerator _siGenerator;
