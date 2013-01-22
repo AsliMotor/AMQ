@@ -15,7 +15,27 @@ define([
         $(document.body).append(headerHtml);
         $(document.body).append(new am.NavBar({ model: accountModel }).render().el);
         $(document.body).append(new am.SideBar({ model: accountModel, activeElement: activeElement }).render().el);
-        $(document.body).append("<div id='content'><div id='main-container'></div></div>");
+        $(document.body).append("<div id='content'><div id='btn-fullscreen' title='Full Screen'><i class='icon-fullscreen'/></div><div id='main-container'></div></div>");
+        $("#btn-fullscreen").click(fullscreen);
+    };
+
+    var fullscreen = function () {
+        if ($("#sidebar").attr('class') && $("#sidebar").attr('class').indexOf("hideSidebar") >= 0) {
+            $("#btn-fullscreen").attr('title', 'Full Screen');
+            $("#btn-fullscreen").html("<i class='icon-fullscreen'/>");
+            $("#content").css("margin-left", "220px");
+            $("#content").css("margin-top", "-30px");
+            window.setTimeout(function () {
+                $("#sidebar").removeClass("hideSidebar");
+            }, 200);
+        }
+        else {
+            $("#btn-fullscreen").attr('title', 'Small Screen');
+            $("#btn-fullscreen").html("<i class='icon-resize-small'/>");
+            $("#sidebar").addClass("hideSidebar");
+            $("#content").css("margin-left", "0px");
+            $("#content").css("margin-top", "-13px");
+        }
     };
 
     am.SideBar = Backbone.View.extend({
@@ -58,13 +78,13 @@ define([
                                 "<a href='#'>" +
                                     "<i class='icon icon-list-alt'></i>" +
                                     "<span>Laporan</span>" +
-                                    "<span class='label'>2</span>" +
+                                    "<span class='label'>3</span>" +
                                 "</a>" +
                                 "<ul>" +
 					                "<li><a href='/report'>Laporan Penjualan</a></li>" +
-					                //"<li><a href='/outstandingreport'>Laporan Piutang</a></li>" +
-                                    //"<li><a href='/angsuranreport'>Laporan Angsuran</a></li>" +
-					                //"<li><a href='/report'>Laporan Keuangan</a></li>" +
+					                "<li><a href='/purchasereport'>Laporan Pembelian</a></li>" +
+                //"<li><a href='/angsuranreport'>Laporan Angsuran</a></li>" +
+                                    "<li><a href='/statementreport'>Laporan Keuangan</a></li>" +
 				                "</ul>" +
                             "</li>";
             }
@@ -119,8 +139,8 @@ define([
             sidebarHtml += "</ul>";
 
             this.$el.html(sidebarHtml);
-            $("#" + this.options.activeElement, this.$el).addClass('active');
-            if (this.options.activeElement == "report") {
+            if (this.options.activeElement == "report" || this.options.activeElement == "purchasereport" || this.options.activeElement == "statementreport") {
+                $("#report", this.$el).addClass('active');
                 this.reportClicked();
             }
             if (this.options.activeElement == "auditlog")

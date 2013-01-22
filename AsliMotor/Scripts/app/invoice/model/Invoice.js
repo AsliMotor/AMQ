@@ -15,7 +15,8 @@
             "UangMuka": 0,
             "SukuBunga": 0,
             "LamaAngsuran": 0,
-            "DueDate": getCurrentDate()
+            "DueDate": getCurrentDate(),
+            "TermId": ""
         },
         initialize: function () {
             this.validators = {};
@@ -37,9 +38,7 @@
             this.validators.UangMuka = function (value, model) {
                 if (model.get("Status") == "1") {
                     if (value > 0) {
-                        if (value < (parseInt(model.get("Price")) * 30) / 100) {
-                            return { isValid: false, message: "Uang minimal 30% dari harga jual kendaraan" };
-                        }
+                        return { isValid: true };
                     } else {
                         return { isValid: false, message: "Uang muka harus diisi" };
                     }

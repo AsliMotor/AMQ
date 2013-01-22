@@ -9,6 +9,7 @@
     '../../../libs/homejs/inputfield/textfield',
     '../../../libs/homejs/inputfield/datefield',
     '../../../libs/homejs/inputfield/searchfield',
+    '../../../libs/homejs/inputfield/combofield',
     '../../../libs/homejs/label',
     '../../../libs/homejs/radiobutton'
 ], function ($, _, Backbone, ns, am) {
@@ -104,6 +105,26 @@
             }
             else if (data.get("Status") == "1") {
                 $(".paymenttype-detail-form-panel").remove();
+                var TermModel = Backbone.Model.extend();
+                var TermCollection = Backbone.Collection.extend({
+                    url: "/PaymentTerm/Terms",
+                    model: TermModel
+                });
+                var termColl = new TermCollection();
+                termColl.fetch();
+                var termfield = new HomeJS.components.ComboField({
+                    model: this.model,
+                    title: 'Termin Pembayaran',
+                    dataIndex: "TermId",
+                    collection: termColl,
+                    displayItemField: {
+                        value: 'id',
+                        name: 'Name'
+                    },
+                    setModel: function (model, data) {
+                        model.set("TermId", data.id);
+                    }
+                });
                 var uangMukaView = new HomeJS.components.TextField({
                     model: this.model,
                     title: 'Uang Muka',
@@ -127,18 +148,25 @@
                 });
                 var nominalFormPanel = new HomeJS.components.FormPanel({
                     formLayout: HomeJS.components.FormLayout.VERTICAL,
-                    items: [uangMukaView, sukuBungaView, lamaAngsuranView],
-                    vertical:true
+                    items: [uangMukaView, sukuBungaView, termfield],
+                    vertical: true
                 });
+
                 var dueDateView = new HomeJS.components.DateField({
                     model: this.model,
                     title: 'Tanggal Jatuh Tempo',
                     dataIndex: "DueDate"
                 });
+
+                var footerFormPanel = new HomeJS.components.FormPanel({
+                    formLayout: HomeJS.components.FormLayout.VERTICAL,
+                    items: [lamaAngsuranView, dueDateView],
+                    vertical: true
+                });
                 var paymentTypeDetailFormPanel = new HomeJS.components.FormPanel({
                     formLayout: HomeJS.components.FormLayout.VERTICAL,
                     class: "paymenttype-detail-form-panel",
-                    items: [nominalFormPanel, dueDateView]
+                    items: [nominalFormPanel, footerFormPanel]
                 });
                 $(".payment-form-panel").append(paymentTypeDetailFormPanel.render().el)
             }

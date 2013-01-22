@@ -25,5 +25,7 @@ namespace AsliMotor.Invoices.Services
         void ChangeProduct(Guid id, Guid productId, string username);
         void ChangeCustomer(Guid id, Guid custId, string username);
         void ChangeHargaJual(Guid id, decimal hargaJual, string username);
+        void ChangeTerm(Guid id, Guid termId, string username);
+        void Pelunasan(Guid id, DateTime date, string username);
     }
 }

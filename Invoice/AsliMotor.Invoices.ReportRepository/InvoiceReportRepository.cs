@@ -111,5 +111,11 @@ namespace AsliMotor.Invoices.ReportRepository
             SuratTandaTerima report = QueryObjectMapper.Map<SuratTandaTerima>("findById", new string[] { "id" }, new object[] { invId }).FirstOrDefault();
             return report;
         }
+
+        public ReceivePelunasanReport GetReceivePelunasanReport(Guid invoiceId, string branchId)
+        {
+            ReceivePelunasanReport report = QueryObjectMapper.Map<ReceivePelunasanReport>("findById", new string[] { "id","branchid" }, new object[] { invoiceId, branchId }).FirstOrDefault();
+            return report;
+        }
     }
 }

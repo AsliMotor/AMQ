@@ -110,7 +110,8 @@
                     UangMuka: invoiceModel.get("UangMuka"),
                     LamaAngsuran: invoiceModel.get("LamaAngsuran"),
                     SukuBunga: invoiceModel.get("SukuBunga"),
-                    DueDate: invoiceModel.get("DueDate")
+                    DueDate: invoiceModel.get("DueDate"),
+                    TermId: invoiceModel.get("TermId")
                 };
                 $.ajax({
                     type: "POST",

@@ -343,6 +343,22 @@ namespace AsliMotor.Controllers
             }
         }
 
+        [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES)]
+        [HttpPost]
+        public JsonResult ChangeTerm(Guid invoiceId, Guid termId)
+        {
+            try
+            {
+                CompanyProfile cp = new CompanyProfile(this.HttpContext);
+                InvoiceService.ChangeTerm(invoiceId, termId, cp.UserName);
+                return Json(new { error = false, data = new { id = invoiceId } }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { error = true, message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES_CASHIER)]
         [HttpPost]
         public JsonResult BayarAngsuran(Guid invoiceId, string date)
@@ -353,6 +369,24 @@ namespace AsliMotor.Controllers
                 DateTime paymentDate = new DateTime(int.Parse(stringDate[2]), int.Parse(stringDate[1]), int.Parse(stringDate[0]));
                 CompanyProfile cp = new CompanyProfile(this.HttpContext);
                 InvoiceService.BayarAngsuran(invoiceId, paymentDate, cp.UserName);
+                return Json(new { error = false, data = new { InvoiceId = invoiceId } }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { error = true, message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES_CASHIER)]
+        [HttpPost]
+        public JsonResult Pelunasan(Guid invoiceId, string date)
+        {
+            try
+            {
+                string[] stringDate = date.Split('-');
+                DateTime paymentDate = new DateTime(int.Parse(stringDate[2]), int.Parse(stringDate[1]), int.Parse(stringDate[0]));
+                CompanyProfile cp = new CompanyProfile(this.HttpContext);
+                InvoiceService.Pelunasan(invoiceId, paymentDate, cp.UserName);
                 return Json(new { error = false, data = new { InvoiceId = invoiceId } }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
@@ -379,6 +413,16 @@ namespace AsliMotor.Controllers
         {
             CompanyProfile cp = new CompanyProfile(this.HttpContext);
             string template = PrintDocument.PrintKwitansiTandaJadi(id, cp.BranchId);
+            MemoryStream resultStream = ConvertToHtml(template, new RectangleF(0.5f, 0.1f, 7.3f, 12.1f));
+            return new FileStreamResult(resultStream, "application/pdf");
+        }
+
+        [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES_CASHIER)]
+        [HttpGet]
+        public FileStreamResult PrintKwitansiPelunasan(Guid id)
+        {
+            CompanyProfile cp = new CompanyProfile(this.HttpContext);
+            string template = PrintDocument.PrintKwitansiPelunasan(id, cp.BranchId);
             MemoryStream resultStream = ConvertToHtml(template, new RectangleF(0.5f, 0.1f, 7.3f, 12.1f));
             return new FileStreamResult(resultStream, "application/pdf");
         }

@@ -36,7 +36,9 @@
                 return this;
             },
             events: {
-                'click': 'clicked'
+                'click': 'clicked',
+                'hover': 'hovered',
+                'mouseleave': 'mouseleaved'
             },
             clicked: function () {
                 $('.active a i', $(".homejs-sidebar")).removeClass('icon-white');
@@ -44,6 +46,14 @@
                 this.$el.addClass('active');
                 $('i', this.$el).addClass('icon-white');
                 this.action();
+            },
+            hovered: function () {
+                if (this.$el.attr('class') != "active")
+                    $('i', this.$el).addClass('icon-white');
+            },
+            mouseleaved: function () {
+                if (this.$el.attr('class') != "active")
+                    $('i', this.$el).removeClass('icon-white');
             },
             action: function () {
                 this.options.action();

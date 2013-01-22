@@ -7,8 +7,11 @@
     ns.define("HomeJS.components");
     HomeJS.components.ModalDialog = Backbone.View.extend({
         tagName: 'div',
+        id: "homejs-modal-dialog",
         className: 'modal-dialog',
         initialize: function () {
+            if ($("#homejs-modal-dialog").length > 0)
+                $("#homejs-modal-dialog").remove();
             var title = this.options.title || "HomeJS Modal Dialog";
             var html = "<div class='toolbar'><div class='logo'><img src='../../Content/img/homesoft-1.png'/></div><title>" + title + "</title></div>" +
                        "<fieldset class='textbox'>" +

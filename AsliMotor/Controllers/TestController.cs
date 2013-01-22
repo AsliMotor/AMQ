@@ -46,6 +46,10 @@ namespace AsliMotor.Controllers
         {
             return View();
         }
+        public ActionResult ComboField()
+        {
+            return View();
+        }
         public ActionResult RadioButton()
         {
             return View();

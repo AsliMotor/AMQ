@@ -17,6 +17,7 @@
                 if (this.options.resizable) this.$el.addClass("resizable");
                 this.createHeader();
                 this.addItems();
+                this.addFooter();
             },
             render: function () {
                 return this;
@@ -47,6 +48,7 @@
                         this.$el.find("tbody").html(html);
                     }
                 }
+                this.addFooter();
             },
             addItem: function (item) {
                 this.$el.find("tbody").append(new HomeJS.components.DataTable.Row({
@@ -55,6 +57,29 @@
                     onrenderItem: this.options.onrenderItem,
                     eventclick: this.options.eventclick
                 }).el);
+            },
+            addFooter: function () {
+                if (this.options.footer) {
+                    var grandTotalDebit = this.collection.SumTotalDebit();
+                    var grandTotalKredit = this.collection.SumTotalKredit();
+                    if (this.collection.length > 0) {
+                        var cellLength = this.options.items.length;
+                        var html = "<tr class='footer'>";
+                        var e = 0;
+                        for (var i = 0; i < cellLength; i++) {
+                            var value = "";
+                            var style = "";
+                            if ((cellLength - i) <= this.options.footer.length) {
+                                value = this.options.footer[e].onrender();
+                                style = this.options.footer[e].align ? 'text-align:' + this.options.footer[e].align : "";
+                                e++;
+                            }
+                            html += "<td style='" + style + "'>" + value + "</td>";
+                        }
+                        html += "</tr>";
+                        this.$el.find("tbody").append(html);
+                    }
+                }
             }
         });
 

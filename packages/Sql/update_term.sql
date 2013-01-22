@@ -1,0 +1,1 @@
+update invoicesnapshot set termid = (select id from paymentterm where value = '30')

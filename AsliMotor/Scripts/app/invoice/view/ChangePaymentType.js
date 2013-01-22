@@ -122,9 +122,29 @@
                     placeholder: 'Ketik Lama Angsuran',
                     dataIndex: "LamaAngsuran"
                 });
+                var TermModel = Backbone.Model.extend();
+                var TermCollection = Backbone.Collection.extend({
+                    url: "/PaymentTerm/Terms",
+                    model: TermModel
+                });
+                var termColl = new TermCollection();
+                termColl.fetch();
+                var termfield = new HomeJS.components.ComboField({
+                    model: this.model,
+                    title: 'Termin Pembayaran',
+                    dataIndex: "TermId",
+                    collection: termColl,
+                    displayItemField: {
+                        value: 'id',
+                        name: 'Name'
+                    },
+                    setModel: function (model, data) {
+                        model.set("TermId", data.id);
+                    }
+                });
                 var nominalFormPanel = new HomeJS.components.FormPanel({
                     formLayout: HomeJS.components.FormLayout.VERTICAL,
-                    items: [uangMukaView, sukuBungaView, lamaAngsuranView],
+                    items: [uangMukaView, sukuBungaView, lamaAngsuranView, termfield],
                     vertical: true
                 });
                 var dueDateView = new HomeJS.components.DateField({
@@ -162,7 +182,8 @@
                         UangMuka: this.model.get("UangMuka"),
                         LamaAngsuran: this.model.get("LamaAngsuran"),
                         SukuBunga: this.model.get("SukuBunga"),
-                        DueDate: this.model.get("DueDate")
+                        DueDate: this.model.get("DueDate"),
+                        TermId: this.model.get("TermId")
                     };
                     $.ajax({
                         type: "POST",

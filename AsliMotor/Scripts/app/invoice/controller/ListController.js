@@ -44,6 +44,11 @@
                     resizable: true,
                     collection: invoicesModel,
                     headers: [{
+                        name: "No. Faktur",
+                        dataIndex: "InvoiceNo",
+                        width: "80px",
+                        title: "Klik untuk mengurutkan berdasarkan Nomor Faktur"
+                    },{
                         name: "Tanggal",
                         dataIndex: "InvoiceDate",
                         width: "120px",
@@ -82,6 +87,8 @@
                         title: "Klik untuk mengurutkan berdasarkan Sisa Tagihan"
                     }],
                     items: [{
+                        dataIndex: "InvoiceNo"
+                    },{
                         dataIndex: "InvoiceDate",
                         onrender: function (data) {
                             return data.toDate();

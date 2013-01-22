@@ -61,7 +61,8 @@
 
             var createDetailItemInvoice = function () {
                 detailItemInvoice = new am.invoice.view.ItemDetailInvoice({
-                    collection: itemsModel
+                    collection: itemsModel,
+                    invoiceId : id
                 });
             };
 
@@ -142,7 +143,7 @@
                         iconClass: 'icon-print',
                         id: "printPernyataanKredit",
                         renderer: function () {
-                            if (headerModel.get("Status") == 1 || headerModel.get("Status") == 4)
+                            if (headerModel.get("Status") == 1 || headerModel.get("Status") == 4 || (headerModel.get("Status") == 2 && headerModel.get("AngsuranBulanan") > 0))
                                 return true;
                             return false;
                         },
@@ -155,7 +156,7 @@
                         iconClass: 'icon-print',
                         id: "printPernyataan",
                         renderer: function () {
-                            if (headerModel.get("Status") == 1 || headerModel.get("Status") == 4)
+                            if (headerModel.get("Status") == 1 || headerModel.get("Status") == 4 || (headerModel.get("Status") == 2 && headerModel.get("AngsuranBulanan") > 0))
                                 return true;
                             return false;
                         },
@@ -168,7 +169,7 @@
                         iconClass: 'icon-print',
                         id: "printPernyataanMampu",
                         renderer: function () {
-                            if (headerModel.get("Status") == 1 || headerModel.get("Status") == 4)
+                            if (headerModel.get("Status") == 1 || headerModel.get("Status") == 4 || (headerModel.get("Status") == 2 && headerModel.get("AngsuranBulanan") > 0))
                                 return true;
                             return false;
                         },
@@ -181,7 +182,7 @@
                         iconClass: 'icon-print',
                         id: "printSuratKuasa",
                         renderer: function () {
-                            if (headerModel.get("Status") == 1 || headerModel.get("Status") == 4)
+                            if (headerModel.get("Status") == 1 || headerModel.get("Status") == 4 || (headerModel.get("Status") == 2 && headerModel.get("AngsuranBulanan") > 0))
                                 return true;
                             return false;
                         },
@@ -190,11 +191,11 @@
                         }
                     }, {
                         title: "JB Angsuran",
-                        tooltip: "Cetak PERJANJIAN JUAL BELI DENGAN PEMBAYARAN ANGSURAN",
+                        tooltip: "Cetak Surat Perjanjian Jual Beli",
                         iconClass: 'icon-print',
                         id: "printJBAngsuran",
                         renderer: function () {
-                            if (headerModel.get("Status") == 1 || headerModel.get("Status") == 4)
+                            if (headerModel.get("Status") == 1 || headerModel.get("Status") == 4 || (headerModel.get("Status") == 2 && headerModel.get("AngsuranBulanan") > 0))
                                 return true;
                             return false;
                         },
@@ -203,11 +204,11 @@
                         }
                     }, {
                         title: "JB Fidusia",
-                        tooltip: "Cetak PERJANJIAN JUAL BELI DENGAN PEMBAYARAN ANGSURAN",
+                        tooltip: "Cetak Surat Perjanjian Fisudia",
                         iconClass: 'icon-print',
                         id: "printJBFidusia",
                         renderer: function () {
-                            if (headerModel.get("Status") == 1 || headerModel.get("Status") == 4)
+                            if (headerModel.get("Status") == 1 || headerModel.get("Status") == 4 || (headerModel.get("Status") == 2 && headerModel.get("AngsuranBulanan") > 0))
                                 return true;
                             return false;
                         },
@@ -220,12 +221,25 @@
                         iconClass: 'icon-print',
                         id: "printTandaTerima",
                         renderer: function () {
-                            if (headerModel.get("Status") == 1 || headerModel.get("Status") == 4)
+                            if (headerModel.get("Status") == 1 || headerModel.get("Status") == 4 || (headerModel.get("Status") == 2 && headerModel.get("AngsuranBulanan") > 0))
                                 return true;
                             return false;
                         },
                         action: function () {
                             window.open("/invoice/PrintSuratTandaTerima/" + id, 'Surat Tanda Terima', null, null);
+                        }
+                    }, {
+                        title: "Pelunasan",
+                        tooltip: "Pelunasan Angsuran",
+                        iconClass: 'icon-ok-circle',
+                        id: "pelunasan",
+                        renderer: function () {
+                            if (headerModel.get("Status") == 1)
+                                return true;
+                            return false;
+                        },
+                        action: function () {
+                            am.invoice.action.pelunasan({ model: headerModel }).execute();
                         }
                     }, {
                         title: "Bayar Angsuran",

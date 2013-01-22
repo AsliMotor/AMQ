@@ -42,7 +42,7 @@ namespace AsliMotor.PrintDocuments
                     Nomor:	$suratperjanjianno$ tertanggal $suratperjanjiandate$ dan Perjanjian
                     Penyerahan Hak Milik Secara Fiducia Nomor: $suratperjanjianno$
                     MERK $merk$ Model/Type $type$
-                    Warna $warna$ No. Mesin <b>$nomesin$</b> No. Rangka <b>norangka</b>
+                    Warna $warna$ No. Mesin <b>$nomesin$</b> No. Rangka <b>$norangka$</b>
                     ( selanjutnya  disebut  'Kendaraan' ) oleh dan antara Pemberi Kuasa: $organization.OrganizationName$
                     berkedudukan / berkantor di $organization.OrganizationAddress$ $organization.City$ (selanjutnya disebut
                     Penerima Kuasa), dengan ini memberi kuasa penuh kepada Penerima Kuasa dengan Hak Subtitusi:

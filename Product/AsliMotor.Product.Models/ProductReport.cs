@@ -27,7 +27,7 @@ namespace AsliMotor.Products.Models
 	                                    status 
 	                                    from product
 	                                    where branchid=@branchid and 
-                                        (LOWER(merk) like @key or LOWER(type) like @key or LOWER(nopolisi) like @key or LOWER(norangka) like @key or LOWER(nomesin) like @key and status == 'Aktif')
+                                        (LOWER(merk) like @key or LOWER(type) like @key or LOWER(nopolisi) like @key or LOWER(norangka) like @key or LOWER(nomesin) like @key and status = 'Aktif')
 	                                    ORDER BY type ASC limit 10 offset @offset")]
     public class ProductReport : IViewModel
     {

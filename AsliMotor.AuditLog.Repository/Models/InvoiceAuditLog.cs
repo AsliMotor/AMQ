@@ -14,7 +14,7 @@ namespace AsliMotor.AuditLog.Repository
     invoiceid,
     action,
     username
-    from invoicelog where (action = 3 or action = 5 or action = 6 or action = 7 or action = 12) and branchid = @branchid
+    from invoicelog where (action = 3 or action = 5 or action = 6 or action = 7 or action = 12 or action = 13) and branchid = @branchid
     order by datetime desc
     offset @offset
     limit 10

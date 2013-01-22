@@ -135,7 +135,7 @@ namespace AsliMotor.PrintDocuments
 		        <div class='rowheight indent'>
                     Sisa Harga Pembelian yang menjadi hutang PIHAK KEDUA pada pasal 2 (c) tersebut
 		            diatas wajib dibayar secara	mengangsur oleh PIHAK KEDUA kepada PIHAK PERTAMA
-		            dalam waktu	$lamaangsuran$	($lamaangsuranterbilang$ bulan), dengan jumlah angsuran setiap kali/bulan sebesar
+		            dalam waktu	$lamaangsuran$	($lamaangsuranterbilang$ bulan) dan dibayar sebanyak $banyakcicilan$ kali, dengan jumlah angsuran setiap kali pembayaran sebesar
 		            Rp $angsuranbulanan$ ($angsuranbulananterbilang$)	
 		            dalam jumlah yang sama dan dibayarkan pada tiap-tiap tanggal bulan bersangkutan.
                 </div>
@@ -169,7 +169,7 @@ namespace AsliMotor.PrintDocuments
 		        <div class='rowheight indent'>
                     PIHAK KEDUA berhak untuk mempercepat jadwal pembayaran atau dapat melunaskan
 		            sisa hutangnya lebih cepat dari tempo waktu yang ditentukan dalam pasal 2, 3 diatas, maka
-		            untuk bulan-bulan yang “dipercepat” itu akan diadakan pengurangan (Reduksi) pembayaran.
+		            untuk bulan-bulan yang “dipercepat” itu akan diadakan pengurangan (Reduksi) pembayaran sebanyak 1% dari total sisa tagihan dan ditambahkan denda (jika ada).
                 </div>
             </div>
             <div class='rowheight'>

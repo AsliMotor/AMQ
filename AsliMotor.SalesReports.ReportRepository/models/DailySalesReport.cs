@@ -7,7 +7,7 @@ using BonaStoco.Inf.Data.ViewModel;
 namespace AsliMotor.SalesReports.ReportRepository
 {
     [NamedSqlQuery("findDailySalesReport", @"select 
-            sum(price+totalkredit) as Total, 
+            sum(price) as Total, 
             invoicedate as SalesDate
         from invoicesnapshot 
         where (invoicedate between @fromDate and @toDate) and branchid = @branchid and status != 3 group by invoicedate

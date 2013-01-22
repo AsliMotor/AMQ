@@ -1,35 +1,12 @@
-﻿.edit-customer-container
+﻿.edit-customer-container,.edit-product-container,.payment-form-panel
 {
-    background-color:#d0ffd0;   
-    border:1px solid #a9f6a9;
+    background-color:#e9e9e9;   
+    border:1px solid #adadb0;
     border-radius:7px;
 }
-.edit-customer-container:hover
+.edit-customer-container:hover,.edit-product-container:hover,.payment-form-panel:hover
 {
-    background-color:#a9f6a9;   
-    border:1px solid #7df17d;
-}
-.edit-product-container
-{
-    background-color:#cfe6ff;   
-    border:1px solid #a4ccf7;
-    border-radius:7px;
-}
-.edit-product-container:hover
-{
-    background-color:#a4ccf7;   
-    border:1px solid #7ab6f6;
-}
-.payment-form-panel
-{
-    background-color:#dfd6e2;   
-    border:1px solid #e392fd;
-    border-radius:7px;
-}
-.payment-form-panel:hover
-{
-    background-color:#dac6e1;   
-    border:1px solid #d568f9;
+    border:1px solid #1f38e0;
 }
 #paymenttype > div > div
 {
@@ -39,11 +16,15 @@
 
 
 /*************DETAIL PANEL*********************************************************************************/
+.detail-invoice-billing.header:hover, .detail-invoice-subheader.header:hover, .detail-invoice-product:hover, .detail-invoice-payment:hover
+{
+    border:1px solid #1f38e0;
+}
 .detail-invoice-billing.header, .detail-invoice-subheader.header
 {
-    border:1px solid #a9f6a9;
+    border:1px solid #adadb0;
     padding:7px;
-    background-color:#d0ffd0;
+    background-color:#e9e9e9;
     min-height:55px;
     border-radius:7px;
 }
@@ -66,9 +47,9 @@
 
 .detail-invoice-product
 {
-    border:1px solid #a4ccf7;
+    border:1px solid #adadb0;
     padding:7px;
-    background-color:#cfe6ff;
+    background-color:#e9e9e9;
     min-height:110px;
     margin-top:10px;
     border-radius:7px;
@@ -91,9 +72,9 @@
 
 .detail-invoice-payment
 {
-    border:1px solid #e392fd;
+    border:1px solid #adadb0;
     padding:7px;
-    background-color:#dfd6e2;
+    background-color:#e9e9e9;
     min-height:110px;
     margin-top:10px;
     border-radius:7px;
@@ -112,4 +93,71 @@
 .payment-type-body
 {
     min-height:300px;
+}
+
+.detail-item-invoice table tbody tr.pelunasan td
+{
+    background-color:#51A351;
+    color:#000;
+}
+.detail-item-invoice table tbody tr td i
+{
+    cursor:pointer;
+}
+
+/***********************************Detail Pelunasan****************************************************/
+.pelunasan-detail > div > div.first
+{
+    min-width:200px;
+    float:left;
+}
+.pelunasan-detail > div > div.second
+{
+    min-width:20px;
+    float:left;
+}
+.pelunasan-detail > div > div.third
+{
+    min-width:200px;
+    float:left;
+    text-align:right;
+}
+.pelunasan-detail div:nth-child(2n) div
+{
+    background-color:#ccc;
+}
+.pelunasan-detail div div
+{
+    padding:4px;
+}
+.pelunasan-detail span.currency
+{
+    font-weight:normal;
+}
+.pelunasan-detail > div:last-child span.currency
+{
+    font-weight:bold;
+}
+.pelunasan-detail > div.detail-denda
+{
+}
+.pelunasan-detail > div.detail-denda > div > div.detail-first
+{
+    float:left;
+    min-width:180px;
+    padding-left:20px;
+    background-color:#E9E9E9;
+}
+.pelunasan-detail > div.detail-denda > div> div.detail-second
+{
+    float:left;
+    min-width:20px;
+    background-color:#E9E9E9;
+}
+.pelunasan-detail > div.detail-denda > div> div.detail-third
+{
+    float:left;
+    min-width:200px;
+    text-align:right;
+    background-color:#E9E9E9;
 }

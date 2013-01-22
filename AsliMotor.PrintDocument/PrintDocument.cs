@@ -18,6 +18,7 @@ namespace AsliMotor.PrintDocuments
         public IInvoiceReportRepository InvoiceReportRepository { get; set; }
 
         #region Property
+        private const string TRANSACTIONNUMBER = "transactionno";
         private const string ORGANIZATIONNAME = "OrganizationName";
         private const string CUSTOMERNAME = "custname";
         private const string NOKTP = "noktp";
@@ -92,6 +93,7 @@ namespace AsliMotor.PrintDocuments
             LogoOrganization logoOrg = _orgRepo.GetLogoOrganization(branchId);
             StringTemplate template = new StringTemplate(SuratPernyataanKreditTemplate.DEFAULT);
             PernyataanKreditReport report = InvoiceReportRepository.GetPernyataanKredit(invId);
+            decimal uangMuka = report.UangMuka + report.DebitNote;
             template.SetAttribute("organization", org);
             template.SetAttribute("logodata", Convert.ToBase64String(logoOrg.Image));
             template.SetAttribute("OrganizationName", org.OrganizationName);
@@ -106,8 +108,9 @@ namespace AsliMotor.PrintDocuments
             template.SetAttribute("angsuranbulananterbilang", report.AngsuranBulanan.parseTerbilang());
             template.SetAttribute("lamaangsuran", report.LamaAngsuran);
             template.SetAttribute("lamaangsuranterbilang", SayNumber.Terbilang(decimal.Parse(report.LamaAngsuran.ToString())));
-            template.SetAttribute("uangmuka", report.UangMuka.parsePrice());
-            template.SetAttribute("uangmukaterbilang", report.UangMuka.parseTerbilang());
+            template.SetAttribute("uangmuka", uangMuka.parsePrice());
+            template.SetAttribute("uangmukaterbilang", uangMuka.parseTerbilang());
+            template.SetAttribute("banyakcicilan", report.BanyakCicilan);
             template.SetAttribute(MERK, report.Merk.parseString());
             template.SetAttribute(Type, report.Type.parseString());
             template.SetAttribute(Tahun, report.Tahun.parseString());
@@ -190,6 +193,39 @@ namespace AsliMotor.PrintDocuments
             template.SetAttribute("SuratPerjanjianDate", inv.SuratPerjanjianDate.ToString("dd MMMM yyyy"));
             template.SetAttribute("LamaAngsuran", inv.LamaAngsuran);
             template.SetAttribute("AngsuranBulanan", inv.AngsuranBulanan.ToString("###,###,###,##0.#0"));
+            return template.ToString();
+        }
+
+        public string PrintKwitansiPelunasan(Guid invId, string branchid)
+        {
+            ReceivePelunasanReport inv = InvoiceReportRepository.GetReceivePelunasanReport(invId, branchid);
+            Organization org = _orgRepo.GetOrganization(branchid);
+            LogoOrganization logoOrg = _orgRepo.GetLogoOrganization(branchid);
+            StringTemplate template = new StringTemplate(KwitansiPelunasanTemplate.DEFAULT);
+            decimal sisatagihan = (inv.Total + inv.Discount) - inv.Denda;
+            template.SetAttribute("organization", org);
+            template.SetAttribute("logodata", Convert.ToBase64String(logoOrg.Image));
+            template.SetAttribute("OrganizationName", org.OrganizationName);
+            template.SetAttribute("currentDate", DateTime.Now.ToString("dd MMMM yyyy"));
+            template.SetAttribute(TRANSACTIONNUMBER, inv.ReceiveNo);
+            template.SetAttribute(CUSTOMERNAME, inv.CustomerName);
+            template.SetAttribute(Terbilang, SayNumber.Terbilang(inv.Total) + " Rupiah");
+            template.SetAttribute(Total, inv.Total.parsePrice());
+            template.SetAttribute(MERK, inv.Merk.parseString());
+            template.SetAttribute("type", inv.Type.parseString());
+            template.SetAttribute(Warna, inv.Warna.parseString());
+            template.SetAttribute(NoMesin, inv.NoMesin.parseString());
+            template.SetAttribute(NoRangka, inv.NoRangka.parseString());
+            template.SetAttribute(NoPolisi, inv.NoPolisi.parseString());
+            template.SetAttribute("banyakcicilan", inv.BanyakCicilan);
+            template.SetAttribute("cicilanyangtelahdibayar", inv.BanyakCicilanTerbayar);
+            template.SetAttribute("angsuranbulanan", inv.AngsuranBulanan.parsePrice());
+            template.SetAttribute("sisatagihan", sisatagihan.parsePrice());
+            if(inv.Denda > 0){
+                template.SetAttribute("totaldenda", "<tr><td>Total Denda</td><td>:</td><td>Rp " + inv.Denda.parsePrice() + "</td></tr>");
+                template.SetAttribute("sisatagihanplusdenda", "<tr><td>Sisa tagihan + denda</td><td>:</td><td>Rp " + (inv.Total + inv.Discount).parsePrice() + "</td></tr>");
+            }
+            template.SetAttribute("discount", inv.Discount.parsePrice());
             return template.ToString();
         }
 
@@ -288,7 +324,6 @@ namespace AsliMotor.PrintDocuments
             return template.ToString();
         }
 
-
         public string PrintSuratPernyataanMampu(Guid invId, string branchid)
         {
             Organization org = _orgRepo.GetOrganization(branchid);
@@ -383,6 +418,7 @@ namespace AsliMotor.PrintDocuments
             template.SetAttribute("lamaangsuranterbilang", SayNumber.Terbilang(report.LamaAngsuran));
             template.SetAttribute("angsuranbulanan", report.AngsuranBulanan.parsePrice());
             template.SetAttribute("angsuranbulananterbilang", report.AngsuranBulanan.parseTerbilang());
+            template.SetAttribute("banyakcicilan", report.BanyakCicilan);
             return template.ToString();
         }
 
@@ -417,6 +453,7 @@ namespace AsliMotor.PrintDocuments
             template.SetAttribute("sisahutang", (report.Price - (report.UangMuka + report.Booking)).parsePrice());
             template.SetAttribute("sisahutangterbilang", (report.Price - (report.UangMuka + report.Booking)).parseTerbilang());
             template.SetAttribute("lamaangsuran", report.LamaAngsuran);
+            template.SetAttribute("banyakcicilan", report.BanyakCicilan);
             template.SetAttribute("lamaangsuranterbilang", SayNumber.Terbilang(report.LamaAngsuran));
             return template.ToString();
         }
@@ -458,7 +495,7 @@ namespace AsliMotor.PrintDocuments
         }
         public static string parsePrice(this decimal price)
         {
-            return price.ToString("###,###,###,##0.#0");
+            return Math.Round(price,0, MidpointRounding.AwayFromZero).ToString("###,###,###,##0.#0");
         }
         public static string parseTerbilang(this decimal price)
         {

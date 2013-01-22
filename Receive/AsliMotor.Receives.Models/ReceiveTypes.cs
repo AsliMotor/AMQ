@@ -10,6 +10,7 @@ namespace AsliMotor.Receives.Models
         UANGTANDAJADI,
         UANGMUKA,
         CASH,
-        ANGSURAN
+        ANGSURAN,
+        PELUNASAN
     }
 }

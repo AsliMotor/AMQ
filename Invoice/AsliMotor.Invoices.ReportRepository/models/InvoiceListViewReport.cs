@@ -10,7 +10,8 @@ namespace AsliMotor.Invoices.ReportRepository
     [NamedSqlQuery("findListView", @"select  inv.id,
 	                inv.status,
 	                inv.invoicedate,
-	                (inv.price + inv.totalkredit) as NetTotal,
+                    inv.invoiceno,
+	                (inv.price + inv.totalkredit) - inv.discount as NetTotal,
 	                inv.outstanding,
 	                p.nopolisi,
 	                p.type,
@@ -25,7 +26,8 @@ namespace AsliMotor.Invoices.ReportRepository
                     inv.id,
 	                inv.status,
 	                inv.invoicedate,
-	                (inv.price + inv.totalkredit) as NetTotal,
+                    inv.invoiceno,
+	                (inv.price + inv.totalkredit)- inv.discount as NetTotal,
 	                inv.outstanding,
 	                p.nopolisi,
 	                p.type,
@@ -47,5 +49,6 @@ namespace AsliMotor.Invoices.ReportRepository
         public decimal NetTotal { get; set; }
         public decimal Outstanding { get; set; }
         public string CustomerName { get; set; }
+        public string InvoiceNo { get; set; }
     }
 }

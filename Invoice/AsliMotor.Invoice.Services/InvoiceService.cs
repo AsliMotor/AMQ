@@ -17,11 +17,14 @@ using AsliMotor.Receives.Repository;
 using AsliMotor.Receives.Models;
 using AsliMotor.Perjanjian.Services;
 using AsliMotor.Invoices.Events;
+using AsliMotor.PaymentTerms;
+using AsliMotor.Invoices.AutoNumberGenerator;
 
 namespace AsliMotor.Invoices.Services
 {
     public class InvoiceService:IInvoiceService
     {
+        public IInvoiceAutoNumberGenerator InvoiceAutoNumberGenerator { get; set; }
         public IQueryObjectMapper QueryObjectMapper { get; set; }
         public IInvoiceRepository Repository { get; set; }
         public ICustomerRepository CustomerRepository { get; set; }
@@ -30,6 +33,7 @@ namespace AsliMotor.Invoices.Services
         public IReceiveService ReceiveService { get; set; }
         public IReceiveRepository ReceiveRepository { get; set; }
         public IPerjanjianService PerjanjianService { get; set; }
+        public IPaymentTermRepository PaymentTermRepository { get; set; }
         IBus _bus;
 
         public InvoiceService()
@@ -43,11 +47,12 @@ namespace AsliMotor.Invoices.Services
             FailIfProductCantSale(cmd.ProductId, cmd.BranchId);
             if (cmd.DebitNote <= 0)
                 throw new ApplicationException("Uang Tanda Jadi harus diisi");
-            Invoice inv = new Invoice(new CreateParameter
+            Invoice inv = new Invoice(new BookingParameter
             {
                 BranchId = cmd.BranchId,
                 CustomerId = cmd.CustomerId,
                 id = cmd.id,
+                InvoiceNo = InvoiceAutoNumberGenerator.GenerateInvoiceNumber(DateTime.Now, cmd.BranchId),
                 InvoiceDate = cmd.InvoiceDate,
                 DueDate = cmd.InvoiceDate,
                 Price = cmd.Price,
@@ -65,11 +70,12 @@ namespace AsliMotor.Invoices.Services
         {
             FailIfCustomerNotFound(cmd.CustomerId);
             FailIfProductCantSale(cmd.ProductId, cmd.BranchId);
-            Invoice inv = new Invoice(new CreateParameter
+            Invoice inv = new Invoice(new CashParameter
             {
                 BranchId = cmd.BranchId,
                 CustomerId = cmd.CustomerId,
                 id = cmd.id,
+                InvoiceNo = InvoiceAutoNumberGenerator.GenerateInvoiceNumber(DateTime.Now, cmd.BranchId),
                 InvoiceDate = cmd.InvoiceDate,
                 Price = cmd.Price,
                 ProductId = cmd.ProductId,
@@ -101,11 +107,13 @@ namespace AsliMotor.Invoices.Services
         {
             FailIfCustomerNotFound(cmd.CustomerId);
             FailIfProductCantSale(cmd.ProductId, cmd.BranchId);
+            PaymentTermReport term = PaymentTermRepository.GetById(cmd.TermId);
             Invoice inv = new Invoice(new CreateParameter
             {
                 BranchId = cmd.BranchId,
                 CustomerId = cmd.CustomerId,
                 id = cmd.id,
+                InvoiceNo = InvoiceAutoNumberGenerator.GenerateInvoiceNumber(DateTime.Now, cmd.BranchId),
                 InvoiceDate = cmd.InvoiceDate,
                 ProductId = cmd.ProductId,
                 Status = StatusInvoice.CREDIT,
@@ -113,7 +121,9 @@ namespace AsliMotor.Invoices.Services
                 UangMuka = cmd.UangMuka,
                 SukuBunga = cmd.SukuBunga,
                 LamaAngsuran = cmd.LamaAngsuran,
-                DueDate = cmd.DueDate
+                DueDate = cmd.DueDate,
+                TermId = term.id,
+                TermValue = term.Value
             });
             Repository.Save(inv);
             ProductService.ChangeStatus(cmd.ProductId, cmd.BranchId, StatusProduct.TERJUAL, username);
@@ -130,13 +140,16 @@ namespace AsliMotor.Invoices.Services
             if (invSnap.Status == (int)StatusInvoice.BOOKING)
             {
                 Receive bookingRcv = ReceiveRepository.GetBooking(invSnap.id);
+                PaymentTermReport term = PaymentTermRepository.GetById(cmd.TermId);
                 inv.UpdateToCredit(new UpdateToCreditParameter
                 {
                     DueDate = cmd.DueDate,
                     LamaAngsuran = cmd.LamaAngsuran,
                     SukuBunga = cmd.SukuBunga,
                     UangMuka = cmd.UangMuka,
-                    UangTandaJadi = bookingRcv.Total
+                    UangTandaJadi = bookingRcv.Total,
+                    TermId = cmd.TermId,
+                    TermValue = term.Value
                 });
                 Repository.Update(inv);
                 CreateUangMukaReceive(inv, cmd.UangMuka);
@@ -171,6 +184,17 @@ namespace AsliMotor.Invoices.Services
                     ProductService.ChangeStatus(invSnap.ProductId , invSnap.BranchId, StatusProduct.TERJUAL_LUNAS, username);
                 }
             }
+        }
+
+        public void Pelunasan(Guid id, DateTime date, string username)
+        {
+            Invoice inv = Repository.Get(id);
+            InvoiceSnapshot invSnap = inv.CreateSnapshot();
+            FailIfInvoiceNotFound(invSnap);
+            long cicilanYangTelahDibayar = Repository.CountAngsuranBulanan(invSnap.id);
+            PelunasanCallback callback = inv.Pelunasan(date, cicilanYangTelahDibayar);
+            Repository.Update(inv);
+            CreatePelunasanReceive(invSnap, callback.TotalYangHarusDiBayar, callback.Denda, (cicilanYangTelahDibayar + 1));
         }
 
         public void ChangeUangMuka(Guid id, decimal uangmuka, string username)
@@ -307,6 +331,20 @@ namespace AsliMotor.Invoices.Services
             PublishCustomerChanged(inv, username);
         }
 
+        public void ChangeTerm(Guid id, Guid termId, string username)
+        {
+            Invoice inv = Repository.Get(id);
+            InvoiceSnapshot invSnap = inv.CreateSnapshot();
+            FailIfInvoiceNotFound(invSnap);
+            FailIfCantChange(invSnap);
+            PaymentTermReport newTerm = PaymentTermRepository.GetById(termId);
+            decimal debitnote = Repository.GetUangTandaJadi(id);
+            decimal uangmuka = ReceiveRepository.GetByInvoiceIdAndPaymentType(invSnap.id, 1).Total;
+            inv.ChangeTerm(uangmuka, debitnote, newTerm.id, newTerm.Value);
+            Repository.Update(inv);
+            PublishTermChanged(inv, username);
+        }
+
         #region create receive
 
         private void CreateAngsuranReceive(Invoice inv,DateTime date, decimal denda, long totalangsuran)
@@ -364,6 +402,11 @@ namespace AsliMotor.Invoices.Services
                 BranchId = invSnapshot.BranchId,
                 Total = totalUangMuka
             });
+        }
+
+        private void CreatePelunasanReceive(InvoiceSnapshot invSnap, decimal totalYangHarusDiBayar, decimal denda, long banyakCicilanYangTelahDibayar)
+        {
+            ReceiveService.CreatePelunasan(invSnap.id, invSnap.BranchId, totalYangHarusDiBayar, denda, banyakCicilanYangTelahDibayar);
         }
 
         #endregion
@@ -462,6 +505,10 @@ namespace AsliMotor.Invoices.Services
         private void PublishHargaJualChanged(Invoice inv, string username)
         {
             _bus.Publish(new HargaJualChanged { Payload = inv.CreateSnapshot(), Username = username });
+        }
+        private void PublishTermChanged(Invoice inv, string username)
+        {
+            _bus.Publish(new TermChanged { Payload = inv.CreateSnapshot(), Username = username });
         }
         #endregion
     }

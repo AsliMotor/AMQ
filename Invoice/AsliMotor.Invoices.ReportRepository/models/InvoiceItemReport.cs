@@ -12,13 +12,14 @@ namespace AsliMotor.Invoices.ReportRepository
 	r.receivedate,
 	r.total,
 	r.denda,
-    r.month as Month,
-    r.monthnumber as MonthNumber,
+	r.receivetype as Status,
+	r.month as Month,
+	r.monthnumber as MonthNumber,
 	inv.angsuranbulanan,
 	r.receiveno
 	from receive r inner join invoicesnapshot inv on r.invoiceid = inv.id 
-	where r.receivetype = 3 and inv.id = @id and inv.branchid = @branchid
-	order by r.receivedate asc, r.month asc
+	where r.invoiceid = @id and r.receivetype = 4 or r.receivetype = 3 and inv.id = @id and inv.branchid = @branchid
+	order by r.monthnumber asc, r.receivedate asc
     ")]
     public class InvoiceItemReport : IViewModel
     {
@@ -30,5 +31,6 @@ namespace AsliMotor.Invoices.ReportRepository
         public long MonthNumber { get; set; }
         public decimal AngsuranBulanan { get; set; }
         public string ReceiveNo { get; set; }
+        public int Status { get; set; }
     }
 }
