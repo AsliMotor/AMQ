@@ -141,7 +141,7 @@ namespace AsliMotor.Invoices.AutoNumberGenerator
         {
             InvoiceAutoNumberDefault rcvAutoNumber = new InvoiceAutoNumberDefault()
             {
-                id = transactionDate.ReceiveAutoNumberYearlyId(branchId),
+                id = branchId.AutoNumberConfigId(),
                 BranchId = branchId,
                 Value = 0
             };
@@ -151,7 +151,7 @@ namespace AsliMotor.Invoices.AutoNumberGenerator
         {
             InvoiceAutoNumberDefault rcvAutoNumber = QueryObjectMapper.Map<InvoiceAutoNumberDefault>("findByIdAndBranchId",
                 new string[] { "id", "branchid" },
-                new object[] { transactionDate.ReceiveAutoNumberYearlyId(branchId), branchId }).FirstOrDefault();
+                new object[] { branchId.AutoNumberConfigId(), branchId }).FirstOrDefault();
             return rcvAutoNumber;
         }
     }

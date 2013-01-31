@@ -11,7 +11,7 @@ namespace AsliMotor.Invoices.AutoNumberGenerator
     {
         public string id { get; set; }
         public string BranchId { get; set; }
-        public int Value { get; set; }
+        public double Value { get; set; }
 
         public InvoiceAutoNumberDefault Next()
         {
