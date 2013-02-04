@@ -31,6 +31,11 @@ namespace AsliMotor.Controllers
             return View("index");
         }
         [HttpGet]
+        public ActionResult HistoryCreditNote(Guid id)
+        {
+            return View("index");
+        }
+        [HttpGet]
         public JsonResult TotalList()
         {
             CompanyProfile cp = new CompanyProfile(this.HttpContext);
@@ -53,6 +58,12 @@ namespace AsliMotor.Controllers
         public JsonResult Customer(Guid id)
         {
             return Json(CustomerRepository.GetById(id), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetHistoryCreditNote(Guid id)
+        {
+            return Json(CustomerRepository.GetHistoryCreditNote(id), JsonRequestBehavior.AllowGet);
         }
 
         [MyAuthorize(Roles=RoleName.OWNER_ADMINSALES)]

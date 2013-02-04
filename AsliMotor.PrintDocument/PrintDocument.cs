@@ -236,6 +236,15 @@ namespace AsliMotor.PrintDocuments
             LogoOrganization logoOrg = _orgRepo.GetLogoOrganization(branchid);
             StringTemplate template = new StringTemplate(KwitansiAngsuranTemplate.DEFAULT);
             string dendaTemplate = (rcv.Denda > 0) ? "<tr><td colspan='3'>Denda Sebesar <b>Rp. " + rcv.Denda.ToString("###,###,###,##0.#0") + "</b></td></tr>" : "";
+            string depositTemplate = "";
+            if (rcv.Deposit > 0)
+            {
+                depositTemplate = "<tr><td colspan='3'>Sisa uang yang dibayar sebesar <b>Rp. " + rcv.Deposit.ToString("###,###,###,##0.#0") + "</b> akan dimasukan ke deposit "+ org.OrganizationName +"</td></tr>";
+            }
+            else if (rcv.Deposit < 0)
+            {
+                depositTemplate = "<tr><td colspan='3'>Sisa kekurangan uang yang dibayar sebesar <b>Rp. " + (rcv.Deposit * -1).ToString("###,###,###,##0.#0") + "</b> akan ditutupi dari deposit pelanggan "+ rcv.CustomerName +" yang ada di " + org.OrganizationName + "</td></tr>";
+            }
             //DateTime bulanAngsuran = new DateTime(Int32.Parse(rcv.Month.Substring(2, 4)), Int32.Parse(rcv.Month.Substring(0, 2)), 1);
             template.SetAttribute("organization", org);
             template.SetAttribute("logodata", Convert.ToBase64String(logoOrg.Image));
@@ -246,6 +255,7 @@ namespace AsliMotor.PrintDocuments
             template.SetAttribute("SuratPerjanjianDate", rcv.SuratPerjanjianDate.ToString("dd MMMM yyyy"));
             template.SetAttribute("AngsuranBulanan", rcv.AngsuranBulanan.ToString("###,###,###,##0.#0"));
             template.SetAttribute("DendaTemplate", dendaTemplate);
+            template.SetAttribute("Deposit", depositTemplate);
             //template.SetAttribute("BulanAngsuran", bulanAngsuran.ToString("MMMM yyyy"));
             template.SetAttribute("BulanAngsuran", rcv.MonthNumber);
             template.SetAttribute("rcv", rcv);

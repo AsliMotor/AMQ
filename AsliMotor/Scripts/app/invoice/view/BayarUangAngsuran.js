@@ -24,17 +24,40 @@
                 title: 'Tanggal Pembayaran',
                 dataIndex: "Date"
             });
-            var uangMukaView = new HomeJS.components.TextField({
+            var creditNoteView = new HomeJS.components.TextField({
                 model: this.model,
-                title: 'Angsuran Bulanan',
+                title: 'Deposit',
                 type: 'price',
-                placeholder: 'Ketik Jumlah Angsuran Bulanan',
+                dataIndex: "Deposit",
+                readonly: true,
+                onshow: function (m) {
+                    if (m.get('Deposit') && m.get('Deposit') > 0)
+                        return true;
+                    return false;
+                }
+            });
+            var totalBulanView = new HomeJS.components.TextField({
+                model: this.model,
+                title: 'Bulan',
+                type: 'number',
+                placeholder: 'Ketik Jumlah Yang Ingin DiBayar',
+                dataIndex: "TotalBulanYangDiBayar"
+            });
+            var totalUangAngsuranView = new HomeJS.components.TextField({
+                model: this.model,
+                title: 'Total Angsuran Bulanan',
+                type: 'price',
                 dataIndex: "AngsuranBulanan",
-                readonly: true
+                readonly: true,
+                onrendervalue: function (m) {
+                    var totalYangHarusDiBayar = m.get("AngsuranBulanan") * m.get("TotalBulanYangDiBayar");
+                    this.model.set("TotalYangHarusDiBayar", totalYangHarusDiBayar);
+                    return totalYangHarusDiBayar;
+                }
             });
             var angsuranPlusDendaView = new HomeJS.components.TextField({
                 model: this.model,
-                title: 'Angsuran Bulanan + Denda',
+                title: 'Total Angsuran Bulanan + Denda',
                 type: 'price',
                 placeholder: '',
                 dataIndex: "AngsuranBulanan",
@@ -53,15 +76,30 @@
                     var day = this.model.get("Date").split('-')[0];
                     var month = this.model.get("Date").split('-')[1];
                     var year = this.model.get("Date").split('-')[2];
-
                     var date = new Date(month + "-" + day + "-" + year);
-                    var date2 = m.get("DueDate").toDateTime();
-                    var timeDiff = Math.abs(date2.getTime() - date.getTime());
-                    var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+                    var termValue = this.model.get("TermValue");
                     var angsuranBulanan = parseInt(m.get("AngsuranBulanan"));
-                    var denda = (angsuranBulanan * 0.005) * diffDays;
-                    return angsuranBulanan + denda;
+                    var totalDenda = 0;
+                    for (var i = 0; i < m.get("TotalBulanYangDiBayar"); i++) {
+                        var dueDate = new Date(m.get("DueDate").toDateTime().setDate(m.get("DueDate").toDateTime().getDate() + (termValue * i)));
+                        var timeDiff = Math.abs(dueDate.getTime() - date.getTime());
+                        var diffDays = 0;
+                        if (dueDate < date)
+                            diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+                        totalDenda += (angsuranBulanan * 0.005) * diffDays;
+                    }
+
+                    var totalYangHarusDiBayar = (angsuranBulanan * parseInt(m.get("TotalBulanYangDiBayar"))) + totalDenda;
+                    this.model.set("TotalYangHarusDiBayar", totalYangHarusDiBayar);
+                    return totalYangHarusDiBayar;
                 }
+            });
+            var payAmountView = new HomeJS.components.TextField({
+                model: this.model,
+                title: 'Uang Yang Dibayar',
+                type: 'price',
+                placeholder: 'Ketik Jumlah Yang Ingin DiBayar',
+                dataIndex: "PayAmount"
             });
             var yesButtonView = new HomeJS.components.Button({
                 title: "Simpan",
@@ -96,7 +134,7 @@
 
             var uangMukaFormPanel = new HomeJS.components.FormPanel({
                 formLayout: HomeJS.components.FormLayout.VERTICAL,
-                items: [paymentDateView, uangMukaView, angsuranPlusDendaView, buttonFormPanel]
+                items: [paymentDateView, creditNoteView, totalBulanView, totalUangAngsuranView, angsuranPlusDendaView, payAmountView, buttonFormPanel]
             });
 
             var changeUangMukaDialog = new HomeJS.components.ModalDialog({
@@ -109,27 +147,36 @@
         },
         sendCommand: function (ev) {
             ev.preventDefault();
-            $('#mask , .modal-dialog').fadeOut(300, function () {
-                $('#mask').remove();
-            });
-            var self = this;
-            var data = {
-                InvoiceId: this.model.get("InvoiceId"),
-                Date: this.model.get("Date")
-            };
-            $.ajax({
-                type: "POST",
-                url: "/invoice/bayarangsuran",
-                data: data,
-                dataType: "json",
-                success: function (data) {
-                    if (data.error)
-                        HomeJS.components.ErrorAlert(data.message);
-                    else {
-                        self.model.trigger("success");
+            var check = this.model.validateAll();
+            if (check.isValid === false) {
+                utils.displayValidationErrors(check.errors);
+                return false;
+            }
+            else {
+                $('#mask , .modal-dialog').fadeOut(300, function () {
+                    $('#mask').remove();
+                });
+                var self = this;
+                var data = {
+                    InvoiceId: this.model.get("InvoiceId"),
+                    Date: this.model.get("Date"),
+                    TotalBulanYangDiBayar: this.model.get("TotalBulanYangDiBayar"),
+                    PayAmount: this.model.get("PayAmount")
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "/invoice/bayarangsuran",
+                    data: data,
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.error)
+                            HomeJS.components.ErrorAlert(data.message);
+                        else {
+                            self.model.trigger("success");
+                        }
                     }
-                }
-            });
+                });
+            }
         }
     });
 });

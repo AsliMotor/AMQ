@@ -16,7 +16,7 @@ namespace AsliMotor.Invoices.Services
         void Cancel(Guid id, string username);
         void Pull(Guid id, string username);
         void ChangeUangMuka(Guid id, decimal uangmuka, string username);
-        void BayarAngsuran(Guid id, DateTime date, string username);
+        void BayarAngsuran(Guid id, DateTime date, int totalBulanYangDiBayar, decimal payAmount, string username);
         void UpdateUangAngsuran(Guid id, decimal angsuran, string username);
         void ChangeSukuBunga(Guid id, decimal sukubunga, string username);
         void ChangeLamaAngsuran(Guid id, int lamaAngsuran, string username);

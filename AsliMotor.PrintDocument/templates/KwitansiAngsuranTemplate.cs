@@ -48,8 +48,9 @@ namespace AsliMotor.PrintDocuments
                                             </table>
                                         </tr>
                                         <tr><td colspan='3'>Sesuai surat perjanjian No. <b>$rcv.NoSuratPerjanjian$</b> Tanggal $SuratPerjanjianDate$</tr>
-                                        <tr><td colspan='3'>Dengan biaya perbulan sebesar <b>Rp. $AngsuranBulanan$</b></td></tr>
+                                        <tr><td colspan='3'>Dengan angsuran perbulan sebesar <b>Rp. $AngsuranBulanan$</b></td></tr>
                                         $DendaTemplate$
+                                        $Deposit$
                                     </table>
                                 </div>
                                 <table style='margin-top:30px;' width='100%'>

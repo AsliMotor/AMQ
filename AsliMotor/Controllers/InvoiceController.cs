@@ -361,14 +361,14 @@ namespace AsliMotor.Controllers
 
         [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES_CASHIER)]
         [HttpPost]
-        public JsonResult BayarAngsuran(Guid invoiceId, string date)
+        public JsonResult BayarAngsuran(Guid invoiceId, string date, int totalBulanYangDiBayar, decimal payAmount)
         {
             try
             {
                 string[] stringDate = date.Split('-');
                 DateTime paymentDate = new DateTime(int.Parse(stringDate[2]), int.Parse(stringDate[1]), int.Parse(stringDate[0]));
                 CompanyProfile cp = new CompanyProfile(this.HttpContext);
-                InvoiceService.BayarAngsuran(invoiceId, paymentDate, cp.UserName);
+                InvoiceService.BayarAngsuran(invoiceId, paymentDate, totalBulanYangDiBayar, payAmount, cp.UserName);
                 return Json(new { error = false, data = new { InvoiceId = invoiceId } }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)

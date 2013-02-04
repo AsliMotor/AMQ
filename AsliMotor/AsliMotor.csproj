@@ -156,14 +156,17 @@
     <Content Include="Content\angsuranreport.css" />
     <Content Include="Content\img\errorpage.png" />
     <Content Include="Content\img\homesoft-1.png" />
+    <Content Include="Content\img\homesoft-2.png" />
     <Content Include="Content\img\homesoft-big.png" />
     <Content Include="Content\img\icon\glyphicons_227_usd.png" />
+    <Content Include="Content\img\logo-amq.png" />
     <Content Include="Content\img\logoorg\logo-amq.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\img\User-icon.jpg" />
+    <Content Include="Content\img\User-icon1.png" />
     <Content Include="Content\organization.css" />
     <Content Include="Content\img\homesoft.png" />
-    <Content Include="Content\img\User-icon.png" />
     <Content Include="Content\login.css" />
     <Content Include="Content\setting.css" />
     <Content Include="Scripts\app\angsuranreport\controller\TelahJatuhTempoController.js" />
@@ -194,6 +197,8 @@
     <Content Include="Scripts\app\angsuranreport\view\SelectYearView.js" />
     <Content Include="Scripts\app\angsuranreport\view\TableData.js" />
     <Content Include="Scripts\app\angsuranreport\view\TotalSummaryGrafikProduk.js" />
+    <Content Include="Scripts\app\customer\controller\HistoryCreditNoteController.js" />
+    <Content Include="Scripts\app\customer\model\HistoryReports.js" />
     <Content Include="Scripts\app\purchasereport\controller\DailyController.js" />
     <Content Include="Scripts\app\purchasereport\controller\GrafikProductController.js" />
     <Content Include="Scripts\app\purchasereport\controller\MonthlyController.js" />

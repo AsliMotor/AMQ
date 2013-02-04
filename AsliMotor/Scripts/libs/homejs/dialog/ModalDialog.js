@@ -8,10 +8,8 @@
     HomeJS.components.ModalDialog = Backbone.View.extend({
         tagName: 'div',
         id: "homejs-modal-dialog",
-        className: 'modal-dialog',
+        className: 'modal-dialog homejs-modal-dialog',
         initialize: function () {
-            if ($("#homejs-modal-dialog").length > 0)
-                $("#homejs-modal-dialog").remove();
             var title = this.options.title || "HomeJS Modal Dialog";
             var html = "<div class='toolbar'><div class='logo'><img src='../../Content/img/homesoft-1.png'/></div><title>" + title + "</title></div>" +
                        "<fieldset class='textbox'>" +
@@ -21,6 +19,10 @@
 
             this.$el.html(html);
             $("section.modal-dialog-body", this.$el).html(this.options.view.render().el);
+
+            if ($(".homejs-modal-dialog").length > 0) {
+                $(".homejs-modal-dialog").remove();
+            }
             $(document.body).append(this.$el);
         },
         render: function () {
@@ -45,6 +47,7 @@
         destroy: function () {
             $('#mask , .modal-dialog').fadeOut(300, function () {
                 $('#mask').remove();
+                $('#homejs-modal-dialog').remove();
             });
         }
     });

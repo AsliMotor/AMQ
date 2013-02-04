@@ -26,6 +26,7 @@ namespace AsliMotor.Customers
         public string Gender { get; set; }
         public string BranchId { get; set; }
         public decimal Outstanding { get; set; }
+        public decimal Deposit { get; set; }
         public int Status { get; set; }
     }
 }

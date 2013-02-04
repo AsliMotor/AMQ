@@ -13,7 +13,7 @@ namespace AsliMotor.Reporting
 		        r.id as Id,
 		        r.receiveno as TransactionNo,
 		        r.receivedate as TransactionDate,
-		        (r.total) as Debit,
+		        (r.total + r.creditnote) as Debit,
 		        0 as Kredit,
 		        r.transactiondate as TransactionDateTime,
 		        CASE r.receivetype

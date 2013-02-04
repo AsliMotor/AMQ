@@ -27,6 +27,7 @@ namespace AsliMotor.Invoices.Services
         public IInvoiceAutoNumberGenerator InvoiceAutoNumberGenerator { get; set; }
         public IQueryObjectMapper QueryObjectMapper { get; set; }
         public IInvoiceRepository Repository { get; set; }
+        public ICustomerService CustomerService { get; set; }
         public ICustomerRepository CustomerRepository { get; set; }
         public IProductRepository ProductRepository { get; set; }
         public IProductService ProductService { get; set; }
@@ -158,32 +159,54 @@ namespace AsliMotor.Invoices.Services
             }
         }
 
-        public void BayarAngsuran(Guid id, DateTime date, string username)
+        public void BayarAngsuran(Guid id, DateTime date, int totalBulanYangDiBayar, decimal payAmount, string username)
         {
-            Invoice inv = Repository.Get(id);
-            InvoiceSnapshot invSnap = inv.CreateSnapshot();
-            FailIfInvoiceNotFound(invSnap);
-            if (invSnap.Status == (int)StatusInvoice.CREDIT)
+            Invoice invoice = Repository.Get(id);
+            Customer cust = CustomerRepository.GetById(invoice.CreateSnapshot().CustomerId);
+            decimal creditNoteOld = cust.Deposit;
+            decimal creditNoteNew = payAmount + cust.Deposit;
+            Guid custId = invoice.CreateSnapshot().CustomerId;
+            for (var i = 0; i < totalBulanYangDiBayar; i++)
             {
-                DateTime dueDate = invSnap.DueDate;
-                int hariTelat = 0;
-                if (date > dueDate)
+                Invoice inv = Repository.Get(id);
+                InvoiceSnapshot invSnap = inv.CreateSnapshot();
+                FailIfInvoiceNotFound(invSnap);
+                if (invSnap.Status == (int)StatusInvoice.CREDIT)
                 {
-                    TimeSpan ts = new TimeSpan();
-                    ts = date.Subtract(dueDate);
-                    hariTelat = ts.Days;
-                }
-                decimal denda = (invSnap.AngsuranBulanan * decimal.Parse(System.Configuration.ConfigurationManager.AppSettings["denda"])) * hariTelat;
-                long totalAngsuran = Repository.CountAngsuranBulanan(invSnap.id);
-                StatusInvoice status = inv.BayarAngsuran(totalAngsuran);
-                Repository.Update(inv);
-                CreateAngsuranReceive(inv,date, denda, totalAngsuran);
-                PublishAngsuranPaid(inv, username);
-                if (status == StatusInvoice.PAID)
-                {
-                    ProductService.ChangeStatus(invSnap.ProductId , invSnap.BranchId, StatusProduct.TERJUAL_LUNAS, username);
+                    DateTime dueDate = invSnap.DueDate;
+                    int hariTelat = 0;
+                    if (date > dueDate)
+                    {
+                        TimeSpan ts = new TimeSpan();
+                        ts = date.Subtract(dueDate);
+                        hariTelat = ts.Days;
+                    }
+                    decimal denda = (invSnap.AngsuranBulanan * decimal.Parse(System.Configuration.ConfigurationManager.AppSettings["denda"])) * hariTelat;
+                    long totalAngsuran = Repository.CountAngsuranBulanan(invSnap.id);
+                    payAmount = payAmount - (denda + invSnap.AngsuranBulanan);
+                    creditNoteNew -= (denda + invSnap.AngsuranBulanan);
+                    if ((payAmount + creditNoteOld) < 0)
+                    {
+                        throw new ApplicationException("Uang Anda Tidak Cukup Untuk Membayar Angsuran ke-" + (totalAngsuran +1));
+                    }
+                    StatusInvoice status = inv.BayarAngsuran(totalAngsuran);
+                    Repository.Update(inv);
+
+                    if (i == (totalBulanYangDiBayar - 1))
+                    {
+                        CreateAngsuranReceive(inv, date, denda, totalAngsuran, payAmount);
+                    }
+                    else
+                    {
+                        CreateAngsuranReceive(inv, date, denda, totalAngsuran, 0);
+                    }
+
+                    PublishAngsuranPaid(inv, username);
+                    if (status == StatusInvoice.PAID)
+                        ProductService.ChangeStatus(invSnap.ProductId, invSnap.BranchId, StatusProduct.TERJUAL_LUNAS, username);
                 }
             }
+            UpdateCreditNoteCustomer(custId, creditNoteNew);
         }
 
         public void Pelunasan(Guid id, DateTime date, string username)
@@ -345,9 +368,14 @@ namespace AsliMotor.Invoices.Services
             PublishTermChanged(inv, username);
         }
 
+        private void UpdateCreditNoteCustomer(Guid custId, decimal creditNote)
+        {
+            CustomerService.UpdateCreditNote(custId, creditNote);
+        }
+
         #region create receive
 
-        private void CreateAngsuranReceive(Invoice inv,DateTime date, decimal denda, long totalangsuran)
+        private void CreateAngsuranReceive(Invoice inv,DateTime date, decimal denda, long totalangsuran, decimal creditNote)
         {
             InvoiceSnapshot invSnapshot = inv.CreateSnapshot();
             ReceiveService.CreateAngsuran(new CreateAngsuranReceive
@@ -358,7 +386,8 @@ namespace AsliMotor.Invoices.Services
                 InvoiceId = invSnapshot.id,
                 BulanAngsuran = invSnapshot.DueDate.AddMonths(-1).ToString("MMyyyy"),
                 PaymentDate = date,
-                BulanAngsuranNumber = totalangsuran + 1
+                BulanAngsuranNumber = totalangsuran + 1,
+                CreditNote = creditNote
             });
         }
 

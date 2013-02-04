@@ -23,6 +23,7 @@ namespace AsliMotor.Invoices.ReportRepository
 	cust.city as CustomerCity,
 	cust.region as CustomerRegion,
 	cust.phone as CustomerPhone,
+    cust.deposit as CustomerDeposit,
     inv.termid as TermId,
 	(select termname from paymentterm where id = inv.termid) as TermName,
     (select value from paymentterm where id = inv.termid) as TermValue,
@@ -58,6 +59,7 @@ namespace AsliMotor.Invoices.ReportRepository
         public string CustomerCity { get; set; }
         public string CustomerRegion { get; set; }
         public string CustomerPhone { get; set; }
+        public decimal CustomerDeposit { get; set; }
         public string Merk { get; set; }
         public string Type { get; set; }
         public string Tahun { get; set; }

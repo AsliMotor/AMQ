@@ -58,5 +58,11 @@ namespace AsliMotor.Customers
             CustomerImage image = QueryObjectMapper.Map<CustomerImage>("findById", new string[] { "id" }, new object[] { id }).FirstOrDefault();
             return image;
         }
+
+        public IList<HistoryCreditNote> GetHistoryCreditNote(Guid custId)
+        {
+            IList<HistoryCreditNote> histories = QueryObjectMapper.Map<HistoryCreditNote>("findById", new string[] { "custid" }, new object[] { custId }).ToList();
+            return histories;
+        }
     }
 }

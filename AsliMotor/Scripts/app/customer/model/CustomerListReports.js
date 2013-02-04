@@ -12,7 +12,7 @@
             this.searchKey = "";
             _.bindAll(this, 'addCollection');
         },
-        url: 'customer/lists',
+        url: '/customer/lists',
         model: am.customer.model.CustomerListReport,
         fetch: function (options) {
             var options = options || {};

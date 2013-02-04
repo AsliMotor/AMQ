@@ -64,7 +64,7 @@ namespace AsliMotor.ImportDataInvoice
                         int countPaid = ParseCountPaid(rawData);
                         for (int i = 0; i < countPaid; i++)
                         {
-                            InvoiceService.BayarAngsuran(command.id, command.InvoiceDate.AddDays(i * 30), this.userName);
+                            InvoiceService.BayarAngsuran(command.id, command.InvoiceDate.AddDays(i * 30), 1, command.AngsuranBulanan, this.userName);
                         }
                         InvoiceService.ChangeDueDate(command.id, command.InvoiceDate.AddMonths(countPaid + 1), userName);
                     }
@@ -117,7 +117,8 @@ namespace AsliMotor.ImportDataInvoice
                 Price = price,
                 ProductId = productId,
                 SukuBunga = sukubunga,
-                UangMuka = uangmuka
+                UangMuka = uangmuka,
+                AngsuranBulanan = angsuranBulanan
             };
         }
 

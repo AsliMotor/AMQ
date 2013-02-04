@@ -24,16 +24,23 @@
             },
             createHeader: function () {
                 if (this.options.headers) {
-                    this.$el.append("<thead><tr></tr></thead>");
-                    this.options.headers.forEach(this.addHeader, this);
+                    this.$el.append("<thead></thead>");
+                    if (this.options.headers[0].constructor == Array)
+                        this.options.headers.forEach(this.addHeader, this);
+                    else
+                        this.addHeader(this.options.headers);
                 }
             },
-            addHeader: function (header) {
-                this.$el.find("thead tr").append(new HomeJS.components.DataTable.TableHead({
-                    collection: this.collection,
-                    container: this,
-                    spec: header
-                }).el);
+            addHeader: function (headers) {
+                var className = Math.floor((Math.random() * 100) + 1);
+                this.$el.find("thead").append("<tr class='" + className + "'></tr>");
+                headers.forEach(function (header) {
+                    this.$el.find("thead tr." + className, this.$el).append(new HomeJS.components.DataTable.TableHead({
+                        collection: this.collection,
+                        container: this,
+                        spec: header
+                    }).el);
+                }, this);
             },
             addItems: function () {
                 if (this.options.items) {
@@ -93,12 +100,17 @@
                     var align = (header.align) ? "text-align:" + header.align : "";
                     var minwidth = (header.minwidth) ? "min-width:" + header.minwidth : "";
                     var maxwidth = (header.maxwidth) ? "max-width:" + header.maxwidth : "";
-                    var styles = width + ";" + align + ";" + minwidth + ";" + maxwidth;
+                    //var verticalalign = "vertical-align:middle";
+                    var styles = width + ";" + align + ";" + minwidth + ";" + maxwidth + ";";
                     var title = (header.title) ? header.title : "";
+                    var rowspan = (header.rowspan) ? header.rowspan : 1;
+                    var colspan = (header.colspan) ? header.colspan : 1;
 
                     this.$el.addClass(resizable);
                     this.$el.attr('title', title);
                     this.$el.attr('style', styles);
+                    this.$el.attr('rowspan', rowspan);
+                    this.$el.attr('colspan', colspan);
                     this.$el.html(header.name);
                 }
                 else {
@@ -164,6 +176,7 @@
                 this.options.cells.forEach(this.addCell, this);
             },
             addCell: function (cell) {
+                var self = this;
                 if (typeof cell === "object") {
                     var align = (cell.align) ? "text-align:" + cell.align : "";
                     var styles = align;
@@ -174,10 +187,16 @@
                     value = (value == null) ? '-' : value;
                     value = typeof value == "number" ? value.toCurrency() : value;
                     if (typeof value == "object") {
-                        var html = $("<td>");
+                        var html = $("<td class='" + cell.dataIndex + "'>");
                         this.$el.append(html.append(value, this.model));
                     } else
-                        this.$el.append("<td style='" + styles + "'>" + value + "</td>");
+                        this.$el.append("<td style='" + styles + "' class='" + cell.dataIndex + "'>" + value + "</td>");
+
+                    if (cell.actionclick)
+                        $("td." + cell.dataIndex, this.$el).click(function (ev) {
+                            ev.preventDefault();
+                            cell.actionclick(self.model);
+                        });
                 }
             },
             events: {

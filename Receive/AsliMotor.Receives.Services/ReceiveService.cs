@@ -104,7 +104,8 @@ namespace AsliMotor.Receives.Services
                 Denda = cmd.Denda,
                 Month = cmd.BulanAngsuran,
                 MonthNumber = cmd.BulanAngsuranNumber,
-                TransactionDate = DateTime.Now
+                TransactionDate = DateTime.Now,
+                Deposit = cmd.CreditNote
             };
             ReceiveRepository.Save(rcv);
         }
