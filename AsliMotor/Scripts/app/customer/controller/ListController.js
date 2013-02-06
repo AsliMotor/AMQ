@@ -101,7 +101,7 @@
                         dataIndex: "Deposit",
                         align: "right",
                         onrender: function (data) {
-                            return "<u style='color:blue;'>" + data.toCurrency() + "</u>";
+                            return "<u style='color:#0088cc;'>" + data.toCurrency() + "</u>";
                         },
                         actionclick: function (model) {
                             am.eventAggregator.trigger('listHistoryCreditNote', model.get("id"));
