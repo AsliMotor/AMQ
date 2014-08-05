@@ -20,7 +20,7 @@ using AsliMotor.Invoices.Events;
 
 namespace AsliMotor.Invoices.Services
 {
-    public class InvoiceService:IInvoiceService
+    public class InvoiceService : IInvoiceService
     {
         public IQueryObjectMapper QueryObjectMapper { get; set; }
         public IInvoiceRepository Repository { get; set; }
@@ -164,13 +164,25 @@ namespace AsliMotor.Invoices.Services
                 long totalAngsuran = Repository.CountAngsuranBulanan(invSnap.id);
                 StatusInvoice status = inv.BayarAngsuran(totalAngsuran);
                 Repository.Update(inv);
-                CreateAngsuranReceive(inv,date, denda, totalAngsuran);
+                CreateAngsuranReceive(inv, date, denda, totalAngsuran);
                 PublishAngsuranPaid(inv, username);
                 if (status == StatusInvoice.PAID)
                 {
-                    ProductService.ChangeStatus(invSnap.ProductId , invSnap.BranchId, StatusProduct.TERJUAL_LUNAS, username);
+                    ProductService.ChangeStatus(invSnap.ProductId, invSnap.BranchId, StatusProduct.TERJUAL_LUNAS, username);
                 }
             }
+        }
+
+        public void ChangePrice(Guid id, decimal price, string username)
+        {
+            Invoice inv = Repository.Get(id);
+            InvoiceSnapshot invSnap = inv.CreateSnapshot();
+            FailIfInvoiceNotFound(invSnap);
+            FailIfCantChange(invSnap);
+            decimal debitnote = Repository.GetUangTandaJadi(id);
+            Receive uangMukaRcv = ReceiveRepository.GetByInvoiceIdAndPaymentType(invSnap.id, 1);
+            inv.ChangePrice(uangMukaRcv.Total, debitnote, price);
+            Repository.Update(inv);
         }
 
         public void ChangeUangMuka(Guid id, decimal uangmuka, string username)
@@ -285,7 +297,7 @@ namespace AsliMotor.Invoices.Services
 
         #region create receive
 
-        private void CreateAngsuranReceive(Invoice inv,DateTime date, decimal denda, long totalangsuran)
+        private void CreateAngsuranReceive(Invoice inv, DateTime date, decimal denda, long totalangsuran)
         {
             InvoiceSnapshot invSnapshot = inv.CreateSnapshot();
             ReceiveService.CreateAngsuran(new CreateAngsuranReceive
@@ -374,7 +386,7 @@ namespace AsliMotor.Invoices.Services
             Product product = ProductRepository.GetProductById(id, branchid);
             if (product == null)
                 throw new ApplicationException("Product belum terdaftar");
-            else if(product.Status == StatusProduct.NONAKTIF)
+            else if (product.Status == StatusProduct.NONAKTIF)
                 throw new ApplicationException("Product sudah discontinue");
             else if (product.Status == StatusProduct.TERJUAL)
                 throw new ApplicationException("Product sudah terjual");

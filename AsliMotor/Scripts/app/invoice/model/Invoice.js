@@ -37,8 +37,8 @@
             this.validators.UangMuka = function (value, model) {
                 if (model.get("Status") == "1") {
                     if (value > 0) {
-                        if (value < (parseInt(model.get("Price")) * 30) / 100) {
-                            return { isValid: false, message: "Uang minimal 30% dari harga jual kendaraan" };
+                        if (value < (parseInt(model.get("Price")) * 10) / 100) {
+                            return { isValid: false, message: "Uang minimal 10% dari harga jual kendaraan" };
                         }
                     } else {
                         return { isValid: false, message: "Uang muka harus diisi" };

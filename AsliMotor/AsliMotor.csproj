@@ -14,6 +14,7 @@
     <AssemblyName>AsliMotor</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -191,6 +192,9 @@
     <Content Include="Scripts\app\angsuranreport\view\SelectYearView.js" />
     <Content Include="Scripts\app\angsuranreport\view\TableData.js" />
     <Content Include="Scripts\app\angsuranreport\view\TotalSummaryGrafikProduk.js" />
+    <Content Include="Scripts\app\invoice\action\changePrice.js" />
+    <Content Include="Scripts\app\invoice\command\ChangePrice.js" />
+    <Content Include="Scripts\app\invoice\view\ChangePrice.js" />
     <Content Include="Scripts\app\outstandingreport\controller\SideBarController.js" />
     <Content Include="Scripts\app\outstandingreport\main.js" />
     <Content Include="Scripts\app\outstandingreport\model\DailyReports.js" />

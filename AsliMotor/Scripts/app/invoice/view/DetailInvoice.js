@@ -4,6 +4,7 @@
     'backbone',
     'namespace',
     'eventAggregator',
+    '../../../app/invoice/action/changeprice',
     '../../../app/invoice/action/changeuangmuka',
     '../../../app/invoice/action/changepaymenttype',
     '../../../app/invoice/action/bayaruangangsuran',
@@ -164,6 +165,19 @@
             var lamaAngsuran = this.model.get("LamaAngsuran") ? this.model.get("LamaAngsuran").toCurrency() : '-';
             var uangAngsuran = this.model.get("AngsuranBulanan") ? this.model.get("AngsuranBulanan").toCurrency() : '-';
             var noSP = this.model.get("SuratPerjanjianNo") || "-";
+            var changePriceButton = new HomeJS.components.ButtonField({
+                model: this.model,
+                id: "price",
+                name: "price",
+                title: "Ubah Harga Jual",
+                dataIndex: "Price",
+                icon: "icon-pencil icon-white",
+                labelname: "Harga Jual",
+                renderer: function (data) {
+                    return data.toCurrency();
+                },
+                action: am.invoice.action.changePrice({ model: this.model })
+            });
             var uangMukaButton = new HomeJS.components.ButtonField({
                 model: this.model,
                 id: "uangMuka",
@@ -222,10 +236,12 @@
             var html = "";
             if (noSP != "-")
                 html += "<div class='clearfix'><div>No. SP</div><div>" + noSP + "</div></div>";
-            html += "<div class='clearfix'><div>Harga Jual</div><div class='price'>" + price + "</div></div>";
+            //html += "<div class='clearfix'><div>Harga Jual</div><div class='price'>" + price + "</div></div>";
             if (debitNote != '-')
                 html += "<div class='clearfix'><div>Uang Tanda Jadi</div><div>" + debitNote + "</div></div>";
             this.$el.html(html);
+            if (price != '-')
+                this.$el.append(changePriceButton.render().el);
             if (uangMuka != '-')
                 this.$el.append(uangMukaButton.render().el);
             if (lamaAngsuran != '-')

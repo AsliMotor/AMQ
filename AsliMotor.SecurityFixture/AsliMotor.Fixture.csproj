@@ -126,9 +126,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="image\Angkasa.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="image\logo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

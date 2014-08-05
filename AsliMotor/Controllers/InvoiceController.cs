@@ -197,6 +197,22 @@ namespace AsliMotor.Controllers
 
         [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES)]
         [HttpPost]
+        public JsonResult ChangePrice(Guid invoiceId, decimal price)
+        {
+            try
+            {
+                CompanyProfile cp = new CompanyProfile(this.HttpContext);
+                InvoiceService.ChangePrice(invoiceId, price, cp.UserName);
+                return Json(new { error = false, data = new { id = invoiceId } }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { error = true, message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES)]
+        [HttpPost]
         public JsonResult ChangeUangMuka(Guid invoiceId, decimal uangmuka)
         {
             try
