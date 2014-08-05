@@ -17,5 +17,7 @@ namespace AsliMotor.Invoices.Command
         public int LamaAngsuran { get; set; }
         public decimal SukuBunga { get; set; }
         public DateTime DueDate { get; set; }
+        public Guid TermId { get; set; }
+        public decimal AngsuranBulanan { get; set; }
     }
 }

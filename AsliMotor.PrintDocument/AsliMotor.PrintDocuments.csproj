@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="IPrintDocument.cs" />
     <Compile Include="SuratPeringatanItem.cs" />
+    <Compile Include="templates\KwitansiPelunasanTemplate.cs" />
     <Compile Include="templates\JBFidusiaTemplate.cs" />
     <Compile Include="templates\JSAngsuranTemplate.cs" />
     <Compile Include="templates\SuratKuasaTemplate.cs" />

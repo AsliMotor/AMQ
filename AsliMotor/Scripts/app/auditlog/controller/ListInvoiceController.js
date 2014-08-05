@@ -84,6 +84,12 @@
                             else if (action == am.InvoiceAuditLogAction.UangMukaChanged) {
                                 return "Merubah Nilai Uang Muka";
                             }
+                            else if (action == am.InvoiceAuditLogAction.PriceChanged) {
+                                return "Merubah Nilai Harga Jual";
+                            }
+                            else if (action == am.InvoiceAuditLogAction.TermChanged) {
+                                return "Merubah Termin Pembayaran";
+                            }
                         }
                     }, {
                         dataIndex: 'UserName'

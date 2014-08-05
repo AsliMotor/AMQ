@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="models\BasePrintReport.cs" />
+    <Compile Include="models\ReceivePelunasanReport.cs" />
     <Compile Include="models\SuratTandaTerima.cs" />
     <Compile Include="models\JBFidusiaReport.cs" />
     <Compile Include="models\JBAngsuranReport.cs" />

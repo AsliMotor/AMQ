@@ -24,5 +24,6 @@ namespace AsliMotor.Invoices.ReportRepository
         JBAngsuranReport GetJBAngsuran(Guid invId);
         JBFidusiaReport GetJBFidusia(Guid invId);
         SuratTandaTerima GetSuratTandaTerima(Guid invId);
+        ReceivePelunasanReport GetReceivePelunasanReport(Guid invoiceId, string branchId);
     }
 }

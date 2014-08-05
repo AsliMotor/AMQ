@@ -37,11 +37,11 @@
             if (this.options.title && this.options.title != "") {
                 html = "<label class='control-label' style='color:" + colorLabel + "'>" + this.options.title + "</label>\
                         <div class='controls controls-row'>\
-                            <input type='" + type + "' id='" + this.options.dataIndex + "' name='" + this.options.dataIndex + "' class='" + size + "' placeholder='" + placeholder + "' value='" + value + "'  " + required + " " + readonly + "/>\
+                            <input type='" + type + "' id='" + this.options.dataIndex + "' name='" + this.options.dataIndex + "' class='" + size + "' placeholder='" + placeholder + "' value='" + value + "'  " + required + " " + readonly + " autocomplete='off'/>\
                             <div class='help-inline'></div>\
                         </div>";
             } else {
-                html = "<input type='" + type + "' id='" + this.options.dataIndex + "' name='" + this.options.dataIndex + "' class='" + size + "' placeholder='" + placeholder + "' value='" + value + "'  " + required + " " + readonly + "/><div class='help-inline'></div>";
+                html = "<input type='" + type + "' id='" + this.options.dataIndex + "' name='" + this.options.dataIndex + "' class='" + size + "' placeholder='" + placeholder + "' value='" + value + "'  " + required + " " + readonly + " autocomplete='off'/><div class='help-inline'></div>";
             }
             this.$el.html(html);
 
@@ -58,7 +58,13 @@
             return this;
         },
         events: {
-            'change input': 'setValue'
+            'change input': 'setValue',
+            'keypress input': 'keypress'
+        },
+        keypress: function (ev) {
+            if (ev.keyCode == 13) {
+                ev.preventDefault();
+            }
         },
         setValue: function () {
             if (this.options.setValue) {

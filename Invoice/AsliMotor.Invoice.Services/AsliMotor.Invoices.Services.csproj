@@ -70,6 +70,10 @@
       <Project>{16F8407F-6EB0-4161-8EDA-23BDB946E04A}</Project>
       <Name>AsliMotor.Customers</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\AsliMotor.PaymentTerms\AsliMotor.PaymentTerms.csproj">
+      <Project>{D8B27C4E-7041-4DA5-ADC9-A3588055D3DF}</Project>
+      <Name>AsliMotor.PaymentTerms</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Product\AsliMotor.Product.Models\AsliMotor.Products.Models.csproj">
       <Project>{C373B792-0B15-4784-9A18-0C59957BF260}</Project>
       <Name>AsliMotor.Products.Models</Name>
@@ -109,6 +113,10 @@
     <ProjectReference Include="..\AsliMotor.Invoice.Models\AsliMotor.Invoices.Snapshots.csproj">
       <Project>{D3A51AE0-959D-4192-9A57-260AF1BEBC4E}</Project>
       <Name>AsliMotor.Invoices.Snapshots</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AsliMotor.Invoices.AutoNumberGenerator\AsliMotor.Invoices.AutoNumberGenerator.csproj">
+      <Project>{E883A8D7-E5A1-4C4B-8077-7768D4D4D49D}</Project>
+      <Name>AsliMotor.Invoices.AutoNumberGenerator</Name>
     </ProjectReference>
     <ProjectReference Include="..\AsliMotor.Invoices.Events\AsliMotor.Invoices.Events.csproj">
       <Project>{8F5B41DA-AD22-4A5C-B4A8-830113FC8AD9}</Project>

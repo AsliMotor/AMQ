@@ -14,7 +14,7 @@ using AsliMotor.Security.Models;
 
 namespace AsliMotor.Controllers
 {
-    [MyAuthorize]
+    [Authorize]
     public class OrganizationController : Controller
     {
         IOrganizationRepository _orgRepo;

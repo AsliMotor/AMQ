@@ -67,6 +67,7 @@
     <Compile Include="models\CustomerImage.cs" />
     <Compile Include="models\CustomerReport.cs" />
     <Compile Include="models\CustomerSearch.cs" />
+    <Compile Include="models\HistoryCreditNote.cs" />
     <Compile Include="models\TotalCustomer.cs" />
     <Compile Include="repositories\CustomerRepository.cs" />
     <Compile Include="repositories\ICustomerRepository.cs" />

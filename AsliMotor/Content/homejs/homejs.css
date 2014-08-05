@@ -176,6 +176,10 @@ table.homejs-datatable tbody tr, table.homejs-datatable tbody tr td
 {
     cursor:pointer;
 }
+table.homejs-datatable tbody tr.footer td
+{
+    background-color:#ccc;
+}
 /*****************************************************FORM Panel*****************************************************************/
 .form-horizontal .control-label 
 {
@@ -370,8 +374,9 @@ input.search-input-field + .loading-container > img
 .popup .toolbar title{
     display: block;
     font-size: 12px;
-    padding-left: 23px;
+    padding-left: 10px;
     padding-top: 2px;
+    color:#f8f8f8;
 }
 .popup .toolbar .logo
 {
@@ -379,7 +384,9 @@ input.search-input-field + .loading-container > img
 }
 .popup .toolbar .logo img
 {
-    height:22px;
+    height:17px;
+    width:65px;
+    display:none;
 }
 .popup fieldset { 
 	border:none;
@@ -444,8 +451,9 @@ input.search-input-field + .loading-container > img
 .modal-dialog .toolbar title{
     display: block;
     font-size: 12px;
-    padding-left: 35px;
+    padding-left: 10px;
     padding-top: 2px;
+    color:#f8f8f8;
 }
 .modal-dialog .toolbar .logo
 {
@@ -453,7 +461,9 @@ input.search-input-field + .loading-container > img
 }
 .modal-dialog .toolbar .logo img
 {
-    height:22px;
+    height:17px;
+    width:65px;
+    display:none;
 }
 .modal-dialog fieldset { 
 	border:none;
@@ -462,6 +472,11 @@ input.search-input-field + .loading-container > img
 .modal-dialog fieldset section
 {
     font-size:12px;
+}
+section.modal-dialog-body
+{
+    overflow-y: auto;
+    max-height: 600px;
 }
 .modal-dialog .modal-dialog-body.webcam
 {

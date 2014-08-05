@@ -12,7 +12,8 @@
                 '': 'index',
                 'customer': 'index',
                 'customer/create': 'create',
-                'customer/edit/:id': 'edit'
+                'customer/edit/:id': 'edit',
+                'customer/historycreditnote/:id': 'historyCreditNote'
             },
             index: function () {
                 require([
@@ -36,6 +37,14 @@
                 ], function () {
                     this.editController = new am.customer.controller.EditController(id);
                     this.editController.show();
+                });
+            },
+            historyCreditNote: function (id) {
+                require([
+                    'controller/HistoryCreditNoteController'
+                ], function () {
+                    var controller = new am.customer.controller.HistoryCreditNoteController(id);
+                    controller.show();
                 });
             }
         });

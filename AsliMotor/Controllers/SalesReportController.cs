@@ -10,7 +10,7 @@ using AsliMotor.Helper;
 
 namespace AsliMotor.Controllers
 {
-    [MyAuthorize]
+    [Authorize]
     public class SalesReportController : Controller
     {
         ISalesReportRepository _salesReportRepo;

@@ -24,6 +24,7 @@ namespace AsliMotor.Invoices.ReportRepository
 	prod.NoMesin,
 	prod.NoPolisi,
     inv.lamaangsuran as LamaAngsuran,
+    inv.banyakcicilan as BanyakCicilan,
 	inv.price + inv.totalkredit as Price,
 	(select suratperjanjianno from suratperjanjian where invoiceid = inv.id) as NoSuratPerjanjian,
 	(select suratperjanjiandate from suratperjanjian where invoiceid = inv.id) as SuratPerjanjianDate,
@@ -41,5 +42,6 @@ namespace AsliMotor.Invoices.ReportRepository
         public decimal AngsuranBulanan { get; set; }
         public decimal Price { get; set; }
         public decimal Booking { get; set; }
+        public int BanyakCicilan { get; set; }
     }
 }

@@ -16,7 +16,8 @@ namespace AsliMotor.Invoices.ReportRepository
 	prod.NoRangka,
 	prod.NoMesin,
 	prod.NoPolisi,
-	rcv.Total as Total,
+	(rcv.Total + rcv.deposit) as Total,
+    rcv.Deposit as Deposit,
 	rcv.receiveno as ReceiveNo,
 	rcv.denda as Denda,
 	rcv.month as Month,
@@ -39,6 +40,7 @@ namespace AsliMotor.Invoices.ReportRepository
         public string Month { get; set; }
         public long MonthNumber { get; set; }
         public decimal Total { get; set; }
+        public decimal Deposit { get; set; }
         public string Merk { get; set; }
         public string Type { get; set; }
         public string Warna { get; set; }

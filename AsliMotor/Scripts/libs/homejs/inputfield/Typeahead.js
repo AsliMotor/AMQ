@@ -29,11 +29,11 @@
             if (this.options.title && this.options.title != "") {
                 html = "<label class='control-label' style='color:" + colorLabel + "'>" + this.options.title + "</label>\
                         <div class='controls controls-row'>\
-                            <input type='" + type + "' id='" + this.options.dataIndex + "' name='" + this.options.dataIndex + "' class='typeahead " + size + "' placeholder='" + placeholder + "' value='" + value + "'  " + required + " data-provide='typeahead'/>\
+                            <input type='" + type + "' id='" + this.options.dataIndex + "' name='" + this.options.dataIndex + "' class='typeahead " + size + "' placeholder='" + placeholder + "' value='" + value + "'  " + required + " data-provide='typeahead' autocomplete='off'/>\
                             <div class='help-inline'></div>\
                         </div>";
             } else {
-                html = "<input type='" + type + "' id='" + this.options.dataIndex + "' name='" + this.options.dataIndex + "' class='typeahead " + size + "' placeholder='" + placeholder + "' value='" + value + "'  " + required + " data-provide='typeahead'/><div class='help-inline'></div>";
+                html = "<input type='" + type + "' id='" + this.options.dataIndex + "' name='" + this.options.dataIndex + "' class='typeahead " + size + "' placeholder='" + placeholder + "' value='" + value + "'  " + required + " data-provide='typeahead' autocomplete='off'/><div class='help-inline'></div>";
             }
             this.$el.html(html);
             

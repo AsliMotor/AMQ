@@ -22,7 +22,9 @@ namespace AsliMotor.Invoices.ReportRepository
 	prod.NoPolisi,
 	inv.lamaangsuran as LamaAngsuran,
 	inv.angsuranbulanan as AngsuranBulanan,
-	(select (total + charge) from receive where invoiceid = inv.id and receivetype = 1) as UangMuka
+    inv.banyakcicilan as BanyakCicilan,
+	(select (total + charge) from receive where invoiceid = inv.id and receivetype = 1) as UangMuka,
+    (select total from receive where invoiceid = inv.id and receivetype = 0) as DebitNote
 	FROM invoicesnapshot inv inner join customer cust on inv.customerid = cust.id 
 				 inner join product prod on inv.productid = prod.id
 	where inv.id = @id")]
@@ -31,5 +33,7 @@ namespace AsliMotor.Invoices.ReportRepository
         public int LamaAngsuran { get; set; }
         public decimal AngsuranBulanan { get; set; }
         public decimal UangMuka { get; set; }
+        public decimal DebitNote { get; set; }
+        public int BanyakCicilan { get; set; }
     }
 }

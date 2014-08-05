@@ -47,6 +47,12 @@ namespace AsliMotor.Customers
             ReportingRepository.Update<Customer>(custUpdated, new { id = custUpdated.id });
         }
 
+        public void UpdateCreditNote(Guid custId, decimal creditNote)
+        {
+            Customer cust = CustomerRepository.GetById(custId);
+            cust.Deposit = creditNote;
+            ReportingRepository.Update<Customer>(cust, new { id = cust.id });
+        }
 
         public void UploadImage(Guid id, byte[] image)
         {

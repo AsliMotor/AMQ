@@ -13,5 +13,7 @@ namespace AsliMotor.Invoices.Domain
         public decimal SukuBunga { get; set; }
         public DateTime DueDate { get; set; }
         public decimal UangTandaJadi { get; set; }
+        public Guid TermId { get; set; }
+        public int TermValue { get; set; }
     }
 }

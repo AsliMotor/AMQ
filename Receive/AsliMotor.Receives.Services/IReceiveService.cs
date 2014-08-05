@@ -13,5 +13,6 @@ namespace AsliMotor.Receives.Services
         void CreateUangMuka(CreateUangMukaReceive cmd);
         void CreateAngsuran(CreateAngsuranReceive cmd);
         void ChangeUangMuka(Guid invoiceId, decimal uangMuka);
+        void CreatePelunasan(Guid invoceId, string branchId, decimal total, decimal denda, long banyakCicilanYangTelahDiBayar);
     }
 }

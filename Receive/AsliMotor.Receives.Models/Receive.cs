@@ -21,5 +21,7 @@ namespace AsliMotor.Receives.Models
         public string BranchId { get; set; }
         public string Month { get; set; }
         public long MonthNumber { get; set; }
+        public DateTime TransactionDate { get; set; }
+        public decimal Deposit { get; set; }
     }
 }

@@ -12,6 +12,7 @@
     function ($, _, Backbone, ns) {
         ns.define('am.customer.controller');
         am.customer.controller.ListController = function () {
+            var clicked = false;
             var customersModel = new am.customer.model.CustomerListReports();
             var totalList = new am.customer.model.TotalCustomerList();
             customersModel.fetch();
@@ -73,6 +74,12 @@
                         align: "right",
                         width: "120px",
                         title: "Klik untuk mengurutkan berdasarkan Sisa Tagihan"
+                    }, {
+                        name: "Deposit",
+                        dataIndex: "Deposit",
+                        align: "right",
+                        width: "120px",
+                        title: "Klik untuk mengurutkan berdasarkan Deposit"
                     }],
                     items: [{
                         dataIndex: "Name"
@@ -90,9 +97,20 @@
                         onrender: function (data) {
                             return data.toCurrency();
                         }
+                    }, {
+                        dataIndex: "Deposit",
+                        align: "right",
+                        onrender: function (data) {
+                            return "<u style='color:#0088cc;'>" + data.toCurrency() + "</u>";
+                        },
+                        actionclick: function (model) {
+                            am.eventAggregator.trigger('listHistoryCreditNote', model.get("id"));
+                            clicked = true;
+                        }
                     }],
                     eventclick: function (data) {
-                        am.eventAggregator.trigger('editCustomer', data.id);
+                        if (!clicked)
+                            am.eventAggregator.trigger('editCustomer', data.id);
                     }
                 },
                 showmore: totalList

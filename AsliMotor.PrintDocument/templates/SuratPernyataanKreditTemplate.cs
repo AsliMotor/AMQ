@@ -60,7 +60,8 @@ namespace AsliMotor.PrintDocuments
                     <td>
                         Uang Muka (DP) yang saya bayar adalah sebesar <b>Rp $uangmuka$</b>
 	                    ($uangmukaterbilang$)							
-	                    Lamanya angsuran kredit : <b>$lamaangsuran$ Bulan</b> ($lamaangsuranterbilang$ bulan)			
+	                    Lamanya angsuran kredit : <b>$lamaangsuran$ Bulan</b> ($lamaangsuranterbilang$ bulan)
+                        dan dibayar sebanyak <b>$banyakcicilan$</b> kali. 
 	                    Besar angsuran kredit :	 <b>Rp $angsuranbulanan$</b> ($angsuranbulananterbilang$ rupiah)
                     </td>
                 </tr>

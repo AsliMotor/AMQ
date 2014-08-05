@@ -9,6 +9,7 @@ namespace AsliMotor.Customers
     {
         void Create(Customer cust);
         void Update(Customer cust);
+        void UpdateCreditNote(Guid custId, decimal creditNote);
         void ChangeStatus(Guid id, StatusCustomer status);
         void UploadImage(Guid id, byte[] image);
     }

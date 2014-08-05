@@ -17,12 +17,16 @@ namespace AsliMotor.Invoices.Services
         void Pull(Guid id, string username);
         void ChangePrice(Guid id, decimal price, string username);
         void ChangeUangMuka(Guid id, decimal uangmuka, string username);
-        void BayarAngsuran(Guid id, DateTime date, string username);
+        void BayarAngsuran(Guid id, DateTime date, int totalBulanYangDiBayar, decimal payAmount, string username);
         void UpdateUangAngsuran(Guid id, decimal angsuran, string username);
         void ChangeSukuBunga(Guid id, decimal sukubunga, string username);
         void ChangeLamaAngsuran(Guid id, int lamaAngsuran, string username);
         void ChangeDueDate(Guid id, DateTime dueDate, string username);
+        void ChangeInvoiceDate(Guid id, DateTime invoiceDate, string username);
         void ChangeProduct(Guid id, Guid productId, string username);
         void ChangeCustomer(Guid id, Guid custId, string username);
+        void ChangeHargaJual(Guid id, decimal hargaJual, string username);
+        void ChangeTerm(Guid id, Guid termId, string username);
+        void Pelunasan(Guid id, DateTime date, string username);
     }
 }

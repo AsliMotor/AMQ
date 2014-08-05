@@ -25,7 +25,8 @@ namespace AsliMotor.Receives.Services
                 ReceiveNo = ReceiveAutoNumberGenerator.GenerateReceiveNumber(DateTime.Now, cmd.BranchId),
                 ReceiveType = (int)ReceiveTypes.UANGTANDAJADI,
                 Total = cmd.Total,
-                BranchId = cmd.BranchId
+                BranchId = cmd.BranchId,
+                TransactionDate = DateTime.Now
             };
             ReceiveRepository.Save(rcv);
         }
@@ -41,7 +42,8 @@ namespace AsliMotor.Receives.Services
                 ReceiveNo = ReceiveAutoNumberGenerator.GenerateReceiveNumber(DateTime.Now, cmd.BranchId),
                 ReceiveType = (int)ReceiveTypes.CASH,
                 Total = cmd.Total,
-                BranchId = cmd.BranchId
+                BranchId = cmd.BranchId,
+                TransactionDate = DateTime.Now
             };
             ReceiveRepository.Save(rcv);
         }
@@ -56,7 +58,26 @@ namespace AsliMotor.Receives.Services
                 ReceiveNo = ReceiveAutoNumberGenerator.GenerateReceiveNumber(DateTime.Now, cmd.BranchId),
                 ReceiveType = (int)ReceiveTypes.UANGMUKA,
                 Total = cmd.Total,
-                BranchId = cmd.BranchId
+                BranchId = cmd.BranchId,
+                TransactionDate = DateTime.Now
+            };
+            ReceiveRepository.Save(rcv);
+        }
+
+        public void CreatePelunasan(Guid invoceId, string branchId, decimal total, decimal denda, long banyakCicilanYangTelahDiBayar)
+        {
+            Receive rcv = new Receive
+            {
+                id = Guid.NewGuid(),
+                InvoiceId = invoceId,
+                ReceiveDate = DateTime.Now,
+                ReceiveNo = ReceiveAutoNumberGenerator.GenerateReceiveNumber(DateTime.Now, branchId),
+                ReceiveType = (int)ReceiveTypes.PELUNASAN,
+                MonthNumber = banyakCicilanYangTelahDiBayar,
+                Total = total,
+                Denda = denda,
+                BranchId = branchId,
+                TransactionDate = DateTime.Now
             };
             ReceiveRepository.Save(rcv);
         }
@@ -82,7 +103,9 @@ namespace AsliMotor.Receives.Services
                 BranchId = cmd.BranchId,
                 Denda = cmd.Denda,
                 Month = cmd.BulanAngsuran,
-                MonthNumber = cmd.BulanAngsuranNumber
+                MonthNumber = cmd.BulanAngsuranNumber,
+                TransactionDate = DateTime.Now,
+                Deposit = cmd.CreditNote
             };
             ReceiveRepository.Save(rcv);
         }

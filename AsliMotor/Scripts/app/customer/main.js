@@ -57,5 +57,8 @@ define([
         am.eventAggregator.on('createCustomer', function () {
             router.navigate("/customer/create", true);
         });
+        am.eventAggregator.on('listHistoryCreditNote', function (id) {
+            router.navigate("/customer/historycreditnote/" + id, true);
+        });
     });
 });

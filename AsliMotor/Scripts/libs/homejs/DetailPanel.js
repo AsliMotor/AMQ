@@ -138,6 +138,12 @@
                 $("ul", this.$el).append("<li id='" + spec.id + "' title='" + tooltip + "'><a><i class='" + iconCls + "'></i>" + spec.title + "</a></li>");
             }
             $("#" + spec.id, this.$el).click(spec.action);
+            $("#" + spec.id, this.$el).hover(function () {
+                $("#" + spec.id + " i", this.$el).addClass('icon-white');
+            });
+            $("#" + spec.id, this.$el).mouseleave(function () {
+                $("#" + spec.id + " i", this.$el).removeClass('icon-white');
+            });
         }
     });
 });

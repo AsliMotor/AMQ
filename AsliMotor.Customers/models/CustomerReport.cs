@@ -12,6 +12,7 @@ namespace AsliMotor.Customers
                                         city,
                                         phone,
                                         gender,
+                                        deposit,
                                         (select sum(outstanding) from invoicesnapshot where customerid = cust.id) as Outstanding
                                         FROM customer cust 
                                         where cust.branchid = @branchid
@@ -22,6 +23,7 @@ namespace AsliMotor.Customers
                                         city,
                                         phone,
                                         gender,
+                                        deposit,
                                         (select sum(outstanding) from invoicesnapshot where customerid = cust.id) as Outstanding
                                         FROM customer cust 
                                         where cust.branchid = @branchid and
@@ -36,5 +38,6 @@ namespace AsliMotor.Customers
         public string Phone { get; set; }
         public string Gender { get; set; }
         public decimal Outstanding { get; set; }
+        public decimal Deposit { get; set; }
     }
 }

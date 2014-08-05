@@ -9,7 +9,7 @@ using System.Web.Security;
 
 namespace AsliMotor.Controllers
 {
-    [MyAuthorize]
+    [Authorize]
     public class SettingController : Controller
     {
         public ActionResult Index()

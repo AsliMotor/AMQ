@@ -15,7 +15,7 @@ using AsliMotor.Security.Models;
 
 namespace AsliMotor.Controllers
 {
-    [MyAuthorize(Roles = RoleName.OWNER_ADMINPURCHASE_CASHIER)]
+    [Authorize(Roles = RoleName.OWNER_ADMINPURCHASE_CASHIER)]
     public class PurchaseController : Controller
     {
         IPrintDocument _printDocument;

@@ -8,7 +8,7 @@ namespace AsliMotor.SalesReports.ReportRepository
 {
     [NamedSqlQuery("findYearlySalesReport", @"
                     SELECT
-                        sum(price+totalkredit) AS Total,
+                        sum(price) AS Total,
                         date_trunc('year', invoicedate) AS SalesDate
                     FROM invoicesnapshot
                     where branchid = @branchid and 

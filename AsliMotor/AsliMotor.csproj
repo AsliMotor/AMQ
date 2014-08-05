@@ -132,14 +132,17 @@
     <Compile Include="Controllers\ManageUserController.cs" />
     <Compile Include="Controllers\OrganizationController.cs" />
     <Compile Include="Controllers\OutstandingReportController.cs" />
+    <Compile Include="Controllers\PaymentTermController.cs" />
     <Compile Include="Controllers\PriceChangeLogController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\PurchaseController.cs" />
     <Compile Include="Controllers\InvoiceController.cs" />
+    <Compile Include="Controllers\PurchaseReportController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\SalesReportController.cs" />
     <Compile Include="Controllers\SettingAutoNumberController.cs" />
     <Compile Include="Controllers\SettingController.cs" />
+    <Compile Include="Controllers\StatementReportController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\TypeProductController.cs" />
     <Compile Include="Global.asax.cs">
@@ -154,14 +157,17 @@
     <Content Include="Content\angsuranreport.css" />
     <Content Include="Content\img\errorpage.png" />
     <Content Include="Content\img\homesoft-1.png" />
+    <Content Include="Content\img\homesoft-2.png" />
     <Content Include="Content\img\homesoft-big.png" />
     <Content Include="Content\img\icon\glyphicons_227_usd.png" />
+    <Content Include="Content\img\logo-amq.png" />
     <Content Include="Content\img\logoorg\logo-amq.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\img\User-icon.jpg" />
+    <Content Include="Content\img\User-icon1.png" />
     <Content Include="Content\organization.css" />
     <Content Include="Content\img\homesoft.png" />
-    <Content Include="Content\img\User-icon.png" />
     <Content Include="Content\login.css" />
     <Content Include="Content\setting.css" />
     <Content Include="Scripts\app\angsuranreport\controller\TelahJatuhTempoController.js" />
@@ -192,6 +198,44 @@
     <Content Include="Scripts\app\angsuranreport\view\SelectYearView.js" />
     <Content Include="Scripts\app\angsuranreport\view\TableData.js" />
     <Content Include="Scripts\app\angsuranreport\view\TotalSummaryGrafikProduk.js" />
+    <Content Include="Scripts\app\customer\controller\HistoryCreditNoteController.js" />
+    <Content Include="Scripts\app\customer\model\HistoryReports.js" />
+    <Content Include="Scripts\app\purchasereport\controller\DailyController.js" />
+    <Content Include="Scripts\app\purchasereport\controller\GrafikProductController.js" />
+    <Content Include="Scripts\app\purchasereport\controller\MonthlyController.js" />
+    <Content Include="Scripts\app\purchasereport\controller\RateProductController.js" />
+    <Content Include="Scripts\app\purchasereport\controller\SideBarController.js" />
+    <Content Include="Scripts\app\purchasereport\controller\YearlyController.js" />
+    <Content Include="Scripts\app\purchasereport\main.js" />
+    <Content Include="Scripts\app\purchasereport\model\DailyReports.js" />
+    <Content Include="Scripts\app\purchasereport\model\GrafikProductReports.js" />
+    <Content Include="Scripts\app\purchasereport\model\MonthlyReports.js" />
+    <Content Include="Scripts\app\purchasereport\model\RateProductReports.js" />
+    <Content Include="Scripts\app\purchasereport\model\YearlyReports.js" />
+    <Content Include="Scripts\app\purchasereport\router\ReportRouter.js" />
+    <Content Include="Scripts\app\purchasereport\view\Container.js" />
+    <Content Include="Scripts\app\purchasereport\view\daily\DailyChart.js" />
+    <Content Include="Scripts\app\purchasereport\view\monthly\MonthlyChart.js" />
+    <Content Include="Scripts\app\purchasereport\view\ProductChart.js" />
+    <Content Include="Scripts\app\purchasereport\view\SelectDateView.js" />
+    <Content Include="Scripts\app\purchasereport\view\SelectDateViewForRateProduct.js" />
+    <Content Include="Scripts\app\purchasereport\view\SelectMonthView.js" />
+    <Content Include="Scripts\app\purchasereport\view\SelectYearView.js" />
+    <Content Include="Scripts\app\purchasereport\view\TableData.js" />
+    <Content Include="Scripts\app\purchasereport\view\TotalSummaryGrafikProduk.js" />
+    <Content Include="Scripts\app\purchasereport\view\yearly\YearlyChart.js" />
+    <Content Include="Scripts\app\invoice\action\changeInvoiceDate.js" />
+    <Content Include="Scripts\app\invoice\action\changeHargaJual.js" />
+    <Content Include="Scripts\app\invoice\action\changeTerm.js" />
+    <Content Include="Scripts\app\invoice\action\pelunasan.js" />
+    <Content Include="Scripts\app\invoice\command\ChangeInvoiceDate.js" />
+    <Content Include="Scripts\app\invoice\command\ChangeHargaJual.js" />
+    <Content Include="Scripts\app\invoice\command\ChangeTerm.js" />
+    <Content Include="Scripts\app\invoice\command\Pelunasan.js" />
+    <Content Include="Scripts\app\invoice\view\ChangeInvoiceDate.js" />
+    <Content Include="Scripts\app\invoice\view\ChangeHargaJual.js" />
+    <Content Include="Scripts\app\invoice\view\ChangeTerm.js" />
+    <Content Include="Scripts\app\invoice\view\Pelunasan.js" />
     <Content Include="Scripts\app\invoice\action\changePrice.js" />
     <Content Include="Scripts\app\invoice\command\ChangePrice.js" />
     <Content Include="Scripts\app\invoice\view\ChangePrice.js" />
@@ -401,6 +445,13 @@
     <Content Include="Scripts\app\shared\AccountModel.js" />
     <Content Include="Scripts\app\shared\RoleName.js" />
     <Content Include="Scripts\app\shared\Template.js" />
+    <Content Include="Scripts\app\statementreport\controller\TransactionListingController.js" />
+    <Content Include="Scripts\app\statementreport\controller\SideBarController.js" />
+    <Content Include="Scripts\app\statementreport\main.js" />
+    <Content Include="Scripts\app\statementreport\model\TransactionListingReports.js" />
+    <Content Include="Scripts\app\statementreport\router\StatementReportRouter.js" />
+    <Content Include="Scripts\app\statementreport\view\Container.js" />
+    <Content Include="Scripts\app\statementreport\view\SelectDateView.js" />
     <Content Include="Scripts\libs\AjaxLoading.js" />
     <Content Include="Scripts\libs\backbone\backbone.js" />
     <Content Include="Scripts\libs\backbone\backbone.marionette.js" />
@@ -426,6 +477,7 @@
     <Content Include="Scripts\libs\homejs\dialog\ModalDialog.js" />
     <Content Include="Scripts\libs\homejs\FormLayout.js" />
     <Content Include="Scripts\libs\homejs\FormPanel.js" />
+    <Content Include="Scripts\libs\homejs\inputfield\ComboField.js" />
     <Content Include="Scripts\libs\homejs\inputfield\Typeahead.js" />
     <Content Include="Scripts\libs\homejs\inputfield\DateField.js" />
     <Content Include="Scripts\libs\homejs\DetailPanel.js" />
@@ -455,6 +507,7 @@
     <Content Include="Scripts\libs\webcam\jquery.webcam.js" />
     <Content Include="Scripts\libs\webcam\jscam.swf" />
     <Content Include="Scripts\libs\webcam\jscam_canvas_only.swf" />
+    <Content Include="Scripts\test\component\combofield.js" />
     <Content Include="Scripts\test\component\erroralert.js" />
     <Content Include="Scripts\test\component\FormPanel.js" />
     <Content Include="Scripts\test\component\radiobutton.js" />
@@ -501,9 +554,21 @@
       <Project>{D86FA059-1DDB-40E6-BCFA-C1C54235A040}</Project>
       <Name>AsliMotor.Organizations</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AsliMotor.PaymentTerms\AsliMotor.PaymentTerms.csproj">
+      <Project>{D8B27C4E-7041-4DA5-ADC9-A3588055D3DF}</Project>
+      <Name>AsliMotor.PaymentTerms</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AsliMotor.PrintDocument\AsliMotor.PrintDocuments.csproj">
       <Project>{8AB23D46-1714-4995-B483-5503B77685A5}</Project>
       <Name>AsliMotor.PrintDocuments</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AsliMotor.PurchaseReports.ReportRepository\AsliMotor.PurchaseReports.ReportRepository.csproj">
+      <Project>{740FFA70-D9E8-4F08-8BE9-56ECB54C4963}</Project>
+      <Name>AsliMotor.PurchaseReports.ReportRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AsliMotor.Reporting\AsliMotor.Reporting.csproj">
+      <Project>{E50E9EF5-4C8A-4D4C-9ED7-871F46A3F7C6}</Project>
+      <Name>AsliMotor.Reporting</Name>
     </ProjectReference>
     <ProjectReference Include="..\AsliMotor.SalesReports.ReportRepository\AsliMotor.SalesReports.ReportRepository.csproj">
       <Project>{8970BA2A-85D9-4E9A-9893-930C12CD64ED}</Project>
@@ -677,6 +742,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\libs\bootstrap\bootstrap-typeahead.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Test\ComboField.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\PurchaseReport\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\StatementReport\Index.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

@@ -44,9 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="parameters\BookingParameter.cs" />
+    <Compile Include="parameters\CashParameter.cs" />
     <Compile Include="parameters\UpdateToCreditParameter.cs" />
     <Compile Include="parameters\CreateParameter.cs" />
     <Compile Include="Invoice.cs" />
+    <Compile Include="callback\PelunasanCallback.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

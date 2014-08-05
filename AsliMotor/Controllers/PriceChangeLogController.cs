@@ -11,7 +11,7 @@ using AsliMotor.Security.Models;
 
 namespace AsliMotor.Controllers
 {
-    [MyAuthorize(Roles=RoleName.OWNER_ADMINISTRATOR)]
+    [Authorize(Roles=RoleName.OWNER_ADMINISTRATOR)]
     public class PriceChangeLogController : Controller
     {
         private IPriceChangedRepository _repo;

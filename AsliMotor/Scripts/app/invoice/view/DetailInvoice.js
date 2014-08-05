@@ -4,16 +4,19 @@
     'backbone',
     'namespace',
     'eventAggregator',
-    '../../../app/invoice/action/changeprice',
     '../../../app/invoice/action/changeuangmuka',
     '../../../app/invoice/action/changepaymenttype',
     '../../../app/invoice/action/bayaruangangsuran',
+    '../../../app/invoice/action/pelunasan',
     '../../../app/invoice/action/changeuangangsuran',
     '../../../app/invoice/action/changesukubunga',
     '../../../app/invoice/action/changelamaangsuran',
     '../../../app/invoice/action/changeduedate',
+    '../../../app/invoice/action/changeinvoicedate',
     '../../../app/invoice/action/changeproduct',
     '../../../app/invoice/action/changecustomer',
+    '../../../app/invoice/action/changeHargaJual',
+    '../../../app/invoice/action/changeTerm',
     '../../../libs/homejs/ButtonField',
     '../../../libs/Date',
     '../../../libs/Currency'
@@ -79,6 +82,7 @@
             this.model.on('change', this.render, this);
         },
         render: function () {
+            var invoiceNo = this.model.get("InvoiceNo") || "-";
             var date = this.model.get("InvoiceDate") ? this.model.get("InvoiceDate").toDate() : "-";
             var status = this.model.get("Status");
             var duedate = this.model.get("DueDate") ? this.model.get("DueDate").toDate() : "-";
@@ -87,6 +91,21 @@
             else if (status == 2) status = "Lunas";
             else if (status == 3) status = "Batal";
             else if (status == 4) status = "Sudah di Tarik";
+
+            var invoiceDateButton = new HomeJS.components.ButtonField({
+                model: this.model,
+                id: "invoiceDate",
+                name: "invoiceDate",
+                title: "Ubah Tanggal Transaksi",
+                dataIndex: "InvoiceDate",
+                icon: "icon-pencil icon-white",
+                labelname: "Tanggal",
+                style: "float:left;margin-right:118px;",
+                renderer: function (data) {
+                    return data.toDate();
+                },
+                action: am.invoice.action.changeInvoiceDate({ model: this.model })
+            });
 
             var dueDateButton = new HomeJS.components.ButtonField({
                 model: this.model,
@@ -103,9 +122,12 @@
                 action: am.invoice.action.changeDueDate({ model: this.model })
             });
             var html = "";
+            html += "<div class='clearfix'><div>No. Faktur</div><div class='transaction-no'>" + invoiceNo + "</div></div>";
             html += "<div class='clearfix'><div>Status</div><div class='transaction-no'>" + status + "</div></div>";
-            html += "<div class='clearfix'><div>Tanggal</div><div>" + date + "</div></div>";
+            //html += "<div class='clearfix'><div>Tanggal</div><div>" + date + "</div></div>";
             this.$el.html(html);
+            if (date != '-')
+                this.$el.append(invoiceDateButton.render().el);
             if (this.model.get("Status") == 1 && duedate != '-')
                 this.$el.append(dueDateButton.render().el);
             return this;
@@ -158,25 +180,29 @@
             this.model.on('change', this.render, this);
         },
         render: function () {
+            var self = this;
             var price = this.model.get("Price") ? this.model.get("Price").toCurrency() : '-';
             var debitNote = this.model.get("DebitNote") ? this.model.get("DebitNote").toCurrency() : '-';
             var uangMuka = this.model.get("UangMuka") ? this.model.get("UangMuka").toCurrency() : '-';
             var sukuBunga = this.model.get("SukuBunga") ? this.model.get("SukuBunga").toCurrency() : '-';
-            var lamaAngsuran = this.model.get("LamaAngsuran") ? this.model.get("LamaAngsuran").toCurrency() : '-';
+            var lamaAngsuran = this.model.get("LamaAngsuran") ? this.model.get("LamaAngsuran") : '-';
+            var term = this.model.get("TermName") ? this.model.get("TermName") : '-';
             var uangAngsuran = this.model.get("AngsuranBulanan") ? this.model.get("AngsuranBulanan").toCurrency() : '-';
             var noSP = this.model.get("SuratPerjanjianNo") || "-";
-            var changePriceButton = new HomeJS.components.ButtonField({
+
+            var hargaJualButton = new HomeJS.components.ButtonField({
                 model: this.model,
-                id: "price",
-                name: "price",
+                id: "hargaJual",
+                name: "hargaJual",
                 title: "Ubah Harga Jual",
                 dataIndex: "Price",
                 icon: "icon-pencil icon-white",
                 labelname: "Harga Jual",
+                style: "float:left;margin-right:69px;",
                 renderer: function (data) {
                     return data.toCurrency();
                 },
-                action: am.invoice.action.changePrice({ model: this.model })
+                action: am.invoice.action.changeHargaJual({ model: this.model })
             });
             var uangMukaButton = new HomeJS.components.ButtonField({
                 model: this.model,
@@ -229,25 +255,41 @@
                 labelname: "Lama Angsuran",
                 style: "float:left;margin-right:40px;",
                 renderer: function (data) {
+                    //var totalBulanAngsuran = (data * self.model.get("TermValue")) / 30;
+                    var banyakCicilan = self.model.get("BanyakCicilan");
+                    if (banyakCicilan != data)
+                        return banyakCicilan + " kali selama " + data + " Bulan";
                     return data + " Bulan";
                 },
                 action: am.invoice.action.changeLamaAngsuran({ model: this.model })
             });
+            var termButton = new HomeJS.components.ButtonField({
+                model: this.model,
+                id: "term",
+                name: "term",
+                title: "Ubah Termin Pembayaran",
+                dataIndex: "TermName",
+                icon: "icon-pencil icon-white",
+                labelname: "Termin Pembayaran",
+                style: "float:left;margin-right:12px;",
+                action: am.invoice.action.changeTerm({ model: this.model })
+            });
             var html = "";
             if (noSP != "-")
                 html += "<div class='clearfix'><div>No. SP</div><div>" + noSP + "</div></div>";
-            //html += "<div class='clearfix'><div>Harga Jual</div><div class='price'>" + price + "</div></div>";
             if (debitNote != '-')
                 html += "<div class='clearfix'><div>Uang Tanda Jadi</div><div>" + debitNote + "</div></div>";
             this.$el.html(html);
             if (price != '-')
-                this.$el.append(changePriceButton.render().el);
+                this.$el.append(hargaJualButton.render().el);
             if (uangMuka != '-')
                 this.$el.append(uangMukaButton.render().el);
             if (lamaAngsuran != '-')
                 this.$el.append(lamaAngsuranButton.render().el);
             if (sukuBunga != '-')
                 this.$el.append(sukuBungaButton.render().el);
+            if (term != '-')
+                this.$el.append(termButton.render().el);
             if (uangAngsuran != '-')
                 this.$el.append(uangAngsuranButton.render().el);
             return this;

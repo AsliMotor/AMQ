@@ -11,7 +11,7 @@ using AsliMotor.Security.Models;
 
 namespace AsliMotor.Controllers
 {
-    [MyAuthorize(Roles=RoleName.OWNER_ADMINSALES_CASHIER)]
+    [Authorize(Roles=RoleName.OWNER_ADMINSALES_CASHIER)]
     public class CustomerController : Controller
     {
         ICustomerRepository _custRepo;
@@ -27,6 +27,11 @@ namespace AsliMotor.Controllers
         }
         [HttpGet]
         public ActionResult Edit(Guid id)
+        {
+            return View("index");
+        }
+        [HttpGet]
+        public ActionResult HistoryCreditNote(Guid id)
         {
             return View("index");
         }
@@ -53,6 +58,12 @@ namespace AsliMotor.Controllers
         public JsonResult Customer(Guid id)
         {
             return Json(CustomerRepository.GetById(id), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetHistoryCreditNote(Guid id)
+        {
+            return Json(CustomerRepository.GetHistoryCreditNote(id), JsonRequestBehavior.AllowGet);
         }
 
         [MyAuthorize(Roles=RoleName.OWNER_ADMINSALES)]

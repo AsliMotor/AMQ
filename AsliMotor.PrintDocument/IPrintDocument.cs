@@ -21,5 +21,6 @@ namespace AsliMotor.PrintDocuments
         string PrintJBAngsuran(Guid invId, string branchid);
         string PrintJBFidusia(Guid invId, string branchid);
         string PrintTandaTerima(Guid invId, string branchid);
+        string PrintKwitansiPelunasan(Guid rcvId, string branchid);
     }
 }

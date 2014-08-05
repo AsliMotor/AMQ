@@ -92,7 +92,7 @@ namespace AsliMotor.PrintDocuments
                             Perjanjian ini PIHAK KEDUA mengaku masih berhutang kepada PIHAK PERTAMA uang
                             sejumlah <b>Rp $sisahutang$</b> (<b>$sisahutangterbilang$</b>)
                             yang merupakan sisa Harga Pembelian kendaraan termaksud yang harus dibayar dalam waktu
-                            $lamaangsuran$ ($lamaangsuranterbilang$) kali angsuran/bulan (selanjutnya disebut 'Sisa Harga Pembelian').
+                            $lamaangsuran$ ($lamaangsuranterbilang$) bulan dengan $banyakcicilan$ kali angsuran (selanjutnya disebut 'Sisa Harga Pembelian').
                         </td>
                     </tr>
                     <tr>

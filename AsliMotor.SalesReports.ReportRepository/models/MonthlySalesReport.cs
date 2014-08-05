@@ -7,7 +7,7 @@ using BonaStoco.Inf.Data.ViewModel;
 namespace AsliMotor.SalesReports.ReportRepository
 {
     [NamedSqlQuery("findMonthlySalesReport", @"SELECT
-                    sum(price+totalkredit) AS Total,
+                    sum(price) AS Total,
                     date_trunc('month', invoicedate) AS SalesDate
                 FROM invoicesnapshot
                 where branchid = @branchid and 
