@@ -209,18 +209,6 @@ namespace AsliMotor.Invoices.Services
             UpdateCreditNoteCustomer(custId, creditNoteNew);
         }
 
-        public void ChangePrice(Guid id, decimal price, string username)
-        {
-            Invoice inv = Repository.Get(id);
-            InvoiceSnapshot invSnap = inv.CreateSnapshot();
-            FailIfInvoiceNotFound(invSnap);
-            FailIfCantChange(invSnap);
-            decimal debitnote = Repository.GetUangTandaJadi(id);
-            Receive uangMukaRcv = ReceiveRepository.GetByInvoiceIdAndPaymentType(invSnap.id, 1);
-            inv.ChangePrice(uangMukaRcv.Total, debitnote, price);
-            Repository.Update(inv);
-        }
-
         public void Pelunasan(Guid id, DateTime date, string username)
         {
             Invoice inv = Repository.Get(id);

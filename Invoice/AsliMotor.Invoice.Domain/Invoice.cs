@@ -111,17 +111,6 @@ namespace AsliMotor.Invoices.Domain
             return (StatusInvoice)_snapshot.Status;
         }
 
-        public void ChangePrice(decimal uangmuka, decimal uangtandajadi, decimal price)
-        {
-            if (_snapshot.Status == (int)StatusInvoice.CREDIT)
-            {
-                _snapshot.Price = price;
-                _snapshot.AngsuranBulanan = CalculateAngsuranBulanan(_snapshot.Price, uangmuka, _snapshot.LamaAngsuran, _snapshot.SukuBunga, uangtandajadi);
-                _snapshot.TotalKredit = CalculateTotalKredit(_snapshot.Price, uangmuka, _snapshot.LamaAngsuran, _snapshot.SukuBunga, StatusInvoice.CREDIT, uangtandajadi);
-                _snapshot.Outstanding = (_snapshot.Price + _snapshot.TotalKredit) - (uangmuka + uangtandajadi);
-            }
-        }
-
         public PelunasanCallback Pelunasan(DateTime date, long cicilanYangTelahDibayar)
         {
             DateTime dueDate = _snapshot.DueDate;

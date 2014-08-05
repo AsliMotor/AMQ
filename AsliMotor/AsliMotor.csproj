@@ -236,9 +236,6 @@
     <Content Include="Scripts\app\invoice\view\ChangeHargaJual.js" />
     <Content Include="Scripts\app\invoice\view\ChangeTerm.js" />
     <Content Include="Scripts\app\invoice\view\Pelunasan.js" />
-    <Content Include="Scripts\app\invoice\action\changePrice.js" />
-    <Content Include="Scripts\app\invoice\command\ChangePrice.js" />
-    <Content Include="Scripts\app\invoice\view\ChangePrice.js" />
     <Content Include="Scripts\app\outstandingreport\controller\SideBarController.js" />
     <Content Include="Scripts\app\outstandingreport\main.js" />
     <Content Include="Scripts\app\outstandingreport\model\DailyReports.js" />
