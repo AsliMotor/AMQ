@@ -290,7 +290,7 @@ namespace AsliMotor.Invoices.Services
             Invoice inv = Repository.Get(id);
             InvoiceSnapshot invSnap = inv.CreateSnapshot();
             FailIfInvoiceNotFound(invSnap);
-            FailIfCantChange(invSnap);
+            FailIfInvoiceIsNotCredit(invSnap);
             inv.ChangeDueDate(dueDate);
             Repository.Update(inv);
             PublishDueDateChanged(inv, username);
@@ -378,13 +378,14 @@ namespace AsliMotor.Invoices.Services
         private void CreateAngsuranReceive(Invoice inv,DateTime date, decimal denda, long totalangsuran, decimal creditNote)
         {
             InvoiceSnapshot invSnapshot = inv.CreateSnapshot();
+            var perbayaranBulanKe = (Convert.ToInt32(totalangsuran) + 1) * invSnapshot.TermValue;
             ReceiveService.CreateAngsuran(new CreateAngsuranReceive
             {
                 BranchId = invSnapshot.BranchId,
                 Denda = Math.Round(denda),
                 Total = Math.Round(invSnapshot.AngsuranBulanan + denda),
                 InvoiceId = invSnapshot.id,
-                BulanAngsuran = invSnapshot.DueDate.AddMonths(-1).ToString("MMyyyy"),
+                BulanAngsuran = invSnapshot.InvoiceDate.AddDays(perbayaranBulanKe).ToString("MMyyyy"),
                 PaymentDate = date,
                 BulanAngsuranNumber = totalangsuran + 1,
                 CreditNote = creditNote
@@ -452,6 +453,14 @@ namespace AsliMotor.Invoices.Services
             else if (invSnap.Status == (int)StatusInvoice.PAID)
             {
                 throw new ApplicationException("Transaksi ini telah lunas, sehingga tidak bisa mengubah data");
+            }
+        }
+
+        private void FailIfInvoiceIsNotCredit(InvoiceSnapshot invSnap)
+        {
+            if (invSnap.Status != (int)StatusInvoice.CREDIT)
+            {
+                throw new ApplicationException("Hanya jenis transaksi kredit yang bisa mengubah data");
             }
         }
 

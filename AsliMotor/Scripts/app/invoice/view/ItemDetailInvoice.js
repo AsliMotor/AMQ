@@ -20,6 +20,7 @@
                 html += "<table class='table table-striped'>" +
                     "<thead>" +
                         "<tr>" +
+                            "<th>No</th>" +
                             "<th>Angsuran</th>" +
                             "<th>No. Kwitansi</th>" +
                             "<th>Tanggal Pembayaran</th>" +
@@ -49,6 +50,7 @@
         render: function () {
             var transactionNo = this.model.get("ReceiveNo") || '-';
             var month = this.model.get("MonthNumber") ? this.model.get("MonthNumber") : '-';
+            var monthFormated = this.model.get("MonthFormated") ? this.model.get("MonthFormated") : '-';
             var receiveDate = this.model.get("ReceiveDate") ? this.model.get("ReceiveDate").toDate() : '-';
             var angsuranBulanan = this.model.get("AngsuranBulanan") ? this.model.get("AngsuranBulanan").toCurrency() : '-';
             var denda = this.model.get("Denda") ? this.model.get("Denda").toCurrency() : '-';
@@ -56,6 +58,7 @@
             var status = this.model.get("Status");
             if (status == 3) {
                 var html = "<td>" + month + "</td>" +
+                        "<td>" + monthFormated + "</td>" +
                         "<td>" + transactionNo + "</td>" +
                         "<td>" + receiveDate + "</td>" +
                         "<td class='right'>" + angsuranBulanan + "</td>" +
@@ -65,6 +68,7 @@
             }
             else if (status == 4) {
                 var html = "<td>Pelunasan</td>" +
+                        "<td>-</td>" +
                         "<td>" + transactionNo + "</td>" +
                         "<td>" + receiveDate + "</td>" +
                         "<td class='right'>-</td>" +

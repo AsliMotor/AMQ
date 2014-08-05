@@ -275,7 +275,7 @@ namespace AsliMotor.Controllers
             }
         }
 
-        [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES)]
+        [MyAuthorize(Roles = RoleName.OWNER)]
         [HttpPost]
         public JsonResult ChangeDueDate(Guid invoiceId, string dueDate)
         {
@@ -459,10 +459,12 @@ namespace AsliMotor.Controllers
 
         [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES)]
         [HttpGet]
-        public FileStreamResult PrintSuratPeringatan(Guid id)
+        public FileStreamResult PrintSuratPeringatan(Guid id, string date)
         {
+            string[] stringDate = date.Split('-');
+            DateTime dateOfIssue = new DateTime(int.Parse(stringDate[2]), int.Parse(stringDate[1]), int.Parse(stringDate[0]));
             CompanyProfile cp = new CompanyProfile(this.HttpContext);
-            string template = PrintDocument.PrintSuratPeringatan(id, cp.BranchId);
+            string template = PrintDocument.PrintSuratPeringatan(id, dateOfIssue, cp.BranchId);
             MemoryStream resultStream = ConvertToHtml(template, new RectangleF(0.5f, 0.1f, 7.3f, 12.1f));
             return new FileStreamResult(resultStream, "application/pdf");
         }

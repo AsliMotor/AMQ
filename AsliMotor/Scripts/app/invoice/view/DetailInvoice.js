@@ -17,6 +17,7 @@
     '../../../app/invoice/action/changecustomer',
     '../../../app/invoice/action/changeHargaJual',
     '../../../app/invoice/action/changeTerm',
+    '../../../app/invoice/action/printSuratPeringatan',
     '../../../libs/homejs/ButtonField',
     '../../../libs/Date',
     '../../../libs/Currency'

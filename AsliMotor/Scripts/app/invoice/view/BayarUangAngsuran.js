@@ -147,36 +147,47 @@
         },
         sendCommand: function (ev) {
             ev.preventDefault();
+            var self = this;
             var check = this.model.validateAll();
             if (check.isValid === false) {
                 utils.displayValidationErrors(check.errors);
                 return false;
             }
             else {
-                $('#mask , .modal-dialog').fadeOut(300, function () {
-                    $('#mask').remove();
-                });
-                var self = this;
-                var data = {
-                    InvoiceId: this.model.get("InvoiceId"),
-                    Date: this.model.get("Date"),
-                    TotalBulanYangDiBayar: this.model.get("TotalBulanYangDiBayar"),
-                    PayAmount: this.model.get("PayAmount")
-                };
-                $.ajax({
-                    type: "POST",
-                    url: "/invoice/bayarangsuran",
-                    data: data,
-                    dataType: "json",
-                    success: function (data) {
-                        if (data.error)
-                            HomeJS.components.ErrorAlert(data.message);
-                        else {
-                            self.model.trigger("success");
+                var postToServer = function (self) {
+                    $('#mask , .modal-dialog').fadeOut(300, function () {
+                        $('#mask').remove();
+                    });
+                    var data = {
+                        InvoiceId: self.model.get("InvoiceId"),
+                        Date: self.model.get("Date"),
+                        TotalBulanYangDiBayar: self.model.get("TotalBulanYangDiBayar"),
+                        PayAmount: self.model.get("PayAmount")
+                    };
+                    $.ajax({
+                        type: "POST",
+                        url: "/invoice/bayarangsuran",
+                        data: data,
+                        dataType: "json",
+                        success: function (data) {
+                            if (data.error)
+                                HomeJS.components.ErrorAlert(data.message);
+                            else {
+                                self.model.trigger("success");
+                            }
                         }
+                    });
+                };
+                var totalBulanYangDiBayar = this.model.get("TotalBulanYangDiBayar")
+                if (totalBulanYangDiBayar > 1) {
+                    if (confirm("Anda yakin ingin membayar total angsuran " + totalBulanYangDiBayar + " bulan?")) {
+                        postToServer(self);
                     }
-                });
+                } else {
+                    postToServer(self);
+                }
             }
+
         }
     });
 });

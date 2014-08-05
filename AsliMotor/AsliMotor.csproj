@@ -200,6 +200,9 @@
     <Content Include="Scripts\app\angsuranreport\view\TotalSummaryGrafikProduk.js" />
     <Content Include="Scripts\app\customer\controller\HistoryCreditNoteController.js" />
     <Content Include="Scripts\app\customer\model\HistoryReports.js" />
+    <Content Include="Scripts\app\invoice\action\printSuratPeringatan.js" />
+    <Content Include="Scripts\app\invoice\command\PrintSuratPeringatan.js" />
+    <Content Include="Scripts\app\invoice\view\PrintSuratPeringatan.js" />
     <Content Include="Scripts\app\purchasereport\controller\DailyController.js" />
     <Content Include="Scripts\app\purchasereport\controller\GrafikProductController.js" />
     <Content Include="Scripts\app\purchasereport\controller\MonthlyController.js" />

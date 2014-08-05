@@ -97,6 +97,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsliMotor.Invoices.AutoNumb
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsliMotor.Reporting", "AsliMotor.Reporting\AsliMotor.Reporting.csproj", "{E50E9EF5-4C8A-4D4C-9ED7-871F46A3F7C6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Documents", "_Documents", "{9D21AD66-94C9-4B34-8110-013E0E590C3A}"
+	ProjectSection(SolutionItems) = preProject
+		Documents\Backlog.xlsx = Documents\Backlog.xlsx
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

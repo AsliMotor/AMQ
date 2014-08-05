@@ -258,11 +258,12 @@ namespace AsliMotor.PrintDocuments
             template.SetAttribute("Deposit", depositTemplate);
             //template.SetAttribute("BulanAngsuran", bulanAngsuran.ToString("MMMM yyyy"));
             template.SetAttribute("BulanAngsuran", rcv.MonthNumber);
+            template.SetAttribute("BulanAngsuranFormated", rcv.MonthFormated);
             template.SetAttribute("rcv", rcv);
             return template.ToString();
         }
 
-        public string PrintSuratPeringatan(Guid invId, string branchid)
+        public string PrintSuratPeringatan(Guid invId, DateTime date, string branchid)
         {
             SuratPeringatanReport spReport = InvoiceReportRepository.GetSuratPeringatanReport(invId, branchid);
             Organization org = _orgRepo.GetOrganization(branchid);
@@ -297,9 +298,9 @@ namespace AsliMotor.PrintDocuments
             template.SetAttribute("organization", org);
             template.SetAttribute("logodata", Convert.ToBase64String(logoOrg.Image));
             template.SetAttribute("SuratPeringatanNo", spNo);
-            template.SetAttribute("SuratPeringatanDate", DateTime.Now.ToString("dd MMMM yyyy"));
+            template.SetAttribute("SuratPeringatanDate", date.ToString("dd MMMM yyyy"));
             template.SetAttribute("data", spReport);
-            template.SetAttribute("currentDate", DateTime.Now.ToString("dd MMMM yyyy"));
+            template.SetAttribute("currentDate", date.ToString("dd MMMM yyyy"));
             template.SetAttribute("SuratPerjanjianDate", spReport.SuratPerjanjianDate.ToString("dd MMMM yyyy"));
             template.SetAttribute("Items", items);
             template.SetAttribute("Warna", spReport.Warna == string.Empty ? "-": spReport.Warna);

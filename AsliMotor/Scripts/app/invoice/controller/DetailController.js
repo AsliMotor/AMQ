@@ -62,7 +62,7 @@
             var createDetailItemInvoice = function () {
                 detailItemInvoice = new am.invoice.view.ItemDetailInvoice({
                     collection: itemsModel,
-                    invoiceId : id
+                    invoiceId: id
                 });
             };
 
@@ -278,7 +278,8 @@
                             return false;
                         },
                         action: function () {
-                            window.open("/invoice/PrintSuratPeringatan/" + id, 'Surat Penarikan Kendaraan', null, null);
+                            am.invoice.action.printSuratPeringatan({ model: headerModel }).execute();
+                            //window.open("/invoice/PrintSuratPeringatan/" + id, 'Surat Penarikan Kendaraan', null, null);
                         }
                     }, {
                         title: "Tarik Kendaraan",
@@ -291,7 +292,7 @@
                             return false;
                         },
                         action: function () {
-                            if (confirm("Anda yakin kendaraan ini telah ditarik?")) {
+                            if (confirm("Anda yakin kendaraan ini ingin ditarik?")) {
                                 $.ajax({
                                     type: "POST",
                                     url: "/invoice/pull",

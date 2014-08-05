@@ -48,5 +48,14 @@ namespace AsliMotor.Invoices.ReportRepository
         public string NoRangka { get; set; }
         public string NoMesin { get; set; }
         public string NoPolisi { get; set; }
+        public string MonthFormated
+        {
+            get
+            {
+                int month = Convert.ToInt32(Month.Substring(0, 2));
+                int year = Convert.ToInt32(Month.Substring(2, 4));
+                return new DateTime(year, month, 1).ToString("MMMM yyyy");
+            }
+        }
     }
 }

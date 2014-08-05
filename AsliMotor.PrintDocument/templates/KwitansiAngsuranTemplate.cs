@@ -36,7 +36,7 @@ namespace AsliMotor.PrintDocuments
                             <td>Untuk pembayaran</td><td>:</td><td>
                                 <div>
                                     <table>
-                                        <tr><td>Cicilan Bulan Ke <b>$BulanAngsuran$</b></td></tr>
+                                        <tr><td>Cicilan Bulan Ke <b>$BulanAngsuran$ ($BulanAngsuranFormated$)</b></td></tr>
                                         <tr>
                                             <table>
                                                 <tr><td width='120px'>Merk / Type</td><td width='20px'>:</td><td>$rcv.Merk$ $rcv.Type$</td></tr>

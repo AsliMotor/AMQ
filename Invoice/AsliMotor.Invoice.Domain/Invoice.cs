@@ -17,6 +17,7 @@ namespace AsliMotor.Invoices.Domain
         {
             int banyakCicilan = (p.LamaAngsuran * 30) / p.TermValue;
             decimal totalKredit = CalculateTotalKredit(p.Price, p.UangMuka, p.LamaAngsuran, p.SukuBunga, p.Status, 0);
+            var angsuranBulanan = CalculateAngsuranBulanan(p.Price, p.UangMuka, p.LamaAngsuran, p.SukuBunga, 0, banyakCicilan);
             InvoiceSnapshot snapshot = new InvoiceSnapshot
             {
                 BranchId = p.BranchId,
@@ -35,9 +36,9 @@ namespace AsliMotor.Invoices.Domain
                 SukuBunga = p.SukuBunga,
                 DueDate = p.DueDate,
                 StartDueDate = p.DueDate,
-                AngsuranBulanan = CalculateAngsuranBulanan(p.Price, p.UangMuka, p.LamaAngsuran, p.SukuBunga, 0, banyakCicilan),
+                AngsuranBulanan = angsuranBulanan,
                 TotalKredit = totalKredit,
-                Outstanding = (p.Status == StatusInvoice.PAID) ? 0 : (p.Price + totalKredit) - (p.UangMuka + p.UangTandaJadi)
+                Outstanding = angsuranBulanan * banyakCicilan
             };
             _snapshot = snapshot;
         }
@@ -96,7 +97,7 @@ namespace AsliMotor.Invoices.Domain
             _snapshot.StartDueDate = p.DueDate;
             _snapshot.AngsuranBulanan = CalculateAngsuranBulanan(_snapshot.Price, p.UangMuka, p.LamaAngsuran, p.SukuBunga, p.UangTandaJadi, _snapshot.BanyakCicilan);
             _snapshot.TotalKredit = CalculateTotalKredit(_snapshot.Price, p.UangMuka, p.LamaAngsuran, p.SukuBunga, StatusInvoice.CREDIT, p.UangTandaJadi);
-            _snapshot.Outstanding = (_snapshot.Price + _snapshot.TotalKredit) - (p.UangMuka + p.UangTandaJadi);
+            _snapshot.Outstanding = CalculateOutstanding(_snapshot);
         }
 
         public StatusInvoice BayarAngsuran(long totalAngsuran)
@@ -150,7 +151,7 @@ namespace AsliMotor.Invoices.Domain
             {
                 _snapshot.AngsuranBulanan = CalculateAngsuranBulanan(_snapshot.Price, uangmuka, _snapshot.LamaAngsuran, _snapshot.SukuBunga, uangtandajadi, _snapshot.BanyakCicilan);
                 _snapshot.TotalKredit = CalculateTotalKredit(_snapshot.Price, uangmuka, _snapshot.LamaAngsuran, _snapshot.SukuBunga, StatusInvoice.CREDIT, uangtandajadi);
-                _snapshot.Outstanding = (_snapshot.Price + _snapshot.TotalKredit) - (uangmuka + uangtandajadi);
+                _snapshot.Outstanding = CalculateOutstanding(_snapshot);
             }
         }
 
@@ -161,8 +162,6 @@ namespace AsliMotor.Invoices.Domain
             _snapshot.TermValue = newtermvalue;
             _snapshot.BanyakCicilan = banyakCicilan;
             _snapshot.AngsuranBulanan = CalculateAngsuranBulanan(_snapshot.Price, uangmuka, _snapshot.LamaAngsuran, _snapshot.SukuBunga, uangtandajadi, banyakCicilan);
-            //_snapshot.TotalKredit = CalculateTotalKredit(_snapshot.Price, uangmuka, _snapshot.LamaAngsuran, _snapshot.SukuBunga, StatusInvoice.CREDIT,uangtandajadi);
-            //_snapshot.Outstanding = (_snapshot.Price + _snapshot.TotalKredit) - (uangmuka + uangtandajadi);
         }
 
         public void ChangeHargaJual(decimal hargajual, decimal uangmuka, decimal debitNote)
@@ -171,7 +170,7 @@ namespace AsliMotor.Invoices.Domain
             {
                 _snapshot.AngsuranBulanan = CalculateAngsuranBulanan(hargajual, uangmuka, _snapshot.LamaAngsuran, _snapshot.SukuBunga, debitNote, _snapshot.BanyakCicilan);
                 _snapshot.TotalKredit = CalculateTotalKredit(hargajual, uangmuka, _snapshot.LamaAngsuran, _snapshot.SukuBunga, StatusInvoice.CREDIT, debitNote);
-                _snapshot.Outstanding = (hargajual + _snapshot.TotalKredit) - (uangmuka + debitNote);
+                _snapshot.Outstanding = CalculateOutstanding(_snapshot);
                 _snapshot.Price = hargajual;
             }
         }
@@ -182,7 +181,7 @@ namespace AsliMotor.Invoices.Domain
             _snapshot.TotalKredit = (total / (1 + ((_snapshot.SukuBunga / 100) * (_snapshot.LamaAngsuran / 12))) - BiayaAdministration);
             _snapshot.Price = (_snapshot.TotalKredit) + uangmuka;
             _snapshot.AngsuranBulanan = angsuran;
-            _snapshot.Outstanding = (_snapshot.Price + _snapshot.TotalKredit) - (uangmuka);
+            _snapshot.Outstanding = CalculateOutstanding(_snapshot);
         }
 
         public void ChangeSukuBunga(decimal sukuBunga, decimal uangmuka, decimal uangtandajadi)
@@ -190,7 +189,7 @@ namespace AsliMotor.Invoices.Domain
             _snapshot.SukuBunga = sukuBunga;
             _snapshot.TotalKredit = CalculateTotalKredit(_snapshot.Price, uangmuka, _snapshot.LamaAngsuran, sukuBunga, StatusInvoice.CREDIT, uangtandajadi);
             _snapshot.AngsuranBulanan = CalculateAngsuranBulanan(_snapshot.Price, uangmuka, _snapshot.LamaAngsuran, sukuBunga, uangtandajadi, _snapshot.BanyakCicilan);
-            _snapshot.Outstanding = (_snapshot.Price + _snapshot.TotalKredit) - (uangmuka + uangtandajadi);
+            _snapshot.Outstanding = CalculateOutstanding(_snapshot);
         }
 
         public void ChangeLamaAngsuran(int lamaAngsuran, decimal uangmuka, decimal uangtandajadi)
@@ -199,7 +198,7 @@ namespace AsliMotor.Invoices.Domain
             _snapshot.BanyakCicilan = (lamaAngsuran * 30) / _snapshot.TermValue;
             _snapshot.TotalKredit = CalculateTotalKredit(_snapshot.Price, uangmuka, lamaAngsuran, _snapshot.SukuBunga, StatusInvoice.CREDIT, uangtandajadi);
             _snapshot.AngsuranBulanan = CalculateAngsuranBulanan(_snapshot.Price, uangmuka, lamaAngsuran, _snapshot.SukuBunga, uangtandajadi, _snapshot.BanyakCicilan);
-            _snapshot.Outstanding = (_snapshot.Price + _snapshot.TotalKredit) - (uangmuka + uangtandajadi);
+            _snapshot.Outstanding = CalculateOutstanding(_snapshot);
         }
 
         public void ChangeDueDate(DateTime duedate)
@@ -270,6 +269,11 @@ namespace AsliMotor.Invoices.Domain
                 decimal biayaAdministrasi = decimal.Parse(System.Configuration.ConfigurationManager.AppSettings["biayaadministrasi"]);
                 return biayaAdministrasi;
             }
+        }
+
+        private decimal CalculateOutstanding(InvoiceSnapshot snap)
+        {
+            return snap.AngsuranBulanan * snap.LamaAngsuran;
         }
     }
 }

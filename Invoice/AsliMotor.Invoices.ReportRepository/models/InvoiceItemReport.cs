@@ -32,5 +32,14 @@ namespace AsliMotor.Invoices.ReportRepository
         public decimal AngsuranBulanan { get; set; }
         public string ReceiveNo { get; set; }
         public int Status { get; set; }
+        public string MonthFormated
+        {
+            get
+            {
+                int month = Convert.ToInt32(Month.Substring(0, 2));
+                int year = Convert.ToInt32(Month.Substring(2, 4));
+                return new DateTime(year, month, 1).ToString("MMMM yyyy");
+            }
+        }
     }
 }
