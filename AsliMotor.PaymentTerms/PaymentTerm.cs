@@ -11,6 +11,7 @@ namespace AsliMotor.PaymentTerms
         public Guid id { get; set; }
         public string TermName { get; set; }
         public int Value { get; set; }
+        public TermType Type { get; set; }
         public string OwnerId { get; set; }
     }
 }

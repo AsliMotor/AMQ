@@ -64,7 +64,8 @@
                 AngsuranBulanan: model.get("AngsuranBulanan"),
                 DueDate: model.get("DueDate"),
                 Deposit: model.get("CustomerDeposit"),
-                TermValue: model.get("TermValue")
+                TermValue: model.get("TermValue"),
+                PayAmount: model.get("AngsuranBulanan")
             });
             return bayarUangAngsuranCommand;
         }

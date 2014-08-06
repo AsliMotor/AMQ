@@ -124,7 +124,8 @@ namespace AsliMotor.Invoices.Services
                 LamaAngsuran = cmd.LamaAngsuran,
                 DueDate = cmd.DueDate,
                 TermId = term.id,
-                TermValue = term.Value
+                TermValue = term.Value,
+                TermType = term.Type
             });
             Repository.Save(inv);
             ProductService.ChangeStatus(cmd.ProductId, cmd.BranchId, StatusProduct.TERJUAL, username);
@@ -150,7 +151,8 @@ namespace AsliMotor.Invoices.Services
                     UangMuka = cmd.UangMuka,
                     UangTandaJadi = bookingRcv.Total,
                     TermId = cmd.TermId,
-                    TermValue = term.Value
+                    TermValue = term.Value,
+                    TermType = term.Type
                 });
                 Repository.Update(inv);
                 CreateUangMukaReceive(inv, cmd.UangMuka);
@@ -187,7 +189,7 @@ namespace AsliMotor.Invoices.Services
                     creditNoteNew -= (denda + invSnap.AngsuranBulanan);
                     if ((payAmount + creditNoteOld) < 0)
                     {
-                        throw new ApplicationException("Uang Anda Tidak Cukup Untuk Membayar Angsuran ke-" + (totalAngsuran +1));
+                        throw new ApplicationException("Uang Anda Tidak Cukup Untuk Membayar Angsuran ke-" + (totalAngsuran + 1));
                     }
                     StatusInvoice status = inv.BayarAngsuran(totalAngsuran);
                     Repository.Update(inv);
@@ -363,7 +365,7 @@ namespace AsliMotor.Invoices.Services
             PaymentTermReport newTerm = PaymentTermRepository.GetById(termId);
             decimal debitnote = Repository.GetUangTandaJadi(id);
             decimal uangmuka = ReceiveRepository.GetByInvoiceIdAndPaymentType(invSnap.id, 1).Total;
-            inv.ChangeTerm(uangmuka, debitnote, newTerm.id, newTerm.Value);
+            inv.ChangeTerm(uangmuka, debitnote, newTerm.id, newTerm.Value, newTerm.Type);
             Repository.Update(inv);
             PublishTermChanged(inv, username);
         }
@@ -375,17 +377,25 @@ namespace AsliMotor.Invoices.Services
 
         #region create receive
 
-        private void CreateAngsuranReceive(Invoice inv,DateTime date, decimal denda, long totalangsuran, decimal creditNote)
+        private void CreateAngsuranReceive(Invoice inv, DateTime date, decimal denda, long totalangsuran, decimal creditNote)
         {
             InvoiceSnapshot invSnapshot = inv.CreateSnapshot();
             var perbayaranBulanKe = (Convert.ToInt32(totalangsuran) + 1) * invSnapshot.TermValue;
+            string bulanAngsuran = string.Empty;
+            if (invSnapshot.TermType.Equals((int)TermType.Day))
+                bulanAngsuran = invSnapshot.InvoiceDate.AddDays(perbayaranBulanKe).ToString("MMyyyy");
+            else if (invSnapshot.TermType.Equals((int)TermType.Month))
+                bulanAngsuran = invSnapshot.InvoiceDate.AddMonths(perbayaranBulanKe).ToString("MMyyyy");
+            else
+                throw new Exception("Type termin pembayaran tidak terdefinisi");
+
             ReceiveService.CreateAngsuran(new CreateAngsuranReceive
             {
                 BranchId = invSnapshot.BranchId,
                 Denda = Math.Round(denda),
                 Total = Math.Round(invSnapshot.AngsuranBulanan + denda),
                 InvoiceId = invSnapshot.id,
-                BulanAngsuran = invSnapshot.InvoiceDate.AddDays(perbayaranBulanKe).ToString("MMyyyy"),
+                BulanAngsuran = bulanAngsuran,
                 PaymentDate = date,
                 BulanAngsuranNumber = totalangsuran + 1,
                 CreditNote = creditNote

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AsliMotor.Invoices.Snapshots;
+using AsliMotor.PaymentTerms;
 
 namespace AsliMotor.Invoices.Domain
 {
@@ -21,6 +22,7 @@ namespace AsliMotor.Invoices.Domain
         public decimal SukuBunga { get; set; }
         public DateTime DueDate { get; set; }
         public Guid TermId { get; set; }
+        public TermType TermType { get; set; }
         public int TermValue { get; set; }
         public string InvoiceNo { get; set; }
     }

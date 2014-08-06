@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AsliMotor.Invoices.Snapshots;
+using AsliMotor.PaymentTerms;
 
 namespace AsliMotor.Invoices.Domain
 {
@@ -15,9 +16,23 @@ namespace AsliMotor.Invoices.Domain
         }
         public Invoice(CreateParameter p)
         {
-            int banyakCicilan = (p.LamaAngsuran * 30) / p.TermValue;
+            int banyakCicilan = CalculateBanyakCicilan(p.LamaAngsuran, p.TermValue, p.TermType);
             decimal totalKredit = CalculateTotalKredit(p.Price, p.UangMuka, p.LamaAngsuran, p.SukuBunga, p.Status, 0);
             var angsuranBulanan = CalculateAngsuranBulanan(p.Price, p.UangMuka, p.LamaAngsuran, p.SukuBunga, 0, banyakCicilan);
+
+            var dueDate = new DateTime();
+            if (p.DueDate.Date == p.InvoiceDate.Date)
+            {
+                if (p.TermType.Equals(TermType.Day))
+                    dueDate = p.DueDate.AddDays(p.TermValue);
+                else if (p.TermType.Equals(TermType.Month))
+                    dueDate = p.DueDate.AddMonths(p.TermValue);
+                else
+                    throw new Exception("Type termin pembayaran tidak terdefinisi");
+            }
+            else
+                dueDate = p.DueDate;
+
             InvoiceSnapshot snapshot = new InvoiceSnapshot
             {
                 BranchId = p.BranchId,
@@ -30,11 +45,12 @@ namespace AsliMotor.Invoices.Domain
                 TransactionDate = DateTime.Now,
                 Status = (int)p.Status,
                 TermId = p.TermId,
+                TermType = (int)p.TermType,
                 TermValue = p.TermValue,
                 LamaAngsuran = p.LamaAngsuran,
                 BanyakCicilan = banyakCicilan,
                 SukuBunga = p.SukuBunga,
-                DueDate = p.DueDate,
+                DueDate = dueDate,
                 StartDueDate = p.DueDate,
                 AngsuranBulanan = angsuranBulanan,
                 TotalKredit = totalKredit,
@@ -42,6 +58,7 @@ namespace AsliMotor.Invoices.Domain
             };
             _snapshot = snapshot;
         }
+
         public Invoice(BookingParameter p)
         {
             InvoiceSnapshot snapshot = new InvoiceSnapshot
@@ -86,9 +103,10 @@ namespace AsliMotor.Invoices.Domain
         public void UpdateToCredit(UpdateToCreditParameter p)
         {
             _snapshot.Status = (int)StatusInvoice.CREDIT;
-            int banyakCicilan = (p.LamaAngsuran * 30) / p.TermValue;
+            int banyakCicilan = CalculateBanyakCicilan(p.LamaAngsuran, p.TermValue, p.TermType);
             decimal totalKredit = CalculateTotalKredit(_snapshot.Price, p.UangMuka, p.LamaAngsuran, p.SukuBunga, StatusInvoice.CREDIT, 0);
             _snapshot.TermId = p.TermId;
+            _snapshot.TermType = (int)p.TermType;
             _snapshot.TermValue = p.TermValue;
             _snapshot.LamaAngsuran = p.LamaAngsuran;
             _snapshot.BanyakCicilan = banyakCicilan;
@@ -102,7 +120,7 @@ namespace AsliMotor.Invoices.Domain
 
         public StatusInvoice BayarAngsuran(long totalAngsuran)
         {
-            _snapshot.DueDate = _snapshot.DueDate.AddDays(_snapshot.TermValue);
+            CalculateDueDate();
             _snapshot.Outstanding -= _snapshot.AngsuranBulanan;
             if (totalAngsuran == _snapshot.BanyakCicilan - 1)
             {
@@ -155,13 +173,23 @@ namespace AsliMotor.Invoices.Domain
             }
         }
 
-        public void ChangeTerm(decimal uangmuka, decimal uangtandajadi, Guid termId, int newtermvalue)
+        public void ChangeTerm(decimal uangmuka, decimal uangtandajadi, Guid termId, int newtermvalue, TermType termType)
         {
-            int banyakCicilan = (_snapshot.LamaAngsuran * 30) / newtermvalue;
+            int banyakCicilan = CalculateBanyakCicilan(_snapshot.LamaAngsuran, newtermvalue, termType);
+
+            if (_snapshot.TermType.Equals((int)TermType.Day))
+                _snapshot.DueDate = _snapshot.DueDate.AddDays(-_snapshot.TermValue);
+            else if (_snapshot.TermType.Equals((int)TermType.Month))
+                _snapshot.DueDate = _snapshot.DueDate.AddMonths(-_snapshot.TermValue);
+            else
+                throw new Exception("Type termin pembayaran tidak terdefinisi");
+
             _snapshot.TermId = termId;
+            _snapshot.TermType = (int)termType;
             _snapshot.TermValue = newtermvalue;
             _snapshot.BanyakCicilan = banyakCicilan;
             _snapshot.AngsuranBulanan = CalculateAngsuranBulanan(_snapshot.Price, uangmuka, _snapshot.LamaAngsuran, _snapshot.SukuBunga, uangtandajadi, banyakCicilan);
+            CalculateDueDate();
         }
 
         public void ChangeHargaJual(decimal hargajual, decimal uangmuka, decimal debitNote)
@@ -195,7 +223,7 @@ namespace AsliMotor.Invoices.Domain
         public void ChangeLamaAngsuran(int lamaAngsuran, decimal uangmuka, decimal uangtandajadi)
         {
             _snapshot.LamaAngsuran = lamaAngsuran;
-            _snapshot.BanyakCicilan = (lamaAngsuran * 30) / _snapshot.TermValue;
+            _snapshot.BanyakCicilan = CalculateBanyakCicilan(lamaAngsuran, _snapshot.TermValue, (TermType) _snapshot.TermType);
             _snapshot.TotalKredit = CalculateTotalKredit(_snapshot.Price, uangmuka, lamaAngsuran, _snapshot.SukuBunga, StatusInvoice.CREDIT, uangtandajadi);
             _snapshot.AngsuranBulanan = CalculateAngsuranBulanan(_snapshot.Price, uangmuka, lamaAngsuran, _snapshot.SukuBunga, uangtandajadi, _snapshot.BanyakCicilan);
             _snapshot.Outstanding = CalculateOutstanding(_snapshot);
@@ -274,6 +302,29 @@ namespace AsliMotor.Invoices.Domain
         private decimal CalculateOutstanding(InvoiceSnapshot snap)
         {
             return snap.AngsuranBulanan * snap.LamaAngsuran;
+        }
+
+        private static int CalculateBanyakCicilan(int lamaAngsuran, int termValue, TermType termType)
+        {
+
+            int banyakCicilan = 0;
+            if (termType.Equals(TermType.Day))
+                banyakCicilan = (lamaAngsuran * 30) / termValue;
+            else if (termType.Equals(TermType.Month))
+                banyakCicilan = lamaAngsuran / termValue;
+            else
+                throw new Exception("Type termin pembayaran tidak terdefinisi");
+            return banyakCicilan;
+        }
+
+        private void CalculateDueDate()
+        {
+            if (_snapshot.TermType.Equals((int)TermType.Day))
+                _snapshot.DueDate = _snapshot.DueDate.AddDays(_snapshot.TermValue);
+            else if (_snapshot.TermType.Equals((int)TermType.Month))
+                _snapshot.DueDate = _snapshot.DueDate.AddMonths(_snapshot.TermValue);
+            else
+                throw new Exception("Type termin pembayaran tidak terdefinisi");
         }
     }
 }

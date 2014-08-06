@@ -91,6 +91,7 @@
 
                     var totalYangHarusDiBayar = (angsuranBulanan * parseInt(m.get("TotalBulanYangDiBayar"))) + totalDenda;
                     this.model.set("TotalYangHarusDiBayar", totalYangHarusDiBayar);
+                    this.model.set("PayAmount", totalYangHarusDiBayar);
                     return totalYangHarusDiBayar;
                 }
             });

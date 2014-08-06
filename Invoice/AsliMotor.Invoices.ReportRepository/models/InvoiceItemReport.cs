@@ -36,6 +36,8 @@ namespace AsliMotor.Invoices.ReportRepository
         {
             get
             {
+                if (Month.Equals(string.Empty))
+                    return string.Empty;
                 int month = Convert.ToInt32(Month.Substring(0, 2));
                 int year = Convert.ToInt32(Month.Substring(2, 4));
                 return new DateTime(year, month, 1).ToString("MMMM yyyy");

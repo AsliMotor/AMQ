@@ -53,6 +53,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\AsliMotor.PaymentTerms\AsliMotor.PaymentTerms.csproj">
+      <Project>{D8B27C4E-7041-4DA5-ADC9-A3588055D3DF}</Project>
+      <Name>AsliMotor.PaymentTerms</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AsliMotor.Invoice.Models\AsliMotor.Invoices.Snapshots.csproj">
       <Project>{D3A51AE0-959D-4192-9A57-260AF1BEBC4E}</Project>
       <Name>AsliMotor.Invoices.Snapshots</Name>

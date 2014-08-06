@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using BonaStoco.Inf.Data.ViewModel;
+using AsliMotor.PaymentTerms;
 
 namespace AsliMotor.Invoices.Snapshots
 {
@@ -18,6 +19,7 @@ namespace AsliMotor.Invoices.Snapshots
         public Guid CustomerId { get; set; }
         public Guid ProductId { get; set; }
         public Guid TermId { get; set; }
+        public int TermType { get; set; }
         public int TermValue { get; set; }
         public string BranchId { get; set; }
         public DateTime InvoiceDate { get; set; }

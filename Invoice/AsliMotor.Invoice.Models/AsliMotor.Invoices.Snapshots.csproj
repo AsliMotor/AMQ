@@ -49,6 +49,12 @@
     <Compile Include="StatusInvoice.cs" />
     <Compile Include="UangTandaJadi.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\AsliMotor.PaymentTerms\AsliMotor.PaymentTerms.csproj">
+      <Project>{D8B27C4E-7041-4DA5-ADC9-A3588055D3DF}</Project>
+      <Name>AsliMotor.PaymentTerms</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
