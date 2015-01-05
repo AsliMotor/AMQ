@@ -9,7 +9,7 @@ namespace AsliMotor.PrintDocuments
     {
         public const string DEFAULT = @"
             <style>
-                .rowheight{padding-top:8px;}
+                .rowheight{padding-top:5px;}
                 .indent{padding-left:70px;}
                 table td{vertical-align:top;}
             </style>
@@ -25,8 +25,8 @@ namespace AsliMotor.PrintDocuments
                 </div>
             </div>
             <hr/>
-            <div style='padding-top:30px'>
-                <div style='padding-bottom:20px;text-align:center;font-weight:bold;font-size:18px;'>KWITANSI ANGSURAN BULANAN</div>
+            <div style='padding-top:5px'>
+                <div style='padding-bottom:10px;text-align:center;font-weight:bold;font-size:18px;'>KWITANSI ANGSURAN BULANAN</div>
                 <div class='rowheight indent'>
                     <table>
                         <tr><td width='150px'>Nomor Transaksi</td><td width='20px'>:</td><td><b>$rcv.ReceiveNo$</b></td></tr>
@@ -53,7 +53,7 @@ namespace AsliMotor.PrintDocuments
                                         $Deposit$
                                     </table>
                                 </div>
-                                <table style='margin-top:30px;' width='100%'>
+                                <table style='margin-top:0px;' width='100%'>
                                     <tr>
                                         <td style='padding-left:10px;'>
                                             <div style='margin-top:6pt; padding:6pt; border:2pt solid;background:#CACACA; font-size:12px; width:200px;'>Rp
@@ -62,12 +62,12 @@ namespace AsliMotor.PrintDocuments
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan='3'  align='right' style='padding-top:100px;padding-right:50px;'>
+                                        <td colspan='3'  align='right' style='padding-top:10px;padding-right:50px;'>
                                             $organization.City$, $currentDate$
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan='3' align='right' style='padding-top:30px;padding-right:80px;'>
+                                        <td colspan='3' align='right' style='padding-top:40px;padding-right:80px;'>
                                             .......................................
                                         </td>
                                     </tr>
@@ -77,7 +77,7 @@ namespace AsliMotor.PrintDocuments
                     </table>
                 </div>
             </div>
-            <div style='display:inline-block;width:100%;padding-top:0.5cm; font-family:Tahoma;'>
+            <div style='display:inline-block;width:100%;padding-top:1cm; font-family:Tahoma;'>
                 <div style='float:left'>
 	                <div width='100%' style='font-weight:bold; font-size:18px'>$organization.OrganizationName$</div>
 	                <div style='width:100%; font-size:14px'>$organization.OrganizationAddress$</div>
@@ -89,8 +89,8 @@ namespace AsliMotor.PrintDocuments
                 </div>
             </div>
             <hr/>
-            <div style='padding-top:30px'>
-                <div style='padding-bottom:20px;text-align:center;font-weight:bold;font-size:18px;'>KWITANSI ANGSURAN BULANAN</div>
+            <div style='padding-top:5px'>
+                <div style='padding-bottom:10px;text-align:center;font-weight:bold;font-size:18px;'>KWITANSI ANGSURAN BULANAN</div>
                 <div class='rowheight indent'>
                     <table>
                         <tr><td width='150px'>Nomor Transaksi</td><td width='20px'>:</td><td><b>$rcv.ReceiveNo$</b></td></tr>
@@ -117,7 +117,7 @@ namespace AsliMotor.PrintDocuments
                                         $Deposit$
                                     </table>
                                 </div>
-                                <table style='margin-top:30px;' width='100%'>
+                                <table style='margin-top:0px;' width='100%'>
                                     <tr>
                                         <td style='padding-left:10px;'>
                                             <div style='margin-top:6pt; padding:6pt; border:2pt solid;background:#CACACA; font-size:12px; width:200px;'>Rp
@@ -126,12 +126,12 @@ namespace AsliMotor.PrintDocuments
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan='3'  align='right' style='padding-top:100px;padding-right:50px;'>
+                                        <td colspan='3'  align='right' style='padding-top:10px;padding-right:50px;'>
                                             $organization.City$, $currentDate$
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan='3' align='right' style='padding-top:30px;padding-right:80px;'>
+                                        <td colspan='3' align='right' style='padding-top:40px;padding-right:80px;'>
                                             .......................................
                                         </td>
                                     </tr>
