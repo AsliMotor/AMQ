@@ -1,6 +1,25 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SI", "SI", "{705430C7-90BA-4E72-9E21-9E1E81DD862C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Product", "Product", "{C3355B1F-2B6A-4A28-AD96-3D1DA3251792}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Invoice", "Invoice", "{B8225A7D-A303-4DC6-8834-2A5EE72A6252}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Receive", "Receive", "{96046949-FAE3-4338-995A-8F523EB4AD9C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SuratPerjanjian", "SuratPerjanjian", "{32B4906F-E9EC-45D6-828F-6FA3C046893D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SuratPeringatan", "SuratPeringatan", "{7401401F-7B85-4F86-96AB-65059DD264E4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ImportDataInvoice", "ImportDataInvoice", "{744B9EE0-22F5-4388-82C0-E82375898787}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Documents", "_Documents", "{9D21AD66-94C9-4B34-8110-013E0E590C3A}"
+	ProjectSection(SolutionItems) = preProject
+		Documents\Backlog.xlsx = Documents\Backlog.xlsx
+	EndProjectSection
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsliMotor", "AsliMotor\AsliMotor.csproj", "{F8DF2D5B-7D6B-4DEB-A3CF-96B078DE8D71}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsliMotor.Security", "AsliMotor.Security\AsliMotor.Security.csproj", "{3BAA56DC-9289-4B77-A727-5FC551095F1B}"
@@ -8,8 +27,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsliMotor.Model", "AsliMotor.Model\AsliMotor.Model.csproj", "{2D694659-93ED-427C-AA70-4392CB29232E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsliMotor.Fixture", "AsliMotor.SecurityFixture\AsliMotor.Fixture.csproj", "{11D91412-9602-4069-8D66-1640D7DA538A}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SI", "SI", "{705430C7-90BA-4E72-9E21-9E1E81DD862C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsliMotor.SI.Fixture", "SI\AsliMotor.SI.Fixture\AsliMotor.SI.Fixture.csproj", "{E5C57FCC-7362-41CC-B57C-63F8FB51B16B}"
 EndProject
@@ -23,8 +40,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsliMotor.Organizations", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsliMotor.PrintDocuments", "AsliMotor.PrintDocument\AsliMotor.PrintDocuments.csproj", "{8AB23D46-1714-4995-B483-5503B77685A5}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Product", "Product", "{C3355B1F-2B6A-4A28-AD96-3D1DA3251792}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsliMotor.Products", "Product\AsliMotor.Product\AsliMotor.Products.csproj", "{30FC3ABA-ADE1-42F3-AF27-618978F7A555}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsliMotor.Products.Events", "Product\AsliMotor.Product.Events\AsliMotor.Products.Events.csproj", "{F9DDB26F-697C-437E-BF84-51F9F00D7AAB}"
@@ -34,8 +49,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsliMotor.SI.Events", "SI\AsliMotor.SI.Events\AsliMotor.SI.Events.csproj", "{04033D26-5E5D-412C-9328-AFE8141188C6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsliMotor.Customers", "AsliMotor.Customers\AsliMotor.Customers.csproj", "{16F8407F-6EB0-4161-8EDA-23BDB946E04A}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Invoice", "Invoice", "{B8225A7D-A303-4DC6-8834-2A5EE72A6252}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsliMotor.Invoices.Snapshots", "Invoice\AsliMotor.Invoice.Models\AsliMotor.Invoices.Snapshots.csproj", "{D3A51AE0-959D-4192-9A57-260AF1BEBC4E}"
 EndProject
@@ -48,8 +61,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsliMotor.Invoices.Services", "Invoice\AsliMotor.Invoice.Services\AsliMotor.Invoices.Services.csproj", "{D3F294F9-A4E6-46BC-A826-DB8424B73B5F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsliMotor.Invoices.Repository", "Invoice\AsliMotor.Invoices.Repository\AsliMotor.Invoices.Repository.csproj", "{5072D364-CE20-4C9F-8DFF-10DE6471C11E}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Receive", "Receive", "{96046949-FAE3-4338-995A-8F523EB4AD9C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsliMotor.Receives.AutoNumberGenerator", "Receive\AsliMotor.Receive.AutoNumberGenerator\AsliMotor.Receives.AutoNumberGenerator.csproj", "{4F0A2D4E-2D73-4B0A-A8A3-3BA729EA5885}"
 EndProject
@@ -65,8 +76,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsliMotor.Receives.Reposito
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsliMotor.Invoices.ReportRepository", "Invoice\AsliMotor.Invoices.ReportRepository\AsliMotor.Invoices.ReportRepository.csproj", "{0059972F-360C-463C-94D3-CDBD61A37DBC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SuratPerjanjian", "SuratPerjanjian", "{32B4906F-E9EC-45D6-828F-6FA3C046893D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsliMotor.Perjanjian.AutoNumberGenerator", "SuratPerjanjian\AsliMotor.Perjanjian.AutoNumberGenerator\AsliMotor.Perjanjian.AutoNumberGenerator.csproj", "{DD117B45-95F8-4C50-A1C5-8CBE3BDEF689}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsliMotor.Perjanjian.Services", "SuratPerjanjian\AsliMotor.Perjanjian.Services\AsliMotor.Perjanjian.Services.csproj", "{0F34CCD5-7CEC-4FA2-AB3E-CEE4D7C17942}"
@@ -77,11 +86,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsliMotor.Invoices.Events",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsliMotor.SalesReports.ReportRepository", "AsliMotor.SalesReports.ReportRepository\AsliMotor.SalesReports.ReportRepository.csproj", "{8970BA2A-85D9-4E9A-9893-930C12CD64ED}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SuratPeringatan", "SuratPeringatan", "{7401401F-7B85-4F86-96AB-65059DD264E4}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsliMotor.SuratPeringatan.AutoNumberGenerator", "AsliMotor.SuratPeringatan.AutoNumberGenerator\AsliMotor.SuratPeringatan.AutoNumberGenerator.csproj", "{0102257A-255E-496D-B037-4E153BA336AE}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ImportDataInvoice", "ImportDataInvoice", "{744B9EE0-22F5-4388-82C0-E82375898787}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsliMotor.ImportDataInvoice", "ImportDataInvoice\AsliMotor.ImportDataInvoice\AsliMotor.ImportDataInvoice.csproj", "{6C32EFFD-95DE-42A3-9A23-4A43EF57E3BD}"
 EndProject
@@ -96,11 +101,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsliMotor.Invoices.AutoNumberGenerator", "Invoice\AsliMotor.Invoices.AutoNumberGenerator\AsliMotor.Invoices.AutoNumberGenerator.csproj", "{E883A8D7-E5A1-4C4B-8077-7768D4D4D49D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsliMotor.Reporting", "AsliMotor.Reporting\AsliMotor.Reporting.csproj", "{E50E9EF5-4C8A-4D4C-9ED7-871F46A3F7C6}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Documents", "_Documents", "{9D21AD66-94C9-4B34-8110-013E0E590C3A}"
-	ProjectSection(SolutionItems) = preProject
-		Documents\Backlog.xlsx = Documents\Backlog.xlsx
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

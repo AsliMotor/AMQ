@@ -19,7 +19,9 @@
             BanyakCicilan: 0,
             TermValue: 0,
             BanyakCicilanTerbayar: 0,
-            DueDate: ""
+            DueDate: "",
+            Price : 0,
+            UangMuka : 0
         }
     });
 
@@ -34,7 +36,9 @@
                 BanyakCicilan: model.get("BanyakCicilan"),
                 Outstanding: model.get("Outstanding"),
                 TermValue: model.get("TermValue"),
-                BanyakCicilanTerbayar: model.get("BanyakCicilanTerbayar")
+                BanyakCicilanTerbayar: model.get("BanyakCicilanTerbayar"),
+                Price : model.get("Price"),
+                UangMuka : model.get("UangMuka")
             });
             return pelunasanCommand;
         }

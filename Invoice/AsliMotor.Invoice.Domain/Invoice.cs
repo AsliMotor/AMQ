@@ -130,7 +130,7 @@ namespace AsliMotor.Invoices.Domain
             return (StatusInvoice)_snapshot.Status;
         }
 
-        public PelunasanCallback Pelunasan(DateTime date, long cicilanYangTelahDibayar)
+        public PelunasanCallback Pelunasan(DateTime date, long cicilanYangTelahDibayar, decimal uangmuka)
         {
             DateTime dueDate = _snapshot.DueDate;
             decimal totalDenda = 0;
@@ -150,7 +150,11 @@ namespace AsliMotor.Invoices.Domain
                 }
             }
             decimal sisaTagihanPlusDenda = _snapshot.Outstanding + totalDenda;
-            decimal diskon = (_snapshot.Outstanding * decimal.Parse(System.Configuration.ConfigurationManager.AppSettings["discount"]));
+            decimal discountPercent = decimal.Parse(System.Configuration.ConfigurationManager.AppSettings["discount"]);
+            var discountPerBulan = ((_snapshot.Price - uangmuka) + BiayaAdministration) * discountPercent;
+            var banyakCicilanYangAkanDiDiscount = (_snapshot.BanyakCicilan - cicilanYangTelahDibayar) - 1;
+
+            decimal diskon = discountPerBulan * banyakCicilanYangAkanDiDiscount;
             decimal totalYangHarusDibayar = sisaTagihanPlusDenda - diskon;
 
             _snapshot.Discount = diskon;

@@ -136,7 +136,13 @@
             var angsuranBulanan = this.model.get("AngsuranBulanan") || 0;
             var sisaTagihan = this.model.get("Outstanding") || 0;
             var sisaTagihanPlusDenda = sisaTagihan + totalDenda;
-            var diskon = (sisaTagihan * 0.01);
+
+            var hargaJual = this.model.get("Price") || 0;
+            var uangMuka = this.model.get("UangMuka") || 0;
+            var diskonPerBulan = ((hargaJual - uangMuka) + 200000) * 0.01;
+            var banyakCicilanYangAkanDiDiscount = (banyakCicilan - cicilanYangTelahDiBayar) - 1;
+
+            var diskon = diskonPerBulan * banyakCicilanYangAkanDiDiscount;
             var total = sisaTagihanPlusDenda - diskon;
             var html = "";
             html += "<div><div class='first'>Banyak Cicilan</div> <div class='second'>:</div><div class='third'> " + banyakCicilan + " kali</div></div>";

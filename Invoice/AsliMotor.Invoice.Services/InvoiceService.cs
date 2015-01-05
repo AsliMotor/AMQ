@@ -217,7 +217,8 @@ namespace AsliMotor.Invoices.Services
             InvoiceSnapshot invSnap = inv.CreateSnapshot();
             FailIfInvoiceNotFound(invSnap);
             long cicilanYangTelahDibayar = Repository.CountAngsuranBulanan(invSnap.id);
-            PelunasanCallback callback = inv.Pelunasan(date, cicilanYangTelahDibayar);
+            decimal uangmuka = ReceiveRepository.GetByInvoiceIdAndPaymentType(invSnap.id, 1).Total;
+            PelunasanCallback callback = inv.Pelunasan(date, cicilanYangTelahDibayar, uangmuka);
             Repository.Update(inv);
             CreatePelunasanReceive(invSnap, callback.TotalYangHarusDiBayar, callback.Denda, (cicilanYangTelahDibayar + 1));
         }
