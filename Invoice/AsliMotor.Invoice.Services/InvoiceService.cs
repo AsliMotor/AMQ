@@ -221,6 +221,8 @@ namespace AsliMotor.Invoices.Services
             PelunasanCallback callback = inv.Pelunasan(date, cicilanYangTelahDibayar, uangmuka);
             Repository.Update(inv);
             CreatePelunasanReceive(invSnap, callback.TotalYangHarusDiBayar, callback.Denda, (cicilanYangTelahDibayar + 1));
+            if (inv.CreateSnapshot().Status == (int)StatusInvoice.PAID)
+                ProductService.ChangeStatus(invSnap.ProductId, invSnap.BranchId, StatusProduct.TERJUAL_LUNAS, username);
         }
 
         public void ChangeUangMuka(Guid id, decimal uangmuka, string username)
