@@ -10,5 +10,6 @@ namespace AsliMotor.SI.Services
     {
         void Create(SupplierInvoice si, string username);
         void Update(SupplierInvoice si, string username);
+        void ForceUpdate(SupplierInvoice si, string p);
     }
 }

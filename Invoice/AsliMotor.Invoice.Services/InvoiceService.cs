@@ -373,6 +373,16 @@ namespace AsliMotor.Invoices.Services
             PublishTermChanged(inv, username);
         }
 
+        public void Remove(Guid id, string username)
+        {
+            Invoice inv = Repository.Get(id);
+            InvoiceSnapshot invSnap = inv.CreateSnapshot();
+            FailIfInvoiceNotFound(invSnap);
+            FailIfCantChange(invSnap);
+            Repository.Remove(inv);
+            ProductService.ChangeStatus(invSnap.ProductId, invSnap.BranchId, StatusProduct.AKTIF, username);
+        }
+
         private void UpdateCreditNoteCustomer(Guid custId, decimal creditNote)
         {
             CustomerService.UpdateCreditNote(custId, creditNote);

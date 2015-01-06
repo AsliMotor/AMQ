@@ -10,6 +10,7 @@ namespace AsliMotor.Products
     {
         void Create(Product product, string username);
         void Update(Product product, string username);
+        void ForceUpdate(Product product, string username);
         void Delete(Product product);
         void ChangeStatus(Guid id, string branchid, string status, string username);
     }

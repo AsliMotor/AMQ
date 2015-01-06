@@ -27,5 +27,6 @@ namespace AsliMotor.Invoices.Services
         void ChangeHargaJual(Guid id, decimal hargaJual, string username);
         void ChangeTerm(Guid id, Guid termId, string username);
         void Pelunasan(Guid id, DateTime date, string username);
+        void Remove(Guid id, string username);
     }
 }

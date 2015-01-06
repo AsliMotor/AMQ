@@ -40,9 +40,20 @@ namespace AsliMotor.Products
                 if (ProductRepository.GetByNoPolisi(p.NoPolisi, p.BranchId) != null)
                     throw new Exception(string.Format("Kendaraan dengan no polisi {0} telah ada.", p.NoPolisi));
             }
-            if(product.Status == StatusProduct.TERJUAL)
-                throw new ApplicationException(string.Format("Kendaraan dengan no polisi {0} telah terjual.", p.NoPolisi));
-            
+            if (product.Status == StatusProduct.TERJUAL)
+                throw new ApplicationException(string.Format("Kendaraan dengan no polisi {0} telah terjual. (silahkan tanya user dengan hak akses Owner)", p.NoPolisi));
+            ForceUpdate(p, username);
+        }
+
+        public void ForceUpdate(Product p, string username)
+        {
+            Product product = ProductRepository.GetProductById(p.id, p.BranchId);
+            if (product.NoPolisi != p.NoPolisi)
+            {
+                if (ProductRepository.GetByNoPolisi(p.NoPolisi, p.BranchId) != null)
+                    throw new Exception(string.Format("Kendaraan dengan no polisi {0} telah ada.", p.NoPolisi));
+            }
+
             product.HargaBeli = p.HargaBeli;
             product.Merk = p.Merk;
             product.NoBpkb = p.NoBpkb;

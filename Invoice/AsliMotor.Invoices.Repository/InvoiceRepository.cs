@@ -42,5 +42,10 @@ namespace AsliMotor.Invoices.Repository
             CountAngsuranBulanan count = QueryObjectMapper.Map<CountAngsuranBulanan>("count", new string[] { "invid" }, new object[] { id }).FirstOrDefault();
             return count.Total;
         }
+
+        public void Remove(Invoice inv)
+        {
+            ReportingRepository.Delete<InvoiceSnapshot>(new { id = inv.CreateSnapshot().id });
+        }
     }
 }

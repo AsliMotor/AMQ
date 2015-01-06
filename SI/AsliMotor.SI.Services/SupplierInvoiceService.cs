@@ -78,6 +78,40 @@ namespace AsliMotor.SI.Services
             PublishSupplierInvoicePriceChanged(siUpdated, exist, username);
         }
 
+        public void ForceUpdate(SupplierInvoice si, string username)
+        {
+            SupplierInvoice exist = _repository.GetById(si.id, si.BranchId);
+            if (exist == null)
+                throw new Exception("Data tidak ditemukan.");
+            SupplierInvoice siUpdated = new SupplierInvoice()
+            {
+                id = exist.id,
+                ProductId = exist.ProductId,
+                BranchId = exist.BranchId,
+                SupplierInvoiceNo = exist.SupplierInvoiceNo,
+                TransactionDate = exist.TransactionDate,
+                HargaBeli = si.HargaBeli,
+                Merk = si.Merk,
+                NoBpkb = si.NoBpkb,
+                NoMesin = si.NoMesin,
+                NoPolisi = si.NoPolisi,
+                NoRangka = si.NoRangka,
+                SupplierBillingAddress = si.SupplierBillingAddress,
+                SupplierInvoiceDate = si.SupplierInvoiceDate,
+                SupplierName = si.SupplierName,
+                Tahun = si.Tahun,
+                Type = si.Type,
+                Warna = si.Warna,
+                Note = si.Note,
+                NoTelp = si.NoTelp,
+                Charge = si.Charge
+            };
+            ForceUpdateProduct(siUpdated, username);
+            ReportingRepository.Update<SupplierInvoice>(siUpdated, new { Id = si.id });
+            PublishSupplierInvoiceChanged(siUpdated, username);
+            PublishSupplierInvoicePriceChanged(siUpdated, exist, username);
+        }
+
         private Product CreateProduct(SupplierInvoice si, string username)
         {
             Product product = new Product()
@@ -117,6 +151,26 @@ namespace AsliMotor.SI.Services
                 Warna = si.Warna
             };
             ProductService.Update(product, username);
+        }
+
+        private void ForceUpdateProduct(SupplierInvoice si, string username)
+        {
+            Product product = new Product()
+            {
+                id = si.ProductId,
+                BranchId = si.BranchId,
+                HargaBeli = si.HargaBeli,
+                Merk = si.Merk,
+                NoBpkb = si.NoBpkb,
+                NoMesin = si.NoMesin,
+                NoPolisi = si.NoPolisi,
+                NoRangka = si.NoRangka,
+                Status = StatusProduct.AKTIF,
+                Tahun = si.Tahun,
+                Type = si.Type,
+                Warna = si.Warna
+            };
+            ProductService.ForceUpdate(product, username);
         }
 
         private void PublishSupplierInvoiceChanged(SupplierInvoice si, string username)

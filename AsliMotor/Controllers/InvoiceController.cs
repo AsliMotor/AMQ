@@ -111,6 +111,22 @@ namespace AsliMotor.Controllers
             }
         }
 
+        [MyAuthorize(Roles = RoleName.OWNER)]
+        [HttpPost]
+        public JsonResult Remove(Guid id)
+        {
+            try
+            {
+                CompanyProfile cp = new CompanyProfile(this.HttpContext);
+                InvoiceService.Remove(id, cp.UserName);
+                return Json(new { error = false, data = id }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { error = true, message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         [MyAuthorize(Roles = RoleName.OWNER_ADMINSALES)]
         [HttpPost]
         public JsonResult Cash(CashCommand cmd)

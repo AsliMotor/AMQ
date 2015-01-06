@@ -14,5 +14,6 @@ namespace AsliMotor.Invoices.Repository
         Invoice Get(Guid id);
         decimal GetUangTandaJadi(Guid id);
         long CountAngsuranBulanan(Guid id);
+        void Remove(Invoice inv);
     }
 }

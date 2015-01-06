@@ -282,6 +282,28 @@
                             //window.open("/invoice/PrintSuratPeringatan/" + id, 'Surat Penarikan Kendaraan', null, null);
                         }
                     }, {
+                        title: "Hapus",
+                        tooltip: "Hapus Penjualan",
+                        iconClass: 'icon-ban-circle',
+                        id: "btn-remove",
+                        action: function () {
+                            if (confirm("Anda yakin ingin menghapus transaksi penjualan ini?")) {
+                                $.ajax({
+                                    type: "POST",
+                                    url: "/invoice/remove",
+                                    data: { id: id },
+                                    dataType: "json",
+                                    success: function (resp) {
+                                        if (resp.error) {
+                                            HomeJS.components.ErrorAlert(resp.message);
+                                        } else {
+                                            window.location = "/invoice";
+                                        }
+                                    }
+                                });
+                            }
+                        }
+                    }, {
                         title: "Tarik Kendaraan",
                         tooltip: "Tarik Kendaraan",
                         iconClass: 'icon-ban-circle',

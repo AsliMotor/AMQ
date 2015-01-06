@@ -55,7 +55,15 @@ namespace AsliMotor.Controllers
             try
             {
                 CompanyProfile cp = new CompanyProfile(this.HttpContext);
-                SupplierInvoiceService.Update(si, cp.UserName);
+
+                if (this.HttpContext.User.IsInRole(RoleName.OWNER))
+                {
+                    SupplierInvoiceService.ForceUpdate(si, cp.UserName);
+                }
+                else
+                {
+                    SupplierInvoiceService.Update(si, cp.UserName);
+                }
                 return Json(new { error = false, data = si }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
